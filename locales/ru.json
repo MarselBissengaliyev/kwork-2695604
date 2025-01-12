@@ -1,0 +1,81 @@
+{
+  "links": {
+    "home": "Главная",
+    "listings": "Объявления",
+    "categories": "Категории",
+    "cities": "Города",
+    "blog": "Блог",
+    "dashboard": "Панель управления",
+    "settings": "Настройки",
+    "favourites": "Избранное",
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти",
+    "about": "О нас",
+    "contact_us": "Связаться с нами",
+    "privacy": "Конфиденциальность",
+    "faq": "Часто задаваемые вопросы",
+    "terms": "Условия",
+    "add_listing": "Добавить объявление",
+    "search": "Поиск",
+    "view_all": "Просмотреть все",
+    "show_all": "Показать все",
+    "all": "Все"
+  },
+  "search": "Поиск",
+  "results_found": "Найдено результатов",
+  "pages": {
+    "register": {
+      "title": "Регистрация",
+      "heading": "Регистрация",
+      "form": {
+        "fields": {
+          "name": { "placeholder": "Имя" },
+          "email": { "placeholder": "Электронная почта" },
+          "password": { "placeholder": "Пароль" }
+        },
+        "google": {
+          "button": {
+            "label": "Продолжить через Google"
+          }
+        },
+        "button": {
+          "label": "Зарегистрироваться"
+        }
+      }
+    },
+    "login": {
+      "title": "Войти",
+      "heading": "Войти",
+      "form": {
+        "fields": {
+          "email": { "placeholder": "Электронная почта" },
+          "password": { "placeholder": "Пароль" }
+        },
+        "google": {
+          "button": {
+            "label": "Продолжить через Google"
+          }
+        },
+        "button": {
+          "label": "Войти"
+        }
+      }
+    },
+    "listing": {
+      "sections": {
+        "features": {
+          "heading": "Особенности"
+        },
+        "location": {
+          "heading": "Местоположение"
+        },
+        "reviews": {
+          "heading": "Отзывы",
+          "form_heading": "Оставить отзыв",
+          "form_submit_button_text": "Отправить отзыв"
+        }
+      }
+    }
+  }
+}

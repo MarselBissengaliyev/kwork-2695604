@@ -1,0 +1,85 @@
+{
+  "links": {
+    "home": "Home",
+    "listings": "Listings",
+    "makes": "Makes",
+    "categories": "Categories",
+    "cities": "Cities",
+    "blog": "Blog",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "favourites": "Favourites",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Log out",
+    "about": "About us",
+    "contact_us": "Contact us",
+    "privacy": "Privacy",
+    "faq": "FAQ",
+    "terms": "Terms",
+    "add_listing": "Add listing",
+    "search": "Search",
+    "view_all": "View all",
+    "show_all": "Show all",
+    "all": "All"
+  },
+  "search": "Search",
+  "results_found": "Results found",
+  "pages": {
+    "register": {
+      "title": "Register",
+      "heading": "Register",
+      "form": {
+        "fields": {
+          "name": { "placeholder": "Name" },
+          "email": { "placeholder": "Email" },
+          "password": { "placeholder": "Password" }
+        },
+        "google": {
+          "button": {
+            "label": "Continue with Google"
+          }
+        },
+        "button": {
+          "label": "Register"
+        }
+      }
+    },
+    "login": {
+      "title": "Login",
+      "heading": "Login",
+      "form": {
+        "fields": {
+          "email": { "placeholder": "Email" },
+          "password": { "placeholder": "Password" }
+        },
+        "google": {
+          "button": {
+            "label": "Continue with Google"
+          }
+        },
+        "button": {
+          "label": "Login"
+        }
+      }
+    },
+    "listing": {
+      "sections": {
+        "features": {
+          "heading": "Features"
+        },
+        "location": {
+          "heading": "Location"
+        },
+        "reviews": {
+          "heading": "Reviews",
+          "form_heading": "Leave A Review",
+          "form_submit_button_text": "Submit review"
+        },
+        "opening_hours": {
+          "closed": "Closed"
+        }
+      }
+    }
+  }
+}

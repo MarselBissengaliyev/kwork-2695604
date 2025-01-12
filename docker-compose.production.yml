@@ -1,0 +1,44 @@
+services:
+  npm:
+    container_name: nginx-proxy-manager
+    image: 'docker.io/jc21/nginx-proxy-manager:latest'
+    restart: on-failure
+    platform: linux/amd64
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8888:81'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - npm
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    platform: linux/amd64
+    restart: on-failure
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=
+    networks:
+      - npm
+  app:
+    container_name: web-directory-app
+    build:
+      dockerfile: ./Dockerfile.production
+    platform: linux/amd64
+    restart: on-failure
+    env_file: .env.production
+    ports:
+      - '3000:3000'
+    networks:
+      - npm
+networks:
+  npm:
+    external: true

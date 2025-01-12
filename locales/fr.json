@@ -1,0 +1,81 @@
+{
+  "links": {
+    "home": "Accueil",
+    "listings": "Annonces",
+    "categories": "Catégories",
+    "cities": "Villes",
+    "blog": "Blog",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
+    "favourites": "Favoris",
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "about": "À propos de nous",
+    "contact_us": "Nous contacter",
+    "privacy": "Confidentialité",
+    "faq": "FAQ",
+    "terms": "Conditions",
+    "add_listing": "Ajouter une annonce",
+    "search": "Recherche",
+    "view_all": "Voir tout",
+    "show_all": "Afficher tout",
+    "all": "Tout"
+  },
+  "search": "Recherche",
+  "results_found": "Résultats trouvés",
+  "pages": {
+    "register": {
+      "title": "Inscription",
+      "heading": "Inscription",
+      "form": {
+        "fields": {
+          "name": { "placeholder": "Nom" },
+          "email": { "placeholder": "Email" },
+          "password": { "placeholder": "Mot de passe" }
+        },
+        "google": {
+          "button": {
+            "label": "Continuer avec Google"
+          }
+        },
+        "button": {
+          "label": "S'inscrire"
+        }
+      }
+    },
+    "login": {
+      "title": "Connexion",
+      "heading": "Connexion",
+      "form": {
+        "fields": {
+          "email": { "placeholder": "Email" },
+          "password": { "placeholder": "Mot de passe" }
+        },
+        "google": {
+          "button": {
+            "label": "Continuer avec Google"
+          }
+        },
+        "button": {
+          "label": "Connexion"
+        }
+      }
+    },
+    "listing": {
+      "sections": {
+        "features": {
+          "heading": "Caractéristiques"
+        },
+        "location": {
+          "heading": "Localisation"
+        },
+        "reviews": {
+          "heading": "Avis",
+          "form_heading": "Laisser un avis",
+          "form_submit_button_text": "Soumettre un avis"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# Используем официальный образ для PostgreSQL
+FROM postgres:15-alpine
+
+# Устанавливаем переменные окружения для базы данных
+ENV POSTGRES_USER=admin
+ENV POSTGRES_PASSWORD=securepassword
+ENV POSTGRES_DB=mydatabase
+
+# Открываем порт для подключения
+EXPOSE 5432

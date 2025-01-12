@@ -1,0 +1,407 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+    provider     = "postgresql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model User {
+    id             Int         @id @default(autoincrement())
+    email          String?     @unique
+    password       String?
+    name           String?
+    email_verified Boolean?    @default(false)
+    image          String?
+    role           Role        @default(USER)
+    profile        Profile?
+    listings       Listing[]   @relation("UserRelation")
+    wonLots        Listing[]   @relation("WinnerRelation")
+    bids           Bid[]
+    favourites     Favourite[]
+    reviews        Review[]
+    blogPosts      BlogPost[]
+    transactions   Transaction[]
+    created_at     DateTime?   @default(now())
+    updated_at     DateTime?   @updatedAt
+
+    @@map("users")
+}
+
+model Profile {
+    id         Int       @id @default(autoincrement())
+    bio        String?   @db.Text
+    gender     String?
+    address    String?
+    phone      String?
+    website    String?
+    twitter    String?
+    facebook   String?
+    linkedin   String?
+    youtube    String?
+    user_id    Int       @unique
+    user       User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    created_at DateTime? @default(now())
+    updated_at DateTime? @updatedAt
+
+    @@map("profiles")
+}
+
+model Listing {
+    id              Int               @id @default(autoincrement())
+    slug            String
+    title           String
+    description     String?           @db.Text
+    picture         String?           @db.VarChar(250)
+    published       Boolean?          @default(false)
+    address         String
+    features        String?           @db.Text
+    status          Status?           @default(Pending)
+    latitude        Float?
+    longitude       Float?
+    opening_hours   Json?             @db.Json
+    seo_title       String?           @db.VarChar(200)
+    seo_description String?           @db.Text
+    country_id      Int?
+    country         Country?          @relation(fields: [country_id], references: [id], onDelete: Cascade)
+    city_id         Int?
+    city            City?             @relation(fields: [city_id], references: [id], onDelete: Cascade)
+    user_id         Int
+    user            User              @relation("UserRelation", fields: [user_id], references: [id], onDelete: Cascade)
+    created_at      DateTime?         @default(now())
+    updated_at      DateTime?         @updatedAt
+    published_at    DateTime?
+    deleted_at      DateTime?
+    categories      ListingCategory[]
+    reviews         Review[]
+    favourites      Favourite[]
+
+    vin             String?
+    make_id         Int
+    make            Make              @relation(fields: [make_id], references: [id], onDelete: Cascade)
+    model_id        Int
+    model           Model             @relation(fields: [model_id], references: [id], onDelete: Cascade)
+    name            String?
+    year            Int
+    mileage         Int
+    damage          String?
+    auction         String?
+    loss            String?
+    damageSecondary String?
+    state           String?
+    location        String?
+    document        String?
+    seller          String?
+    color           String?
+    engine          String?
+    fuel            String?
+    condition       String?
+    transmission    String?
+    drive           String?
+    auction_at      DateTime?
+    final_bid       Int?
+    lot             Int?
+    media           Media[]
+    keys            Boolean?          @default(false)
+
+    winner_id       Int?
+    winner          User?             @relation("WinnerRelation", fields: [winner_id], references: [id], onDelete: SetNull)
+    bids            Bid[]
+
+    @@index([user_id])
+    @@index([winner_id])
+    @@index([country_id])
+    @@index([city_id])
+    @@index([make_id])
+    @@index([model_id])
+    @@map("listings")
+}
+
+model Category {
+    id              Int               @id @default(autoincrement())
+    slug            String            @unique @db.VarChar(50)
+    name            String            @db.VarChar(50)
+    description     String?           @db.Text
+    is_sticky       Boolean?          @default(false)
+    picture         String?           @db.VarChar(250)
+    seo_title       String?           @db.VarChar(200)
+    seo_description String?           @db.Text
+    country_id      Int?
+    country         Country?          @relation(fields: [country_id], references: [id], onDelete: Cascade)
+    created_at      DateTime?         @default(now())
+    updated_at      DateTime?         @updatedAt
+    deleted_at      DateTime?
+
+    listings        ListingCategory[]
+    cities          CityCategories[]
+
+    @@index([country_id])
+    @@map("categories")
+}
+
+model Make {
+    id              Int      @id @default(autoincrement())
+    name            String   @unique
+    models          Model[]
+    marketInfo      MarketInfo[]
+    lots            Listing[]
+    is_sticky       Boolean? @default(false)
+
+    @@map("makes")
+}
+
+model Model {
+    id              Int      @id @default(autoincrement())
+    name            String
+    make_id         Int
+    make            Make     @relation(fields: [make_id], references: [id], onDelete: Cascade)
+    lots            Listing[]
+    marketInfo      MarketInfo[]
+
+    @@index([make_id])
+    @@map("models")
+}
+
+model Media {
+    id         Int      @id @default(autoincrement())
+    lot_id     Int
+    lot        Listing      @relation(fields: [lot_id], references: [id], onDelete: Cascade)
+    url        String
+
+    @@index([lot_id])
+    @@map("media")
+}
+
+model Bid {
+    id         Int       @id @default(autoincrement())
+    amount     Int
+    lot_id     Int
+    lot        Listing       @relation(fields: [lot_id], references: [id], onDelete: Cascade)
+    user_id    Int
+    user       User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    created_at DateTime? @default(now())
+    status     StatusBid    @default(CURRENT)
+
+    @@index([lot_id])
+    @@index([user_id])
+    @@map("bids")
+}
+
+model Transaction {
+    id       Int           @id @default(autoincrement())
+    date     DateTime      @default(now()) // Дата транзакции
+    balance  Float         // Сумма транзакции (положительная или отрицательная)
+    status   TransactionStatus // Статус транзакции
+    user_id    Int               // Внешний ключ
+    user       User              @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+    @@map("transactions")
+}
+
+model MarketInfo {
+    id               Int       @id @default(autoincrement())
+    make_id          Int
+    make             Make      @relation(fields: [make_id], references: [id], onDelete: Cascade)
+    model_id         Int
+    model            Model     @relation(fields: [model_id], references: [id], onDelete: Cascade)
+    year             Int
+    region           String
+    min_price        Int
+    max_price        Int
+    avg_price        Int
+    min_mileage      Int
+    max_mileage      Int
+    avg_mileage      Int
+    listing_count    Int
+    updated_at       DateTime? @updatedAt
+
+    @@index([make_id])
+    @@index([model_id])
+    @@index([make_id, model_id, year, region])
+    @@index([make_id, model_id])
+    @@map("market_info")
+}
+
+model ListingCategory {
+    listing_id  Int
+    listing     Listing  @relation(fields: [listing_id], references: [id])
+    category_id Int
+    category    Category @relation(fields: [category_id], references: [id])
+
+    @@id([listing_id, category_id])
+    @@index([category_id])
+    @@map("listing_categories")
+}
+
+model Favourite {
+    id         Int       @id @default(autoincrement())
+    user_id    Int
+    user       User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    listing_id Int
+    listing    Listing   @relation(fields: [listing_id], references: [id], onDelete: Cascade)
+    created_at DateTime? @default(now())
+
+    @@index([user_id, listing_id])
+    @@index([listing_id])
+    @@map("listing_favourites")
+}
+
+model Review {
+    id           Int       @id @default(autoincrement())
+    rating       Int
+    comment      String?   @db.Text
+    published    Boolean?  @default(false)
+    user_id      Int
+    user         User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    listing_id   Int
+    listing      Listing   @relation(fields: [listing_id], references: [id], onDelete: Cascade)
+    created_at   DateTime? @default(now())
+    updated_at   DateTime? @updatedAt
+    published_at DateTime?
+    deleted_at   DateTime?
+
+    @@index([listing_id])
+    @@index([user_id])
+    @@map("reviews")
+}
+
+model BlogPost {
+    id              Int       @id @default(autoincrement())
+    title           String
+    slug            String
+    content         String    @db.Text
+    published       Boolean?  @default(false)
+    picture         String?   @db.VarChar(250)
+    seo_title       String?   @db.VarChar(500)
+    seo_description String?   @db.Text
+    country_id      Int?
+    country         Country?  @relation(fields: [country_id], references: [id], onDelete: Cascade)
+    user_id         Int
+    user            User      @relation(fields: [user_id], references: [id])
+    created_at      DateTime? @default(now())
+    updated_at      DateTime? @updatedAt
+    published_at    DateTime?
+    deleted_at      DateTime?
+
+    @@index([user_id])
+    @@index([country_id])
+    @@map("blog_posts")
+}
+
+model Subscription {
+    id           Int          @id @default(autoincrement())
+    email        String
+    is_subscribe IS_SUBSCRIBE @default(Enable)
+    created_at   DateTime     @default(now())
+
+    @@map("subscriptions")
+}
+
+model RegionConfiguration {
+    id                       Int       @id @default(autoincrement())
+    slug                     String    @unique @db.VarChar(50)
+    name                     String    @db.VarChar(50)
+    locale                   String    @db.VarChar(10)
+    country_name             String    @db.VarChar(50)
+    country_code             String    @db.VarChar(10)
+    domain                   String    @db.VarChar(50)
+    seo_title                String?   @db.VarChar(250)
+    seo_description          String?   @db.Text
+    seo_title_template       String?   @db.VarChar(50)
+    seo_description_template String?   @db.VarChar(100)
+    created_at               DateTime? @default(now())
+    updated_at               DateTime? @updatedAt
+    deleted_at               DateTime?
+    countries                Country[]
+
+    @@map("region_configurations")
+}
+
+model Country {
+    id               Int                  @id @default(autoincrement())
+    slug             String               @unique @db.VarChar(50)
+    code             String               @db.VarChar(10)
+    name             String               @db.VarChar(50)
+    region_config_id Int?
+    region_config    RegionConfiguration? @relation(fields: [region_config_id], references: [id], onDelete: Cascade)
+    created_at       DateTime?            @default(now())
+    updated_at       DateTime?            @updatedAt
+    deleted_at       DateTime?
+    cities           City[]
+    categories       Category[]
+    listings         Listing[]
+    blog_posts       BlogPost[]
+
+    @@index([region_config_id])
+    @@map("countries")
+}
+
+model City {
+    id              Int              @id @default(autoincrement())
+    slug            String           @unique @db.VarChar(50)
+    name            String           @db.VarChar(50)
+    description     String?          @db.Text
+    picture         String?          @db.VarChar(200)
+    is_sticky       Boolean?         @default(false)
+    seo_title       String?          @db.VarChar(200)
+    seo_description String?          @db.Text
+    country_id      Int?
+    country         Country?         @relation(fields: [country_id], references: [id], onDelete: Cascade)
+    created_at      DateTime?        @default(now())
+    updated_at      DateTime?        @updatedAt
+    deleted_at      DateTime?
+    listings        Listing[]
+    categories      CityCategories[]
+
+    @@index([country_id])
+    @@map("cities")
+}
+
+model CityCategories {
+    id              Int      @id @default(autoincrement())
+    city_id         Int
+    city            City     @relation(fields: [city_id], references: [id], onDelete: Cascade)
+    category_id     Int
+    category        Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+    seo_title       String?  @db.VarChar(200)
+    seo_description String?  @db.Text
+
+    @@index([category_id])
+    @@index([city_id])
+    @@map("city_categories")
+}
+
+// enums
+
+enum Role {
+    USER
+    ADMIN
+}
+
+enum Status {
+    Pending
+    Approved
+}
+
+enum IS_SUBSCRIBE {
+    Enable
+    Disabled
+}
+
+enum StatusBid {
+    CURRENT
+    WON
+    LOST
+}
+
+enum TransactionStatus {
+    PAID
+    REQUEST_A_REFUND
+    REFUND
+}

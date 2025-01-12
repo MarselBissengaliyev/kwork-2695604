@@ -1,0 +1,81 @@
+{
+  "links": {
+    "home": "Startseite",
+    "listings": "Anzeigen",
+    "categories": "Kategorien",
+    "cities": "Städte",
+    "blog": "Blog",
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen",
+    "favourites": "Favoriten",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "about": "Über uns",
+    "contact_us": "Kontaktieren Sie uns",
+    "privacy": "Datenschutz",
+    "faq": "Häufig gestellte Fragen",
+    "terms": "Bedingungen",
+    "add_listing": "Anzeige hinzufügen",
+    "search": "Suche",
+    "view_all": "Alle ansehen",
+    "show_all": "Alle anzeigen",
+    "all": "Alle"
+  },
+  "search": "Suche",
+  "results_found": "Ergebnisse gefunden",
+  "pages": {
+    "register": {
+      "title": "Registrieren",
+      "heading": "Registrieren",
+      "form": {
+        "fields": {
+          "name": { "placeholder": "Name" },
+          "email": { "placeholder": "Email" },
+          "password": { "placeholder": "Passwort" }
+        },
+        "google": {
+          "button": {
+            "label": "Mit Google fortfahren"
+          }
+        },
+        "button": {
+          "label": "Registrieren"
+        }
+      }
+    },
+    "login": {
+      "title": "Anmelden",
+      "heading": "Anmelden",
+      "form": {
+        "fields": {
+          "email": { "placeholder": "Email" },
+          "password": { "placeholder": "Passwort" }
+        },
+        "google": {
+          "button": {
+            "label": "Mit Google fortfahren"
+          }
+        },
+        "button": {
+          "label": "Anmelden"
+        }
+      }
+    },
+    "listing": {
+      "sections": {
+        "features": {
+          "heading": "Merkmale"
+        },
+        "location": {
+          "heading": "Standort"
+        },
+        "reviews": {
+          "heading": "Bewertungen",
+          "form_heading": "Eine Bewertung hinterlassen",
+          "form_submit_button_text": "Bewertung abschicken"
+        }
+      }
+    }
+  }
+}
