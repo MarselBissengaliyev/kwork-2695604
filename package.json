@@ -15,9 +15,9 @@
     "docker:run:production": "docker compose -f ./docker-compose.production.yml up -d",
     "prisma": "prisma",
     "prisma:generate": "prisma generate",
-    "prisma:seed:local": "dotenv -e .env.local -- node prisma/seed.js",
+    "prisma:seed:local": "dotenv -e .env -- node prisma/seed.js",
     "prisma:migrate:production": "dotenv -e .env.production -- npx prisma migrate deploy --schema=./prisma/schema.prisma",
-    "prisma:migrate:local": "dotenv -e .env.local -- npx prisma migrate dev --schema=./prisma/schema.prisma --skip-seed",
+    "prisma:migrate:local": "dotenv -e .env -- npx prisma migrate dev --schema=./prisma/schema.prisma --skip-seed",
  "migrate:all": "npm run prisma:migrate:local && npm run prisma:seed:local"
   },
   "dependencies": {
