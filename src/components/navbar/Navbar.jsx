@@ -40,7 +40,7 @@ export const Navbar = ({ domain, currentUser }) => {
   return (
     <header className={css.section}>
       <div className={css.top}>
-        <div className={css.top__inner + " container-xxl"}>
+        <div className={css.top__inner + " container"}>
           <div className={css.logo}>CarLogo</div>
           <div className={css.search}>
             <input placeholder="Search vehicles by make, vin, lot" type="text" />
@@ -61,7 +61,7 @@ export const Navbar = ({ domain, currentUser }) => {
         </div>
       </div>
       <div className={css.bot}>
-        <div className={css.bot__inner + " container-fluid"}>
+        <div className={css.bot__inner + " container"}>
           <div className={css.filter}>
             <i class="ri-search-line"></i>
             <span>Vehicle Finder</span>
