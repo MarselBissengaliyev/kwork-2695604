@@ -1,5 +1,7 @@
 import React from "react";
 
+import PageDirect from "@/components/Common/PageDirect";
+
 import SliderCar from "../../../entities/SliderCar";
 import VehicleInfo from "../../../entities/VehicleInfo";
 import BidStatus from "../../../entities/BidStatus";
@@ -12,7 +14,7 @@ import Rating2 from "../../../shared/img/Rating2";
 import Rating3 from "../../../shared/img/Rating3";
 import StarFav from "../../../shared/img/StarFav";
 
-const CarPage = () => {
+const HeroCar = () => {
   return (
     <section className="tw-container">
       {/* ======================================= */}
@@ -50,4 +52,4 @@ const CarPage = () => {
   );
 };
 
-export default CarPage;
+export default HeroCar;
