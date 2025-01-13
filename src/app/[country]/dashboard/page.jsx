@@ -6,18 +6,19 @@ import DashboardStats from '@/components/Dashboard/DashboardStats'
 import LeftSidebar from '@/components/Dashboard/LeftSidebar'
 
 import { getDataBriefStats } from '@/actions/stats'
+import PageDirect from '@/components/Common/PageDirect'
 
 const page = async () => {
   const { users, listings, blogPosts, reviews } = await getDataBriefStats()
 
   const currentUser = await getCurrentUser()
   const isAdmin = currentUser?.role === 'ADMIN'
-  if (!isAdmin) {
-    redirect('/')
-  }
+  // if (!isAdmin) {
+  //   redirect('/')
+  // }
   return (
     <>
-      <PageBanner pageTitle="Dashboard" />
+      <PageDirect pageTitle="Dashboard" />
 
       <div className="ptb-100">
         <div className="container">
