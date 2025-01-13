@@ -1,0 +1,53 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .top {
+    width: 100%;
+    background: #3e73cf;
+
+    &__inner {
+      display: flex;
+      padding: 23px 0;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 29px;
+      line-height: 34px;
+      /* identical to box height */
+
+      color: #ffffff;
+    }
+
+    .search {
+      padding: 12px 20px;
+      background: #ffffff;
+      border-radius: 22px;
+      position: relative;
+      width: 100%;
+      max-width: 50%;
+
+      input {
+        position: absolute;
+        top: 12px;
+        left: 20px;
+        border: none;
+        outline: none;
+        &::placeholder {
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+    
+            color: #989898;
+          }
+      }
+    }
+  }
+}
