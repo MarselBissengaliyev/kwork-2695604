@@ -2,9 +2,9 @@
 FROM postgres:15-alpine
 
 # Устанавливаем переменные окружения для базы данных
-ENV POSTGRES_USER=admin
-ENV POSTGRES_PASSWORD=securepassword
-ENV POSTGRES_DB=mydatabase
+ENV POSTGRES_USER=neondb_owner
+ENV POSTGRES_PASSWORD=ltaA7hFWKb8H
+ENV POSTGRES_DB=neondb
 
 # Открываем порт для подключения
 EXPOSE 5432
