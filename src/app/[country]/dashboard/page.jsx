@@ -1,6 +1,7 @@
 import React from 'react'
 import { redirect } from 'next/navigation'
 import PageBanner from '@/components/Common/PageBanner'
+import PageDirect from '@/components/Common/PageDirect'
 import { getCurrentUser } from '@/actions/users'
 import DashboardStats from '@/components/Dashboard/DashboardStats'
 import LeftSidebar from '@/components/Dashboard/LeftSidebar'
@@ -18,7 +19,7 @@ const page = async () => {
   // }
   return (
     <>
-      <PageBanner pageTitle="Dashboard" />
+      <PageDirect pageTitle={"Dashboard"}/>
 
       <ButtonMain color='green' variant='solid'>Hello</ButtonMain>
       <div className="ptb-100">
