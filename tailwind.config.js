@@ -3,9 +3,8 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   prefix: "tw-",
   theme: {
-    twcontainer: {
+    container: {
       center: true,
-      padding: "2rem",
       screens: {
         "2xl": "1540px",
       },
