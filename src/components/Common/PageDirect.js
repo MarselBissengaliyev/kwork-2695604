@@ -52,4 +52,3 @@ const PageDirect = ({ pageTitle }) => {
 };
 
 export default PageDirect;
->>>>>>> 8721a86489ed1f7f7de7a46c1b3e01ae17e8b6ed
