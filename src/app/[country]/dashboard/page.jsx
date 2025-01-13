@@ -7,6 +7,7 @@ import LeftSidebar from '@/components/Dashboard/LeftSidebar'
 
 import { getDataBriefStats } from '@/actions/stats'
 import PageDirect from '@/components/Common/PageDirect'
+import ButtonMain from '@/components/button/ButtonMain'
 
 const page = async () => {
   const { users, listings, blogPosts, reviews } = await getDataBriefStats()
@@ -20,6 +21,7 @@ const page = async () => {
     <>
       <PageDirect pageTitle="Dashboard" />
 
+      <ButtonMain color='green' variant='solid'>Hello</ButtonMain>
       <div className="ptb-100">
         <div className="container">
           <div className="row">
