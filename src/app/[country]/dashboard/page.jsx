@@ -1,6 +1,7 @@
 import React from 'react'
 import { redirect } from 'next/navigation'
 import PageBanner from '@/components/Common/PageBanner'
+import PageDirect from '@/components/Common/PageDirect'
 import { getCurrentUser } from '@/actions/users'
 import DashboardStats from '@/components/Dashboard/DashboardStats'
 import LeftSidebar from '@/components/Dashboard/LeftSidebar'
@@ -14,13 +15,12 @@ const page = async () => {
 
   const currentUser = await getCurrentUser()
   const isAdmin = currentUser?.role === 'ADMIN'
-  if (!isAdmin) {
-    redirect('/')
-  }
+  // if (!isAdmin) {
+  //   redirect('/')
+  // }
   return (
     <>
       <PageDirect pageTitle="Dashboard" />
-
       <ButtonMain color='green' variant='solid'>Hello</ButtonMain>
       <div className="ptb-100">
         <div className="container">
