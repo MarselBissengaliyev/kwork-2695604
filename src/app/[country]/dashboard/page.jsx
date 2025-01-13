@@ -14,9 +14,9 @@ const page = async () => {
 
   const currentUser = await getCurrentUser()
   const isAdmin = currentUser?.role === 'ADMIN'
-  // if (!isAdmin) {
-  //   redirect('/')
-  // }
+  if (!isAdmin) {
+    redirect('/')
+  }
   return (
     <>
       <PageDirect pageTitle="Dashboard" />
