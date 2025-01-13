@@ -1,6 +1,5 @@
 import React from 'react'
 import { redirect } from 'next/navigation'
-import PageBanner from '@/components/Common/PageBanner'
 import PageDirect from '@/components/Common/PageDirect'
 import { getCurrentUser } from '@/actions/users'
 import DashboardStats from '@/components/Dashboard/DashboardStats'
@@ -11,7 +10,7 @@ import PageDirect from '@/components/Common/PageDirect'
 import ButtonMain from '@/components/button/ButtonMain'
 
 const page = async () => {
-  const { users, listings, blogPosts, reviews } = await getDataBriefStats()
+  // const { users, listings, blogPosts, reviews } = await getDataBriefStats()
 
   const currentUser = await getCurrentUser()
   const isAdmin = currentUser?.role === 'ADMIN'
@@ -24,7 +23,7 @@ const page = async () => {
       <ButtonMain color='green' variant='solid'>Hello</ButtonMain>
       <div className="ptb-100">
         <div className="container">
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-4">
               <LeftSidebar />
             </div>
@@ -37,7 +36,7 @@ const page = async () => {
                 reviews={reviews}
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

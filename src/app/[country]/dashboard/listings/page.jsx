@@ -20,9 +20,9 @@ const page = async ({ searchParams }) => {
   })
 
   const isAdmin = currentUser?.role === 'ADMIN'
-  if (!isAdmin) {
-    redirect('/')
-  }
+  // if (!isAdmin) {
+  //   redirect('/')
+  // }
   return (
     <>
       <PageBanner pageTitle="All listings" />
