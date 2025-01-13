@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import CarPage from "./widgets/CarPage";
 
 const page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <CarPage />
+    </>
+  );
+};
 
-export default page
+export default page;
