@@ -8,6 +8,10 @@ module.exports = {
         center: true,
         screens: {
           "2xl": "1540px",
+          mindesk: "1340px",
+          laptop: "1024px",
+          tablet: "708px", // Для разрешения 768px
+          phone: "280px", // Для разрешения 320px
         },
       },
       screens: {
