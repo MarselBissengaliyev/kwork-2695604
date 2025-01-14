@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 export const hashPassword = (password) =>
   bcrypt.hash(password, 12).catch(() => null)
