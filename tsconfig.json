@@ -23,6 +23,6 @@
       "@/*": ["./src/*"] // или для папки src
     }
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/app/api/email/route.js"],
   "exclude": ["node_modules"]
 }

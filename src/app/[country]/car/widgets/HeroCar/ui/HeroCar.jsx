@@ -33,18 +33,42 @@ const HeroCar = () => {
         <StarFav />
       </div>
       {/* ======================================= */}
-      <div className="tw-flex tw-gap-[20px]">
-        <div className="tw-flex tw-flex-col tw-gap-[70px]">
+      <div className="tw-flex tw-gap-[0] tw-mx-[30px] laptop:tw-mx-[0] laptop:tw-gap-[20px]">
+        <div className="tw-flex tw-w-[760px] tw-items-center tw-flex-col tw-gap-[70px]">
           <SliderCar />
+          <div className="tw-block  laptop:tw-hidden">
+            {/* laptop  */}
+            <BidStatus />
+          </div>
+          <div className="tw-w-[370px] tw-h-[40px] tw-bg-blue-500 tw-mb-[19px] tw-block  laptop:tw-hidden">
+            {/* laptop */}
+          </div>
+          <div className="tw-w-[370px] tw-block  laptop:tw-hidden">
+            {/* laptop */}
+            <VehicleInfo />
+          </div>
+          <div className="tw-block  laptop:tw-hidden">
+            {/* laptop */}
+            <FinalPriceCalc />
+          </div>
           <FAQ />
         </div>
-        <div className="">
+        <div className="tw-w-[370px] tw-hidden  laptop:tw-block">
+          {/* desktop */}
           <VehicleInfo />
         </div>
         <div className="tw-flex tw-flex-col tw-gap-[10px]">
-          <BidStatus />
-          <div className="tw-w-[370px] tw-h-[40px] tw-bg-blue-500 tw-mb-[19px]"> </div>
-          <FinalPriceCalc />
+          <div className="tw-hidden  laptop:tw-block">
+            {/* desktop */}
+            <BidStatus />
+          </div>
+          <div className="tw-w-[370px] tw-h-[40px] tw-bg-blue-500 tw-mb-[19px] tw-hidden  laptop:tw-block">
+            {/* desktop */}
+          </div>
+          <div className="tw-hidden  laptop:tw-block">
+            {/* desktop */}
+            <FinalPriceCalc />
+          </div>
           <PolandMarket />
         </div>
       </div>

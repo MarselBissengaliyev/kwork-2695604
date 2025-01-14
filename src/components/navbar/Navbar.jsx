@@ -48,6 +48,9 @@ export const Navbar = ({ domain, currentUser }) => {
               <i class="ri-search-line"></i>
             </button>
           </div>
+          <div className={css.burger}>
+            <i class="ri-menu-line"></i>
+          </div>
           <div className={css.auth}>
             <button className={css.login}>
               <span>Log In</span>

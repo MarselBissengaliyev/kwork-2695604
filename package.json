@@ -30,7 +30,7 @@
     "@next/env": "^15.1.4",
     "@prisma/client": "^5.0.0",
     "axios": "^1.4.0",
-    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.11",
     "eslint-config-next": "^12.1.0",
     "leaflet": "^1.9.4",
@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@types/node": "22.10.5",
+    "@types/react": "19.0.7",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.1",
     "dotenv-cli": "^7.4.2",
@@ -66,7 +67,8 @@
     "postcss": "^8.4.38",
     "postcss-reporter": "^7.1.0",
     "prettier": "3.2.5",
-    "prisma": "^5.0.0",
-    "tailwindcss": "^3.4.3"
+    "prisma": "^6.2.1",
+    "tailwindcss": "^3.4.3",
+    "typescript": "5.7.3"
   }
 }

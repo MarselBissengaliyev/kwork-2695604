@@ -1,7 +1,7 @@
 import React from "react";
 
 const FAQ = () => {
-  return <div className="tw-w-[760px] tw-h-[458px] tw-bg-orange-700">FAQ</div>;
+  return <div className="tw-w-full tw-max-w-[760px] tw-h-[458px] tw-bg-orange-700 tw-hidden  laptop:tw-block">FAQ</div>;
 };
 
 export default FAQ;
