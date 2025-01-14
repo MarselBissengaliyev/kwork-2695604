@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const { faker } = require('@faker-js/faker')
 const { PrismaClient } = require('@prisma/client')
 const { default: slugify } = require('slugify')

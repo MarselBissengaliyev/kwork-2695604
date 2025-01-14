@@ -1,51 +1,59 @@
-import { NextResponse } from 'next/server'
-import mailer from 'nodemailer'
+import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
-const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD } = process.env
+const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD } = process.env;
 
-const transport = mailer.createTransport({
+if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASSWORD) {
+  throw new Error('SMTP variables are not defined in the environment.');
+}
+
+const transport = nodemailer.createTransport({
   host: SMTP_HOST,
-  port: SMTP_PORT,
-  secure: false,
+  port: Number(SMTP_PORT),
+  secure: SMTP_PORT === '465',
   auth: {
     user: SMTP_USER,
     pass: SMTP_PASSWORD,
   },
-})
+});
 
-export const send = async (options) => {
+const send = async (options) => {
   try {
-    const { to, from, subject, html } = options
-
+    const { to, from, subject, html } = options;
     const response = await transport.sendMail({
       to,
       from,
       subject,
       html,
-    })
-
-    console.log({ response })
+    });
+    console.log('Email sent successfully:', response);
   } catch (e) {
-    console.error(e)
+    console.error('Error sending email:', e);
+    throw new Error('Failed to send email.');
   }
-}
+};
 
-export async function POST(request) {
+export async function POST(req) {
   try {
-    const body = await request.json()
-    const { to } = body
+    const body = await req.json();
+    const { to } = body;
 
-    console.log('sending email..')
+    if (!to) {
+      return NextResponse.json({ message: 'Recipient email is required.' }, { status: 400 });
+    }
+
+    console.log('Sending email...');
 
     await send({
       to,
       from: 'test@luksr.com',
-      subject: 'web directory subscription',
-      html: `hi, you've been successfully subscribed to our newsletter.`,
-    })
+      subject: 'Web directory subscription',
+      html: `Hi, you've been successfully subscribed to our newsletter.`,
+    });
 
-    return NextResponse.json({ message: 'Email sent' })
+    return NextResponse.json({ message: 'Email sent' });
   } catch (e) {
-    return NextResponse.json({ message: 'Email not sent' }, { status: 403 })
+    console.error('Error processing the request:', e);
+    return NextResponse.json({ message: 'Email not sent', error: e.message }, { status: 500 });
   }
 }
