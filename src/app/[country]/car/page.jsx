@@ -1,10 +1,13 @@
 import React from "react";
-import CarPage from "./widgets/CarPage";
+
+import "./car.scss";
+
+import HeroCar from "./widgets/HeroCar";
 
 const page = () => {
   return (
     <>
-      <CarPage />
+      <HeroCar />
     </>
   );
 };
