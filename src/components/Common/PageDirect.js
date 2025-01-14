@@ -35,8 +35,8 @@ const PageDirect = ({ pageTitle, children, className }) => {
     t('links.default');
 
   return (
-    <div className="overly bg-10 ptb-100 tw-text-[#8C8C8C]">
-      <div className="container">
+    <div className="overly bg-10 pt-100 tw-pb-[41px] tw-text-[#8C8C8C]">
+      <div className="tw-container">
         <div>
           <ul className="tw-pl-0 tw-flex tw-gap-3 tw-list-none tw-text-[#8C8C8C]">
             <li>

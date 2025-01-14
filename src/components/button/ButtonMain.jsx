@@ -2,13 +2,15 @@ import React from 'react';
 
 const ButtonMain = ({
   text,
-  className,
+  classNames,
   onClick,
   fullWidth = false,
   variant = "solid",
   color = "blue",
-  icon, // добавляем поддержку иконки
+  icon,
   number,
+  hoverEffect = true, // Добавляем новый пропс для эффекта hover
+  hoverColor, // Добавляем новый пропс для цвета hover
 }) => {
   // Цветовые значения
   const colorMap = {
@@ -19,9 +21,10 @@ const ButtonMain = ({
   };
 
   const currentColor = colorMap[color] || '#3E73CF'; // По умолчанию синий
+  const hoverColorValue = hoverColor || currentColor; // Если hoverColor не задан, используем currentColor
 
   // Базовые классы
-  const baseClasses = `tw-py-[10px] tw-px-[25px] tw-rounded-[26px] tw-font-medium`;
+  const baseClasses = `tw-py-[10px] tw-px-[25px] tw-rounded-[26px] tw-font-medium tw-flex tw-justify-center tw-items-center`;
   const widthClass = fullWidth ? 'tw-w-full' : 'tw-inline-block';
 
   // Варианты кнопки
@@ -50,14 +53,22 @@ const ButtonMain = ({
 
   // Стили для иконки
   const iconStyles = {
-    width: '16px',
-    height: '16px', 
-    // marginLeft: number !== undefined ? '8px' : '0', // Если есть число, добавить отступ
+    width: '18px',
+    height: '18px', 
+    marginLeft: '8px',
+    marginBottom: '3px',
   };
+
+  // Добавляем динамическую поддержку hover-классов
+  const hoverClasses = hoverEffect
+    ? variant === 'solid'
+      ? `hover:tw-bg-${hoverColorValue} hover:tw-text-white`
+      : `hover:tw-bg-${hoverColorValue}-light hover:tw-text-white hover:tw-border-${hoverColorValue}-light`
+    : ''; // Если hoverEffect = false, убираем hover эффект
 
   return (
     <button
-      className={`${baseClasses} ${widthClass} ${className} tw-flex tw-justify-center tw-items-center`}
+      className={`${baseClasses} ${widthClass} ${hoverClasses} ${classNames}`} // динамический hover и классы
       style={variantStyles}
       onClick={onClick}
     >

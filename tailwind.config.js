@@ -14,6 +14,23 @@ module.exports = {
       aspectRatio: {
         "4/3": "4/3",
       },
+      colors: {
+        blue: {
+          500: '#3E73CF',
+          light: '#6C99D8',
+        },
+        green: {
+          500: '#3ECF5C',
+          light: '#6BD68F',
+        },
+        red: {
+          500: '#E3433A',
+          light: '#E3433A',
+        },
+        gray: {
+          500:'#DBDBDB',
+        }
+      },
     },
   },
   plugins: [],
