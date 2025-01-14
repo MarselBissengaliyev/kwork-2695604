@@ -1,0 +1,32 @@
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.list-item-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: nowrap;
+
+  white-space: nowrap;
+}
+
+.list-item-value {
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.list-item-border {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px dotted #e7e7e7;
+  position: relative;
+  top: 90%;
+}

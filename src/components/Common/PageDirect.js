@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from 'react'; 
 import Link from 'next/link';
@@ -50,7 +50,7 @@ const PageDirect = ({ pageTitle, children, className }) => {
                 </li>
                 <li>
                   {index === breadcrumbs.length - 1 ? (
-                    <span>{breadcrumb.label}</span> 
+                    <span>{breadcrumb.label}</span>
                   ) : (
                     <Link href={breadcrumb.href}>{breadcrumb.label}</Link>
                   )}
