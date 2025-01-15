@@ -3,10 +3,8 @@
 import React from "react";
 
 import InfoIcon from "../../../shared/img/InfoIcon";
-import Auc from "../../../shared/img/Auc";
 
 import ListItem from "@/components/ListItem/index";
-import ButtonMain from "@/components/button/ButtonMain";
 import CounterCar from "../../CounterCar/ui/CounterCar";
 
 const BidStatus = () => {

@@ -34,7 +34,7 @@ const CounterCar = () => {
             id="bid-input"
             name="bid"
             type="number"
-            defaultValue={`$ ${131}`}
+            defaultValue={131}
             step={25}
             min={25}
             className="tw-text-center tw-w-full tw-text-[18px] tw-border-0 tw-outline-none"
