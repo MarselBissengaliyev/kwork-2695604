@@ -12,6 +12,15 @@
       padding: 23px 15px;
       justify-content: space-between;
       align-items: center;
+      @media screen and (min-width: 320px) {
+        display: grid;
+        grid-template-areas:
+          "logo burger"
+          "search search";
+      }
+      @media screen and (min-width: 768px) {
+        display: flex;
+      }
     }
 
     .logo {
@@ -23,6 +32,9 @@
       /* identical to box height */
 
       color: #ffffff;
+      @media screen and (min-width: 320px) {
+        grid-area: logo;
+      }
     }
 
     .search {
@@ -35,9 +47,27 @@
       overflow: hidden;
       height: 44px;
 
+      @media screen and (min-width: 320px) {
+        &.large {
+          display: none;
+        }
+        &.small {
+          grid-area: search;
+          max-width: 100%;
+          display: flex;
+          margin-top: 11px;
+        }
+      }
+
       @media screen and (min-width: 768px) {
         margin-left: auto;
         max-width: 50%;
+        &.large {
+          display: flex;
+        }
+        &.small {
+          display: none;
+        }
       }
 
       @media screen and (min-width: 992px) {
@@ -86,6 +116,10 @@
     }
 
     .burger {
+      @media screen and (min-width: 320px) {
+        display: flex;
+        grid-area: burger;
+      }
       @media screen and (min-width: 768px) {
         display: flex;
       }
@@ -111,6 +145,9 @@
 
       .login,
       .signup {
+        @media screen and (min-width: 320px) {
+          display: none;
+        }
         @media screen and (min-width: 768px) {
           display: none;
         }
@@ -160,6 +197,10 @@
 
   .bot {
     background: #111f38;
+
+    @media screen and (min-width: 320px) {
+      display: none;
+    }
 
     @media screen and (min-width: 768px) {
       display: none;
@@ -304,6 +345,25 @@
     height: 100%;
     overflow-y: scroll;
     padding-bottom: 228px;
+    transform: translateX(-340px);
+    transition: all 0.1s linear;
+
+    @media screen and (min-width: 320px) {
+      width: 280px;
+    }
+
+
+    &.open {
+      transform: translateX(0px);
+    }
+
+    overflow-y: auto; /* Обеспечивает прокрутку */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
+    }
 
     .filter {
       position: relative; /* Это можно оставить */
