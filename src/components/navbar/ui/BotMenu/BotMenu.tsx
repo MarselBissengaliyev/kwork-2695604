@@ -8,7 +8,9 @@ import WhatsappIcon from "../../icons/WhatsappIcon";
 const BotMenu = ({ parsedMakes }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(null); // Хранит ключ текущего открытого элемента
+  const [isAuctionsOpen, setIsAuctionsOpen] = useState(false); // Управляет выпадающим меню "Auctions"
   const menuRef = useRef(null); // Реф для меню
+  const auctionMenuRef = useRef(null); // Реф для меню "Auctions"
   const estimatedCostItems = [
     { label: "To 2000$", link: "/listings?estimated_cost_max=2000" },
     { label: "To 5000$", link: "/listings?estimated_cost_max=5000" },
@@ -48,19 +50,30 @@ const BotMenu = ({ parsedMakes }) => {
   // Закрытие меню при клике вне его области
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
+      // Закрываем меню, если клик был вне его области
+      if (
+        menuRef.current && !menuRef.current.contains(event.target) ||
+        auctionMenuRef.current && !auctionMenuRef.current.contains(event.target)
+      ) {
+        setIsMenuOpen(false); // Закрывает основное меню
+        setIsAuctionsOpen(false); // Закрывает меню "Auctions"
       }
     };
 
-    if (isMenuOpen) {
+    // Добавляем обработчик, если хотя бы одно меню открыто
+    if (isMenuOpen || isAuctionsOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isAuctionsOpen]);
+
+  // Функция для переключения выпадающего меню "Auctions"
+  const toggleAuctionsMenu = () => {
+    setIsAuctionsOpen((prev) => !prev);
+  };
 
   return (
     <div className={css.bot}>
@@ -87,7 +100,7 @@ const BotMenu = ({ parsedMakes }) => {
                   <div className={css.item__content}>
                     <h3>Popular Makes</h3>
                     <div className={css.list}>
-                      {parsedMakes.map((make: any) => (
+                      {parsedMakes.map((make) => (
                         <div key={make.id} className={css.element}>
                           <b>{make.name}</b>
                           <div className={css.dots}></div>
@@ -95,7 +108,9 @@ const BotMenu = ({ parsedMakes }) => {
                         </div>
                       ))}
                     </div>
-                    <a href="/listings"><span>View More</span> <i className="ri-arrow-right-fill"></i></a>
+                    <a href="/listings">
+                      <span>View More</span> <i className="ri-arrow-right-fill"></i>
+                    </a>
                   </div>
                 )}
               </div>
@@ -113,7 +128,7 @@ const BotMenu = ({ parsedMakes }) => {
                   <div className={`${css.item__content + " " + css.vehicleTypes}`}>
                     <h3>Estimated cost</h3>
                     <div className={css.list}>
-                      {estimatedCostItems.length > 0 && estimatedCostItems.map((subItem, index) => (
+                      {estimatedCostItems.map((subItem, index) => (
                         <a
                           key={index}
                           href={subItem.link}
@@ -124,7 +139,6 @@ const BotMenu = ({ parsedMakes }) => {
                       ))}
                     </div>
                   </div>
-
                 )}
               </div>
               <div className={css.item}>
@@ -141,7 +155,7 @@ const BotMenu = ({ parsedMakes }) => {
                   <div className={css.item__content}>
                     <h3>Featured</h3>
                     <div className={css.list}>
-                      {featuredItems.length > 0 && featuredItems.map((subItem, index) => (
+                      {featuredItems.map((subItem, index) => (
                         <a
                           key={index}
                           href={subItem.link}
@@ -158,20 +172,38 @@ const BotMenu = ({ parsedMakes }) => {
           )}
         </div>
         <div className={css.menu}>
-          <div className={css.item}>
-            <div className={css.live}>Live</div>
-            <span>Auctions</span>
-            <i className="ri-arrow-down-s-line"></i>
+          <div className={css.item} onClick={toggleAuctionsMenu}>
+            <div className={css.item__head}>
+              <div className={css.live}>Hot</div>
+              <span>Auctions</span>
+              <i className="ri-arrow-down-s-line"></i>
+            </div>
+            {isAuctionsOpen && (
+              <div className={css.dropdownMenu} ref={auctionMenuRef}>
+                <a href="/listings?auction=ia">IAAI</a>
+                <a href="/listings?auction=co">Copart</a>
+                <a href="/listings?auction=eu">Europe</a>
+                <a href="/listings?status=open">Opened</a>
+                <a href="/listings?buynow=true">Buy Now</a>
+                <a href="/listings?status=archiv">Archived</a>
+              </div>
+            )}
           </div>
           <div className={css.item}>
-            <span>Support</span>
-            <i className="ri-arrow-down-s-line"></i>
+            <div className={css.item__head}>
+              <span>Support</span>
+              <i className="ri-arrow-down-s-line"></i>
+            </div>
           </div>
           <Link href="/faq" className={css.item}>
-            <span>FAQ</span>
+          <div className={css.item__head}>
+              <span>FAQ</span>
+            </div>
           </Link>
           <Link href="/about" className={css.item}>
-            <span>About us</span>
+          <div className={css.item__head}>
+              <span>About Us</span>
+            </div>
           </Link>
         </div>
         <div className={css.time}>7 am to 6 pm EST Mon - Fri</div>

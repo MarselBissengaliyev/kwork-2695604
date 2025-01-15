@@ -270,8 +270,7 @@
                   width: 100%;
                 }
               }
- 
-              
+
               & > a {
                 margin-top: auto;
                 box-sizing: border-box;
@@ -285,7 +284,8 @@
                 padding: 10px 20px;
                 width: min-content;
 
-                span,i {
+                span,
+                i {
                   font-family: "Roboto";
                   font-style: normal;
                   font-weight: 400;
@@ -297,7 +297,7 @@
                   color: #191919;
                 }
                 i {
-                  color: #3E73CF;
+                  color: #3e73cf;
                 }
               }
 
@@ -417,36 +417,69 @@
         width: 100%;
 
         .item {
+          position: relative;
           display: flex;
-          align-items: center;
-          gap: 10px;
 
-          span,
-          i {
-            font-family: "Roboto";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 21px;
-            /* identical to box height */
+          &__head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            span,
+            i {
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 21px;
+              /* identical to box height */
 
-            color: #ffffff;
+              color: #ffffff;
+            }
+            // just for vercel
+            .live {
+              text-align: center;
+              padding: 2px 8px;
+              background: #e3433a;
+              border-radius: 11px;
+              width: 100%;
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 12px;
+              line-height: 14px;
+              /* identical to box height */
+
+              color: #ffffff;
+            }
           }
-          // just for vercel
-          .live {
-            text-align: center;
-            padding: 2px 8px;
-            background: #e3433a;
-            border-radius: 11px;
+          .dropdownMenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 50;
+            background-color: #fff;
             width: 100%;
-            font-family: "Roboto";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 14px;
-            /* identical to box height */
-
-            color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            a {
+              padding: 17px 16px;
+              transition: all 0.1s linear;
+              cursor: pointer;
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 20px;
+              color: #191919;
+              transition: all 0.1s linear;
+              &:hover {
+                background: #3e73cf;
+                color: white;
+              }
+            }
           }
         }
       }
