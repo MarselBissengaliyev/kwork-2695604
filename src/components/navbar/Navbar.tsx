@@ -12,7 +12,7 @@ import ViberIcon from "./icons/ViberIcon";
 import TelegramIcon from "./icons/TelegramIcon";
 import WhatsappIcon from "./icons/WhatsappIcon";
 import { PiArrowRight } from "react-icons/pi";
-import ListItem  from "../ListItem/ui/ListItem";
+import ListItem from "../ListItem/ui/ListItem";
 
 interface Make {
   id: number;
@@ -153,27 +153,33 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
             <i className="ri-search-line"></i>
             <span>Vehicle Finder</span>
             <i className="ri-arrow-down-s-line"></i>
-            <div className={css.bot__menu}>
-            <div className={css.item}>
+            {/* <div className={css.bot__menu}>
+              <div className={css.item}>
                 <div className={css.item__header}>
-                  <span>Popular Makes</span>    
+                  <span>Popular Makes</span>
                   <i className="ri-arrow-right-s-line"></i>
                 </div>
                 <div className={css.item__content}>
                   <h3>Popular Makes</h3>
-                  <ListItem label={"Harley-davidson"}value={"Honda"}/>
+                  <ListItem label={"Harley-davidson"} value={"Honda"} />
                 </div>
               </div>
               <div className={css.item}>
-                <div className={css.item__header}><span>Vehicle Types</span>    <i className="ri-arrow-right-s-line"></i></div>
+                <div className={css.item__header}>
+                  <span>Vehicle Types</span> <i className="ri-arrow-right-s-line"></i>
                 </div>
-                <div className={css.item}>
-                <div className={css.item__header}><span>Title</span>    <i className="ri-arrow-right-s-line"></i></div>
+              </div>
+              <div className={css.item}>
+                <div className={css.item__header}>
+                  <span>Title</span> <i className="ri-arrow-right-s-line"></i>
                 </div>
-                <div className={css.item}>
-                <div className={css.item__header}><span>Featured lots</span>    <i className="ri-arrow-right-s-line"></i></div>
+              </div>
+              <div className={css.item}>
+                <div className={css.item__header}>
+                  <span>Featured lots</span> <i className="ri-arrow-right-s-line"></i>
                 </div>
-            </div>
+              </div>
+            </div> */}
           </div>
           <div className={css.menu}>
             <div className={css.item}>

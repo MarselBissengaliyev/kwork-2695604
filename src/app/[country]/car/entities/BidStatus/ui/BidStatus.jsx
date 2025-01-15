@@ -4,7 +4,7 @@ import React from "react";
 
 import InfoIcon from "../../../shared/img/InfoIcon";
 
-import ListItem from "@/components/ListItem/index";
+import ListItem from "@/components/ListItem";
 import CounterCar from "../../CounterCar/ui/CounterCar";
 
 const BidStatus = () => {
