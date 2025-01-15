@@ -243,7 +243,8 @@
           transition: all 0.1s linear;
 
           box-shadow: 0px 12px 24px rgba(51, 51, 51, 0.2);
-          border-radius: 10px;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
 
           .item {
             &__content {
@@ -256,7 +257,49 @@
 
               background: #ffffff;
               box-shadow: 0px 12px 24px rgba(51, 51, 51, 0.2);
-              border-radius: 10px;
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              display: flex;
+              flex-direction: column;
+
+              &.vehicleTypes {
+                flex-wrap: wrap;
+
+                .list {
+                  flex-wrap: wrap;
+                  width: 100%;
+                }
+              }
+ 
+              
+              & > a {
+                margin-top: auto;
+                box-sizing: border-box;
+
+                border: 1px solid #dbdbdb;
+                border-radius: 20px;
+                background: none;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 20px;
+                width: min-content;
+
+                span,i {
+                  font-family: "Roboto";
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 16px;
+                  line-height: 19px;
+                  text-align: right;
+                  text-wrap: nowrap;
+
+                  color: #191919;
+                }
+                i {
+                  color: #3E73CF;
+                }
+              }
 
               .list {
                 margin-top: 30px;
@@ -284,7 +327,7 @@
                   }
                   .dots {
                     flex-grow: 1;
-                    background: radial-gradient(circle, #E7E7E7 20%, transparent 20%) center/5px 5px;
+                    background: radial-gradient(circle, #e7e7e7 20%, transparent 20%) center/5px 5px;
                     height: 1px;
                     margin: 0 10px;
                     margin-bottom: 5px;
