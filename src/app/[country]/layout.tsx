@@ -1,54 +1,54 @@
-import { getMessages } from 'next-intl/server'
+import { getMessages } from "next-intl/server";
 
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'react-accessible-accordion/dist/fancy-example.css'
+import "swiper/css";
+import "swiper/css/pagination";
+import "react-accessible-accordion/dist/fancy-example.css";
 
-import '@/app/styles/bootstrap.css'
-import '@/app/styles/flaticon.css'
-import '@/app/styles/remixicon.css'
-import '@/app/styles/dark-mode.css'
-import '@/app/styles/style.css'
-import '@/app/styles/responsive.css'
+import "@/app/styles/bootstrap.css";
+import "@/app/styles/flaticon.css";
+import "@/app/styles/remixicon.css";
+import "@/app/styles/dark-mode.css";
+import "@/app/styles/style.css";
+import "@/app/styles/responsive.css";
 
-import { getCurrentUser } from '@/actions/users'
-import { getRegionConfiguration } from '@/actions/region-configurations'
+import { getCurrentUser } from "@/actions/users";
+import { getRegionConfiguration } from "@/actions/region-configurations";
 
-import TosterProvider from '@/providers/TosterProvider'
-import { Navbar } from '@/components/navbar'
-import { Footer } from '@/components/footer'
-import { NextIntlClientProvider } from 'next-intl'
+import TosterProvider from "@/providers/TosterProvider";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { NextIntlClientProvider } from "next-intl";
 
 export const generateMetadata = async ({ params }) => {
-  const { country } = params?.country
+  const { country } = params?.country;
 
   let metadata = {
     title: "",
     description: ""
   }
 
-  const config = await getRegionConfiguration({ country }).catch(() => null)
+  const config = await getRegionConfiguration({ country }).catch(() => null);
 
   if (config) {
-    metadata.title = config.seo_title
-    metadata.description = config.seo_description
+    metadata.title = config.seo_title;
+    metadata.description = config.seo_description;
   }
 
   return {
     title: metadata.title,
     description: metadata.description,
-  }
-}
+  };
+};
 
 const RootLayout = async ({ params, children }) => {
-  const { country } = params || {}
+  const { country } = params || {};
 
-  const messages = await getMessages()
+  const messages = await getMessages();
 
   const regionConfiguration = await getRegionConfiguration({
     country,
-  }).catch(() => null)
-  const currentUser = await getCurrentUser()
+  }).catch(() => null);
+  const currentUser = await getCurrentUser();
 
   return (
     <html lang="en">
@@ -65,16 +65,13 @@ const RootLayout = async ({ params, children }) => {
             </div>
           )}
           <TosterProvider />
-          <Navbar
-            domain={regionConfiguration?.domain}
-            currentUser={currentUser}
-          />
+          <Navbar domain={regionConfiguration?.domain} currentUser={currentUser} />
           {children}
           <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;

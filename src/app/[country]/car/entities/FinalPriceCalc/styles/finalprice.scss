@@ -1,0 +1,21 @@
+.list-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.list-price-label {
+  width: 100%;
+  flex-wrap: nowrap;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.list-price-value {
+  padding: 14px 20px 13px 92px;
+  white-space: nowrap;
+}
