@@ -216,16 +216,20 @@
       height: 100%;
 
       .filter {
-        padding: 20px 0;
-        padding-right: 30px;
-        border-right: 1px solid #fff;
-        margin-right: 30px;
         position: relative;
 
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-wrap: nowrap;
+        &__head {
+          padding: 20px 0;
+          padding-right: 30px;
+          border-right: 1px solid #fff;
+          margin-right: 30px;
+          cursor: pointer;
+
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          text-wrap: nowrap;
+        }
 
         .bot__menu {
           position: absolute;
@@ -242,6 +246,75 @@
           border-radius: 10px;
 
           .item {
+            &__content {
+              width: 700px;
+              position: absolute;
+              left: 100%;
+              top: 0;
+              height: 100%;
+              padding: 40px;
+
+              background: #ffffff;
+              box-shadow: 0px 12px 24px rgba(51, 51, 51, 0.2);
+              border-radius: 10px;
+
+              .list {
+                margin-top: 30px;
+                width: 700px;
+                display: flex;
+                flex-wrap: wrap; /* Добавлено для поддержки нескольких рядов */
+                gap: 40px;
+                .element {
+                  display: flex;
+                  align-items: flex-end;
+                  max-width: 290px;
+                  width: calc(50% - 4.5px); /* Чтобы элементы занимали половину ширины с учетом gap */
+                  justify-content: space-between;
+                  b {
+                    flex-shrink: 0;
+
+                    font-family: "Roboto";
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 20px;
+                    /* or 111% */
+
+                    color: #191919;
+                  }
+                  .dots {
+                    flex-grow: 1;
+                    background: radial-gradient(circle, #E7E7E7 20%, transparent 20%) center/5px 5px;
+                    height: 1px;
+                    margin: 0 10px;
+                    margin-bottom: 5px;
+                  }
+                  span {
+                    flex-shrink: 0;
+
+                    font-family: "Roboto";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    /* or 143% */
+                    text-align: right;
+
+                    color: #989898;
+                  }
+                }
+              }
+
+              h3 {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 500;
+                font-size: 30px;
+                line-height: 35px;
+
+                color: #191919;
+              }
+            }
             &__header {
               padding: 17px 16px;
               transition: all 0.1s linear;
@@ -256,8 +329,8 @@
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
-                justify-content: center;  
-                color: #223E70;
+                justify-content: center;
+                color: #223e70;
                 font-size: 16px;
               }
               span {
@@ -267,7 +340,7 @@
                 font-size: 18px;
                 line-height: 20px;
                 /* or 111% */
-  
+
                 color: #191919;
                 transition: all 0.1s linear;
               }
