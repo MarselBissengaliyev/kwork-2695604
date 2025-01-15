@@ -87,21 +87,24 @@ const page = async () => {
   // }
   return (
     <>
-      <PageDirect pageTitle={"Dashboard"} className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}>
-        <div className='tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full'>
-          <div className='tw-flex tw-gap-2 '>
+      <PageDirect
+  pageTitle={"Dashboard"}
+  className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}
+>
+  <div className='tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full'>
+    <div className='tw-flex tw-gap-2'>
+      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} variant='outlined' text={"Dashboard"} />
+      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="My Bids" number={8} />
+      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} text="Transactions" color="grey" variant='outlined' number={4} />
+      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' number={4} variant='outlined' text="Watchlist" />
+    </div>
+    <div className='tw-flex tw-gap-2'>
+      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="Request refund" />
+      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
+    </div>
+  </div>
+</PageDirect>
 
-            <ButtonMain classNames={'tw-max-w-[170px]'} variant='outlined' text={"Dashboard"}/>
-            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' variant='outlined' text="My Bids" number={8}/>
-            <ButtonMain classNames={'tw-max-w-[170px]'} text="Transactions" color="grey" variant='outlined' number={4}/>
-            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' number={4} variant='outlined' text="Watchlist"/>
-          </div>
-          <div className='tw-flex tw-gap-2'>
-            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' variant='outlined' text="Request refund"/>
-            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png"/>
-          </div>
-        </div>
-      </PageDirect>
       <div className="">
         <Container>
 
