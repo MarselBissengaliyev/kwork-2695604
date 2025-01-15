@@ -22,7 +22,10 @@ import { NextIntlClientProvider } from "next-intl";
 export const generateMetadata = async ({ params }) => {
   const { country } = params?.country;
 
-  let metadata = {};
+  let metadata = {
+    title: "",
+    description: ""
+  }
 
   const config = await getRegionConfiguration({ country }).catch(() => null);
 
