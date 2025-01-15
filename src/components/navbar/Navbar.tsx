@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef, useState, ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,40 +10,38 @@ import { useReducer } from "react";
 import ViberIcon from "./icons/ViberIcon";
 import TelegramIcon from "./icons/TelegramIcon";
 import WhatsappIcon from "./icons/WhatsappIcon";
-import { PiArrowRight } from "react-icons/pi";
-import ListItem  from "../ListItem/ui/ListItem";
+import BotMenu from "./ui/BotMenu/BotMenu";
 
 interface Make {
   id: number;
   name: string;
 }
-
+interface MakeWithCount extends Make {
+  count: number
+}
 interface MenuItemProps {
   title: string;
   isOpen?: boolean;
   toggle?: () => void;
   children?: ReactNode;
 }
-
 interface NavbarProps {
   domain: string;
   currentUser: any;
+  makes: any;
 }
-
 interface MenuState {
   menu: boolean;
   subMenu: boolean;
   supportMenu: boolean;
   supportSubMenu: boolean;
 }
-
 const initialState: MenuState = {
   menu: false,
   subMenu: false,
   supportMenu: false,
   supportSubMenu: false,
 };
-
 const reducer = (state: MenuState, action: { type: string; key: keyof MenuState }) => {
   switch (action.type) {
     case "TOGGLE":
@@ -55,7 +52,6 @@ const reducer = (state: MenuState, action: { type: string; key: keyof MenuState 
       throw new Error(`Unknown action type: ${action.type}`);
   }
 };
-
 const MenuItem: React.FC<MenuItemProps> = ({ title, isOpen, toggle, children }) => (
   <div className={css.filter}>
     <div aria-expanded={isOpen} role="button" tabIndex={0} onClick={toggle} className={css.filterHeader}>
@@ -65,17 +61,14 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, isOpen, toggle, children }) 
     {isOpen && <ul className={css.dropdown}>{children}</ul>}
   </div>
 );
-
-export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
+export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) => {
+  console.log(makes)
   const route = usePathname();
   const t = useTranslations();
-
   const [menuState, dispatch] = useReducer(reducer, initialState);
-
   const [sidebar, setSidebar] = useState(false);
   const elementRef = useRef<HTMLDivElement | null>(null);
-
-  const makes: Make[] = [];
+  const parsedMakes: Make[] = makes as Make[];
 
   const links = [
     {
@@ -95,11 +88,9 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
       href: "/blog",
     },
   ];
-
   const toggleSidebar = () => {
     setSidebar(prev => !prev);
   };
-
   // Закрытие при клике вне элемента
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -107,14 +98,11 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
         setSidebar(false); // Закрыть элемент
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   return (
     <header className={css.section}>
       <div className={css.top}>
@@ -147,66 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
           </div>
         </div>
       </div>
-      <div className={css.bot}>
-        <div className={css.bot__inner + " tw-container"}>
-          <div className={css.filter}>
-            <i className="ri-search-line"></i>
-            <span>Vehicle Finder</span>
-            <i className="ri-arrow-down-s-line"></i>
-            <div className={css.bot__menu}>
-            <div className={css.item}>
-                <div className={css.item__header}>
-                  <span>Popular Makes</span>    
-                  <i className="ri-arrow-right-s-line"></i>
-                </div>
-                <div className={css.item__content}>
-                  <h3>Popular Makes</h3>
-                  <ListItem label={"Harley-davidson"}value={"Honda"}/>
-                </div>
-              </div>
-              <div className={css.item}>
-                <div className={css.item__header}><span>Vehicle Types</span>    <i className="ri-arrow-right-s-line"></i></div>
-                </div>
-                <div className={css.item}>
-                <div className={css.item__header}><span>Title</span>    <i className="ri-arrow-right-s-line"></i></div>
-                </div>
-                <div className={css.item}>
-                <div className={css.item__header}><span>Featured lots</span>    <i className="ri-arrow-right-s-line"></i></div>
-                </div>
-            </div>
-          </div>
-          <div className={css.menu}>
-            <div className={css.item}>
-              <div className={css.live}>Live</div>
-              <span>Auctions</span>
-              <i className="ri-arrow-down-s-line"></i>
-            </div>
-            <div className={css.item}>
-              <span>Support</span>
-              <i className="ri-arrow-down-s-line"></i>
-            </div>
-            <Link href="/faq" className={css.item}>
-              <span>FAQ</span>
-            </Link>
-            <Link href="/about" className={css.item}>
-              <span>About us</span>
-            </Link>
-          </div>
-          <div className={css.time}>7 am to 6 pm EST Mon - Fri</div>
-          <div className={css.phone}>+1 (770) 544-70-03</div>
-          <div className={css.social}>
-            <a href="/" className={css.item}>
-              <ViberIcon />
-            </a>
-            <a href="/" className={css.item}>
-              <TelegramIcon />
-            </a>
-            <a href="/" className={css.item}>
-              <WhatsappIcon />
-            </a>
-          </div>
-        </div>
-      </div>
+      <BotMenu parsedMakes={parsedMakes} />
       <div ref={elementRef} className={css.sidebar + " " + `${sidebar ? css.open : ""}`}>
         <MenuItem
           title="Vehicle Finder"
@@ -225,7 +154,6 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
             </ul>
           )}
         </MenuItem>
-
         <MenuItem
           title="Support"
           isOpen={menuState.supportMenu}
@@ -243,10 +171,8 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
             </ul>
           )}
         </MenuItem>
-
         <MenuItem title="FAQ" />
         <MenuItem title="About us" />
-
         <div className={css.auth}>
           <button className={css.login}>
             <span>Log In</span>
