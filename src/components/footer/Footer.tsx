@@ -23,27 +23,29 @@ const links = [
 export const Footer = () => {
   return (
     <footer className={css.footer}>
-      <div className={css.menu}>
-        <div className={css.section}>
+      <div className={css.menu + " tw-container tw-px-4"}>
+        <div className={css.section + " " + css.finder}>
           <h3>Vehicle Finder</h3>
-          <div className={css.list}>
-            <Link href="/" className={css.item}>Cars</Link>
-            <Link href="/" className={css.item}>Trucks</Link>
-            <Link href="/" className={css.item}>ATV</Link>
-            <Link href="/" className={css.item}>Motorcycle</Link>
-            <Link href="/" className={css.item}>Boats</Link>
-            <Link href="/" className={css.item}>RV</Link>
-          </div>
-          <div className={css.list}>
-            <Link href="/" className={css.item}>Construction Equipment</Link>
-            <Link href="/" className={css.item}>Buses</Link>
-            <Link href="/" className={css.item}>Snowmobiles</Link>
-            <Link href="/" className={css.item}>Trailers</Link>
-            <Link href="/" className={css.item}>Jet Ski</Link>
-            <Link href="/" className={css.item}>Other</Link>
+          <div className={css.list__wrapper}>
+            <div className={css.list}>
+              <Link href="/" className={css.item}>Cars</Link>
+              <Link href="/" className={css.item}>Trucks</Link>
+              <Link href="/" className={css.item}>ATV</Link>
+              <Link href="/" className={css.item}>Motorcycle</Link>
+              <Link href="/" className={css.item}>Boats</Link>
+              <Link href="/" className={css.item}>RV</Link>
+            </div>
+            <div className={css.list}>
+              <Link href="/" className={css.item}>Construction Equipment</Link>
+              <Link href="/" className={css.item}>Buses</Link>
+              <Link href="/" className={css.item}>Snowmobiles</Link>
+              <Link href="/" className={css.item}>Trailers</Link>
+              <Link href="/" className={css.item}>Jet Ski</Link>
+              <Link href="/" className={css.item}>Other</Link>
+            </div>
           </div>
         </div>
-        <div className={css.section}>
+        <div className={css.section + " " + css.live}>
           <h3>Live Auctions</h3>
           <div className={css.list}>
             <Link href="/" className={css.item}>By Locations</Link>
@@ -51,7 +53,7 @@ export const Footer = () => {
             <Link href="/" className={css.item}>Auctions Calendar</Link>
           </div>
         </div>
-        <div className={css.section}>
+        <div className={css.section + " " + css.support}>
           <h3>Support</h3>
           <div className={css.list}>
             <Link href="/" className={css.item}>How to Buy</Link>
@@ -62,14 +64,22 @@ export const Footer = () => {
             <Link href="/" className={css.item}>Contact Us</Link>
           </div>
         </div>
-        <div className={css.about}></div>
-        <div className={css.section}>
+        <div className={css.about}>
+          <h3>About Us</h3>
+          <div className={css.social}>
+            <a href="/"><i className="ri-facebook-line"></i></a>
+            <a href="/"><i className="ri-instagram-line"></i></a>
+            <a href="/"><i className="ri-youtube-line"></i></a>
+          </div>
+        </div>
+        <div className={css.section + " " + css.contacts}>
           <h3>Contacts</h3>
           <div className={css.phone}><PiPhoneCall />+1 (770) 544-70-03</div>
           <div className={css.phone}><PiPhoneCall /> +1 (850) 319-34-67</div>
-          <div className={css.address}><PiMapPin /> Bid N Drive Inc.
-            2305 Fourth st.,
-            Tucker, GA 30084</div>
+          <div className={css.address}><div className="icon">
+          <PiMapPin /></div> <span>Bid N Drive Inc. <br />
+            2305 Fourth st., <br />
+            Tucker, GA 30084</span></div>
           <div className={css.email}>sales@auto4export.com</div>
         </div>
       </div>
