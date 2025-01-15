@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ROUTER } from '@/app/router';
 import { useTranslations } from 'next-intl';
+import { Container } from '../Container';
 
 // Конфигурация для переопределения отображаемых имен маршрутов
 const routeOverrides = {
@@ -36,7 +37,7 @@ const PageDirect = ({ pageTitle, children, className }) => {
 
   return (
     <div className="overly bg-10 pt-100 tw-pb-[41px] tw-text-[#8C8C8C]">
-      <div className="tw-container">
+      <Container >
         <div>
           <ul className="tw-pl-0 tw-flex tw-gap-3 tw-list-none tw-text-[#8C8C8C]">
             <li>
@@ -58,12 +59,12 @@ const PageDirect = ({ pageTitle, children, className }) => {
               </React.Fragment>
             ))}
           </ul>
-          <div className={`tw-flex tw-items-center ${className} `}>
+          <div className={`tw-flex ${className} `}>
             <h2>{currentLabel}</h2>
             {children && <div>{children}</div>}
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

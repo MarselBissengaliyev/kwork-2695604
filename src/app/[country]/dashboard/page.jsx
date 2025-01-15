@@ -2,6 +2,7 @@ import React from 'react'
 import { redirect } from 'next/navigation'
 import PageDirect from '@/components/Common/PageDirect'
 import { getCurrentUser } from '@/actions/users'
+import "./page.scss"
 import DashboardStats from '@/components/Dashboard/DashboardStats'
 import LeftSidebar from '@/components/Dashboard/LeftSidebar'
 
@@ -9,6 +10,7 @@ import { getDataBriefStats } from '@/actions/stats'
 import ButtonMain from '@/components/button/ButtonMain'
 import { DashBoardCards } from './entities/dashboardCards'
 import { DashboardMoneyCard } from './entities/DashboardMoneyCard'
+import { Container } from '@/components/Container'
 
 const page = async () => {
   // const { users, listings, blogPosts, reviews } = await getDataBriefStats()
@@ -85,23 +87,23 @@ const page = async () => {
   // }
   return (
     <>
-      <PageDirect pageTitle={"Dashboard"} className={'tw-justify-between tw-gap-5'}>
-        <div className='tw-flex tw-gap-10'>
+      <PageDirect pageTitle={"Dashboard"} className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}>
+        <div className='tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full'>
           <div className='tw-flex tw-gap-2 '>
 
-            <ButtonMain variant='outlined' text={"Dashboard"}/>
-            <ButtonMain color='grey' variant='outlined' text="My Bids" number={8}/>
-            <ButtonMain text="Transactions" color="grey" variant='outlined' number={4}/>
-            <ButtonMain color='grey' number={4} variant='outlined' text="Watchlist"/>
+            <ButtonMain classNames={'tw-max-w-[170px]'} variant='outlined' text={"Dashboard"}/>
+            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' variant='outlined' text="My Bids" number={8}/>
+            <ButtonMain classNames={'tw-max-w-[170px]'} text="Transactions" color="grey" variant='outlined' number={4}/>
+            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' number={4} variant='outlined' text="Watchlist"/>
           </div>
           <div className='tw-flex tw-gap-2'>
-            <ButtonMain color='grey' variant='outlined' text="Request refund"/>
-            <ButtonMain color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png"/>
+            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' variant='outlined' text="Request refund"/>
+            <ButtonMain classNames={'tw-max-w-[170px]'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png"/>
           </div>
         </div>
       </PageDirect>
       <div className="">
-        <div className="tw-container">
+        <Container>
 
           {/* <div className="row">
             <div className="col-lg-4">
@@ -117,19 +119,21 @@ const page = async () => {
               />
             </div>
           </div> */}
-          <div className='tw-flex tw-gap-[20px] md:tw-grid md:tw-grid-cols-2'>
-            <DashBoardCards />
-            <DashBoardCards />
-            <DashBoardCards />
-        </div>
-        </div>
+          <div className='tw-grid tw-grid-cols-5 tw-gap-[20px] max-laptop:tw-grid-cols-2 max-tablet:tw-grid-cols-1'>
+            <DashBoardCards number="3" icon="/images/dashboard/icons/bidding.png" text="Outbidded Bids" linkText='Please, raise your bids' />
+            <DashBoardCards number={"1"} text='Wons Bids' icon="/images/dashboard/icons/carok.png" linkText='Learn more'/>
+            <DashBoardCards number={"1"} text='Unpaid Invoice' icon="/images/dashboard/icons/reciept.png" linkText='Please, pay it' />
+            <DashBoardCards number={"0"} text='Seller Offer' icon="/images/dashboard/icons/carmouse.png" linkText='Learn more'/>
+            <DashBoardCards number={"3"} text='Vehicles from your Watchlist starts soon' icon="/images/dashboard/icons/cartime.png" linkText='Learn more'/>
+          </div>
+        </Container>
           <div className=' tw-bg-[#F9F9F9] tw-mt-[50px] tw-py-[70px]'>
-            <div className='tw-container tw-flex tw-gap-[20px]'>
-              <DashboardMoneyCard/>
-              <DashboardMoneyCard/>
-              <DashboardMoneyCard/>
-              <DashboardMoneyCard/>
-            </div>
+            <Container className='tw-grid tw-grid-cols-4 tw-gap-[20px] max-laptop:tw-grid-cols-2 max-tablet:tw-grid-cols-1'>
+              <DashboardMoneyCard text={"Your Deposite"} price="$10,000" icon="/images/dashboard/icons/wallet.png" infotext={"Need More? Please, add your deposit"} secInfoText={"Also you can refund your deposit here."}/>
+              <DashboardMoneyCard text="Bidding Limit" price="$26,000" icon="/images/dashboard/icons/revenue.png" infotext={"Your bidding limit"}/>
+              <DashboardMoneyCard text="Used" price="$20,000" icon="/images/dashboard/icons/dollar.png" infotext={"Your used bidding limit"}/>
+              <DashboardMoneyCard text="Available" price="$6,000" icon="/images/dashboard/icons/give-money.png" infotext={"Your available bidding limit"}/>
+            </Container>
           </div>
       </div>
     </>
