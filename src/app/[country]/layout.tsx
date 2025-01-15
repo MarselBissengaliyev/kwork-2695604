@@ -18,11 +18,15 @@ import TosterProvider from "@/providers/TosterProvider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { NextIntlClientProvider } from "next-intl";
+import { getMakes } from "@/actions/makes";
 
 export const generateMetadata = async ({ params }) => {
   const { country } = params?.country;
 
-  let metadata = {};
+  let metadata = {
+    title: "",
+    description: ""
+  }
 
   const config = await getRegionConfiguration({ country }).catch(() => null);
 
@@ -41,6 +45,9 @@ const RootLayout = async ({ params, children }) => {
   const { country } = params || {};
 
   const messages = await getMessages();
+
+  const makes = await getMakes();
+  console.log("makes=", makes)
 
   const regionConfiguration = await getRegionConfiguration({
     country,
@@ -62,7 +69,7 @@ const RootLayout = async ({ params, children }) => {
             </div>
           )}
           <TosterProvider />
-          <Navbar domain={regionConfiguration?.domain} currentUser={currentUser} />
+          <Navbar domain={regionConfiguration?.domain} currentUser={currentUser} makes={makes.data} />
           {children}
           <Footer />
         </NextIntlClientProvider>

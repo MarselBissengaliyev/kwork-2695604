@@ -2,6 +2,7 @@ import React from "react";
 
 import "../styles/listitem.scss";
 
+
 const ListItem = ({ label, icon, value }) => {
   return (
     <li className="list-item">
