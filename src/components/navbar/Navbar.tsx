@@ -12,6 +12,7 @@ import ViberIcon from "./icons/ViberIcon";
 import TelegramIcon from "./icons/TelegramIcon";
 import WhatsappIcon from "./icons/WhatsappIcon";
 import { PiArrowRight } from "react-icons/pi";
+import ListItem  from "../ListItem/ui/ListItem";
 
 interface Make {
   id: number;
@@ -160,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser }) => {
                 </div>
                 <div className={css.item__content}>
                   <h3>Popular Makes</h3>
-                  {/* <ListItem */}
+                  <ListItem label={"Harley-davidson"}value={"Honda"}/>
                 </div>
               </div>
               <div className={css.item}>
