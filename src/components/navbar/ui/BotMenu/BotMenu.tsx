@@ -7,10 +7,16 @@ import WhatsappIcon from "../../icons/WhatsappIcon";
 
 const BotMenu = ({ parsedMakes }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(null); // Хранит ключ текущего открытого элемента
   const menuRef = useRef(null); // Реф для меню
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  // Функция для переключения видимости item__content
+  const toggleItem = (itemKey) => {
+    setActiveItem((prev) => (prev === itemKey ? null : itemKey));
   };
 
   // Закрытие меню при клике вне его области
@@ -42,40 +48,83 @@ const BotMenu = ({ parsedMakes }) => {
           {isMenuOpen && (
             <div className={css.bot__menu} ref={menuRef}>
               <div className={css.item}>
-                <div className={css.item__header}>
+                <div
+                  className={css.item__header}
+                  onClick={() => toggleItem("popularMakes")}
+                >
                   <span>Popular Makes</span>
-                  <i className="ri-arrow-right-s-line"></i>
+                  <i
+                    className={`ri-arrow-${activeItem === "popularMakes" ? "up" : "right"}-s-line`}
+                  ></i>
                 </div>
-                <div className={css.item__content}>
-                  <h3>Popular Makes</h3>
-                  <div className={css.list}>
-                    {parsedMakes.map((make) => (
-                      <div key={make.id} className={css.element}>
-                        <b>{make.name}</b>
-                        <div className={css.dots}></div>
-                        <span>127</span>
-                      </div>
-                    ))}
+                {activeItem === "popularMakes" && (
+                  <div className={css.item__content}>
+                    <h3>Popular Makes</h3>
+                    <div className={css.list}>
+                      {parsedMakes.map((make) => (
+                        <div key={make.id} className={css.element}>
+                          <b>{make.name}</b>
+                          <div className={css.dots}></div>
+                          <span>127</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <div className={css.item}>
-                <div className={css.item__header}>
+                <div
+                  className={css.item__header}
+                  onClick={() => toggleItem("vehicleTypes")}
+                >
                   <span>Vehicle Types</span>
-                  <i className="ri-arrow-right-s-line"></i>
+                  <i
+                    className={`ri-arrow-${activeItem === "vehicleTypes" ? "up" : "right"}-s-line`}
+                  ></i>
                 </div>
+                {activeItem === "vehicleTypes" && (
+                  <div className={css.item__content}>
+                    <h3>Vehicle Types</h3>
+                    <div className={css.list}>
+                      {/* Добавьте содержимое для Vehicle Types */}
+                      <span>Vehicle types content goes here</span>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className={css.item}>
-                <div className={css.item__header}>
+                <div
+                  className={css.item__header}
+                  onClick={() => toggleItem("title")}
+                >
                   <span>Title</span>
-                  <i className="ri-arrow-right-s-line"></i>
+                  <i
+                    className={`ri-arrow-${activeItem === "title" ? "up" : "right"}-s-line`}
+                  ></i>
                 </div>
+                {activeItem === "title" && (
+                  <div className={css.item__content}>
+                    <h3>Title Content</h3>
+                    {/* Добавьте содержимое для Title */}
+                  </div>
+                )}
               </div>
               <div className={css.item}>
-                <div className={css.item__header}>
+                <div
+                  className={css.item__header}
+                  onClick={() => toggleItem("featuredLots")}
+                >
                   <span>Featured lots</span>
-                  <i className="ri-arrow-right-s-line"></i>
+                  <i
+                    className={`ri-arrow-${activeItem === "featuredLots" ? "up" : "right"}-s-line`}
+                  ></i>
                 </div>
+                {activeItem === "featuredLots" && (
+                  <div className={css.item__content}>
+                    <h3>Featured Lots</h3>
+                    {/* Добавьте содержимое для Featured Lots */}
+                  </div>
+                )}
               </div>
             </div>
           )}
