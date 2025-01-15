@@ -2,7 +2,13 @@ import React from "react";
 
 import "../styles/listitem.scss";
 
-const ListItem = ({ label, icon, value }) => {
+type ListItemType = {
+  label: React.ReactNode;
+  icon?: React.ReactNode;
+  value: React.ReactNode
+}
+
+const ListItem = ({ label, icon, value }: ListItemType) => {
   return (
     <li className="list-item">
       <span className="list-item-label">
