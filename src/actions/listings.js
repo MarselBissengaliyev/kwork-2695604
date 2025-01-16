@@ -3,6 +3,47 @@ import { average } from '@/utils/common'
 import { getCurrentUser } from './users'
 import { getPagination } from '@/utils'
 
+export const getNearestLots = async (limit = 5) => {
+  try {
+    const now = new Date();
+
+    const lots = await prisma.listing.findMany({
+      where: {
+        auction_at: {
+          gte: now,
+        },
+      },
+      orderBy: {
+        auction_at: 'asc',
+      },
+      take: limit,
+      include: {
+        media: {
+          select: {
+            url: true, // Matches your schema for Media
+          },
+        },
+        bids: {
+          select: {
+            amount: true, // Corrected from `bid_amount` to `amount`
+          },
+        },
+      },
+    });
+
+    return lots.map((lot) => ({
+      ...lot,
+      firstImage: lot.media?.[0]?.url || null,
+      avgPrice: lot.final_bid || 0, // Adjust if needed
+      currentBid: Math.max(...lot.bids.map((bid) => bid.amount), 0),
+    }));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
+
 export const getListings = async (query) => {
   try {
     const {
