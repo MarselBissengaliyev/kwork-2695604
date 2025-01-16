@@ -42,6 +42,7 @@
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",
+    "react-date-range": "^2.0.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.1",
     "react-hot-toast": "^2.4.1",

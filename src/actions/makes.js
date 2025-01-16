@@ -17,6 +17,35 @@ export const getMakes = async () => {
   }
 }
 
+export const getMakesAndModels = async () => {
+  try {
+    const makesData = await prisma.make.findMany({
+      select: { id: true, name: true },
+      orderBy: { name: 'asc' },
+    });
+
+    const modelsData = {};
+
+    for (const make of makesData) {
+      const models = await prisma.model.findMany({
+        where: { make_id: make.id },
+        select: { name: true },
+        orderBy: { name: 'asc' },
+      });
+
+      modelsData[make.id] = models.map(model => model.name);
+    }
+
+    return {
+      makes: makesData,
+      models: modelsData,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
 export const getCityCategories = async (query) => {
   try {
     const { page = 1, take = 10, city, sticky } = query || {}

@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/actions/users'
 import { getBlogPosts } from '@/actions/blog-posts'
 import { getCategories } from '@/actions/categories'
 
-import Banner from '@/containers/Banner'
+import Banner from '@/containers/banner/Banner'
 import Blog from '@/containers/Blog'
 import Favour from '@/containers/Favour'
 
@@ -17,6 +17,7 @@ import { FeaturedListings } from '@/containers/listing'
 import { getRegionConfiguration } from '@/actions/region-configurations'
 import { FeaturedCategories, FeaturedLocations } from '@/containers/home'
 import { getCities } from '@/actions/cities'
+import { getMakesAndModels } from '@/actions/makes' 
 
 export const dynamic = 'force-dynamic'
 const limitParams = { limit: 6 }
@@ -38,10 +39,13 @@ export default async function Home({ params }) {
     ? await getCities({ country: slugs.country, sticky: true, take: 6 })
     : []
   const { posts } = await getBlogPosts(limitParams)
+  const makesAndModels = await getMakesAndModels(); // Получаем данные для марок и моделей
 
   return (
     <>
       <Banner
+        makes={makesAndModels.makes}
+        models={makesAndModels.models}
         country={slugs.country}
         categories={categories?.data?.map((category) => ({
           ...category,
