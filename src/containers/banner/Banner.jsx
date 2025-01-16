@@ -102,19 +102,41 @@ const Banner = ({ categories, makes, models }) => {
           </div>
           <div className={css.item + " col-md-2"}>
             <div className={css.toggleWrapper} onClick={() => setCleanTitle(!cleanTitle)}>
-              <i
-                className={cleanTitle ? "ri-toggle-fill" : "ri-toggle-line"}
-              ></i>
+              <i className={cleanTitle ? "ri-toggle-fill" : "ri-toggle-line"}></i>
               <label htmlFor="cleanTitle" className={css.toggleLabel}>
                 Clean Title
               </label>
             </div>
           </div>
 
-          <a href={`/listings?from=${dateRange.startDate}&to=${dateRange.endDate}&model=${selectedModel}&make=${selectedMake}`} className={css.btn} onClick={handleSearch}>
+          <a
+            href={`/listings?from=${dateRange.startDate}&to=${dateRange.endDate}&model=${selectedModel}&make=${selectedMake}`}
+            className={css.btn}
+            onClick={handleSearch}
+          >
             <span>Search</span>
             <i className="ri-search-line"></i>
           </a>
+        </div>
+        <div className={css.advantages}>
+          <div className={css.item}>
+            <SportsCarIcon />
+            <span>
+              Over 100,000+ used, wholesale, <br /> salvage and repairable cars in the catalog
+            </span>
+          </div>
+          <div className={css.item}>
+            <RatingIcon />
+            <span>
+              190+ satisfied <br /> customers
+            </span>
+          </div>
+          <div className={css.item}>
+            <LawIcon />
+            <span>
+              Real time bidding on the <br /> Auto4Export website
+            </span>
+          </div>
         </div>
         {/* Остальной код */}
       </div>

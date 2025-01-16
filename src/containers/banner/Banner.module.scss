@@ -1,8 +1,20 @@
 .section {
   background-image: url(../../../public/images/banner/bg.png);
-  padding-top: 74px;
-  padding-bottom: 90px;
   background-size: cover;
+  padding-left: 15px;
+  padding-right: 15px;
+  @media screen and (min-width: 320px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 74px;
+    padding-bottom: 90px;
+  }
+
+  @media screen and (min-width: 992px) {
+  }
   .card {
     .title {
       font-family: "Roboto";
@@ -14,15 +26,43 @@
 
       color: #ffffff;
       margin-bottom: 50px;
+      @media screen and (min-width: 320px) {
+        font-size: 26px;
+        line-height: 30px;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 46px;
+        line-height: 54px;
+      }
+
+      @media screen and (min-width: 992px) {
+      }
     }
     .row {
       background: #ffffff;
       border-radius: 34px;
       width: 100%;
       position: relative;
-      padding: 0 57px;
       margin-top: 50px;
       margin-bottom: 50px;
+
+      @media screen and (min-width: 320px) {
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media screen and (min-width: 768px) {
+        display: grid;
+        padding: 0 57px;
+        grid-template-columns: 1fr 1fr;
+        overflow: visible;
+      }
+
+      @media screen and (min-width: 992px) {
+        display: flex;
+      }
       * {
         margin-top: 0;
       }
@@ -31,19 +71,34 @@
         padding-left: 0;
       }
       .btn {
-        position: absolute;
-        right: 0;
-        top: 0;
         width: auto;
         height: 100%;
         margin: 0;
         padding: 21px 50px;
 
         background: #3e73cf;
-        border-radius: 32px;
         display: flex;
         align-items: center;
         gap: 10px;
+        @media screen and (min-width: 320px) {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          border-bottom-left-radius: 34px;
+          border-bottom-right-radius: 34px;
+        }
+
+        @media screen and (min-width: 768px) {
+          position: static;
+          width: auto;
+        }
+
+        @media screen and (min-width: 992px) {
+          position: absolute;
+          right: 0;
+          top: 0;
+          border-radius: 32px;
+        }
         span,
         i {
           font-family: "Roboto";
@@ -56,19 +111,43 @@
           color: #ffffff;
         }
       }
-      .select {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        border: none;
-      }
       .item {
         position: relative;
         display: flex;
         align-items: center;
-        border-right: 1px solid #d6d6d6;
-        & > * {
-          padding: 0 40px;
+        cursor: pointer;
+        @media screen and (min-width: 320px) {
+          width: 100%;
+        }
+
+        @media screen and (min-width: 768px) {
+          width: 100%;
+          border: 1px solid #d6d6d6;
+        }
+
+        @media screen and (min-width: 992px) {
+          width: auto;
+          border: none;
+          border-right: 1px solid #d6d6d6;
+        }   
+        & > .select {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+          border: none;
+          @media screen and (min-width: 320px) {
+            padding: 21px 30px;
+          }
+
+          @media screen and (min-width: 768px) {
+            padding: 21px 30px;
+          }
+
+          @media screen and (min-width: 992px) {
+            width: auto;
+            border: none;
+            border-right: 1px solid #d6d6d6;
+          }
         }
         // justify-content: center;
         .range {
@@ -83,11 +162,24 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          padding: 0 30px;
+          @media screen and (min-width: 320px) {
+            padding: 21px 30px;
+          }
+
+          @media screen and (min-width: 768px) {
+            padding: 0 30px;
+          }
+
+          @media screen and (min-width: 992px) {
+            padding: 0 30px;
+          }
         }
         .toggleWrapper {
           display: flex;
           align-items: center;
           cursor: pointer;
+          padding: 0 30px;
 
           i {
             font-size: 2.75rem; // Размер иконки
@@ -109,7 +201,26 @@
     }
     .advantages {
       display: flex;
-      gap: 70px;
+      @media screen and (min-width: 320px) {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding-bottom: 140px;
+        padding-top: 30px;
+      }
+
+      @media screen and (min-width: 768px) {
+        gap: 70px;
+        flex-direction: row;
+        padding-bottom: 0;
+        padding-top: 54px;
+      }
+
+      @media screen and (min-width: 992px) {
+        width: auto;
+        border: none;
+        border-right: 1px solid #d6d6d6;
+      }
       .item {
         display: flex;
         gap: 20px;
