@@ -17,7 +17,7 @@ interface Make {
   name: string;
 }
 interface MakeWithCount extends Make {
-  count: number
+  count: number;
 }
 interface MenuItemProps {
   title: string;
@@ -33,14 +33,10 @@ interface NavbarProps {
 interface MenuState {
   menu: boolean;
   subMenu: boolean;
-  supportMenu: boolean;
-  supportSubMenu: boolean;
 }
 const initialState: MenuState = {
   menu: false,
   subMenu: false,
-  supportMenu: false,
-  supportSubMenu: false,
 };
 const reducer = (state: MenuState, action: { type: string; key: keyof MenuState }) => {
   switch (action.type) {
@@ -62,7 +58,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, isOpen, toggle, children }) 
   </div>
 );
 export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) => {
-  console.log(makes)
+  console.log(makes);
   const route = usePathname();
   const t = useTranslations();
   const [menuState, dispatch] = useReducer(reducer, initialState);
@@ -107,7 +103,9 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
     <header className={css.section}>
       <div className={css.top}>
         <div className={css.top__inner + " tw-container tw-px-4"}>
-          <div className={css.logo}>CarLogo</div>
+          <a href="/" className={css.logo}>
+            CarLogo
+          </a>
           <div className={css.search + " " + css.large}>
             <input placeholder="Search vehicles by make, vin, lot" type="text" />
             <button>
@@ -154,23 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
             </ul>
           )}
         </MenuItem>
-        <MenuItem
-          title="Support"
-          isOpen={menuState.supportMenu}
-          toggle={() => dispatch({ type: "TOGGLE", key: "supportMenu" })}
-        >
-          <li onClick={() => dispatch({ type: "TOGGLE", key: "supportSubMenu" })} className={css.dropdownItem}>
-            Help Center
-            <i className={`ri-arrow-${menuState.supportSubMenu ? "up" : "down"}-s-line`}></i>
-          </li>
-          {menuState.supportSubMenu && (
-            <ul className={css.dropdown}>
-              <li className={css.dropdownItem}>FAQ</li>
-              <li className={css.dropdownItem}>Contact Support</li>
-              <li className={css.dropdownItem}>Chat with Us</li>
-            </ul>
-          )}
-        </MenuItem>
+
         <MenuItem title="FAQ" />
         <MenuItem title="About us" />
         <div className={css.auth}>

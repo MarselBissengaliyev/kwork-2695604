@@ -13,47 +13,83 @@ import Rating1 from "../../../shared/img/Rating";
 import Rating2 from "../../../shared/img/Rating2";
 import Rating3 from "../../../shared/img/Rating3";
 import StarFav from "../../../shared/img/StarFav";
+import Car from "../../../shared/img/Car";
+import InfoIcon from "../../../shared/img/InfoIcon";
 
 const HeroCar = () => {
   return (
-    <section className="tw-container">
+    <section className="tw-container tw-mx-0   desktop:tw-mx-auto  tw-mb-[66px]">
       {/* ======================================= */}
-      <div className="tw-flex tw-justify-between tw-items-baseline">
-        <div className="tw-flex tw-gap-[30px] tw-items-baseline">
-          <h1 className="tw-text-[46px]">
-            2013 Chevrolet Impala <span>Ls 3.6L</span>
-          </h1>
-          <div className="tw-flex">
-            <Rating1 className={"tw-z-30 tw-mr-[-4px]"} />
-            <Rating2 className={"tw-z-20 tw-mr-[-4px]"} />
-            <Rating3 className={"tw-z-10 tw-rounded-full"} />
+      <div className="tw-hidden tablet:tw-block">
+        <div className="tw-flex tw-justify-between tw-items-baseline tw-mx-[30px] desktop:tw-mx-0">
+          <div className="tw-flex laptop:tw-gap-[30px] tw-items-baseline tw-mb-[40px]  tw-flex-wrap tw-max-w-[493px] laptop:tw-max-w-full ">
+            <h1 className="tw-text-[46px]">2013 Chevrolet Impala</h1>
+            <span className="tw-text-[46px] tw-font-semibold tw-mr-[30px] laptop:tw-mr-0">Ls 3.6L</span>
+            <div className="tw-flex">
+              <Rating1 className={"tw-z-30 tw-mr-[-4px]"} />
+              <Rating2 className={"tw-z-20 tw-mr-[-4px]"} />
+              <Rating3 className={"tw-z-10 tw-rounded-full"} />
+            </div>
+          </div>
+
+          <StarFav />
+        </div>
+      </div>
+
+      <div className="tw-block tablet:tw-hidden tw-mt-[15px] tw-mx-[15px] tablet:tw-mx-0  laptop:tw-mx-[30px] desktop:tw-mx-0">
+        <div className="tw-flex tw-justify-between tw-items-baseline  ">
+          <div className="tw-flex laptop:tw-gap-[30px] tw-items-baseline tw-mb-[40px]  tw-flex-wrap tw-max-w-[493px] laptop:tw-max-w-full ">
+            <h1 className="tw-text-[26px] tw-max-w-[245px]">
+              2022 Used Damaged
+              <span className="tw-text-[26px] tw-font-semibold tw-mr-[30px] laptop:tw-mr-0"> Zhiguli for sale</span>
+            </h1>
+
+            <div className="tw-flex tw-justify-between tw-w-full tw-mt-[15px]">
+              <div className="">
+                <Rating1 className={"tw-z-30 tw-mr-[-4px]"} />
+                <Rating2 className={"tw-z-20 tw-mr-[-4px]"} />
+                <Rating3 className={"tw-z-10 tw-rounded-full"} />
+              </div>
+              <div className="">
+                <StarFav />
+              </div>
+            </div>
           </div>
         </div>
-
-        <StarFav />
       </div>
       {/* ======================================= */}
-      <div className="tw-flex tw-gap-[0] tw-mx-[30px] laptop:tw-mx-[0] laptop:tw-gap-[20px]">
-        <div className="tw-flex tw-w-[760px] tw-items-center tw-flex-col tw-gap-[70px]">
+      <div className="laptop:tw-flex desktop:tw-w-full tw-justify-center tw-flex-col desktop:tw-flex-row tw-mx-0 tablet:tw-mx-[20px] desktop:tw-mx-0 tw-max-w-[708px] laptop:tw-max-w-full  tw-gap-[0]  laptop:tw-gap-[20px]">
+        <div className="desktop:tw-w-full desktop:tw-max-w-[760px]  tw-items-center tw-flex-col ">
           <SliderCar />
-          <div className="tw-block  laptop:tw-hidden">
+          <div className="tw-block laptop:tw-hidden tw-mb-[31px] tw-mx-[15px] tablet:tw-mx-0 tablet:tw-mb-0">
             {/* laptop  */}
             <BidStatus />
           </div>
-          <div className="tw-w-[370px] tw-h-[40px] tw-bg-blue-500 tw-mb-[19px] tw-block  laptop:tw-hidden">
+          <div className="tw-max-w-[648px] tw-mt-[11px] tw-items-center tw-h-[40px] tw-mb-[19px] tw-flex  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
+            <div className="tw-mr-[16px]">
+              <Car />
+            </div>
+            <div className="tw-flex tw-items-baseline tablet:tw-items-stretch tw-gap-[9px]">
+              <span className="text-vehicle tw-max-[579px]">
+                THIS VEHICLE IS BEING SOLD IN IT`S CURRENT CONDITION ON AN 'AS IS' BASIS
+              </span>
+              <span className="tw-mt-[-4px]">
+                <InfoIcon />
+              </span>
+            </div>
           </div>
-          <div className="tw-w-[370px] tw-block  laptop:tw-hidden">
+          <div className=" tw-block tw-mb-[19px]  laptop:tw-hidden tw-mt-[31px] tablet:tw-mt-0 tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
             <VehicleInfo />
           </div>
-          <div className="tw-block  laptop:tw-hidden">
+          <div className="tw-block  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
             <FinalPriceCalc />
           </div>
           <FAQ />
         </div>
-        <div className="tw-w-[370px] tw-hidden  laptop:tw-block">
+        <div className="desktop:tw-w-[370px] tw-hidden  laptop:tw-block">
           {/* desktop */}
           <VehicleInfo />
         </div>
@@ -62,8 +98,19 @@ const HeroCar = () => {
             {/* desktop */}
             <BidStatus />
           </div>
-          <div className="tw-w-[370px] tw-h-[40px] tw-bg-blue-500 tw-mb-[19px] tw-hidden  laptop:tw-block">
+          <div className=" tw-w-[370px] tw-items-center tw-h-[40px]  tw-mb-[19px] tw-hidden  laptop:tw-flex">
             {/* desktop */}
+            <div className="tw-mr-[16px]">
+              <Car />
+            </div>
+            <div className="tw-flex tw-items-stretch">
+              <span className="text-vehicle tw-max-w-[310px]">
+                THIS VEHICLE IS BEING SOLD IN IT`S CURRENT CONDITION ON AN 'AS IS' BASIS
+              </span>
+              <span className="tw-mt-[-4px]">
+                <InfoIcon />
+              </span>
+            </div>
           </div>
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
