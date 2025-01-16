@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  a {
+    text-decoration: none;
+  }
 
   .top {
     width: 100%;

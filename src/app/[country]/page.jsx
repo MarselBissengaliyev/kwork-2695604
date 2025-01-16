@@ -15,9 +15,11 @@ import WorkArea from '@/containers/WorkArea'
 
 import { FeaturedListings } from '@/containers/listing'
 import { getRegionConfiguration } from '@/actions/region-configurations'
-import { FeaturedCategories, FeaturedLocations } from '@/containers/home'
+import {  FeaturedLocations, NearestLots } from '@/containers/home'
 import { getCities } from '@/actions/cities'
 import { getMakesAndModels } from '@/actions/makes' 
+import { getNearestLots } from '@/actions/listings'
+// import { getNearestLots } from '@/actions/listings'
 
 export const dynamic = 'force-dynamic'
 const limitParams = { limit: 6 }
@@ -40,6 +42,7 @@ export default async function Home({ params }) {
     : []
   const { posts } = await getBlogPosts(limitParams)
   const makesAndModels = await getMakesAndModels(); // Получаем данные для марок и моделей
+  const nearestLots = await getNearestLots(5); // Получение ближайших лотов
 
   return (
     <>
@@ -52,12 +55,7 @@ export default async function Home({ params }) {
           href: [ROUTER.CATEGORIES, category?.slug].join('/'),
         }))}
       />
-      <FeaturedCategories
-        categories={categories?.data?.map((category) => ({
-          ...category,
-          href: [ROUTER.CATEGORIES, category?.slug].join('/'),
-        }))}
-      />
+      <NearestLots lots={nearestLots}/>
       <FeaturedListings currentUser={currentUser} />
       <FeaturedLocations
         locations={cities?.data?.map((city) => ({
