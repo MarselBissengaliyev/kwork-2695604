@@ -11,15 +11,28 @@ ul {
 .list-item-label {
   display: flex;
   align-items: center;
-  width: 100%;
   flex-wrap: nowrap;
-
   white-space: nowrap;
+
+  &_title {
+    font-size: 16px;
+    color: rgba(140, 140, 140, 1);
+
+    @media screen and (max-width: 480px) {
+      font-size: 13px;
+    }
+  }
 }
 
 .list-item-value {
   white-space: nowrap;
   margin-left: 10px;
+
+  font-size: 16px;
+
+  @media screen and (max-width: 480px) {
+    font-size: 13px;
+  }
 }
 
 .list-item-border {
