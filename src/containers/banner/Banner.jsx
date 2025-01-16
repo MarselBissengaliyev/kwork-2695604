@@ -21,6 +21,7 @@ const Banner = ({ categories, makes, models }) => {
     endDate: new Date(2021, 11, 31),
     key: "selection",
   });
+  const dateRangeRef = useRef();
   const [showPicker, setShowPicker] = useState(false);
   const [availableModels, setAvailableModels] = useState([]);
 
@@ -110,10 +111,10 @@ const Banner = ({ categories, makes, models }) => {
             </div>
           </div>
 
-          <button className={css.btn} onClick={handleSearch}>
+          <a href={`/listings?from=${dateRange.startDate}&to=${dateRange.endDate}&model=${selectedModel}&make=${selectedMake}`} className={css.btn} onClick={handleSearch}>
             <span>Search</span>
             <i className="ri-search-line"></i>
-          </button>
+          </a>
         </div>
         {/* Остальной код */}
       </div>
