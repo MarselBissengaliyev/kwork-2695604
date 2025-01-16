@@ -9,6 +9,7 @@ import "./car.scss";
 
 import HeroCar from "./widgets/HeroCar";
 import HowItWorks from "./widgets/HowItWorks";
+import { NearestLots } from "@/containers/home";
 
 const page = () => {
   useEffect(() => {
@@ -22,6 +23,10 @@ const page = () => {
       </div>
       <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden xxl:tw-block">
         <HowItWorks />
+      </div>
+      <div className="tw-h-[472px]">
+        <hr className="tw-my-[21px]" />
+        <NearestLots lots={[]} />
       </div>
     </>
   );
