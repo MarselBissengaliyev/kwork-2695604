@@ -11,7 +11,7 @@ import { getCurrentUser } from "@/actions/users";
 import { getBlogPosts } from "@/actions/blog-posts";
 import { getCategories } from "@/actions/categories";
 
-import Banner from "@/containers/Banner";
+import Banner from "@/containers/banner/Banner";
 import Blog from "@/containers/Blog";
 import Favour from "@/containers/Favour";
 
@@ -22,11 +22,14 @@ import WorkArea from "@/containers/WorkArea";
 
 import { FeaturedListings } from "@/containers/listing";
 import { getRegionConfiguration } from "@/actions/region-configurations";
-import { FeaturedCategories, FeaturedLocations } from "@/containers/home";
+import { FeaturedCategories, FeaturedLocations, NearestLots } from "@/containers/home";
 import { getCities } from "@/actions/cities";
+import { getMakesAndModels } from "@/actions/makes";
+import { getNearestLots } from "@/actions/listings";
 
 export const dynamic = "force-dynamic";
 const limitParams = { limit: 6 };
+
 
 export default async function Home({ params }) {
   const slugs = {
@@ -37,26 +40,29 @@ export default async function Home({ params }) {
     country: slugs.country,
   }).catch(() => null);
 
-  const currentUser = await getCurrentUser();
-  const categories = slugs.country ? await getCategories({ country: slugs.country, sticky: true, take: 20 }) : [];
-  const cities = slugs.country ? await getCities({ country: slugs.country, sticky: true, take: 6 }) : [];
-  const { posts } = await getBlogPosts(limitParams);
+  const currentUser = await getCurrentUser()
+  const categories = slugs.country
+    ? await getCategories({ country: slugs.country, sticky: true, take: 20 })
+    : []
+  const cities = slugs.country
+    ? await getCities({ country: slugs.country, sticky: true, take: 6 })
+    : []
+  const { posts } = await getBlogPosts(limitParams)
+  const makesAndModels = await getMakesAndModels(); // Получаем данные для марок и моделей
+  const nearestLots = await getNearestLots(5); // Получение ближайших лотов
 
   return (
     <>
       <Banner
+        makes={makesAndModels.makes}
+        models={makesAndModels.models}
         country={slugs.country}
         categories={categories?.data?.map(category => ({
           ...category,
           href: [ROUTER.CATEGORIES, category?.slug].join("/"),
         }))}
       />
-      <FeaturedCategories
-        categories={categories?.data?.map(category => ({
-          ...category,
-          href: [ROUTER.CATEGORIES, category?.slug].join("/"),
-        }))}
-      />
+      <NearestLots lots={nearestLots}/>
       <FeaturedListings currentUser={currentUser} />
       <FeaturedLocations
         locations={cities?.data?.map(city => ({
@@ -71,5 +77,5 @@ export default async function Home({ params }) {
       <Subscribe />
       <Blog blogPosts={posts} />
     </>
-  );
+  )
 }

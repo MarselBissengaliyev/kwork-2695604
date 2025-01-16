@@ -103,9 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
     <header className={css.section}>
       <div className={css.top}>
         <div className={css.top__inner + " tw-container tw-px-4"}>
-          <a href="/" className={css.logo}>
-            CarLogo
-          </a>
+          <a href="/" className={css.logo}>CarLogo</a>
           <div className={css.search + " " + css.large}>
             <input placeholder="Search vehicles by make, vin, lot" type="text" />
             <button>

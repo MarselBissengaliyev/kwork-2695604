@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  a {
+    text-decoration: none;
+  }
 
   .top {
     width: 100%;
@@ -243,7 +246,8 @@
           transition: all 0.1s linear;
 
           box-shadow: 0px 12px 24px rgba(51, 51, 51, 0.2);
-          border-radius: 10px;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
 
           .item {
             &__content {
@@ -256,7 +260,49 @@
 
               background: #ffffff;
               box-shadow: 0px 12px 24px rgba(51, 51, 51, 0.2);
-              border-radius: 10px;
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              display: flex;
+              flex-direction: column;
+
+              &.vehicleTypes {
+                flex-wrap: wrap;
+
+                .list {
+                  flex-wrap: wrap;
+                  width: 100%;
+                }
+              }
+
+              & > a {
+                margin-top: auto;
+                box-sizing: border-box;
+
+                border: 1px solid #dbdbdb;
+                border-radius: 20px;
+                background: none;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 20px;
+                width: min-content;
+
+                span,
+                i {
+                  font-family: "Roboto";
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 16px;
+                  line-height: 19px;
+                  text-align: right;
+                  text-wrap: nowrap;
+
+                  color: #191919;
+                }
+                i {
+                  color: #3e73cf;
+                }
+              }
 
               .list {
                 margin-top: 30px;
@@ -284,7 +330,7 @@
                   }
                   .dots {
                     flex-grow: 1;
-                    background: radial-gradient(circle, #E7E7E7 20%, transparent 20%) center/5px 5px;
+                    background: radial-gradient(circle, #e7e7e7 20%, transparent 20%) center/5px 5px;
                     height: 1px;
                     margin: 0 10px;
                     margin-bottom: 5px;
@@ -374,36 +420,69 @@
         width: 100%;
 
         .item {
+          position: relative;
           display: flex;
-          align-items: center;
-          gap: 10px;
 
-          span,
-          i {
-            font-family: "Roboto";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 21px;
-            /* identical to box height */
+          &__head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            span,
+            i {
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 21px;
+              /* identical to box height */
 
-            color: #ffffff;
+              color: #ffffff;
+            }
+            // just for vercel
+            .live {
+              text-align: center;
+              padding: 2px 8px;
+              background: #e3433a;
+              border-radius: 11px;
+              width: 100%;
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 12px;
+              line-height: 14px;
+              /* identical to box height */
+
+              color: #ffffff;
+            }
           }
-          // just for vercel
-          .live {
-            text-align: center;
-            padding: 2px 8px;
-            background: #e3433a;
-            border-radius: 11px;
+          .dropdownMenu {
+            position: absolute;
+            top: 120%;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 50;
+            background-color: #fff;
             width: 100%;
-            font-family: "Roboto";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 14px;
-            /* identical to box height */
-
-            color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            a {
+              padding: 17px 16px;
+              transition: all 0.1s linear;
+              cursor: pointer;
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 20px;
+              color: #191919;
+              transition: all 0.1s linear;
+              &:hover {
+                background: #3e73cf;
+                color: white;
+              }
+            }
           }
         }
       }
@@ -425,18 +504,111 @@
       }
 
       .phone {
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 26px;
-        text-wrap: nowrap;
-        /* identical to box height */
+        position: relative;
+        &__head {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+        }
+        span,
+        i {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 22px;
+          line-height: 26px;
+          text-wrap: nowrap;
+          /* identical to box height */
 
-        color: #ffffff;
+          color: #ffffff;
+        }
+
+        .dropdown {
+          position: absolute;
+          top: 120%;
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          z-index: 50;
+          background-color: #fff;
+          width: 100%;
+          border-radius: 15px;
+          overflow: hidden;
+
+          .phone {
+            padding: 17px 16px;
+
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 26px;
+            /* identical to box height */
+
+            color: #000;
+          }
+          .address {
+            padding: 17px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            span,
+            svg {
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 16px;
+
+              color: #000;
+            }
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .email {
+            padding: 17px 16px;
+
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            /* identical to box height */
+
+            color: #000;
+          }
+          .social {
+            display: flex;
+            gap: 6px;
+            padding: 0 16px;
+            padding-bottom: 15px;
+            a {
+              /* Rectangle */
+    
+              box-sizing: border-box;
+    
+              mix-blend-mode: normal;
+              border: 1px solid rgba(#000, 0.1);
+              border-radius: 22px;
+              width: 36px;
+              height: 36px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+    
+              i {
+                color: #3e73cf;
+                font-size: 16px;
+              }
+            }
+          }
+        }
       }
 
-      .social {
+      & > .social {
         display: flex;
         gap: 6px;
         margin-left: 30px;
