@@ -92,33 +92,37 @@ const vehicleinfo = [
 
 const Vehicleinfo = () => {
   return (
-    <div className="case-border tw-px-[30px] tw-pt-[30px] tw-pb-[13px] !tw-w-full tw-max-w-[708px] laptop:tw-max-w-[370px]">
-      <div className="">
-        <h2 className="text-title tw-mb-[30px]">Venicle Information</h2>
-        <ul className="tw-flex tw-flex-col tw-gap-[16px]">
-          {vehicleinfo.map((item, idx) => {
-            return <ListItem key={idx} label={item.label} value={item.value} icon={""} />;
-          })}
-        </ul>
-        <ButtonMain
-          className={
-            "tw-px-[100px] tw-w-full tw-py-[21.5px] tw-rounded-[32px] tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
-          }
-        >
-          <span className="!tw-w-[82px]">Get report</span>
-        </ButtonMain>
+    <div className="case-border tw-px-[15px] tablet:tw-px-[30px] tw-pt-[30px] tw-pb-[13px] !tw-w-full desktop:tw-max-w-[708px] ">
+      <div className="tablet:tw-block minilaptop:tw-flex  tw-gap-[28px] laptop:tw-block">
+        <div className="">
+          <h2 className="text-title tw-mb-[30px] tw-font-semibold">Venicle Information</h2>
+          <ul className="tw-flex tw-flex-col tw-gap-[16px]">
+            {vehicleinfo.map((item, idx) => {
+              return <ListItem key={idx} label={item.label} value={item.value} />;
+            })}
+          </ul>
+        </div>
+        <div className="tw-w-full ">
+          <ButtonMain
+            className={
+              "tw-px-[100px] tw-w-full tw-py-[21.5px] tw-rounded-[32px] hidden laptop:block tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
+            }
+          >
+            <span className="!tw-w-[82px]">Get report</span>
+          </ButtonMain>
 
-        <hr className="tw-mt-[40px]  tw-mb-[30px]" />
-        <ul>
-          <h2 className="text-title tw-mb-[30px]">Status Report</h2>
-          <ListItem label={"Condition Grade:"} value={"3 - Average"} icon={""} />
-        </ul>
-        <hr className="tw-my-[30px] " />
-        <ul>
-          <h2 className="text-title tw-mb-[30px]">Options</h2>
-          <ListItem label={"Dual, Side"} value={"Hard Roof Top"} icon={""} />
-          <ListItem label={"Cloth"} value={"FM Radio"} icon={""} />
-        </ul>
+          <hr className="tw-mt-[40px] hidden laptop:block  tw-mb-[30px]" />
+          <ul>
+            <h2 className="text-title tw-mb-[30px] tw-font-semibold">Status Report</h2>
+            <ListItem label={"Condition Grade:"} value={"3 - Average"} icon={""} />
+          </ul>
+          <hr className="tw-my-[30px] " />
+          <ul>
+            <h2 className="text-title tw-mb-[30px] tw-font-semibold">Options</h2>
+            <ListItem label={"Dual, Side"} value={"Hard Roof Top"} icon={""} />
+            <ListItem label={"Cloth"} value={"FM Radio"} icon={""} />
+          </ul>
+        </div>
       </div>
     </div>
   );

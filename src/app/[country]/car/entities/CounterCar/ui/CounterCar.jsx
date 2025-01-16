@@ -18,7 +18,7 @@ const CounterCar = () => {
       }}
       className="tw-flex tw-flex-col"
     >
-      <div className="tw-flex tw-gap-[20px] tw-justify-between">
+      <div className="tw-flex tw-gap-[20px] tw-flex-col tablet:tw-flex-row tw-justify-between">
         <div className="tw-flex tw-items-center tw-justify-center tw-w-full tw-max-w-[412px] laptop:tw-max-w-[310px]  tw-px-[20px]  tw-py-[17px] counter-border">
           <button
             type="button"
@@ -53,7 +53,7 @@ const CounterCar = () => {
         <ButtonMain
           color="green"
           type="submit"
-          className={"tw-w-full tw-max-w-[216px] tw-block laptop:tw-hidden tw-py-[20.5px] tw-rounded-[32px] "}
+          className={"tw-w-full tablet:tw-max-w-[216px] tw-block laptop:tw-hidden tw-py-[20.5px] tw-rounded-[32px] "}
         >
           {/* laptop */}
           <span className="tw-mr-[9px]">Place a Bid</span> <Auc />

@@ -18,4 +18,14 @@
   text-decoration-skip-ink: none;
 
   color: #3e73cf;
+
+  @media screen and (max-width: 480px) {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.41px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
 }
