@@ -22,14 +22,13 @@ import WorkArea from "@/containers/WorkArea";
 
 import { FeaturedListings } from "@/containers/listing";
 import { getRegionConfiguration } from "@/actions/region-configurations";
-import { FeaturedCategories, FeaturedLocations, NearestLots } from "@/containers/home";
+import { FeaturedCategories, FeaturedLocations, NearestLots, MakesList } from "@/containers/home";
 import { getCities } from "@/actions/cities";
-import { getMakesAndModels } from "@/actions/makes";
+import { getMakesAndModels, getMakesWithLotCount } from "@/actions/makes";
 import { getNearestLots } from "@/actions/listings";
 
 export const dynamic = "force-dynamic";
 const limitParams = { limit: 6 };
-
 
 export default async function Home({ params }) {
   const slugs = {
@@ -40,16 +39,17 @@ export default async function Home({ params }) {
     country: slugs.country,
   }).catch(() => null);
 
-  const currentUser = await getCurrentUser()
+  const currentUser = await getCurrentUser();
   const categories = slugs.country
     ? await getCategories({ country: slugs.country, sticky: true, take: 20 })
-    : []
+    : [];
   const cities = slugs.country
     ? await getCities({ country: slugs.country, sticky: true, take: 6 })
-    : []
-  const { posts } = await getBlogPosts(limitParams)
+    : [];
+  const { posts } = await getBlogPosts(limitParams);
   const makesAndModels = await getMakesAndModels(); // Получаем данные для марок и моделей
   const nearestLots = await getNearestLots(5); // Получение ближайших лотов
+  const makesWithCount = await getMakesWithLotCount();
 
   return (
     <>
@@ -57,15 +57,15 @@ export default async function Home({ params }) {
         makes={makesAndModels.makes}
         models={makesAndModels.models}
         country={slugs.country}
-        categories={categories?.data?.map(category => ({
+        categories={categories?.data?.map((category) => ({
           ...category,
           href: [ROUTER.CATEGORIES, category?.slug].join("/"),
         }))}
       />
-      <NearestLots lots={nearestLots} title={"Featured Vehicles"}/>
-      <FeaturedListings currentUser={currentUser} />
+      <NearestLots lots={nearestLots} title={"Featured Vehicles"} />
+      <MakesList makes={makesWithCount.data} />
       <FeaturedLocations
-        locations={cities?.data?.map(city => ({
+        locations={cities?.data?.map((city) => ({
           ...city,
           href: [ROUTER.CITY, city?.slug].join("/"),
         }))}
@@ -77,5 +77,5 @@ export default async function Home({ params }) {
       <Subscribe />
       <Blog blogPosts={posts} />
     </>
-  )
+  );
 }

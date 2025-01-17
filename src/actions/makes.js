@@ -1,6 +1,43 @@
 import prisma from '@/libs/prismadb'
 import { getPagination } from '@/utils'
 
+export const getMakesWithLotCount = async () => {
+  try {
+    // Получаем список марок
+    const makesData = await prisma.make.findMany({
+      select: { 
+        id: true, 
+        name: true 
+      },
+      orderBy: { name: 'asc' },
+    });
+
+    // Для каждой марки получаем количество активных лотов
+    const makesWithLotCount = await Promise.all(makesData.map(async (make) => {
+      const lotCount = await prisma.listing.count({
+        where: {
+          make_id: make.id,
+          published: true, // Учитываем только опубликованные лоты
+          deleted_at: null, // Исключаем удаленные лоты
+        },
+      });
+
+      return {
+        id: make.id,
+        name: make.name,
+        lotCount,
+      };
+    }));
+
+    return {
+      data: makesWithLotCount,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
 export const getMakes = async (isSticky) => {
   try {
     const filter = isSticky !== undefined ? { is_sticky: isSticky } : {};
