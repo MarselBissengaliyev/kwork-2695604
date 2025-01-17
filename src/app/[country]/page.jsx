@@ -1,35 +1,28 @@
 import { ROUTER } from "@/app/router";
 
 import "@/app/styles/bootstrap.css";
+import "@/app/styles/dark-mode.css";
 import "@/app/styles/flaticon.css";
 import "@/app/styles/remixicon.css";
-import "@/app/styles/dark-mode.css";
-import "@/app/styles/style.css";
 import "@/app/styles/responsive.css";
+import "@/app/styles/style.css";
 
-import { getCurrentUser } from "@/actions/users";
 import { getBlogPosts } from "@/actions/blog-posts";
 import { getCategories } from "@/actions/categories";
+import { getCurrentUser } from "@/actions/users";
 
-import Banner from "@/containers/banner/Banner";
-import Advantages from "@/components/advantages/Advantages";
-import Blog from "@/containers/Blog";
-import Favour from "@/containers/Favour";
+import Advantages from "@/containers/home/advantages/Advantages";
+import Banner from "@/containers/home/banner/Banner";
 
-import Partner from "@/containers/Partner";
-import { Subscribe } from "@/containers/Subscribe";
-import Testimony from "@/containers/Testimony";
-import WorkArea from "@/containers/WorkArea";
-
-import { FeaturedListings } from "@/containers/listing";
-import { getRegionConfiguration } from "@/actions/region-configurations";
-import { FeaturedCategories, FeaturedLocations, NearestLots, MakesList } from "@/containers/home";
 import { getCities } from "@/actions/cities";
-import { getMakesAndModels, getMakesWithLotCount } from "@/actions/makes";
 import { getNearestLots } from "@/actions/listings";
+import { getMakesAndModels, getMakesWithLotCount } from "@/actions/makes";
+import { getRegionConfiguration } from "@/actions/region-configurations";
 import HowItWorks from "@/app/[country]/car/widgets/HowItWorks";
-import css from './page.module.scss'
-
+import AboutAndFaq from "@/containers/home/about-and-faq/AboutAndFaq";
+import Reviews from "@/containers/home/reviews/Reviews";
+import { MakesList, NearestLots } from "@/containers/home";
+import css from "./page.module.scss";
 export const dynamic = "force-dynamic";
 const limitParams = { limit: 6 };
 
@@ -67,11 +60,8 @@ export default async function Home({ params }) {
         <HowItWorks />
       </div>
       <Advantages />
-      <Testimony />
-      <Favour />
-      <Partner />
-      <Subscribe />
-      <Blog blogPosts={posts} />
+      <AboutAndFaq />
+      <Reviews/>
     </>
   );
 }

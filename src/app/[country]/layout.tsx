@@ -11,6 +11,7 @@ import "@/app/styles/dark-mode.css";
 import "@/app/styles/style.css";
 import "@/app/styles/responsive.css";
 
+
 import { getCurrentUser } from "@/actions/users";
 import { getRegionConfiguration } from "@/actions/region-configurations";
 
