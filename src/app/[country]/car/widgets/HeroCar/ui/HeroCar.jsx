@@ -16,6 +16,7 @@ import FAQ from "../../../entities/FAQ";
 import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
 import ModalNotEnoughMoney from "../../../features/Modal/models/ModalNotEnoughMoney";
 import ModalAttention from "../../../features/Modal/models/ModalAttention";
+import ModalGetReport from "../../../features/Modal/models/ModalGetReport";
 
 import Rating1 from "../../../shared/img/Rating";
 import Rating2 from "../../../shared/img/Rating2";
@@ -103,7 +104,16 @@ const HeroCar = () => {
         </div>
         <div className="desktop:tw-w-[370px] tw-hidden  laptop:tw-block">
           {/* desktop */}
-          <VehicleInfo />
+          <VehicleInfo>
+            <button
+              type="button"
+              className=" tw-w-full tw-bg-[#3E73CF] t tw-py-[21.5px] tw-rounded-[32px] tw-hidden laptop:tw-block tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
+              data-bs-toggle="modal"
+              data-bs-target="#modalGetReport"
+            >
+              <span className="tw-text-[#fff]">Get report</span>
+            </button>
+          </VehicleInfo>
         </div>
         <div className="tw-flex tw-flex-col tw-gap-[10px]">
           <div className="tw-hidden  laptop:tw-block">
@@ -142,7 +152,7 @@ const HeroCar = () => {
           <PolandMarket />
         </div>
       </div>
-
+      <ModalGetReport />
       <ModalConfirmBild />
       <ModalNotEnoughMoney />
       <ModalAttention />
