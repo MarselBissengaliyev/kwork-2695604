@@ -43,6 +43,27 @@
           color: #3e73cf;
         }
       }
+      /* Mobile styles */
+      @media (max-width: 480px) {
+        .title {
+          font-size: 20px; /* Adjust font size for tablets */
+          line-height: 20px; /* Adjust line height */
+        }
+
+        .link {
+          padding: 9px 18px; /* Adjust padding for tablets */
+          font-size: 12px; /* Slightly larger font size on tablets */
+        }
+
+        .link span,
+        .link i {
+          font-size: 12px; /* Adjust text size for tablet */
+        }
+
+        .link i {
+          font-size: 18px; /* Adjust icon size on tablets */
+        }
+      }
     }
 
     .row {
@@ -52,91 +73,92 @@
       * {
         margin-bottom: 0;
       }
-      .item {
-        box-sizing: border-box;
+    }
+  }
+}
+
+.item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Позволяет карточке занимать доступное пространство */
+
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  .img {
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+  }
+  .content {
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .title {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+
+      color: #191919;
+      padding-bottom: 41px;
+    }
+
+    .footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(#ececec, 0.5);
+      padding-top: 20px;
+      .avgPrice {
         display: flex;
         flex-direction: column;
-        height: 100%; /* Позволяет карточке занимать доступное пространство */
+        gap: 6px;
+        span {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 16px;
 
-        border: 1px solid #ececec;
-        border-radius: 10px;
-        .img {
-          border-radius: 10px 10px 0px 0px;
-          width: 100%;
+          color: #989898;
         }
-        .content {
-          padding: 30px;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
+        b {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 23px;
+          text-align: right;
 
-          .title {
-            font-family: "Roboto";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 21px;
+          color: #e60000;
+        }
+      }
+      .currentBid {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        span {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 16px;
 
-            color: #191919;
-            padding-bottom: 41px;
-          }
+          color: #989898;
+        }
+        b {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 23px;
+          text-align: right;
 
-          .footer {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid rgba(#ececec, 0.5);
-            padding-top: 20px;
-            .avgPrice {
-              display: flex;
-              flex-direction: column;
-              gap: 6px;
-              span {
-                font-family: "Roboto";
-                font-style: normal;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 16px;
-
-                color: #989898;
-              }
-              b {
-                font-family: "Roboto";
-                font-style: normal;
-                font-weight: 500;
-                font-size: 20px;
-                line-height: 23px;
-                text-align: right;
-
-                color: #e60000;
-              }
-            }
-            .currentBid {
-              display: flex;
-              flex-direction: column;
-              gap: 6px;
-              span {
-                font-family: "Roboto";
-                font-style: normal;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 16px;
-
-                color: #989898;
-              }
-              b {
-                font-family: "Roboto";
-                font-style: normal;
-                font-weight: 500;
-                font-size: 20px;
-                line-height: 23px;
-                text-align: right;
-
-                color: #3E73CF;
-              }
-            }
-          }
+          color: #3e73cf;
         }
       }
     }

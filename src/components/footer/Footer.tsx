@@ -77,11 +77,14 @@ export const Footer = () => {
           <div className={css.phone}><PiPhoneCall />+1 (770) 544-70-03</div>
           <div className={css.phone}><PiPhoneCall /> +1 (850) 319-34-67</div>
           <div className={css.address}><div className="icon">
-          <PiMapPin /></div> <span>Bid N Drive Inc. <br />
-            2305 Fourth st., <br />
-            Tucker, GA 30084</span></div>
+            <PiMapPin /></div> <span>Bid N Drive Inc. <br />
+              2305 Fourth st., <br />
+              Tucker, GA 30084</span></div>
           <div className={css.email}>sales@auto4export.com</div>
         </div>
+      </div>
+      <div className={css.copy + " tw-container tw-px-4"}>
+        <span>Copyrights © 2021. All Rights Reserved</span>
       </div>
     </footer>
   )

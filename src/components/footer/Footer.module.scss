@@ -188,4 +188,23 @@
       }
     }
   }
+
+  .copy {
+    padding-top: 32px;
+    border-top: 1px solid rgba(#fff, 0.2);
+    margin-top: 60px;
+
+    span {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+
+      color: #ffffff;
+
+      mix-blend-mode: normal;
+      opacity: 0.5;
+    }
+  }
 }
