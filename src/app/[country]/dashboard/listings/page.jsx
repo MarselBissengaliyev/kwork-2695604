@@ -7,6 +7,7 @@ import { getListings } from '@/actions/listings'
 import LeftSidebar from '@/components/Dashboard/LeftSidebar'
 import { ListingAdminList } from '@/components/listing'
 import { ROUTER } from '@/app/router'
+import PageDirect from '@/components/Common/PageDirect'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,12 +21,13 @@ const page = async ({ searchParams }) => {
   })
 
   const isAdmin = currentUser?.role === 'ADMIN'
-  if (!isAdmin) {
-    redirect('/')
-  }
+  // if (!isAdmin) {
+  //   redirect('/')
+  // }
   return (
     <>
-      <PageBanner pageTitle="All listings" />
+      {/* <PageBanner pageTitle="All listings" /> */}
+      <PageDirect pageTitle={"listing"}/>
       <div className="container tw-py-10">
         <div className="tw-flex tw-flex-col md:tw-flex-row tw-gap-6">
           <div className="md:tw-basis-4/12">
