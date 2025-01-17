@@ -127,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
           <div className="tw-flex tw-gap-3 ">
             <ButtonMain icon="/images/navbar/icons/usicon.png" color="grey" variant="outlinend" classNames="border-1 p-3 text-center tw-w-[50px] max-desktop:tw-hidden" />
             <ButtonMain onClick={() => setProfile((e) => !e)} icon="/images/navbar/icons/profileicon.png" color="grey" variant="outlinend" classNames={`border-1 p-3 text-center tw-w-[50px] tw-ml-4 ${css.profile}`} />
-            {profile ? <div className="tw-z-10 tw-max-w-[240px] tw-bg-white tw-absolute tw-top-[80px] tw-ml-[80px] tw-p-[30px] tw-rounded-[10px]" style={{ boxShadow: '0 12px 24px 0 rgba(51, 51, 51, 0.2)' }}>
+            {profile ? <div className="tw-z-10 tw-max-w-[240px] tw-bg-white tw-absolute tw-top-[80px] tw-ml-[80px] tw-p-[30px] tw-rounded-[10px] max-desktop:-tw-ml-[150px]" style={{ boxShadow: '0 12px 24px 0 rgba(51, 51, 51, 0.2)' }}>
               <div>
                 <div className="tw-flex tw-text-[18px] tw-h-[21px] tw-text-[#191919]">
                   <p className="">Hi,</p><p className="tw-font-bold">Huan Rodrigez</p>
