@@ -26,6 +26,7 @@ import { FeaturedCategories, FeaturedLocations, NearestLots, MakesList } from "@
 import { getCities } from "@/actions/cities";
 import { getMakesAndModels, getMakesWithLotCount } from "@/actions/makes";
 import { getNearestLots } from "@/actions/listings";
+import HowItWorks from '@/app/[country]/car/widgets/HowItWorks'
 
 export const dynamic = "force-dynamic";
 const limitParams = { limit: 6 };
