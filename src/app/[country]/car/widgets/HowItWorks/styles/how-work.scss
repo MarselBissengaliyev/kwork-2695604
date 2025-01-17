@@ -1,0 +1,24 @@
+.step-work {
+  width: 1540px;
+  padding: 15px 0;
+  @media screen and (max-width: 1566px) {
+    overflow-x: auto;
+  }
+}
+
+.enjoy-step {
+  width: 240px;
+  height: 216px;
+  background-image: url("../../../shared/img/enjoy.png");
+  background-repeat: no-repeat;
+}
+
+.line-work {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 1319px;
+  height: 19px;
+  background-image: url("../../../shared/img/line.png");
+  background-repeat: no-repeat;
+}
