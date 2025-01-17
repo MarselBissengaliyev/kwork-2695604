@@ -1,0 +1,185 @@
+.section {
+  padding-bottom: 70px;
+  margin: 0 15px;
+  .container {
+    h2 {
+      margin-bottom: 40px;
+
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 35px;
+
+      color: #191919;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      .card {
+        padding: 30px;
+        height: 100%;
+
+        border: 1px solid #ececec;
+        border-radius: 10px;
+
+        .head {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          @media screen and (min-width: 320px) {
+            gap: 14px;
+          }
+          @media screen and (min-width: 768px) {
+            gap: 16px;
+          }
+
+          @media screen and (min-width: 992px) {
+            gap: 16px;
+          }
+          img {
+            object-fit: cover;
+            border-radius: 50%;
+            @media screen and (min-width: 320px) {
+              width: 50px;
+              height: 50px;
+            }
+            @media screen and (min-width: 768px) {
+              width: 60px;
+              height: 60px;
+            }
+
+            @media screen and (min-width: 992px) {
+              width: 70px;
+              height: 70px;
+            }
+          }
+          .content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            @media screen and (min-width: 320px) {
+              gap: 6px;
+            }
+            @media screen and (min-width: 768px) {
+              gap: 7px;
+            }
+
+            @media screen and (min-width: 992px) {
+              gap: 8px;
+            }
+            h4 {
+              margin: 0;
+
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 21px;
+              /* identical to box height */
+
+              color: #191919;
+              @media screen and (min-width: 320px) {
+                font-size: 14px;
+                line-height: 16px;
+              }
+              @media screen and (min-width: 768px) {
+                font-size: 18px;
+                line-height: 21px;
+              }
+
+              @media screen and (min-width: 992px) {
+                font-size: 18px;
+                line-height: 21px;
+              }
+            }
+            .footer {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 100%;
+              @media screen and (min-width: 320px) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+              }
+              @media screen and (min-width: 768px) {
+                flex-direction: row;
+                gap: 0;
+              }
+
+              @media screen and (min-width: 992px) {
+                flex-direction: row;
+                gap: 0;
+              }
+              span {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                /* identical to box height */
+
+                color: #989898;
+                @media screen and (min-width: 320px) {
+                  font-size: 13px;
+                  line-height: 15px;
+                }
+                @media screen and (min-width: 768px) {
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+
+                @media screen and (min-width: 992px) {
+                    font-size: 16px;
+                line-height: 19px;
+                }
+              }
+              .rating > span {
+                font-size: 24px !important; /* По умолчанию для больших экранов */
+              }
+              
+              @media screen and (max-width: 768px) {
+                .rating > span{
+                  font-size: 20px !important; /* Уменьшаем размер звезд на экранах меньше 768px */
+                }
+              }
+              
+              @media screen and (max-width: 320px) {
+                .rating > span {
+                  font-size: 16px !important; /* Еще меньше для самых маленьких экранов */
+                }
+              }
+              
+            }
+          }
+        }
+        .hr {
+          margin-top: 4px;
+          margin-bottom: 13px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          hr {
+            width: 100%;
+            border: 1px solid #ececec;
+          }
+        }
+        .body {
+          p {
+            margin: 0;
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 28px;
+            /* or 175% */
+
+            color: #191919;
+          }
+        }
+      }
+    }
+  }
+}
