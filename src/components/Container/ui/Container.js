@@ -3,7 +3,7 @@ import "./Container.scss"
 
 const Container = ({children,className}) => {
   return (
-    <div className={`container ${className}`}>{children}</div>
+    <div className={`container tw-px-5 ${className}`}>{children}</div>
   )
 }
 
