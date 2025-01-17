@@ -1,4 +1,6 @@
 .section {
+  margin-bottom: 70px;
+  margin-top: 70px;
   .container {
     position: relative;
     padding: 0 15px;
@@ -88,10 +90,50 @@
             .avgPrice {
               display: flex;
               flex-direction: column;
+              gap: 6px;
+              span {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+
+                color: #989898;
+              }
+              b {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 23px;
+                text-align: right;
+
+                color: #e60000;
+              }
             }
             .currentBid {
               display: flex;
               flex-direction: column;
+              gap: 6px;
+              span {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+
+                color: #989898;
+              }
+              b {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 23px;
+                text-align: right;
+
+                color: #3E73CF;
+              }
             }
           }
         }

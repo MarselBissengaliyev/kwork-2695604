@@ -23,6 +23,10 @@ const faq = [
     question: "Do you offer shipping?",
     answer: "",
   },
+  {
+    question: "How much does it cost to join?",
+    answer: "",
+  },
 ];
 
 const FAQ = () => {

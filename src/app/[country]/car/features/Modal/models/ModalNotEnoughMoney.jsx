@@ -9,8 +9,8 @@ const ModalNotEnoughMoney = () => {
     <>
       <div className="modal fade" tabindex="-1" aria-labelledby="ModalMoney" aria-hidden="true" id="modalNotMoney">
         <Modal title={"You are trying to bid $10,000"}>
-          <div className="tw-px-[50px] tw-pb-[50px]">
-            <div className="tw-text-center tw-mb-[30px]">
+          <div className=" tw-px-[20px] tablet:tw-px-[50px] tw-pb-[50px]">
+            <div className=" tw-mb-[30px]">
               <p className="tw-my-[30px] tw-text-start tw-text-[14px] tw-leading-[16px ] tablet:tw-text-[16px]">
                 Your betting limit is not enough to place this bet. You need a $1,000 deposit to place this bid
               </p>

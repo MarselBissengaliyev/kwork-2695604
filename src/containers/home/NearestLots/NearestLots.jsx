@@ -8,7 +8,7 @@ import css from "./NearestLots.module.scss";
 
 export const NearestLots = ({ lots, title }) => {
   return (
-    <div className={css.section + " tw-container tw-py-10"}>
+    <div className={css.section + " tw-container"}>
       <div className={css.container + " tw-relative"}>
         <div className={css.head + " tw-flex tw-justify-between tw-items-center tw-mb-6"}>
           <h2 className={css.title + " tw-text-xl tw-font-bold"}>{title}</h2>

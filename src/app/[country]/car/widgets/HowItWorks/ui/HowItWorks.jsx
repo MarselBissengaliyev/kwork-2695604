@@ -1,8 +1,9 @@
-import React from "react";
-
-import HowItWorksCard from "@/app/[country]/car/entities/HowItWorksCard";
-
+"use client";
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "../styles/how-work.scss";
+import { Pagination, Navigation } from "swiper";
+import HowItWorksCard from "@/app/[country]/car/entities/HowItWorksCard";
 
 import User from "../../../shared/img/User";
 import Petition from "../../../shared/img/Petition";
@@ -34,20 +35,53 @@ const data = [
 ];
 
 const HowItWorks = () => {
+  const [activeSlide, setActiveSlide] = useState(0); // Состояние для активного слайда
+
+  // Обработчик для обновления активного слайда
+  const handleSlideChange = swiper => {
+    setActiveSlide(swiper.activeIndex);
+  };
+
   return (
-    <div className="tw-container tw-py-[70px]">
+    <div className="tw-container tw-py-[70px] how-it-works">
       <h2 className="text-title tw-font-semibold tw-mb-[32px]">How it Works</h2>
 
-      <div className="step-work ">
-        <div className="tw-w-full tw-flex tw-gap-[20px]">
+      <div className="step-work">
+        <Swiper
+          modules={[Pagination, Navigation]}
+          pagination={{ clickable: true }}
+          touchEventsTarget="container"
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            992: {
+              slidesPerView: data.length,
+              spaceBetween: 0,
+              navigation: true,
+            },
+          }}
+          touchRatio={1} // Включает поддержку жестов
+          onSlideChange={handleSlideChange} // Отслеживаем смену слайда
+        >
           {data.map((item, idx) => (
-            <HowItWorksCard key={idx} icon={item.icon} text={item.text} step={idx + 1} />
+            <SwiperSlide key={idx}>
+              <HowItWorksCard icon={item.icon} text={item.text} step={idx + 1} />
+            </SwiperSlide>
           ))}
-          <div className="enjoy-step"></div>
-        </div>
+        </Swiper>
 
+        {/* Используем activeSlide для управления стилем линии */}
         <div className="tw-mt-[26px] tw-ml-[10px]">
-          <div className="line-work"></div>
+          <div
+            className="line-work"
+            style={{ transform: `translateX(-${(activeSlide * 100) / data.length}%)` }} // Перемещаем линию в зависимости от слайда
+          ></div>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ const lots = [
     name: "Chevrolet",
     title: "2013 Chevrolet Impala Ls 3.6L",
     avgPrice: "2,850",
-    currentBid: "$2,850",
+    avgPrice: "$2,850",
   },
   {
     picture: "https://avatars.mds.yandex.net/i?id=8b347a0cf8e22b9a716c85399addeb63dcad1d2b-11490366-images-thumbs&n=13",
@@ -63,7 +63,7 @@ const page = () => {
         <HeroCar />
         <hr />
       </div>
-      <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden xxl:tw-block">
+      <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden desktop:tw-block">
         <HowItWorks />
       </div>
       <div className="tw-py-[10px]">

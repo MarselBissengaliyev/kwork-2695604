@@ -105,7 +105,7 @@ const Vehicleinfo = () => {
         <div className="tw-w-full ">
           <ButtonMain
             className={
-              "tw-px-[100px] tw-w-full tw-py-[21.5px] tw-rounded-[32px] hidden laptop:block tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
+              "tw-px-[100px] tw-w-full tw-py-[21.5px] tw-rounded-[32px] tw-hidden laptop:tw-block tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
             }
           >
             <span className="!tw-w-[82px]">Get report</span>

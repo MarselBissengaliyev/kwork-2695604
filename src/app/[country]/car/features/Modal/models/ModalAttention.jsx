@@ -31,14 +31,31 @@ const ModalAttention = () => {
             <div className="tw-text-start tw-mb-[30px]">
               <span className="tw-text-[20px] tablet:tw-text-[30px] tw-text-[#191919] tw-font-bold">Attention!</span>
 
+              <div className="tw-mt-[20px]">
+                <p>By clicking "Buy now", you are buying this lot for $17,000 plus applicable fees.</p>
+                <p>
+                  Should you fail to complete this transaction, you will be subject to any and all applicable relist
+                  fees.
+                </p>
+              </div>
+
               <div className="tw-flex tw-flex-col tw-gap-[15px] tw-mt-[30px]">
                 {list.map((item, idx) => {
                   return <ListItem key={idx} label={item.label} value={item.value} />;
                 })}
               </div>
-              <p className="tw-my-[30px] tw-text-start tw-text-[14px] tw-leading-[16px ] tablet:tw-text-[16px]">
-                By clicking "Confirm My Bid", <br /> you agree to
-                <span className="tw-text-[#3E73CF]"> Purchase Order Agreement</span>
+              <p className="tw-my-[30px] tw-flex tw-items-center tw-gap-[10px] tw-text-start tw-text-[14px] tw-leading-[16px ] tablet:tw-text-[16px]">
+                <input
+                  class="form-check-input tw-mb-[5px]"
+                  type="checkbox"
+                  id="checkboxNoLabel"
+                  value=""
+                  aria-label="..."
+                />
+
+                <span>
+                  I agreement with the <span className="tw-text-[#3E73CF]"> rules</span>
+                </span>
               </p>
             </div>
 
