@@ -12,6 +12,7 @@ import { getBlogPosts } from "@/actions/blog-posts";
 import { getCategories } from "@/actions/categories";
 
 import Banner from "@/containers/banner/Banner";
+import Advantages from "@/components/advantages/Advantages";
 import Blog from "@/containers/Blog";
 import Favour from "@/containers/Favour";
 
@@ -26,7 +27,8 @@ import { FeaturedCategories, FeaturedLocations, NearestLots, MakesList } from "@
 import { getCities } from "@/actions/cities";
 import { getMakesAndModels, getMakesWithLotCount } from "@/actions/makes";
 import { getNearestLots } from "@/actions/listings";
-import HowItWorks from '@/app/[country]/car/widgets/HowItWorks'
+import HowItWorks from "@/app/[country]/car/widgets/HowItWorks";
+import css from './page.module.scss'
 
 export const dynamic = "force-dynamic";
 const limitParams = { limit: 6 };
@@ -41,12 +43,8 @@ export default async function Home({ params }) {
   }).catch(() => null);
 
   const currentUser = await getCurrentUser();
-  const categories = slugs.country
-    ? await getCategories({ country: slugs.country, sticky: true, take: 20 })
-    : [];
-  const cities = slugs.country
-    ? await getCities({ country: slugs.country, sticky: true, take: 6 })
-    : [];
+  const categories = slugs.country ? await getCategories({ country: slugs.country, sticky: true, take: 20 }) : [];
+  const cities = slugs.country ? await getCities({ country: slugs.country, sticky: true, take: 6 }) : [];
   const { posts } = await getBlogPosts(limitParams);
   const makesAndModels = await getMakesAndModels(); // Получаем данные для марок и моделей
   const nearestLots = await getNearestLots(5); // Получение ближайших лотов
@@ -58,15 +56,17 @@ export default async function Home({ params }) {
         makes={makesAndModels.makes}
         models={makesAndModels.models}
         country={slugs.country}
-        categories={categories?.data?.map((category) => ({
+        categories={categories?.data?.map(category => ({
           ...category,
           href: [ROUTER.CATEGORIES, category?.slug].join("/"),
         }))}
       />
       <NearestLots lots={nearestLots} title={"Featured Vehicles"} />
       <MakesList makes={makesWithCount.data} />
-      <HowItWorks/>
-      <WorkArea />
+      <div className={css.howItWorks}>
+        <HowItWorks />
+      </div>
+      <Advantages />
       <Testimony />
       <Favour />
       <Partner />

@@ -48,7 +48,7 @@ const HowItWorks = () => {
 
       <div className="step-work">
         <Swiper
-          modules={[Pagination, Navigation]}
+          modules={[Navigation]}
           pagination={{ clickable: true }}
           touchEventsTarget="container"
           breakpoints={{

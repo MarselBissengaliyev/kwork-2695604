@@ -23,6 +23,21 @@
       "@/*": ["./src/*"] // или для папки src
     }
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/app/api/email/route.js", "src/libs/prismadb.js", "src/actions/makes.js", "src/components/navbar/Navbar.tsx", "src/app/[country]/layout.tsx", "src/components/navbar/index.ts", "src/components/ListItem/ui/ListItem.jsx", "src/containers/banner/icons/RatingIcon.tsx", "src/actions/models.js"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/app/api/email/route.js",
+    "src/libs/prismadb.js",
+    "src/actions/makes.js",
+    "src/components/navbar/Navbar.tsx",
+    "src/app/[country]/layout.tsx",
+    "src/components/navbar/index.ts",
+    "src/components/ListItem/ui/ListItem.jsx",
+    "src/containers/banner/icons/RatingIcon.tsx",
+    "src/actions/models.js",
+    "src/components/*"
+  ],
   "exclude": ["node_modules"]
 }
