@@ -1,21 +1,54 @@
 import prisma from '@/libs/prismadb'
 import { getPagination } from '@/utils'
 
-export const getMakes = async () => {
+export const getMakes = async (isSticky) => {
   try {
+    const filter = isSticky !== undefined ? { is_sticky: isSticky } : {};
+
     const data = await prisma.make.findMany({
-      select: { id: true, name: true },
+      where: filter,
+      select: { id: true, name: true, is_sticky: true },
       orderBy: { name: 'asc' },
     })
-    .catch(() => [])
-    
+    .catch(() => []);
+
     return {
-      data
-    }
+      data,
+    };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
+
+
+export const getMakesAndModels = async () => {
+  try {
+    const makesData = await prisma.make.findMany({
+      select: { id: true, name: true },
+      orderBy: { name: 'asc' },
+    });
+
+    const modelsData = {};
+
+    for (const make of makesData) {
+      const models = await prisma.model.findMany({
+        where: { make_id: make.id },
+        select: { name: true },
+        orderBy: { name: 'asc' },
+      });
+
+      modelsData[make.id] = models.map(model => model.name);
+    }
+
+    return {
+      makes: makesData,
+      models: modelsData,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 
 export const getCityCategories = async (query) => {
   try {

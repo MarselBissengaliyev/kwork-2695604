@@ -1,0 +1,55 @@
+.main-image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+// .thumbnails-container {
+//   height: 80px;
+//   display: flex;
+//   justify-content: center;
+//   gap: 10px;
+// }
+
+.thumbnails-container-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  overflow: hidden; /* Прячем все, что выходит за пределы контейнера */
+}
+
+.thumbnails-container {
+  display: flex;
+  transition: transform 0.3s ease; /* Плавная анимация сдвига */
+}
+
+.thumbnails-container a {
+  margin-right: 10px;
+  flex-shrink: 0; /* Не сжимаем изображения */
+}
+
+.arrow-left,
+.arrow-right {
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(62, 115, 207, 1);
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 1;
+}
+
+.arrow-right {
+  right: 10px;
+  box-shadow: linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0.0001) 100%),
+    linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0.0001) 100%);
+}
+
+.arrow-left {
+  left: 10px;
+}
