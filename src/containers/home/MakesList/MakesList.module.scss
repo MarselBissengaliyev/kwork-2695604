@@ -3,20 +3,22 @@
   border-top: 1px solid #ececec;
 
   .container {
+    padding: 0 15px;
     .head {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 39px;
+
       .title {
         font-family: "Roboto";
         font-style: normal;
         font-weight: 500;
         font-size: 30px;
         line-height: 35px;
-
         color: #191919;
       }
+
       .link {
         border: 1px solid #dbdbdb;
         border-radius: 20px;
@@ -25,6 +27,7 @@
         gap: 10px;
         justify-content: center;
         padding: 10px 20px;
+
         span,
         i {
           font-family: "Roboto";
@@ -34,9 +37,9 @@
           line-height: 19px;
           display: flex;
           gap: 10px;
-
           color: #191919;
         }
+
         i {
           color: #3e73cf;
         }
@@ -49,10 +52,10 @@
       gap: 20px;
 
       > li {
-        flex: 1 1 calc(25% - 20px); // Делим пространство на 4 колонки с учетом отступов
-        max-width: calc(25% - 20px);
+        flex: 1 1 100%; // По умолчанию все элементы занимают 100% ширины
+        max-width: 100%;
         list-style: none;
-        border: 1px solid #E7E7E7;
+        border: 1px solid #e7e7e7;
         padding: 30px;
 
         .inner-list {
@@ -64,6 +67,20 @@
             font-size: 14px;
             color: #333;
           }
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        > li {
+          flex: 1 1 calc(50% - 20px); // Две колонки
+          max-width: calc(50% - 20px);
+        }
+      }
+
+      @media screen and (min-width: 992px) {
+        > li {
+          flex: 1 1 calc(25% - 20px); // Четыре колонки, как сейчас
+          max-width: calc(25% - 20px);
         }
       }
     }
