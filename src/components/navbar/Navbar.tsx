@@ -13,6 +13,7 @@ import WhatsappIcon from "./icons/WhatsappIcon";
 import BotMenu from "./ui/BotMenu/BotMenu";
 import ButtonMain from "../button/ButtonMain";
 import Card from "./ui/Card/Card";
+import { Container } from "../Container";
 
 interface Make {
   id: number;
@@ -65,6 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
   const t = useTranslations();
   const [menuState, dispatch] = useReducer(reducer, initialState);
   const [sidebar, setSidebar] = useState(false);
+  const [profile, setProfile] = useState(false)
   const elementRef = useRef<HTMLDivElement | null>(null);
   const parsedMakes: Make[] = makes as Make[];
 
@@ -104,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
   return (
     <header className={css.section}>
       <div className={`${css.top} ${currentUser ? '!tw-bg-[#223E70]' : ''}`}>
-        <div className={css.top__inner + " tw-container tw-px-4"}>
+        <Container className={css.top__inner + " tw-px-4"}>
           <a href="/" className={css.logo}>CarLogo</a>
           <div className={css.search + " " + css.large}>
             <input placeholder="Search vehicles by make, vin, lot" type="text" />
@@ -122,22 +124,41 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
             <i className="ri-menu-line"></i>
           </div>
           {currentUser ?
-          <div className="tw-flex tw-gap-3">
-            <ButtonMain icon="/images/navbar/icons/usicon.png" color="grey" variant="outlinend" classNames="border-1 p-3 text-center" />
-            <ButtonMain icon="/images/navbar/icons/profileicon.png" color="grey" variant="outlinend" classNames="border-1 p-3 text-center" />
-            <div className="tw-flex tw-justify-center tw-items-center tw-gap-[30px]">
+          <div className="tw-flex tw-gap-3 ">
+            <ButtonMain icon="/images/navbar/icons/usicon.png" color="grey" variant="outlinend" classNames="border-1 p-3 text-center tw-w-[50px] max-desktop:tw-hidden" />
+            <ButtonMain onClick={() => setProfile((e) => !e)} icon="/images/navbar/icons/profileicon.png" color="grey" variant="outlinend" classNames={`border-1 p-3 text-center tw-w-[50px] tw-ml-4 ${css.profile}`} />
+            {profile ? <div className="tw-z-10 tw-max-w-[240px] tw-bg-white tw-absolute tw-top-[80px] tw-ml-[80px] tw-p-[30px] tw-rounded-[10px]" style={{ boxShadow: '0 12px 24px 0 rgba(51, 51, 51, 0.2)' }}>
+              <div>
+                <div className="tw-flex tw-text-[18px] tw-h-[21px] tw-text-[#191919]">
+                  <p className="">Hi,</p><p className="tw-font-bold">Huan Rodrigez</p>
+                </div>
+                <p className="tw-text-[16px]">Bidder #45457</p>
+              </div>
+              <ul className="tw-mt-[40px] tw-list-none tw-p-0 tw-text-[#191919] tw-text-[18px]">
+                <li>Dashboard</li>
+                <li>Transactions</li>
+                <li>Document and IDs</li>
+                <li>Billing Information</li>
+                <li>Watchlist</li>
+                <li>My Bids</li>
+                <li>Norifications</li>
+              </ul>
+              <p>Edit profile <img alt="edit" src="/images/navbar/icons/edit.png"/></p>
+              <p>Logout <img alt="exit" src="/images/navbar/icons/exit.png"/></p>
+            </div> : <></>}
+            <div className="tw-flex tw-justify-center tw-items-center tw-gap-[20px] max-desktop:tw-hidden">
               <Card
                 title="Bayer Power"
                 amount={23000}
-                icon="/images/navbar/icons/walleticon.png" // Ссылка на иконку
+                icon="/images/navbar/icons/walleticon.png"
               />
               <Card
                 title="Watchlist"
                 amount={4}
-                icon="/images/navbar/icons/walleticon.png" // Ссылка на иконку
+                icon="/images/navbar/icons/walleticon.png"
               />
             </div>
-            <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} classNames={'tw-gap-2'}/>
+            <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} classNames={'tw-gap-2 max-desktop:tw-hidden'}/>
           </div>
           : <div className={css.auth}>
             <button className={css.login}>
@@ -150,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
             </button>
           </div>}
           
-        </div>
+        </Container>
       </div>
       <BotMenu parsedMakes={parsedMakes} />
       <div ref={elementRef} className={css.sidebar + " " + `${sidebar ? css.open : ""}`}>

@@ -8,7 +8,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, amount, icon }) => {
   return (
-    <div className="tw-flex tw-items-start tw-text-white tw-rounded-lg tw-space-x-4">
+    <div className="tw-flex tw-items-start tw-text-white tw-rounded-lg tw-space-x-4 tw-w-[124px]">
       <img
         src={icon}
         alt={`${title} icon`}
