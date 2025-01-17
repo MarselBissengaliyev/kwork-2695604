@@ -10,8 +10,6 @@ import HeroCar from "./widgets/HeroCar";
 import HowItWorks from "./widgets/HowItWorks";
 import { NearestLots } from "@/containers/home";
 
-import car from "./shared/img/carlider.png";
-
 const lots = [
   {
     picture: "https://avatars.mds.yandex.net/i?id=8b347a0cf8e22b9a716c85399addeb63dcad1d2b-11490366-images-thumbs&n=13",
@@ -63,7 +61,6 @@ const page = () => {
     <>
       <div className="tw-w-full tw-mb-[58px]">
         <HeroCar />
-
         <hr />
       </div>
       <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden xxl:tw-block">

@@ -15,6 +15,7 @@ import FAQ from "../../../entities/FAQ";
 
 import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
 import ModalNotEnoughMoney from "../../../features/Modal/models/ModalNotEnoughMoney";
+import ModalAttention from "../../../features/Modal/models/ModalAttention";
 
 import Rating1 from "../../../shared/img/Rating";
 import Rating2 from "../../../shared/img/Rating2";
@@ -112,8 +113,9 @@ const HeroCar = () => {
                 type="button"
                 className="tw-w-full  tw-py-[20.5px] tw-rounded-[32px] "
                 data-bs-toggle="modal"
-                data-bs-target="#modalNotMoney"
+                // data-bs-target="#modalNotMoney"
                 // data-bs-target="#modalConfirm"
+                data-bs-target="#modalAttention"
               >
                 Place a Bid <Auc />
               </button>
@@ -143,6 +145,7 @@ const HeroCar = () => {
 
       <ModalConfirmBild />
       <ModalNotEnoughMoney />
+      <ModalAttention />
     </section>
   );
 };

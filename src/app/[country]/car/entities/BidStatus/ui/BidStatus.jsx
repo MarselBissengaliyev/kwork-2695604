@@ -53,6 +53,7 @@ const BidStatus = ({ children }) => {
         </div>
 
         <CounterCar>{children}</CounterCar>
+
         <div className="tw-my-[19px] tw-block laptop:tw-hidden">
           <span className="tw-text-[#3E73CF] tw-text-[16px]">Fee Estimator</span>
         </div>
