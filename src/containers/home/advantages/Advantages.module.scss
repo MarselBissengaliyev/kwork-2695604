@@ -1,0 +1,84 @@
+.section {
+  margin: 0 15px;
+  .row {
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 40px;
+      padding: 40px 30px;
+
+      .icon {
+        width: 42px;
+        height: 40px;
+      }
+
+      span {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        color: #191919;
+      }
+    }
+
+    // Добавляем border-bottom для каждой строки
+    .card:nth-child(-n + 3) {
+      // У первой строки
+      border-bottom: 1px solid rgba(236, 236, 236, 0.5);
+    }
+    .card:nth-child(n + 4):nth-child(-n + 6) {
+      // У второй строки
+      border-bottom: 1px solid rgba(236, 236, 236, 0.5);
+    }
+
+    // Удаляем нижний border у последней строки
+    .card:nth-last-child(-n + 3) {
+      border-bottom: none;
+    }
+
+    // Добавляем вертикальные бордеры между карточками
+    .card:not(:nth-child(3n)) {
+      // Все кроме последней в каждой строке
+      border-right: 1px solid rgba(236, 236, 236, 0.5);
+    }
+    .card:nth-child(3n + 1) {
+      // Первая карточка в строке
+      border-left: none;
+    }
+
+    // Медиа-запросы
+    @media screen and (min-width: 320px) and (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+
+      .card {
+        border-right: none; // Убираем правый бордер
+        border-bottom: 1px solid rgba(236, 236, 236, 0.5); // Добавляем нижний бордер
+      }
+
+      .card:last-child {
+        border-bottom: none; // Убираем нижний бордер у последнего элемента
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      // Оставляем стили как есть
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (min-width: 992px) {
+      // Оставляем стили как есть
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

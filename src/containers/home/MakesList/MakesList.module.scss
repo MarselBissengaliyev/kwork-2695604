@@ -44,6 +44,26 @@
           color: #3e73cf;
         }
       }
+      @media (max-width: 480px) {
+        .title {
+          font-size: 20px; /* Adjust font size for tablets */
+          line-height: 20px; /* Adjust line height */
+        }
+
+        .link {
+          padding: 9px 18px; /* Adjust padding for tablets */
+          font-size: 12px; /* Slightly larger font size on tablets */
+        }
+
+        .link span,
+        .link i {
+          font-size: 12px; /* Adjust text size for tablet */
+        }
+
+        .link i {
+          font-size: 18px; /* Adjust icon size on tablets */
+        }
+      }
     }
 
     .list {
