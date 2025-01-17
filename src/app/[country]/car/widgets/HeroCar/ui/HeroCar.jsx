@@ -80,7 +80,7 @@ const HeroCar = () => {
           <SliderCar />
           <div className="tw-block laptop:tw-hidden tw-mb-[31px] tw-mx-[15px] tablet:tw-mx-0 tablet:tw-mb-0">
             {/* laptop  */}
-            <AccordionHistory title={"Auction History Found"} id={1} card={<HistoryCard />} />
+            <AccordionHistory title={"Auction History Found"} id={1} />
             <BidStatus />
           </div>
           <div className="tw-max-w-[648px] tw-mt-[11px] tw-items-center tw-h-[40px] tw-mb-[19px] tw-flex  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
@@ -124,7 +124,7 @@ const HeroCar = () => {
         <div className="tw-flex tw-flex-col tw-gap-[10px]">
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
-            <AccordionHistory title={"Auction History Found"} id={1} card={<HistoryCard />} />
+            <AccordionHistory title={"Auction History Found"} id={1} />
             <BidStatus>
               <button
                 type="button"
