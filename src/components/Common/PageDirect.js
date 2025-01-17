@@ -11,6 +11,8 @@ import { Container } from '../Container';
 const routeOverrides = {
   home: 'House',
   dashboard: 'My Account',
+  myBids: 'My Bids',
+  Transactions: "Transactions"
 };
 
 const PageDirect = ({ pageTitle, children, className }) => {
