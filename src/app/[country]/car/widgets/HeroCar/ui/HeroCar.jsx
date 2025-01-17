@@ -12,6 +12,7 @@ import BidStatus from "../../../entities/BidStatus";
 import FinalPriceCalc from "../../../entities/FinalPriceCalc";
 import PolandMarket from "../../../entities/PolandMarket";
 import FAQ from "../../../entities/FAQ";
+import WantItNow from "../../../entities/WantItNow";
 
 import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
 import ModalNotEnoughMoney from "../../../features/Modal/models/ModalNotEnoughMoney";
@@ -98,6 +99,7 @@ const HeroCar = () => {
           </div>
           <div className="tw-block  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
+            <WantItNow />
             <FinalPriceCalc />
           </div>
           <FAQ />
@@ -147,6 +149,7 @@ const HeroCar = () => {
           </div>
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
+            <WantItNow />
             <FinalPriceCalc />
           </div>
           <PolandMarket />
