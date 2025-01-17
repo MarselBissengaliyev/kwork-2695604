@@ -17,6 +17,29 @@
         line-height: 35px;
         color: #191919;
       }
+      .link {
+        border: 1px solid #dbdbdb;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+        padding: 10px 20px;
+        span, i {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 19px;
+          display: flex;
+          gap: 10px;
+
+          color: #191919;
+        }
+        i {
+          color: #3E73CF;
+        }
+      }
     }
 
     .row {
@@ -60,7 +83,7 @@
             margin-top: auto;
             display: flex;
             justify-content: space-between;
-            border-top: 1px solid rgba(#ECECEC, 0.5);
+            border-top: 1px solid rgba(#ececec, 0.5);
             padding-top: 20px;
             .avgPrice {
               display: flex;
