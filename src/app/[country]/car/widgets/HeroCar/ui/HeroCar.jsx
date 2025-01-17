@@ -13,6 +13,7 @@ import FinalPriceCalc from "../../../entities/FinalPriceCalc";
 import PolandMarket from "../../../entities/PolandMarket";
 import FAQ from "../../../entities/FAQ";
 import WantItNow from "../../../entities/WantItNow";
+import AccordionHistory from "../../../entities/AccordionHistory";
 
 import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
 import ModalNotEnoughMoney from "../../../features/Modal/models/ModalNotEnoughMoney";
@@ -120,6 +121,7 @@ const HeroCar = () => {
         <div className="tw-flex tw-flex-col tw-gap-[10px]">
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
+            <AccordionHistory title={"Auction History Found"} id={1} card={"dfdsfsdf"} />
             <BidStatus>
               <button
                 type="button"

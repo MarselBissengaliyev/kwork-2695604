@@ -28,7 +28,7 @@ const poland = [
 
 const PolandMarket = () => {
   return (
-    <div className="case-border desktop:tw-max-w-[370px] tw-px-[32px] tw-py-[30px] tw-hidden  laptop:tw-block">
+    <div className="case-border tw-px-[32px] tw-py-[30px] tw-hidden  laptop:tw-block">
       <div className="">
         <h2 className="text-title tw-mb-[16px] tw-font-semibold">Poland Market</h2>
       </div>
