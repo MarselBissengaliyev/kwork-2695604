@@ -64,12 +64,7 @@ export default async function Home({ params }) {
       />
       <NearestLots lots={nearestLots} title={"Featured Vehicles"} />
       <MakesList makes={makesWithCount.data} />
-      <FeaturedLocations
-        locations={cities?.data?.map((city) => ({
-          ...city,
-          href: [ROUTER.CITY, city?.slug].join("/"),
-        }))}
-      />
+      <HowItWorks/>
       <WorkArea />
       <Testimony />
       <Favour />

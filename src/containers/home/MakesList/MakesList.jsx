@@ -16,7 +16,7 @@ export const MakesList = ({ makes }) => {
     <div className={css.section}>
       <div className={css.container + " tw-container"}>
         <div className={css.head}>
-          <h2 className={css.title}>Popular Makes</h2>
+          <h2 className={css.title}>Search Vehicles by</h2>
           <Link href="/listings" className={css.link + " tw-text-blue-500 hover:tw-underline"}>
             <span>See All</span>
             <i class="ri-arrow-right-line"></i>
