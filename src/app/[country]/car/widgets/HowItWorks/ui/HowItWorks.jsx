@@ -11,29 +11,6 @@ import Protection from "../../../shared/img/Protection";
 import Discount from "../../../shared/img/Discount";
 import Shipping from "../../../shared/img/Shipping";
 
-const data = [
-  {
-    icon: <User />,
-    text: "Register on our website",
-  },
-  {
-    icon: <Petition />,
-    text: "Sign the contract and make a deposit",
-  },
-  {
-    icon: <Protection />,
-    text: "Find your car at the auction",
-  },
-  {
-    icon: <Discount />,
-    text: "Bidding at auction",
-  },
-  {
-    icon: <Shipping />,
-    text: "Delivery to your home",
-  },
-];
-
 const HowItWorks = () => {
   const [activeSlide, setActiveSlide] = useState(0); // Состояние для активного слайда
 
@@ -41,6 +18,32 @@ const HowItWorks = () => {
   const handleSlideChange = (swiper) => {
     setActiveSlide(swiper.activeIndex);
   };
+
+  const data = [
+    {
+      icon: <User />,
+      text: "Register on our website",
+    },
+    {
+      icon: <Petition />,
+      text: "Sign the contract and make a deposit",
+    },
+    {
+      icon: <Protection />,
+      text: "Find your car at the auction",
+    },
+    {
+      icon: <Discount />,
+      text: "Bidding at auction",
+    },
+    {
+      icon: <Shipping />,
+      text: "Delivery to your home",
+    },
+    {
+
+    }
+  ];
 
   return (
     <div className="tw-container tw-py-[70px] how-it-works">
@@ -62,7 +65,7 @@ const HowItWorks = () => {
             },
             992: {
               slidesPerView: data.length,
-              spaceBetween: 0,
+              spaceBetween: 30,
               navigation: true,
             },
           }}
@@ -71,7 +74,7 @@ const HowItWorks = () => {
         >
           {data.map((item, idx) => (
             <SwiperSlide key={idx}>
-              <HowItWorksCard icon={item.icon} text={item.text} step={idx + 1} />
+              {idx !== 5 ?<HowItWorksCard icon={item.icon} text={item.text} step={idx + 1} /> : <div className="enjoy-step"></div>}
             </SwiperSlide>
           ))}
         </Swiper>
