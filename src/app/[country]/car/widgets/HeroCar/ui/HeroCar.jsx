@@ -14,6 +14,7 @@ import PolandMarket from "../../../entities/PolandMarket";
 import FAQ from "../../../entities/FAQ";
 
 import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
+import ModalNotEnoughMoney from "../../../features/Modal/models/ModalNotEnoughMoney";
 
 import Rating1 from "../../../shared/img/Rating";
 import Rating2 from "../../../shared/img/Rating2";
@@ -111,7 +112,8 @@ const HeroCar = () => {
                 type="button"
                 className="tw-w-full  tw-py-[20.5px] tw-rounded-[32px] "
                 data-bs-toggle="modal"
-                data-bs-target="#modalConfirm"
+                data-bs-target="#modalNotMoney"
+                // data-bs-target="#modalConfirm"
               >
                 Place a Bid <Auc />
               </button>
@@ -140,6 +142,7 @@ const HeroCar = () => {
       </div>
 
       <ModalConfirmBild />
+      <ModalNotEnoughMoney />
     </section>
   );
 };

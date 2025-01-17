@@ -32,13 +32,7 @@ const list = [
 const ModalConfirmBild = () => {
   return (
     <>
-      <div
-        className="modal fade"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-        id="modalConfirm"
-      >
+      <div className="modal fade" tabindex="-1" aria-labelledby="modalConfirm" aria-hidden="true" id="modalConfirm">
         <Modal title={"Confirm You Bid"}>
           <div className="tw-px-[50px] tw-pb-[50px]">
             <div className="tw-text-center tw-mb-[30px]">
