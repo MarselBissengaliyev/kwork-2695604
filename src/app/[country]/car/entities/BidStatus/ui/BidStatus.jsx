@@ -7,7 +7,7 @@ import InfoIcon from "../../../shared/img/InfoIcon";
 import ListItem from "@/components/ListItem";
 import CounterCar from "../../CounterCar/ui/CounterCar";
 
-const BidStatus = () => {
+const BidStatus = ({ children }) => {
   return (
     <div className="case-border tw-w-full tw-mb-[19px]">
       <div className="tw-flex tw-justify-between tw-px-[30px] tw-mb-[30px] tw-py-[28px] tw-bg-[#F9F9F9]">
@@ -52,8 +52,7 @@ const BidStatus = () => {
           <span className="tw-text-[#8C8C8C] tw-text-[16px]">($25 Bid Increments)</span>
         </div>
 
-        <CounterCar />
-
+        <CounterCar>{children}</CounterCar>
         <div className="tw-my-[19px] tw-block laptop:tw-hidden">
           <span className="tw-text-[#3E73CF] tw-text-[16px]">Fee Estimator</span>
         </div>

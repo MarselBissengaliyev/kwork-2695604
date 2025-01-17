@@ -12,7 +12,6 @@
       .title {
         font-family: "Roboto";
         font-style: normal;
-        font-weight: 500;
         font-size: 30px;
         line-height: 35px;
         color: #191919;
@@ -25,7 +24,8 @@
         gap: 10px;
         justify-content: center;
         padding: 10px 20px;
-        span, i {
+        span,
+        i {
           font-family: "Roboto";
           font-style: normal;
           font-weight: 400;
@@ -37,7 +37,7 @@
           color: #191919;
         }
         i {
-          color: #3E73CF;
+          color: #3e73cf;
         }
       }
     }

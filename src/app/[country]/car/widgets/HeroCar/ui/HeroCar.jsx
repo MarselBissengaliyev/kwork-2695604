@@ -1,6 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 
 import PageDirect from "@/components/Common/PageDirect";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import SliderCar from "../../../entities/SliderCar";
 import VehicleInfo from "../../../entities/VehicleInfo";
@@ -9,14 +13,20 @@ import FinalPriceCalc from "../../../entities/FinalPriceCalc";
 import PolandMarket from "../../../entities/PolandMarket";
 import FAQ from "../../../entities/FAQ";
 
+import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
+
 import Rating1 from "../../../shared/img/Rating";
 import Rating2 from "../../../shared/img/Rating2";
 import Rating3 from "../../../shared/img/Rating3";
 import StarFav from "../../../shared/img/StarFav";
+import Auc from "../../../shared/img/Auc";
 import Car from "../../../shared/img/Car";
 import InfoIcon from "../../../shared/img/InfoIcon";
 
 const HeroCar = () => {
+  useEffect(() => {
+    require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
+  }, []);
   return (
     <section className="tw-container tw-mx-0   desktop:tw-mx-auto  tw-mb-[66px]">
       {/* ======================================= */}
@@ -96,7 +106,16 @@ const HeroCar = () => {
         <div className="tw-flex tw-flex-col tw-gap-[10px]">
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
-            <BidStatus />
+            <BidStatus>
+              <button
+                type="button"
+                className="tw-w-full  tw-py-[20.5px] tw-rounded-[32px] "
+                data-bs-toggle="modal"
+                data-bs-target="#modalConfirm"
+              >
+                Place a Bid <Auc />
+              </button>
+            </BidStatus>
           </div>
           <div className=" tw-w-[370px] tw-items-center tw-h-[40px]  tw-mb-[19px] tw-hidden  laptop:tw-flex">
             {/* desktop */}
@@ -119,6 +138,8 @@ const HeroCar = () => {
           <PolandMarket />
         </div>
       </div>
+
+      <ModalConfirmBild />
     </section>
   );
 };
