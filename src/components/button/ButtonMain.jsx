@@ -55,8 +55,8 @@ const ButtonMain = ({
   const iconStyles = {
     width: '18px',
     height: '18px', 
-    marginLeft: '8px',
-    marginBottom: '3px',
+    // marginLeft: '8px',
+    // marginBottom: '3px',
   };
 
   // Добавляем динамическую поддержку hover-классов

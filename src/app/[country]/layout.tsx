@@ -52,8 +52,8 @@ const RootLayout = async ({ params, children }) => {
   const regionConfiguration = await getRegionConfiguration({
     country,
   }).catch(() => null);
-  const currentUser = await getCurrentUser();
-
+  // const currentUser = await getCurrentUser();
+  const currentUser =true;
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>

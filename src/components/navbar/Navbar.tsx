@@ -11,6 +11,8 @@ import ViberIcon from "./icons/ViberIcon";
 import TelegramIcon from "./icons/TelegramIcon";
 import WhatsappIcon from "./icons/WhatsappIcon";
 import BotMenu from "./ui/BotMenu/BotMenu";
+import ButtonMain from "../button/ButtonMain";
+import Card from "./ui/Card/Card";
 
 interface Make {
   id: number;
@@ -58,7 +60,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, isOpen, toggle, children }) 
   </div>
 );
 export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) => {
-  console.log(makes);
+  // console.log(makes);
   const route = usePathname();
   const t = useTranslations();
   const [menuState, dispatch] = useReducer(reducer, initialState);
@@ -101,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
   }, []);
   return (
     <header className={css.section}>
-      <div className={css.top}>
+      <div className={`${css.top} ${currentUser ? '!tw-bg-[#223E70]' : ''}`}>
         <div className={css.top__inner + " tw-container tw-px-4"}>
           <a href="/" className={css.logo}>CarLogo</a>
           <div className={css.search + " " + css.large}>
@@ -119,7 +121,25 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
           <div className={css.burger} onClick={toggleSidebar}>
             <i className="ri-menu-line"></i>
           </div>
-          <div className={css.auth}>
+          {currentUser ?
+          <div className="tw-flex tw-gap-3">
+            <ButtonMain icon="/images/navbar/icons/usicon.png" color="grey" variant="outlinend" classNames="border-1 p-3 text-center" />
+            <ButtonMain icon="/images/navbar/icons/profileicon.png" color="grey" variant="outlinend" classNames="border-1 p-3 text-center" />
+            <div className="tw-flex tw-justify-center tw-items-center tw-gap-[30px]">
+              <Card
+                title="Bayer Power"
+                amount={23000}
+                icon="/images/navbar/icons/walleticon.png" // Ссылка на иконку
+              />
+              <Card
+                title="Watchlist"
+                amount={4}
+                icon="/images/navbar/icons/walleticon.png" // Ссылка на иконку
+              />
+            </div>
+            <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} classNames={'tw-gap-2'}/>
+          </div>
+          : <div className={css.auth}>
             <button className={css.login}>
               <span>Log In</span>
               <i className="ri-login-box-line"></i>
@@ -128,7 +148,8 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
               <span>Sing Up</span>
               <i className="ri-user-shared-2-line"></i>
             </button>
-          </div>
+          </div>}
+          
         </div>
       </div>
       <BotMenu parsedMakes={parsedMakes} />
