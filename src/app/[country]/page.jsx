@@ -62,7 +62,7 @@ export default async function Home({ params }) {
           href: [ROUTER.CATEGORIES, category?.slug].join("/"),
         }))}
       />
-      <NearestLots lots={nearestLots}/>
+      <NearestLots lots={nearestLots} title={"Featured Vehicles"}/>
       <FeaturedListings currentUser={currentUser} />
       <FeaturedLocations
         locations={cities?.data?.map(city => ({
