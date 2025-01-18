@@ -25,7 +25,7 @@ const page = () => {
             </div>
         </div>
         </PageDirect>
-        <DashboardTable/>
+        {/* <DashboardTable/> */}
     </Container>
   )
 }
