@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
   return (
     <header className={css.section}>
       <div className={`${css.top} ${currentUser ? '!tw-bg-[#223E70]' : ''}`}>
-        <Container className={css.top__inner + " tw-px-4"}>
+        <div className={css.top__inner + " tw-container tw-px-4"}>
           <a href="/" className={css.logo}>CarLogo</a>
           <div className={css.search + " " + css.large}>
             <input placeholder="Search vehicles by make, vin, lot" type="text" />
@@ -237,7 +237,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
             </button>
           </div>}
           
-        </Container>
+        </div>
       </div>
       <BotMenu parsedMakes={parsedMakes} />
       <div ref={elementRef} className={css.sidebar + " " + `${sidebar ? css.open : ""}`}>
