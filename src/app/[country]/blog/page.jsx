@@ -22,7 +22,7 @@ const page = async ({ searchParams, params }) => {
 
   return (
     <>
-      <PageDirect pageTitle={"Blog"}/>
+      <PageDirect />
       <BlogContent
         posts={posts?.map(
           ((post) => ({

@@ -1,0 +1,116 @@
+.section {
+  .container {
+    .block {
+      background-image: url("../../../../public/images/blog/bg.png");
+      background-size: cover;
+      padding-top: 114px;
+      padding-left: 100px;
+      padding-right: 100px;
+      padding-bottom: 198px;
+      margin-bottom: 50px;
+
+      border-radius: 10px;
+      h2 {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 46px;
+        line-height: 54px;
+
+        color: #ffffff;
+      }
+    }
+    .articles {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      max-width: 1150px;
+      margin-bottom: 40px;
+      .article {
+        display: grid;
+        grid-template-columns: 40% 60%;
+
+        border: 1px solid #ececec;
+        border-radius: 10px;
+
+        .img {
+          border-radius: 10px 0px 0px 10px;
+        }
+        .content {
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          a {
+            margin-bottom: 16px;
+            h4 {
+              font-family: "Roboto";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 21px;
+              /* identical to box height */
+
+              color: #3e73cf;
+            }
+          }
+          p {
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 28px;
+            /* or 175% */
+
+            color: #191919;
+          }
+          .footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .date {
+              display: flex;
+              gap: 8px;
+              span,
+              i {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+
+                color: #8c8c8c;
+              }
+              i {
+                font-size: 18px;
+              }
+            }
+            a {
+              border: 1px solid #dbdbdb;
+              border-radius: 20px;
+              display: flex;
+              gap: 10px;
+              padding: 10px 20px;
+              span,
+              i {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                /* identical to box height */
+                text-align: right;
+
+                color: #191919;
+              }
+              i {
+                color: #3e73cf;
+                font-size: 22px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
