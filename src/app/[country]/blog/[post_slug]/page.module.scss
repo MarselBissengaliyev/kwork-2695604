@@ -1,0 +1,38 @@
+.block {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 188px;
+  padding-top: 50px;
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  // Затемнение через псевдоэлемент
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); // Полупрозрачный черный
+    z-index: 1; // Чтобы слой был поверх изображения
+  }
+  * {
+    position: relative;
+    z-index: 2 !important;
+    color: #fff;
+    padding: 0;
+  }
+  h1 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 46px;
+    line-height: 54px;
+
+    color: #ffffff;
+    margin-top: 55px;
+    margin-bottom: 70px;
+  }
+}

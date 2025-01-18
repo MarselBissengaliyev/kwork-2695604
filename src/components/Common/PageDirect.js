@@ -28,7 +28,7 @@ const PageDirect = ({ pageTitle, children, className }) => {
     .filter((segment) => !excludedRoutes.includes(segment));
   const breadcrumbs = pathSegments.map((segment, index) => {
     const href = '/' + pathSegments.slice(0, index + 1).join('/');
-    const label = routeOverrides[segment] || t(`links.${segment}`) || segment;
+    const label = routeOverrides[segment] || t(`${segment}`) || segment;
     return { href, label };
   });
   
