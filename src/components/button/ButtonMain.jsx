@@ -9,8 +9,9 @@ const ButtonMain = ({
   color = "blue",
   icon,
   number,
-  hoverEffect = true, // Добавляем новый пропс для эффекта hover
-  hoverColor, // Добавляем новый пропс для цвета hover
+  hoverEffect = true, 
+  hoverColor,
+  disabled
 }) => {
   // Цветовые значения
   const colorMap = {
@@ -71,6 +72,7 @@ const ButtonMain = ({
       className={`${baseClasses} ${widthClass} ${hoverClasses} ${classNames}`} // динамический hover и классы
       style={variantStyles}
       onClick={onClick}
+      disabled={disabled}
     >
       {text}
 
