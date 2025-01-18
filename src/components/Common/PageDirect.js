@@ -61,10 +61,10 @@ const PageDirect = ({ pageTitle, children, className }) => {
               </React.Fragment>
             ))}
           </ul>
-          <div className={`tw-flex ${className} `}>
+          {pageTitle && <div className={`tw-flex ${className} `}>
             <h2>{currentLabel}</h2>
             {children && <div>{children}</div>}
-          </div>
+          </div>}
         </div>
       </Container>
     </div>
