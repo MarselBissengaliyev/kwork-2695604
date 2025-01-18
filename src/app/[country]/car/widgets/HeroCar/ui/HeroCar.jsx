@@ -14,6 +14,7 @@ import PolandMarket from "../../../entities/PolandMarket";
 import FAQ from "../../../entities/FAQ";
 import WantItNow from "../../../entities/WantItNow";
 import AccordionHistory from "../../../entities/AccordionHistory";
+import AuctionDateNotification from "../../../entities/AuctionDateNotification";
 
 import HistoryCard from "../../../entities/AccordionHistory/models/HistoryCard";
 
@@ -88,6 +89,7 @@ const HeroCar = () => {
             <div className="tw-mr-[16px]">
               <Car />
             </div>
+
             <div className="tw-flex tw-items-baseline tablet:tw-items-stretch tw-gap-[9px]">
               <span className="text-vehicle tw-max-[579px]">
                 THIS VEHICLE IS BEING SOLD IN IT`S CURRENT CONDITION ON AN 'AS IS' BASIS
@@ -99,7 +101,17 @@ const HeroCar = () => {
           </div>
           <div className=" tw-block tw-mb-[19px]  laptop:tw-hidden tw-mt-[31px] tablet:tw-mt-0 tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
-            <VehicleInfo />
+            <VehicleInfo>
+              {" "}
+              <button
+                type="button"
+                className=" tw-w-full tw-bg-[#3E73CF] t tw-py-[21.5px] tw-rounded-[32px]  tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
+                data-bs-toggle="modal"
+                data-bs-target="#modalGetReport"
+              >
+                <span className="tw-text-[#fff]">Get report</span>
+              </button>{" "}
+            </VehicleInfo>
           </div>
           <div className="tw-block  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
@@ -121,9 +133,10 @@ const HeroCar = () => {
             </button>
           </VehicleInfo>
         </div>
-        <div className="tw-flex tw-flex-col tw-gap-[10px]">
+        <div className="tw-flex tw-flex-col desktop:tw-max-w-[370px] tw-gap-[10px]">
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
+            <AuctionDateNotification />
             <AccordionHistory title={"Auction History Found"} id={1} />
             <BidStatus>
               <button
@@ -143,6 +156,7 @@ const HeroCar = () => {
             <div className="tw-mr-[16px]">
               <Car />
             </div>
+
             <div className="tw-flex tw-items-stretch">
               <span className="text-vehicle tw-max-w-[310px]">
                 THIS VEHICLE IS BEING SOLD IN IT`S CURRENT CONDITION ON AN 'AS IS' BASIS

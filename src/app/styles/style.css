@@ -3327,7 +3327,7 @@ Page Banner Area Style
   border-color: #f0002a;
 }
 
-.page-banner-content .search-result .form-group .form-control.form-select {
+.page-banner-content .search-result .form-group .form-control {
   cursor: pointer;
   font-weight: 300;
   font-size: 15px;
