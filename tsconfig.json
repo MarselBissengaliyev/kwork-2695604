@@ -37,7 +37,9 @@
     "src/components/ListItem/ui/ListItem.jsx",
     "src/containers/banner/icons/RatingIcon.tsx",
     "src/actions/models.js",
-    "src/app/[country]/car/entities/AccordionHistory/ui/AccordionHistory.jsx"
+    "src/app/[country]/car/entities/AccordionHistory/ui/AccordionHistory.jsx",
+    "src/components/Input/index.js",
+    "src/components/Input/ui/Input.jsx"
   ],
   "exclude": ["node_modules"]
 }

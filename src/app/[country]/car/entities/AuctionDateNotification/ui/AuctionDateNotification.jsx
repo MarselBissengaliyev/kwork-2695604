@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 import "../styles/auction-date.scss";
 
@@ -7,10 +9,25 @@ import Bell from "../../../shared/img/Bell";
 
 import ButtonMain from "@/components/button/ButtonMain";
 import Select from "@/components/Select";
+import Input from "@/components/Input";
+import InputPhone from "@/components/InputPhone";
 
-const options = ["Cars", "Trucks", "ATV", "Motorcycle", "Boats", "RV", "Construction Equipment"];
+import "react-phone-input-2/lib/style.css";
+
+const options = ["Sms", "Whatsapp"];
 
 const AuctionDateNotification = () => {
+  const [phone, setPhone] = useState("");
+  const [formData, setFormData] = useState({});
+
+  const handleSelectChange = (name, value) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
   return (
     <div className="case-border tw-w-full  tw-mb-[19px]">
       <div className="tw-flex tw-justify-between tw-px-[30px] tw-mb-[30px] tw-py-[28px] tw-bg-[#FFF5F5]">
@@ -39,8 +56,11 @@ const AuctionDateNotification = () => {
               Alerts for Similar Vehicles
             </label>
 
-            <div className="">
-              <Select options={options} />
+            <div className="tw-flex tw-flex-col tw-gap-[20px]">
+              <Select options={options} name="Sms" onChange={handleSelectChange} />
+              <Input type={"text"} name="Name" placeholder={"Name"} />
+              <Input type={"text"} name="LastName" placeholder={"Last Name"} />
+              <InputPhone />
             </div>
             <ButtonMain className={"tw-w-full tw-py-[20px] tw-rounded-[32px] tw-mt-[20px]"}>
               {" "}

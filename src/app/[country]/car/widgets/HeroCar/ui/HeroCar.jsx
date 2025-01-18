@@ -81,6 +81,7 @@ const HeroCar = () => {
           <SliderCar />
           <div className="tw-block laptop:tw-hidden tw-mb-[31px] tw-mx-[15px] tablet:tw-mx-0 tablet:tw-mb-0">
             {/* laptop  */}
+            <AuctionDateNotification />
             <AccordionHistory title={"Auction History Found"} id={1} />
             <BidStatus />
           </div>

@@ -1,0 +1,27 @@
+.react-tel-input {
+  width: 100%;
+}
+
+.react-tel-input .form-control {
+  border: 1px solid #dbdbdb;
+  border-radius: 34px;
+  padding: 10px 45px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.react-tel-input .form-control:focus {
+  border-color: #3e73cf;
+  box-shadow: 0 0 4px rgba(62, 115, 207, 0.4);
+}
+
+.react-tel-input .flag-dropdown {
+  border: none;
+  border-right: 1px solid #dbdbdb;
+  border-radius: 34px 0 0 34px;
+  background-color: #f9f9f9;
+}
+
+.react-tel-input .flag-dropdown.open {
+  background-color: #e6e6e6;
+}
