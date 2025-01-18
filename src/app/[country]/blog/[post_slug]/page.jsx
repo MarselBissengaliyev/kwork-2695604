@@ -26,7 +26,9 @@ const page = async ({ params }) => {
       <div className={css.block} style={{ backgroundImage: `url(${post.picture})` }}
       >
         <div className={css.container + " tw-container"}>
-          <PageDirect />
+          <div className={css.breadcrumbs}>
+            <span><a href="/">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/blog">Blogs</a></span>
+          </div>
           <h1>911 GT3 with Manthey Kit <br /> Is Quicker at the 'Ring</h1> 
         </div>
       </div>

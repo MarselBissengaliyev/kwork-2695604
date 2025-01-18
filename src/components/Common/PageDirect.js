@@ -28,7 +28,7 @@ const PageDirect = ({ pageTitle, children, className }) => {
     .filter((segment) => !excludedRoutes.includes(segment));
   const breadcrumbs = pathSegments.map((segment, index) => {
     const href = '/' + pathSegments.slice(0, index + 1).join('/');
-    const label = routeOverrides[segment] || t(`${segment}`) || segment;
+    const label = routeOverrides[segment] || t(`links.${segment}`) || segment;
     return { href, label };
   });
   
@@ -61,10 +61,10 @@ const PageDirect = ({ pageTitle, children, className }) => {
               </React.Fragment>
             ))}
           </ul>
-          {pageTitle && <div className={`tw-flex ${className} `}>
+          <div className={`tw-flex ${className} `}>
             <h2>{currentLabel}</h2>
             {children && <div>{children}</div>}
-          </div>}
+          </div>
         </div>
       </Container>
     </div>
