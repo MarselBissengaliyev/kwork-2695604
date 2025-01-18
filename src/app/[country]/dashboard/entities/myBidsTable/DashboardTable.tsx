@@ -1,70 +1,67 @@
-'use client';
 import { Container } from '@/components/Container';
 import React from 'react';
+import PaginationBlock from '../paginationBlock/PaginationBlock';
 
-interface TableRow {
-  id: number;
-  amount: number;
-  lot_id: number;
-  user_id: number;
-  created_at: string;
-  status: string;
+interface Column {
+  header: string;
+  accessor: string;
+  render?: (value: any, row: any) => React.ReactNode;
+  style?: React.CSSProperties;
 }
 
-interface IDashboardTable {
-  titles: string[]; // Заголовки таблицы
-  variables: TableRow[]; // Данные в формате объекта
-  renderValue?: (key: keyof TableRow, value: any, row: TableRow) => React.ReactNode; // Кастомный рендер значений
-  onEdit?: (key: keyof TableRow, value: any, row: TableRow) => void; // Обработчик редактирования
+interface TableProps {
+  data: Array<Record<string, any>>;
+  columns: Column[];
+  rowKey: string; // уникальный ключ для каждой строки
 }
 
-const DashboardTable: React.FC<IDashboardTable> = ({ titles, variables, renderValue, onEdit }) => {
+const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
   return (
     <Container>
-      <div className="tw-w-full tw-border tw-rounded-lg">
-        {/* Заголовки */}
-        <div className="tw-flex tw-w-full tw-justify-between tw-border-b tw-py-2">
-          {titles.length > 0 
-            ? titles.map((title, index) => (
-                <p key={index} className="tw-flex-1 tw-text-center">
-                  {title || '—'}
-                </p>
-              ))
-            : <p className="tw-flex-1 tw-text-center">No Titles</p>}
-        </div>
-
-        {/* Данные */}
-        {variables.length > 0 ? (
-          variables.map((row, rowIndex) => (
-            <div
-              key={row.id}
-              className="tw-flex tw-w-full tw-justify-between tw-py-2"
-            >
-              {Object.entries(row).map(([key, value]) => (
-                <div key={key} className="tw-flex-1 tw-text-center tw-px-2">
-                  {renderValue
-                    ? renderValue(key as keyof TableRow, value, row)
-                    : value}
-
-                  {onEdit && (
-                    <button
-                      onClick={() => onEdit(key as keyof TableRow, value, row)}
-                      className="tw-ml-2 tw-text-blue-500"
-                      aria-label={`Edit ${key} in row ${rowIndex + 1}`}
-                    >
-                      Edit
-                    </button>
-                  )}
-                </div>
+      <div style={{ width: '100%' }}>
+        <table 
+          className="tw-w-full tw-border-separate tw-border-spacing-y-4"
+          style={{ borderCollapse: 'separate' }}
+        >
+          <thead>
+            <tr>
+              {columns.map((col, index) => (
+                <th 
+                  key={index} 
+                  className="tw-p-4 tw-text-left tw-border-b tw-border-[#ECECEC]"
+                >
+                  {col.header}
+                </th>
               ))}
-            </div>
-          ))
-        ) : (
-          <p className="tw-text-center tw-py-4">No Data</p>
-        )}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row) => (
+              <tr
+                key={row[rowKey]} 
+                className="tw-bg-[#ffffff] tw-rounded-[10px]"
+              >
+                {columns.map((col, index) => (
+                  <td 
+                    key={index} 
+                    className="tw-p-4 tw-border-y-[1px] tw-border-[#ECECEC] first:tw-border-l-[1px] last:tw-border-r-[1px]"
+                    style={col.style}
+                  >
+                    {col.render 
+                      ? col.render(row[col.accessor] ?? '-', row) 
+                      : row[col.accessor] ?? '-'}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="tw-mt-5">
+        <PaginationBlock currentPage={1} totalPages={10} />
       </div>
     </Container>
   );
 };
 
-export default DashboardTable;
+export default DashBoardTable;

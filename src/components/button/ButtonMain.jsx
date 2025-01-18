@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 
 const ButtonMain = ({
@@ -9,8 +11,11 @@ const ButtonMain = ({
   color = "blue",
   icon,
   number,
-  hoverEffect = true, // Добавляем новый пропс для эффекта hover
-  hoverColor, // Добавляем новый пропс для цвета hover
+  hoverEffect = true, 
+  hoverColor,
+  disabled,
+  onMouseOver,
+  onMouseOut
 }) => {
   // Цветовые значения
   const colorMap = {
@@ -71,6 +76,9 @@ const ButtonMain = ({
       className={`${baseClasses} ${widthClass} ${hoverClasses} ${classNames}`} // динамический hover и классы
       style={variantStyles}
       onClick={onClick}
+      disabled={disabled}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
     >
       {text}
 

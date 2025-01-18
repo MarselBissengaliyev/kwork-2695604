@@ -14,7 +14,6 @@ import { Container } from '@/components/Container'
 
 const page = async () => {
   // const { users, listings, blogPosts, reviews } = await getDataBriefStats()
-
   const mockUsers =
     {
       id: 1,
@@ -111,10 +110,10 @@ const page = async () => {
 >
   <div className='tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full no-scrollbar max-mindesk:tw-gap-2'>
     <div className='tw-flex tw-gap-2'>
-      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} variant='outlined' text={"Dashboard"} />
+      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} variant='outlined' text={"Dashboard"}  />
 
       <a href="./myBids">
-        <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="My Bids" />
+        <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="My Bids"/>
       </a>
       
       <a href='./transactions'>
