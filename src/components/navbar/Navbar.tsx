@@ -227,14 +227,14 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
             <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} classNames={'tw-gap-2 max-desktop:tw-hidden'}/>
           </div>
           : <div className={css.auth}>
-            <button className={css.login}>
+            <a href="/login" className={css.login}>
               <span>Log In</span>
               <i className="ri-login-box-line"></i>
-            </button>
-            <button className={css.signup}>
+            </a>
+            <a href="/login" className={css.signup}>
               <span>Sing Up</span>
               <i className="ri-user-shared-2-line"></i>
-            </button>
+            </a>
           </div>}
           
         </div>
