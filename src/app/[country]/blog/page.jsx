@@ -3,6 +3,7 @@ import PageBanner from '@/components/Common/PageBanner'
 import { BlogContent } from '@/components/blog'
 import { getBlogPosts } from '@/actions/blog-posts'
 import { ROUTER } from '@/app/router'
+import PageDirect from "@/components/Common/PageDirect";
 
 export const metadata = { title: 'Blog', description: '' }
 
@@ -21,7 +22,7 @@ const page = async ({ searchParams, params }) => {
 
   return (
     <>
-      <PageBanner pageTitle="Blog" />
+      <PageDirect pageTitle={"Blog"}/>
       <BlogContent
         posts={posts?.map(
           ((post) => ({
