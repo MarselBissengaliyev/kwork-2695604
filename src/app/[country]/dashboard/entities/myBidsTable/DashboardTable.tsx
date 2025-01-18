@@ -29,7 +29,6 @@ const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
                 <th 
                   key={index} 
                   className="tw-p-4 tw-text-left tw-border-b tw-border-[#ECECEC]"
-                  // style={col.style}
                 >
                   {col.header}
                 </th>
@@ -48,7 +47,9 @@ const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
                     className="tw-p-4 tw-border-y-[1px] tw-border-[#ECECEC] first:tw-border-l-[1px] last:tw-border-r-[1px]"
                     style={col.style}
                   >
-                    {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
+                    {col.render 
+                      ? col.render(row[col.accessor] ?? '-', row) 
+                      : row[col.accessor] ?? '-'}
                   </td>
                 ))}
               </tr>

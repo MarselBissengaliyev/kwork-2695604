@@ -101,17 +101,179 @@ const page = () => {
       accessor: 'myMaxBid',
       render: (value: string) => <strong>{value}</strong>,
     },
-    { header: 'Sale Type', accessor: 'saleType' },
     { header: " ", accessor: " ", render: (value: string) => <ButtonMain text={'Increase Bid'} icon="/images/dashboard/icons/auction.png" classNames={"tw-gap-2"} fullWidth={true}/>},
+    { header: 'Sale Type', accessor: 'saleType' },
   ];
 
-  const handleMouseOver = () => {
-    setHoveredPage("blue");
-  };
+  const wonBids = [
+    {
+      "date": "11.05.2022",
+      "orderId": "1425645",
+      "vin": "5UXZV4C5XD0B14800",
+      "model": "2021 BMW X3",
+      "price": 16000,
+      "shippingStatus": "Add Shipping before Download",
+      "saledate": "11.05.2022",
+      "paymentStatus": "Not paid",
+      "shippingAdded": "Not needed",
+      "deliveryStatus": "-"
+    },
+    {
+      "date": "11.05.2022",
+      "orderId": "1425645",
+      "vin": "5UXZV4C5XD0B14800",
+      "model": "2021 BMW X3",
+      "price": 16000,
+      "shippingStatus": "Confirm Shipping before Download",
+      "saledate": "11.05.2022",
+      "paymentStatus": "Not paid",
+      "shippingAdded": "Calculation",
+      "deliveryStatus": "-"
+    },
+    {
+      "date": "11.05.2022",
+      "orderId": "1425645",
+      "vin": "5UXZV4C5XD0B14800",
+      "model": "2021 BMW X3",
+      "price": 16000,
+      "shippingStatus": "Confirm Shipping before Download",
+      "saledate": "11.05.2022",
+      "paymentStatus": "Not paid",
+      "shippingAdded": "Cleveland - Odessa",
+      "shippingCost": 1000,
+      "deliveryStatus": "Confirmed"
+    },
+    {
+      "date": "11.05.2022",
+      "orderId": "1425645",
+      "vin": "5UXZV4C5XD0B14800",
+      "model": "2021 BMW X3",
+      "price": 16000,
+      "shippingStatus": "Download",
+      "saledate": "11.05.2022",
+      "paymentStatus": "Paid",
+      "shippingAdded": "Cleveland - Odessa",
+      "shippingCost": 1000,
+      "deliveryStatus": "Sent"
+    },
+    {
+      "saledate": "11.05.2022",
+      "orderId": "1425645",
+      "vin": "5UXZV4C5XD0B14800",
+      "model": "2021 BMW X3",
+      "price": 16000,
+      "shippingStatus": "Download",
+      "duedate": "11.05.2022",
+      "paymentStatus": "Paid",
+      "shippingAdded": "Cleveland - Odessa",
+      "shippingCost": 1000,
+      "deliveryStatus": "Delivered"
+    }
+  ]
+  
 
-  const handleMouseOut = () => {
-    setHoveredPage("grey");
-  };
+  const wonColums = [
+    {header: "Sale Date", accessor: "date"},
+    {header: "Lot", accessor: "orderId"},
+    {header: "VIN", accessor: "vin"},
+    {header: "Vehicle", accessor: "model"},
+    {header: "Final Bid", accessor: "price"},
+    {header: "Invoice", accessor: "shippingStatus"},
+    {header: "Due Date", accessor: "duedate"},
+    {header: "Status", accessor: "paymentStatus"},
+    {header: "Shipping", accessor: "shippingAdded"},
+    {header: "Shipping Price", accessor: "shippingCost"},
+    {header: "Shipping Status", accessor: "deliveryStatus"},
+  ]
+
+  const LostBids=  [
+    {
+      lot: '1425645',
+      vin: '5UXZV4C5XD0B14800',
+      vehicle: '2021 BMW X3',
+      saleDate: '24.03.2022',
+      finalBid: '$15,000',
+      state: '$16,000',
+      myMaxBid: '$15,000',
+      comment: "High price"
+    },
+    {
+      lot: '1425645',
+      vin: '5UXZV4C5XD0B14800',
+      vehicle: '2021 BMW X3',
+      saleDate: '24.03.2022',
+      finalBid: '$15,000',
+      state: '$16,000',
+      myMaxBid: '$15,000',
+      comment: "High price"
+    },
+    {
+      lot: '1425645',
+      vin: '5UXZV4C5XD0B14800',
+      vehicle: '2021 BMW X3',
+      saleDate: '24.03.2022',
+      finalBid: '$15,000',
+      state: '$16,000',
+      myMaxBid: '$15,000',
+      comment: "High price"
+    },
+    {
+      lot: '1425645',
+      vin: '5UXZV4C5XD0B14800',
+      vehicle: '2021 BMW X3',
+      saleDate: '24.03.2022',
+      finalBid: '$15,000',
+      state: '$16,000',
+      myMaxBid: '$15,000',
+      comment: "High price"
+    },
+    {
+      lot: '1425645',
+      vin: '5UXZV4C5XD0B14800',
+      vehicle: '2021 BMW X3',
+      saleDate: '24.03.2022',
+      finalBid: '$15,000',
+      state: '$16,000',
+      myMaxBid: '$15,000',
+      comment: "High price"
+    },
+    {
+      lot: '1425645',
+      vin: '5UXZV4C5XD0B14800',
+      vehicle: '2021 BMW X3',
+      saleDate: '24.03.2022',
+      finalBid: '$15,000',
+      state: '$16,000',
+      myMaxBid: '$15,000',
+      comment: "High price"
+    },
+    {
+      lot: '1425645',
+      vin: '5UXZV4C5XD0B14800',
+      vehicle: '2021 BMW X3',
+      saleDate: '24.03.2022',
+      finalBid: '$15,000',
+      state: '$16,000',
+      myMaxBid: '$15,000',
+      comment: "High price"
+    },
+    
+  ];
+
+  const lostColumns = [
+    { header: 'Sale Date', accessor: 'saleDate' },
+    { header: 'Lot', accessor: 'lot' },
+    { header: 'VIN', accessor: 'vin' },
+    { header: 'Vehicle', accessor: 'vehicle' },
+    {
+      header: 'My Max Bid',
+      accessor: 'myMaxBid',
+      render: (value: string) => <strong>{value}</strong>,
+    },
+    { header: 'Final Bid', accessor: 'finalBid'},
+    { header: 'Comments', accessor: 'comment' },
+  ];
+
 
   return (
     <Container>
@@ -165,10 +327,10 @@ const page = () => {
         </div>
         </PageDirect>
         <div className='max-mindesk:tw-hidden'>
-          <DashBoardTable data={mockData} columns={columns} rowKey="vin" />;
+          <DashBoardTable data={activeButton === "Current Bids" ? mockData : activeButton === "Won Bids" ? wonBids : activeButton === "Lost Bids" ? LostBids : [] } columns={ activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : [] } rowKey="vin" />;
         </div>
         <div className='mindesk:tw-hidden'>
-          <DashBoardTableMoblie data={mockData} columns={columns} rowKey="vin" />
+          <DashBoardTableMoblie data={activeButton === "Current Bids" ? mockData : activeButton === "Won Bids" ? wonBids : activeButton === "Lost Bids" ? LostBids : [] } columns={ activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : [] }  rowKey="vin" />
         </div>
     </Container>
   )
