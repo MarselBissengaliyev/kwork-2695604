@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 
 const ButtonMain = ({
@@ -11,7 +13,9 @@ const ButtonMain = ({
   number,
   hoverEffect = true, 
   hoverColor,
-  disabled
+  disabled,
+  onMouseOver,
+  onMouseOut
 }) => {
   // Цветовые значения
   const colorMap = {
@@ -73,6 +77,8 @@ const ButtonMain = ({
       style={variantStyles}
       onClick={onClick}
       disabled={disabled}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
     >
       {text}
 

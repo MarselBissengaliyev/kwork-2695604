@@ -4,6 +4,7 @@ import PageDirect from '@/components/Common/PageDirect'
 import { Container } from '@/components/Container'
 import React from 'react'
 import DashBoardTable from '../entities/myBidsTable/DashboardTable'
+import DashBoardTableMoblie from '../entities/myBidsTable/DashboardTableMobile'
 
 const page = () => {
 
@@ -93,8 +94,8 @@ const columns = [
     accessor: 'myMaxBid',
     render: (value: string) => <strong>{value}</strong>,
   },
-  { header: " ", accessor: " ", render: (value: string) => <ButtonMain text={'Increase Bid'} icon="/images/dashboard/icons/auction.png" classNames={"tw-gap-2"}/>},
   { header: 'Sale Type', accessor: 'saleType' },
+  { header: " ", accessor: " ", render: (value: string) => <ButtonMain text={'Increase Bid'} icon="/images/dashboard/icons/auction.png" classNames={"tw-gap-2"} fullWidth={true}/>},
 ];
 
   return (
@@ -105,9 +106,9 @@ const columns = [
         >
         <div className='tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full no-scrollbar max-mindesk:tw-gap-2'>
             <div className='tw-flex tw-gap-2'>
-                <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} variant='outlined' text={<div className='tw-flex tw-gap-2 tw-text-center tw-items-center'><img src='/images/dashboard/icons/larrow.png'/> Back</div>}/>
+                <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} variant='outlined' color="grey" text={<div className='tw-flex tw-gap-2 tw-text-center tw-items-center'><img src='/images/dashboard/icons/larrow.png'/> Back</div>}/>
 
-                <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="Current Bids" />
+                <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='blue' variant='outlined' text="Current Bids" />
 
                 <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} text="Won Bids" color="grey" variant='outlined' />
                 <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="Lost Bids" />
@@ -117,7 +118,12 @@ const columns = [
             </div>
         </div>
         </PageDirect>
-        <DashBoardTable data={mockData} columns={columns} rowKey="vin" />;
+        <div className='max-mindesk:tw-hidden'>
+          <DashBoardTable data={mockData} columns={columns} rowKey="vin" />;
+        </div>
+        <div className='mindesk:tw-hidden'>
+          <DashBoardTableMoblie data={mockData} columns={columns} rowKey="vin" />
+        </div>
     </Container>
   )
 }

@@ -18,33 +18,48 @@ interface TableProps {
 const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
   return (
     <Container>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-      <thead>
-        <tr>
-          {columns.map((col, index) => (
-            <th key={index} style={{ padding: '10px', textAlign: 'left', ...col.style }}>
-              {col.header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row) => (
-          <tr key={row[rowKey]}>
-            {columns.map((col, index) => (
-              <td key={index} style={{ padding: '10px', border: '1px solid #ddd', ...col.style }}>
-                {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
-              </td>
+      <div style={{ width: '100%' }}>
+        <table 
+          className="tw-w-full tw-border-separate tw-border-spacing-y-4"
+          style={{ borderCollapse: 'separate' }}
+        >
+          <thead>
+            <tr>
+              {columns.map((col, index) => (
+                <th 
+                  key={index} 
+                  className="tw-p-4 tw-text-left tw-border-b tw-border-[#ECECEC]"
+                  // style={col.style}
+                >
+                  {col.header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row) => (
+              <tr
+                key={row[rowKey]} 
+                className="tw-bg-[#ffffff] tw-rounded-[10px]"
+              >
+                {columns.map((col, index) => (
+                  <td 
+                    key={index} 
+                    className="tw-p-4 tw-border-y-[1px] tw-border-[#ECECEC] first:tw-border-l-[1px] last:tw-border-r-[1px]"
+                    style={col.style}
+                  >
+                    {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
+                  </td>
+                ))}
+              </tr>
             ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    <div className='tw-mt-5'>
-      <PaginationBlock currentPage={1} totalPages={10}  />
-    </div>
+          </tbody>
+        </table>
+      </div>
+      <div className="tw-mt-5">
+        <PaginationBlock currentPage={1} totalPages={10} />
+      </div>
     </Container>
-    
   );
 };
 
