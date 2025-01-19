@@ -15,7 +15,7 @@ const HowItWorks = () => {
   const [activeSlide, setActiveSlide] = useState(0); // Состояние для активного слайда
 
   // Обработчик для обновления активного слайда
-  const handleSlideChange = (swiper) => {
+  const handleSlideChange = swiper => {
     setActiveSlide(swiper.activeIndex);
   };
 

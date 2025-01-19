@@ -33,7 +33,7 @@ const poland = [
 
 const FinalPriceCalc = () => {
   return (
-    <div className="case-border desktop:tw-max-w-[708px] xxl:tw-max-w-[370px] tw-px-[15px] laptop:tw-px-[32px] tw-py-[30px]">
+    <div className="case-border  xxl:tw-max-w-[370px] tw-px-[15px] laptop:tw-px-[32px] tw-py-[30px]">
       <div className=" tw-w-full">
         <h2 className="text-title tw-mb-[16px] tw-font-semibold">Final Price Calculator</h2>
       </div>
