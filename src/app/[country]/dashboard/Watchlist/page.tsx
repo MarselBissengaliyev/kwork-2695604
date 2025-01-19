@@ -12,7 +12,7 @@ const page = () => {
         router.back(); // Возвращает на предыдущую страницу
     };
 
-      const [activeButton, setActiveButton] = useState('Current Bids'); // Начальная активная кнопка
+      const [activeButton, setActiveButton] = useState('Current Wathclist'); // Начальная активная кнопка
     
       const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
