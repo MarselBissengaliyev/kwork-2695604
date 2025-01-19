@@ -207,7 +207,7 @@ const page = () => {
           </div>
         )}
         {row.orderId === addShipping && (
-         <DashboardModal>Hello</DashboardModal>
+         <DashboardModal closeModal={()=> handleAddShippingClick(row.orderId)}>Hello</DashboardModal>
         )}
         </div> 
         : value
