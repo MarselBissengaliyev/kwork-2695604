@@ -6,9 +6,16 @@ import React, { useState } from 'react'
 import DashBoardTable from '../entities/myBidsTable/DashboardTable'
 import DashBoardTableMoblie from '../entities/myBidsTable/DashboardTableMobile'
 import DashboardModal from '../entities/Modal/DashboardModal'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
   const [hoveredPage, setHoveredPage] = useState<string | null>("grey");
+
+  const router = useRouter();
+  
+  const goBack = () => {
+      router.back(); // Возвращает на предыдущую страницу
+  };
 
   const [shipping, setShipping] = useState({})
   const [addShipping, setAddShipping] = useState({})
@@ -207,7 +214,11 @@ const page = () => {
           </div>
         )}
         {row.orderId === addShipping && (
-         <DashboardModal closeModal={()=> handleAddShippingClick(row.orderId)}>Hello</DashboardModal>
+         <DashboardModal closeModal={()=> handleAddShippingClick(row.orderId)}>
+          <h2>Add Shipping</h2>
+          <p>Your Vehicle will be delivered</p>
+
+         </DashboardModal>
         )}
         </div> 
         : value
@@ -324,7 +335,7 @@ const page = () => {
                     Back
                   </div>
                 }
-                onClick={() => handleButtonClick('Back')}
+                onClick={() => goBack()}
               />
 
               <ButtonMain 

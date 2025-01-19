@@ -120,7 +120,9 @@ const page = async () => {
         <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} text="Transactions" color="grey" variant='outlined' />
       </a>
 
-      <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="Watchlist" />
+      <a href="./Watchlist">
+        <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="Watchlist" />
+      </a>
     </div>
     <div className='tw-flex tw-gap-2'>
       <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0'} color='grey' variant='outlined' text="Request refund" />
