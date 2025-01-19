@@ -363,7 +363,9 @@ const page = () => {
               />
             </div>
             <div className='tw-flex tw-gap-2'>
-                <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
+            <a href="../EditSettings">
+          <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
+        </a>    
             </div>
         </div>
         </PageDirect>

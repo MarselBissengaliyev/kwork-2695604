@@ -28,7 +28,7 @@ const page = () => {
             <div className='tw-flex tw-gap-2'>
               <ButtonMain 
                 key={"Back"}
-                classNames={'tw-w-[170px] tw-flex-shrink-0'} 
+                classNames={'tw-w-[117px] tw-flex-shrink-0'} 
                 variant='outlined' 
                 color="grey" 
                 text={
@@ -41,23 +41,25 @@ const page = () => {
               />
 
               <ButtonMain 
-                classNames={'tw-w-[170px] tw-flex-shrink-0'} 
-                color={activeButton === 'Current Bids' ? 'blue' : 'grey'} 
+                classNames={'tw-w-[220px] tw-flex-shrink-0'} 
+                color={activeButton === 'Current Wathclist' ? 'blue' : 'grey'} 
                 variant='outlined' 
-                text="Current Bids" 
+                text="Current Wathclist" 
                 onClick={() => handleButtonClick('Current Wathclist')}
               />
 
               <ButtonMain 
-                classNames={'tw-w-[170px] tw-flex-shrink-0'} 
-                color={activeButton === 'Won Bids' ? 'blue' : 'grey'} 
+                classNames={'tw-w-[220px] tw-flex-shrink-0'} 
+                color={activeButton === 'Completed Watchlist' ? 'blue' : 'grey'} 
                 variant='outlined' 
-                text="Won Bids" 
+                text="Completed Watchlist" 
                 onClick={() => handleButtonClick('Completed Watchlist')}
               />
             </div>
             <div className='tw-flex tw-gap-2'>
-                <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
+                <a href="../EditSettings">
+                    <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
+                </a>
             </div>
         </div>
         </PageDirect>

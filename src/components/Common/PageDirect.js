@@ -12,7 +12,7 @@ const routeOverrides = {
   home: 'House',
   dashboard: 'My Account',
   myBids: 'My Bids',
-  Transactions: "Transactions",
+  transactions: "Transactions",
   Watchlist: "Watchlist",
 };
 
