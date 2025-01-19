@@ -4,21 +4,28 @@ import Modal from "../ui/Modal";
 
 import CloseModal from "../../../shared/img/CloseModal";
 import BuyBtn from "../../../shared/img/BuyBtn";
+import Minus from "../../../shared/img/Minus";
+import Plus from "../../../shared/img/Plus";
 
 import ListItem from "@/components/ListItem";
+import ListItemPopap from "@/components/ListItemPopap";
 
 const list = [
   {
-    label: "VIN",
-    value: "4YDT2662493150186",
+    label: "Buy Now Price",
+    value: "$17,000",
   },
   {
-    label: "Transaction Fee",
-    value: "2022",
+    label: "Buy Now Price",
+    value: "$17,000",
   },
   {
-    label: "Documentation Fee",
-    value: "Year",
+    label: "Buy Now Price",
+    value: "$17,000",
+  },
+  {
+    label: "Buy Now Price",
+    value: "$17,000",
   },
 ];
 
@@ -39,11 +46,52 @@ const ModalAttention = () => {
                 </p>
               </div>
 
+              {/* ======================================================================================== */}
+              <div className="tw-mt-[30px]">
+                <h2 className="tw-text-[14px] tablet:tw-text-[16px]">Final Offer Price</h2>
+                <div className="tw-flex tw-mt-[16px] tw-mb-[30px] tw-gap-[20px] tw-flex-col tablet:tw-flex-row tw-justify-between">
+                  <div className="tw-flex tw-items-center tw-justify-center tw-w-full tw-max-w-[412px] laptop:tw-max-w-full  tw-px-[20px]  tw-py-[17px] counter-border">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const input = document.getElementById("bid-input");
+                        if (input.value > 25) input.value = parseInt(input.value) - 25;
+                      }}
+                      className="tw-w-[24px] tw-bg-[#3E73CF]  tw-rounded-[14px]"
+                    >
+                      <Minus />
+                    </button>
+                    <input
+                      id="bid-input"
+                      name="bid"
+                      type="number"
+                      defaultValue={131}
+                      step={25}
+                      min={25}
+                      className="tw-text-center tw-w-full tw-text-[18px] tw-border-0 tw-outline-none"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const input = document.getElementById("bid-input");
+                        input.value = parseInt(input.value) + 25;
+                      }}
+                      className="tw-w-[24px]  tw-bg-[#3E73CF]  tw-rounded-[14px]"
+                    >
+                      <Plus />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {/* ===================================================================================================== */}
+
               <div className="tw-flex tw-flex-col tw-gap-[15px] tw-mt-[30px]">
                 {list.map((item, idx) => {
                   return <ListItem key={idx} label={item.label} value={item.value} />;
                 })}
+                <ListItemPopap label={"+Fee"} value={"$500"} aucfree={"$300"} transfree={"$100"} docfree={"$100"} />
               </div>
+
               <p className="tw-my-[30px] tw-flex tw-items-center tw-gap-[10px] tw-text-start tw-text-[14px] tw-leading-[16px ] tablet:tw-text-[16px]">
                 <input
                   class="form-check-input tw-mb-[5px]"
