@@ -5,11 +5,13 @@ import { Container } from '@/components/Container'
 import React, { useState } from 'react'
 import DashBoardTable from '../entities/myBidsTable/DashboardTable'
 import DashBoardTableMoblie from '../entities/myBidsTable/DashboardTableMobile'
+import DashboardModal from '../entities/Modal/DashboardModal'
 
 const page = () => {
   const [hoveredPage, setHoveredPage] = useState<string | null>("grey");
 
   const [shipping, setShipping] = useState({})
+  const [addShipping, setAddShipping] = useState({})
  
   const [activeButton, setActiveButton] = useState('Current Bids'); // Начальная активная кнопка
 
@@ -19,6 +21,10 @@ const page = () => {
   const handleShippingClick = (rowOrderId) => {
     setShipping((prevShipping) => (prevShipping === rowOrderId ? null : rowOrderId));
   };
+
+  const handleAddShippingClick = (rowOrderId) => {
+    setAddShipping((prevShipping) => (prevShipping === rowOrderId ? null : rowOrderId));
+  }
 
   const mockData =  [
     {
@@ -191,10 +197,17 @@ const page = () => {
       accessor: "shippingAdded" , 
       render: (value: string,row) => value == "" ? 
       <div className='tw-leading-3'>
-        <p className='tw-text-[#3E73CF] tw-cursor-pointer tw-m-0'>Add Shipping</p>
+        <p className='tw-text-[#3E73CF] tw-cursor-pointer tw-m-0' onClick={()=> handleAddShippingClick(row.orderId)}>Add Shipping</p>
         <p className='tw-cursor-pointer hover:tw-text-[#3E73CF]' onClick={()=> handleShippingClick(row.orderId)}>I don't need shipping</p>
         {row.orderId === shipping && (
-          <div className='tw-absolute tw-top-0'>Hello modal</div>
+          <div className='tw-absolute tw-top-[150px] tw-z-10 tw-max-w-[270px] tw-w-full tw-bg-white tw-shadow-lg tw-p-[30px] tw-flex tw-flex-col tw-gap-[15px]'>
+            <p className='tw-leading-4  '>Are you sure don't need shipping?</p>
+            <ButtonMain text={"Yes, i don't need"} fullWidth={true}/>
+            <ButtonMain text={"Cancel"} fullWidth={true} color="grey" variant='outlined' onClick={()=> handleShippingClick(row.orderId)}/>
+          </div>
+        )}
+        {row.orderId === addShipping && (
+         <DashboardModal>Hello</DashboardModal>
         )}
         </div> 
         : value
