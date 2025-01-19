@@ -12,11 +12,6 @@ export const getBlogPosts = async (query) => {
     }
 
     const where = {
-      country: country
-        ? {
-            code: country,
-          }
-        : undefined,
       published: true,
       deleted_at: null,
     }
@@ -24,7 +19,6 @@ export const getBlogPosts = async (query) => {
     const results = await prisma.blogPost.count({ where })
 
     const posts = await prisma.blogPost.findMany({
-      where,
       select: {
         id: true,
         slug: true,
@@ -41,6 +35,7 @@ export const getBlogPosts = async (query) => {
         created_at: 'desc',
       },
     })
+    console.log("blog posts=",posts)
 
     pagination.pages = Math.ceil(results / pagination.take)
 
