@@ -9,7 +9,7 @@ import arrow from "../../../shared/img/arrow-slide.svg";
 
 const images = [
   {
-    src: "https://avatars.mds.yandex.net/i?id=73b2f7074611ffbfaa81a8f6da333385515d6650-3767926-images-thumbs&n=13",
+    src: "https://avatars.mds.yandex.net/i?id=0217c83dab578b1c1a058caa4da089602954ffde-3054743-images-thumbs&n=13",
     alt: "Car Image 1",
   },
   {
@@ -57,24 +57,13 @@ const SliderCar = () => {
   // Инициализация Fancybox для всех изображений
   useEffect(() => {
     Fancybox.bind("[data-fancybox='gallery']", {
-      Toolbar: {
-        display: ["zoom", "close"], // Включаем кнопку зума
-      },
+      Toolbar: true,
       Thumbs: false,
-      dragToClose: false,
+      dragToClose: true,
       Image: {
         fit: "contain",
       },
-      mainClass: "fancybox-custom",
-      Carousel: {
-        Dots: true,
-      },
-      on: {},
     });
-
-    return () => {
-      Fancybox.destroy(); // Чистим настройки при размонтировании
-    };
   }, []);
 
   // Обработчик клика на миниатюры
