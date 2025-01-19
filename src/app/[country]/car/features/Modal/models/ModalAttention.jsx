@@ -15,14 +15,6 @@ const list = [
     label: "Buy Now Price",
     value: "$17,000",
   },
-  {
-    label: "Buy Now Price",
-    value: "$17,000",
-  },
-  {
-    label: "Buy Now Price",
-    value: "$17,000",
-  },
 ];
 
 const ModalAttention = () => {
@@ -82,10 +74,9 @@ const ModalAttention = () => {
               {/* ===================================================================================================== */}
 
               <div className="tw-flex tw-flex-col tw-gap-[15px] tw-mt-[30px]">
-                {list.map((item, idx) => {
-                  return <ListItem key={idx} label={item.label} value={item.value} />;
-                })}
+                <ListItem label={"Buy Now Price"} value={"$17, 000"} />
                 <ListItemPopap label={"+Fee"} value={"$500"} aucfree={"$300"} transfree={"$100"} docfree={"$100"} />
+                <ListItem label={"Final Buy Now Price"} value={"$17, 000"} />
               </div>
 
               <p className="tw-my-[30px] tw-flex tw-items-center tw-gap-[10px] tw-text-start tw-text-[14px] tw-leading-[16px ] tablet:tw-text-[16px]">

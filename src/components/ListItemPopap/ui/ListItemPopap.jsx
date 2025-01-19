@@ -11,9 +11,7 @@ const ListItemPopap = ({ label, icon, value, aucfree, transfree, docfree }) => {
       onMouseLeave={() => setShowPopup(false)}
     >
       <span className="list-item-label">
-        <span className={` ${label === "Add Shipping" ? "tw-text-[#3E73CF]" : " "} list-item-label_title`}>
-          {label}
-        </span>
+        <span className={`!tw-text-[#3E73CF] list-item-label_title`}>{label}</span>
         <span className={`tw-ml-[6px] ${icon ? "" : "tw-hidden"}`}>{icon ? icon : ""}</span>
       </span>
       <span className="list-item-border"></span>
