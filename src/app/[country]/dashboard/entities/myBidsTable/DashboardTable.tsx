@@ -20,7 +20,7 @@ const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
     <Container>
       <div style={{ width: '100%' }}>
         <table 
-          className="tw-w-full tw-border-separate tw-border-spacing-y-4"
+          className="tw-w-full tw-border-separate tw-border-spacing-y-4 tw-relative"
           style={{ borderCollapse: 'separate' }}
         >
           <thead>
@@ -39,12 +39,12 @@ const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
             {data.map((row) => (
               <tr
                 key={row[rowKey]} 
-                className="tw-bg-[#ffffff] tw-rounded-[10px]"
+                className="tw-bg-[#ffffff] tw-rounded-[10px] tw-h-[80px]"
               >
                 {columns.map((col, index) => (
                   <td 
                     key={index} 
-                    className="tw-p-4 tw-border-y-[1px] tw-border-[#ECECEC] first:tw-border-l-[1px] last:tw-border-r-[1px]"
+                    className="tw-p-4 tw-border-y-[1px] tw-border-[#ECECEC] first:tw-border-l-[1px] last:tw-border-r-[1px] tw-h-[80px]"
                     style={col.style}
                   >
                     {col.render 

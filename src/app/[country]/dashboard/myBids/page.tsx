@@ -5,14 +5,32 @@ import { Container } from '@/components/Container'
 import React, { useState } from 'react'
 import DashBoardTable from '../entities/myBidsTable/DashboardTable'
 import DashBoardTableMoblie from '../entities/myBidsTable/DashboardTableMobile'
+import DashboardModal from '../entities/Modal/DashboardModal'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
   const [hoveredPage, setHoveredPage] = useState<string | null>("grey");
 
+  const router = useRouter();
+  
+  const goBack = () => {
+      router.back(); // Возвращает на предыдущую страницу
+  };
+
+  const [shipping, setShipping] = useState({})
+  const [addShipping, setAddShipping] = useState({})
+ 
   const [activeButton, setActiveButton] = useState('Current Bids'); // Начальная активная кнопка
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
+  }
+  const handleShippingClick = (rowOrderId) => {
+    setShipping((prevShipping) => (prevShipping === rowOrderId ? null : rowOrderId));
+  };
+
+  const handleAddShippingClick = (rowOrderId) => {
+    setAddShipping((prevShipping) => (prevShipping === rowOrderId ? null : rowOrderId));
   }
 
   const mockData =  [
@@ -108,14 +126,14 @@ const page = () => {
   const wonBids = [
     {
       "date": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425646",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Add Shipping before Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Not paid",
-      "shippingAdded": "Not needed",
+      "shippingAdded": "",
       "deliveryStatus": "-"
     },
     {
@@ -124,19 +142,19 @@ const page = () => {
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Confirm Shipping before Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Not paid",
-      "shippingAdded": "Calculation",
+      "shippingAdded": "",
       "deliveryStatus": "-"
     },
     {
       "date": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425644",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Confirm Shipping before Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Not paid",
       "shippingAdded": "Cleveland - Odessa",
@@ -145,11 +163,11 @@ const page = () => {
     },
     {
       "date": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425643",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Paid",
       "shippingAdded": "Cleveland - Odessa",
@@ -158,7 +176,7 @@ const page = () => {
     },
     {
       "saledate": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425642",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
@@ -181,7 +199,30 @@ const page = () => {
     {header: "Invoice", accessor: "shippingStatus"},
     {header: "Due Date", accessor: "duedate"},
     {header: "Status", accessor: "paymentStatus"},
-    {header: "Shipping", accessor: "shippingAdded"},
+    {
+      header: "Shipping", 
+      accessor: "shippingAdded" , 
+      render: (value: string,row) => value == "" ? 
+      <div className='tw-leading-3'>
+        <p className='tw-text-[#3E73CF] tw-cursor-pointer tw-m-0' onClick={()=> handleAddShippingClick(row.orderId)}>Add Shipping</p>
+        <p className='tw-cursor-pointer hover:tw-text-[#3E73CF]' onClick={()=> handleShippingClick(row.orderId)}>I don't need shipping</p>
+        {row.orderId === shipping && (
+          <div className='tw-absolute tw-top-[150px] tw-z-10 tw-max-w-[270px] tw-w-full tw-bg-white tw-shadow-lg tw-p-[30px] tw-flex tw-flex-col tw-gap-[15px]'>
+            <p className='tw-leading-4  '>Are you sure don't need shipping?</p>
+            <ButtonMain text={"Yes, i don't need"} fullWidth={true}/>
+            <ButtonMain text={"Cancel"} fullWidth={true} color="grey" variant='outlined' onClick={()=> handleShippingClick(row.orderId)}/>
+          </div>
+        )}
+        {row.orderId === addShipping && (
+         <DashboardModal closeModal={()=> handleAddShippingClick(row.orderId)}>
+          <h2>Add Shipping</h2>
+          <p>Your Vehicle will be delivered</p>
+
+         </DashboardModal>
+        )}
+        </div> 
+        : value
+      },
     {header: "Shipping Price", accessor: "shippingCost"},
     {header: "Shipping Status", accessor: "deliveryStatus"},
   ]
@@ -294,7 +335,7 @@ const page = () => {
                     Back
                   </div>
                 }
-                onClick={() => handleButtonClick('Back')}
+                onClick={() => goBack()}
               />
 
               <ButtonMain 
