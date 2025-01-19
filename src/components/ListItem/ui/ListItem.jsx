@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../styles/listitem.scss";
+import "../ui/styles/listitem.scss";
 
 const ListItem = ({ label, icon, value }) => {
   return (

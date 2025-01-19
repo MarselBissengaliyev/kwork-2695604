@@ -1,16 +1,17 @@
 import React from "react";
 
 import ListItem from "@/components/ListItem/index";
-import ButtonMain from "@/components/button/ButtonMain";
+
+import CopyText from "@/components/ListItem/models/CopyText";
 
 const vehicleinfo = [
   {
     label: "LOT:",
-    value: "30874242",
+    value: <CopyText text={"30874242"} />,
   },
   {
     label: "VIN:",
-    value: "1FALP6536WK134349",
+    value: <CopyText text={"1FALP6536WK134349"} />,
   },
   {
     label: "Mileage:",

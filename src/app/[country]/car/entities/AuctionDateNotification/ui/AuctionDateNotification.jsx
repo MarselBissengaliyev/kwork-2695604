@@ -17,7 +17,6 @@ import "react-phone-input-2/lib/style.css";
 const options = ["Sms", "Whatsapp"];
 
 const AuctionDateNotification = () => {
-  const [phone, setPhone] = useState("");
   const [formData, setFormData] = useState({});
 
   const handleSelectChange = (name, value) => {
