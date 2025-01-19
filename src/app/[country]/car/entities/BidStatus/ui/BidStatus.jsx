@@ -20,7 +20,7 @@ const BidStatus = ({ children }) => {
         <span className="tw-text-[20px] tw-text-[#E3433A]">Outbid</span>
       </div>
       <div className="tw-px-[15px] tablet:tw-px-[30px] tw-pb-[28px]">
-        <div className="tw-flex tw-flex-wrap  tablet:tw-gap-[95px] laptop:tw-gap-0 tw-mb-[22px]">
+        <div className="tw-flex tw-flex-wrap  tablet:tw-gap-[95px] desktop:tw-gap-0 tw-mb-[22px]">
           <div className="tw-mr-[55px] tablet:tw-mr-[0px] laptop:tw-mr-[69px]">
             <span className="tw-text-[13px] tablet:tw-text-[16px] tw-flex tw-gap-[8px] tw-items-center tw-text-[#8C8C8C]">
               Current Bid
@@ -36,7 +36,7 @@ const BidStatus = ({ children }) => {
             </span>
             <span className="tw-text-[#3ECF5C] tw-text-[26px] tw-font-[500px]">$1,500</span>
           </div>
-          <div className="tw-mt-[18px] tablet:tw-mt-[0px] laptop:tw-mt-[20px]">
+          <div className="tw-mt-[18px] tablet:tw-mt-[0px] desktop:tw-mt-[20px]">
             <span className="tw-text-[13px] tablet:tw-text-[16px] tw-flex tw-gap-[8px] tw-items-center tw-text-[#8C8C8C]">
               Time Left
               <span className="tw-mt-[-3px]">

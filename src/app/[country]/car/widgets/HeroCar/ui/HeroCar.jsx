@@ -83,7 +83,19 @@ const HeroCar = () => {
             {/* laptop  */}
             <AuctionDateNotification />
             <AccordionHistory title={"Auction History Found"} id={1} />
-            <BidStatus />
+            <BidStatus>
+              {" "}
+              <button
+                type="button"
+                className="tw-w-full tablet:tw-w-[216px] laptop:tw-w-full tw-flex tw-gap-[10px] tw-justify-center tw-bg-[#3ECF5C] tw-text-[#fff] tw-py-[20.5px] tw-rounded-[32px] "
+                data-bs-toggle="modal"
+                // data-bs-target="#modalNotMoney"
+                // data-bs-target="#modalConfirm"
+                data-bs-target="#modalAttention"
+              >
+                Place a Bid <Auc />
+              </button>
+            </BidStatus>
           </div>
           <div className="tw-max-w-[648px] tw-mt-[11px] tw-items-center tw-h-[40px] tw-mb-[19px] tw-flex  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
@@ -106,7 +118,7 @@ const HeroCar = () => {
               {" "}
               <button
                 type="button"
-                className=" tw-w-full tw-bg-[#3E73CF] t tw-py-[21.5px] tw-rounded-[32px]  tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
+                className="tw-w-full tw-bg-[#3E73CF]  tw-py-[21.5px] tw-rounded-[32px]  tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
                 data-bs-toggle="modal"
                 data-bs-target="#modalGetReport"
               >
@@ -142,7 +154,7 @@ const HeroCar = () => {
             <BidStatus>
               <button
                 type="button"
-                className="tw-w-full  tw-py-[20.5px] tw-rounded-[32px] "
+                className="tw-w-full tw-flex tw-gap-[10px] tw-justify-center tw-bg-[#3ECF5C] tw-text-[#fff] tw-py-[20.5px] tw-rounded-[32px] "
                 data-bs-toggle="modal"
                 // data-bs-target="#modalNotMoney"
                 // data-bs-target="#modalConfirm"
