@@ -5,7 +5,11 @@ const ListItemPopap = ({ label, icon, value, aucfree, transfree, docfree }) => {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
-    <li className="list-item relative" onMouseEnter={() => setShowPopup(true)} onMouseLeave={() => setShowPopup(false)}>
+    <li
+      className="list-item tw-relative"
+      onMouseEnter={() => setShowPopup(true)}
+      onMouseLeave={() => setShowPopup(false)}
+    >
       <span className="list-item-label">
         <span className={` ${label === "Add Shipping" ? "tw-text-[#3E73CF]" : " "} list-item-label_title`}>
           {label}
@@ -23,7 +27,7 @@ const ListItemPopap = ({ label, icon, value, aucfree, transfree, docfree }) => {
 
       {/* Popup */}
       {showPopup && (
-        <div className="tw-absolute tw-top-[465px] tw-w-full  tw-bg-white tw-shadow-lg tw-border tw-rounded-md tw-p-[20px] tw-z-10">
+        <div className="tw-absolute tw-top-[25px] tw-w-full  tw-bg-white tw-shadow-lg tw-border tw-rounded-md tw-p-[20px] tw-z-10">
           <ul className="tw-text-sm tw-w-full tw-p-0 tw-space-y-2 tw-list-none">
             <li className="">
               <ListItem label={"Auction Fee"} value={aucfree} />

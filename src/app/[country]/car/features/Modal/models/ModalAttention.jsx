@@ -23,10 +23,6 @@ const list = [
     label: "Buy Now Price",
     value: "$17,000",
   },
-  {
-    label: "Buy Now Price",
-    value: "$17,000",
-  },
 ];
 
 const ModalAttention = () => {
