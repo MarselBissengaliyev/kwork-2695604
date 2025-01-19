@@ -12,18 +12,24 @@
 
     &__inner {
       display: flex;
-      padding: 23px 15px;
+      padding: 23px 0;
       justify-content: space-between;
       align-items: center;
       @media screen and (min-width: 320px) {
         display: grid;
         grid-template-areas:
-          "logo burger"
-          "search search";
+          "logo burger profileBlock"
+          "search search search";
+          
+          grid-template-columns:1fr auto 0.1fr;
       }
       @media screen and (min-width: 768px) {
         display: flex;
       }
+    }
+
+    .profile{
+      grid-area: profileBlock;
     }
 
     .logo {

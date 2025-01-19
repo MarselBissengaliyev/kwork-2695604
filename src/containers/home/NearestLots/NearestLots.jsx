@@ -14,7 +14,7 @@ export const NearestLots = ({ lots, title }) => {
           <h2 className={css.title + " tw-text-xl tw-font-bold"}>{title}</h2>
           <Link href="/listings" className={css.link + " tw-text-blue-500 hover:tw-underline"}>
             <span>See All</span>
-            <i class="ri-arrow-right-line"></i>
+            <i className="ri-arrow-right-line"></i>
           </Link>
         </div>
 

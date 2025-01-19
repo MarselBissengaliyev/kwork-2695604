@@ -11,6 +11,7 @@ import "@/app/styles/dark-mode.css";
 import "@/app/styles/style.css";
 import "@/app/styles/responsive.css";
 
+
 import { getCurrentUser } from "@/actions/users";
 import { getRegionConfiguration } from "@/actions/region-configurations";
 
@@ -52,8 +53,8 @@ const RootLayout = async ({ params, children }) => {
   const regionConfiguration = await getRegionConfiguration({
     country,
   }).catch(() => null);
-  const currentUser = await getCurrentUser();
-
+  // const currentUser = await getCurrentUser();
+  const currentUser =false;
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>

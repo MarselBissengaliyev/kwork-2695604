@@ -9,6 +9,18 @@
 
 /* text */
 
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 .text-title {
   font-family: Roboto;
   font-size: 30px;
@@ -6115,4 +6127,8 @@ Page-navigation Area Style*/
 .main-textarea ol li {
   margin-bottom: 10px;
   line-height: 1.8;
+}
+
+a {
+  text-decoration: none !important;
 }
