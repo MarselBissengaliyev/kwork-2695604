@@ -9,11 +9,16 @@ import DashBoardTableMoblie from '../entities/myBidsTable/DashboardTableMobile'
 const page = () => {
   const [hoveredPage, setHoveredPage] = useState<string | null>("grey");
 
+  const [shipping, setShipping] = useState({})
+ 
   const [activeButton, setActiveButton] = useState('Current Bids'); // Начальная активная кнопка
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   }
+  const handleShippingClick = (rowOrderId) => {
+    setShipping((prevShipping) => (prevShipping === rowOrderId ? null : rowOrderId));
+  };
 
   const mockData =  [
     {
@@ -108,14 +113,14 @@ const page = () => {
   const wonBids = [
     {
       "date": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425646",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Add Shipping before Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Not paid",
-      "shippingAdded": "Not needed",
+      "shippingAdded": "",
       "deliveryStatus": "-"
     },
     {
@@ -124,19 +129,19 @@ const page = () => {
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Confirm Shipping before Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Not paid",
-      "shippingAdded": "Calculation",
+      "shippingAdded": "",
       "deliveryStatus": "-"
     },
     {
       "date": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425644",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Confirm Shipping before Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Not paid",
       "shippingAdded": "Cleveland - Odessa",
@@ -145,11 +150,11 @@ const page = () => {
     },
     {
       "date": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425643",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
-      "shippingStatus": "Download",
+      "shippingStatus": "",
       "saledate": "11.05.2022",
       "paymentStatus": "Paid",
       "shippingAdded": "Cleveland - Odessa",
@@ -158,7 +163,7 @@ const page = () => {
     },
     {
       "saledate": "11.05.2022",
-      "orderId": "1425645",
+      "orderId": "1425642",
       "vin": "5UXZV4C5XD0B14800",
       "model": "2021 BMW X3",
       "price": 16000,
@@ -181,7 +186,19 @@ const page = () => {
     {header: "Invoice", accessor: "shippingStatus"},
     {header: "Due Date", accessor: "duedate"},
     {header: "Status", accessor: "paymentStatus"},
-    {header: "Shipping", accessor: "shippingAdded"},
+    {
+      header: "Shipping", 
+      accessor: "shippingAdded" , 
+      render: (value: string,row) => value == "" ? 
+      <div className='tw-leading-3'>
+        <p className='tw-text-[#3E73CF] tw-cursor-pointer tw-m-0'>Add Shipping</p>
+        <p className='tw-cursor-pointer hover:tw-text-[#3E73CF]' onClick={()=> handleShippingClick(row.orderId)}>I don't need shipping</p>
+        {row.orderId === shipping && (
+          <div className='tw-absolute tw-top-0'>Hello modal</div>
+        )}
+        </div> 
+        : value
+      },
     {header: "Shipping Price", accessor: "shippingCost"},
     {header: "Shipping Status", accessor: "deliveryStatus"},
   ]
