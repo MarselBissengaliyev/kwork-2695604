@@ -91,9 +91,9 @@ const SliderCar = () => {
             key={index}
             data-fancybox="gallery"
             href={image.src}
-            className={index === activeImageIndex ? "active" : ""}
+            className={`${index === activeImageIndex ? "active" : ""} slider-href`}
           >
-            {index === activeImageIndex && <img src={image.src} alt={image.alt} className="main-img" />}
+            {index === activeImageIndex && <img src={image.src} alt={image.alt} className="main-img " />}
           </a>
         ))}
       </div>

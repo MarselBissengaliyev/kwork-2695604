@@ -18,7 +18,7 @@ import { getCities } from "@/actions/cities";
 import { getNearestLots } from "@/actions/listings";
 import { getMakesAndModels, getMakesWithLotCount } from "@/actions/makes";
 import { getRegionConfiguration } from "@/actions/region-configurations";
-import HowItWorks from "@/app/[country]/car/widgets/HowItWorks";
+import HowItWorks from "@/app/[country]/listing/[listing_slug]/widgets/HowItWorks";
 import AboutAndFaq from "@/containers/home/about-and-faq/AboutAndFaq";
 import Reviews from "@/containers/home/reviews/Reviews";
 import { MakesList, NearestLots } from "@/containers/home";
@@ -61,7 +61,7 @@ export default async function Home({ params }) {
       </div>
       <Advantages />
       <AboutAndFaq />
-      <Reviews/>
+      <Reviews />
     </>
   );
 }

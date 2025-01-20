@@ -56,7 +56,7 @@ const AccordionHistory = ({ title, card = history, id }) => {
         </button>
       </h2>
       <div id={id} className="accordion-collapse collapse">
-        <div className="accordion-body ">
+        <div className="accordion-bod">
           <div className="tw-overflow-auto tw-h-[250px] tw-gap-[10px] tw-flex tw-flex-col">
             {Array.isArray(card) && card.length > 0 ? (
               card.map((item, idx) => (
