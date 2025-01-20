@@ -1,69 +1,114 @@
-import React from 'react'
-import PageBanner from '@/components/Common/PageBanner'
-import Image from 'next/image'
+import Blog from "@/containers/Blog";
+import Favour from "@/containers/Favour";
+import Partner from "@/containers/Partner";
+import { Subscribe } from "@/containers/Subscribe";
+import css from "./page.module.scss";
+import VerifiedUserIcon from "./icons/VerifedUserIcon";
+import CarIcon from "./icons/CarIcon";
+import ShieldIcon from "./icons/ShieldIcon";
+import ShippingIcon from "./icons/ShippingIcon";
+import CalculatorIcon from "./icons/CalculatorIcon";
+import ContainerIcon from "./icons/ContainerIcon";
 
-import Link from 'next/link'
-import WorkArea from '@/containers/WorkArea'
-import Testimony from '@/containers/Testimony'
-import Favour from '@/containers/Favour'
-import Partner from '@/containers/Partner'
-import {Subscribe} from '@/containers/Subscribe'
-import Blog from '@/containers/Blog'
-import aboutImg from './../../../../public/images/about-img.png'
-
-import { getBlogPosts } from '@/actions/blog-posts'
+import { getBlogPosts } from "@/actions/blog-posts";
 
 const page = async () => {
-  const { posts } = await getBlogPosts()
+  const { posts } = await getBlogPosts();
+  const advantages = [
+    {
+      title: "Access to the Major US auto auctions",
+      text: "Copart, IAAI, Manheim, Egde Pipeline, Adesa",
+    },
+    {
+      title: "Fast shipping",
+      text: "Fast and cheap to Klaipeda",
+    },
+    {
+      title: "Low fees",
+      text: "The lowest fees on the market will make your car purchase even more profitable",
+    },
+    {
+      title: "No hidden fees",
+      text: "We do not issue any additional payments after paying for the car",
+    },
+    {
+      title: "Unlimited bids",
+      text: "No charges applied for the lost auction",
+    },
+    {
+      title: "Free Membership",
+      text: "Registration on our platform is ABSOLUTELY FREE",
+    },
+  ];
+  const offers = [
+    {
+      icon: <VerifiedUserIcon />,
+      text: "Access to All major US Auto Auctions at our website: Free Membership",
+    },
+    {
+      icon: <CarIcon />,
+      text: "Used and damaged cars, heavy duty trucks, motorcycles, boats, ATVs, construction equipment from US auctions and dealerships",
+    },
+    {
+      icon: <ShieldIcon />,
+      text: "For regular customers we offer to open direct account at auto auctions under our license",
+    },
+    {
+      icon: <ShippingIcon/>,
+      text: "Pick up your vehicle from US auto auctions or any places and export it to your country"
+    },
+    {
+      icon: <CalculatorIcon/>,
+      text: "Instant shipping calculator at our website"
+    }
+  ];
   return (
     <>
-      <PageBanner pageTitle="About Us" />
-      <div className="about-us-area ptb-100">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="about-content">
-                <h2>
-                  We Are Top #1 classNameified Ads Site Where 5 Millions User
-                  Trust Us
-                </h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vestibulum aenean aliquam eu non dignissim quam. Justo, turpis
-                  tincidunt eget in tellus orci lobortis. Turpis adipiscing
-                  purus et mauris sed commodo sit. Nisi ultrices in mauris magna
-                  nulla donec felis purus et mauris sed commodo sit. Nisi
-                  ultrices in mauris.
-                </p>
-
-                <Link href="/authors" className="default-btn active">
-                  Be A Trusted User
-                </Link>
-              </div>
-            </div>
-
-            <div className="col-lg-6">
-              <div className="about-img">
-                <Image
-                  src={aboutImg}
-                  width={'auto'}
-                  height={'auto'}
-                  alt="about"
-                />
-              </div>
-            </div>
+      <div className={css.block}>
+        <div className={css.container + " tw-container"}>
+          <div className={css.breadcrumbs}>
+            Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Us
+          </div>
+          <div className={css.text}>
+            <h1>
+              We are Best Company <br /> Importing Vehicles From US
+            </h1>
+            <p>Auto4Export is a trademark of Bid N Drive Inc</p>
+          </div>
+        </div>
+      </div>
+      <div className={css.about + " tw-container"}>
+        <div className={css.content}>
+          <h3 className={css.title}>Who we are?</h3>
+          <div className={css.text}>
+            Auto4Export offers thousands of vehicles for sale online for export directly from any wholesale USA Auto
+            Auction: new, used, salvage cars, motorcycles, trucks, boats, jet skis, ATV's, and construction & industrial
+            equipments. <br /> <br /> We have been a licensed used car dealer since 2009, thousands of vehicles sold and
+            a lot of satisfied customers from all over the world: Africa, Middle-East, Europe.. etc
           </div>
         </div>
       </div>
 
-      <WorkArea />
-      <Testimony />
+      <div className={css.advantages + " tw-container"}>
+        {advantages.map((a, idx) => (
+          <div className={css.item}>
+            <img src={`/images/advantages/0${idx + 1}.png`} alt="" />
+            <h4>{a.title}</h4>
+            <p>{a.text}</p>
+          </div>
+        ))}
+      </div>
+      <div className={css.offer}>
+        <div className={css.item}>
+          <VerifiedUserIcon />
+        </div>
+      </div>
       <Favour />
       <Partner />
       <Subscribe />
       <Blog blogPosts={posts} />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;
