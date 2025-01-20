@@ -30,8 +30,9 @@ import StarFav from "../../../shared/img/StarFav";
 import Auc from "../../../shared/img/Auc";
 import Car from "../../../shared/img/Car";
 import InfoIcon from "../../../shared/img/InfoIcon";
+import CopyText from "@/components/ListItem/models/CopyText";
 
-const HeroCar = () => {
+const HeroCar = ({ listing }) => {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
   }, []);
@@ -41,8 +42,8 @@ const HeroCar = () => {
       <div className="tw-hidden tablet:tw-block">
         <div className="tw-flex tw-justify-between tw-items-baseline tw-mx-[30px] desktop:tw-mx-0">
           <div className="tw-flex laptop:tw-gap-[30px] tw-items-baseline tw-mb-[40px]  tw-flex-wrap tw-max-w-[493px] laptop:tw-max-w-full ">
-            <h1 className="tw-text-[46px]">2013 Chevrolet Impala</h1>
-            <span className="tw-text-[46px] tw-font-semibold tw-mr-[30px] laptop:tw-mr-0">Ls 3.6L</span>
+            <h1 className="tw-text-[46px]">{listing.title}</h1>
+            <span className="tw-text-[46px] tw-font-semibold tw-mr-[30px] laptop:tw-mr-0">{listing.engine}</span>
             <div className="tw-flex">
               <Rating1 className={"tw-z-30 tw-mr-[-4px]"} />
               <Rating2 className={"tw-z-20 tw-mr-[-4px]"} />
@@ -78,7 +79,7 @@ const HeroCar = () => {
       {/* ======================================= */}
       <div className="laptop:tw-flex desktop:tw-w-full tw-justify-center tw-flex-col desktop:tw-flex-row tw-mx-0 tablet:tw-mx-[20px] desktop:tw-mx-0 tw-max-w-[708px] laptop:tw-max-w-full  tw-gap-[0]  laptop:tw-gap-[20px]">
         <div className="desktop:tw-w-full desktop:tw-max-w-[760px]  tw-items-center tw-flex-col ">
-          <SliderCar />
+          <SliderCar media={listing.media} />
           <div className="tw-block laptop:tw-hidden tw-mb-[31px] tw-mx-[15px] tablet:tw-mx-0 tablet:tw-mb-0">
             {/* laptop  */}
             <AuctionDateNotification />
@@ -114,7 +115,8 @@ const HeroCar = () => {
           </div>
           <div className=" tw-block tw-mb-[19px]  laptop:tw-hidden tw-mt-[31px] tablet:tw-mt-0 tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
-            <VehicleInfo>
+
+            <VehicleInfo listing={listing}>
               {" "}
               <button
                 type="button"
@@ -135,7 +137,7 @@ const HeroCar = () => {
         </div>
         <div className="desktop:tw-w-[370px] tw-hidden  laptop:tw-block">
           {/* desktop */}
-          <VehicleInfo>
+          <VehicleInfo listing={listing}>
             <button
               type="button"
               className=" tw-w-full tw-bg-[#3E73CF] t tw-py-[21.5px] tw-rounded-[32px] tw-hidden laptop:tw-block tw-text-[18px] tw-leading-[21px] tw-mt-[45px]"
