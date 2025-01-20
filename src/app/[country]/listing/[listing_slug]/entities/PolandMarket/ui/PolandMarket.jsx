@@ -8,25 +8,25 @@ import ListItem from "@/components/ListItem/index";
 
 import InfoIcon from "../../../shared/img/InfoIcon";
 
-const poland = [
-  {
-    label: "Средняя цена",
-    value: "$17,000",
-    icon: <InfoIcon />,
-  },
-  {
-    label: "Средний пробег",
-    value: "$17,000",
-    icon: <InfoIcon />,
-  },
-  {
-    label: "Продается в месяц",
-    value: "$17,000",
-    icon: <InfoIcon />,
-  },
-];
-
-const PolandMarket = () => {
+const PolandMarket = ({ marketInfo, listing }) => {
+  console.log("MARKETINFO=", marketInfo)
+  const poland = [
+    {
+      label: "Средняя цена",
+      value: marketInfo.avg_price,
+      icon: <InfoIcon />,
+    },
+    {
+      label: "Средний пробег",
+      value: marketInfo.avg_mileage,
+      icon: <InfoIcon />,
+    },
+    {
+      label: "Продается в месяц",
+      value: marketInfo.listing_count,
+      icon: <InfoIcon />,
+    },
+  ];
   return (
     <div className="case-border tw-px-[32px] tw-py-[30px] tw-hidden  laptop:tw-block">
       <div className="">
@@ -40,7 +40,7 @@ const PolandMarket = () => {
       <hr className="tw-my-[25px]" />
       <div className="tw-flex tw-justify-between">
         <span className="tw-text-[18px] tw-text-[#191919]">Зазор от рынка</span>
-        <span className="tw-text-[20px] tw-text-[#3E73CF]">$17,000</span>
+        <span className="tw-text-[20px] tw-text-[#3E73CF]">{"$" + listing.final_bid}</span>
       </div>
     </div>
   );

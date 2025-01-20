@@ -7,7 +7,7 @@ const HistoryCard = ({ img, finalbid, mileage, status }) => {
   return (
     <div className="tw-w-full tw-flex tw-gap-[20px] tw-rounded-[10px] tw-py-[10px] tablet:tw-py-[20px] tw-px-[15px] tablet:tw-px-[25px] tw-bg-[#fff]">
       <div className="">
-        <Image className="tw-rounded-[10px] tw-w-[80px]" src={img} alt="" />
+        <Image className="tw-rounded-[10px] tw-w-[80px]" src={img} width={80} height={80} alt="" />
       </div>
       <div className="tw-flex tw-gap-[10px] tablet:tw-gap-[65px]  desktop:tw-gap-[20px]">
         <div className="tw-flex table:tw-flex-col ">

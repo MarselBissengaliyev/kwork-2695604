@@ -7,40 +7,7 @@ import HistoryCard from "../models/HistoryCard";
 
 import carlider from "../../../shared/img/carlider.png";
 
-const history = [
-  {
-    img: carlider,
-    finalbid: "$2,500",
-    mileage: "98 982",
-    status: "Not Sold",
-  },
-  {
-    img: carlider,
-    finalbid: "$2,500",
-    mileage: "98 982",
-    status: "Not Sold",
-  },
-  {
-    img: carlider,
-    finalbid: "$2,500",
-    mileage: "98 982",
-    status: "Not Sold",
-  },
-  {
-    img: carlider,
-    finalbid: "$2,500",
-    mileage: "98 982",
-    status: "Not Sold",
-  },
-  {
-    img: carlider,
-    finalbid: "$2,500",
-    mileage: "98 982",
-    status: "Not Sold",
-  },
-];
-
-const AccordionHistory = ({ title, card = history, id }) => {
+const AccordionHistory = ({ title, lots, id, }) => {
   return (
     <div className="accordion-history tw-mb-[20px]">
       <h2 className="accordion-header ">
@@ -58,12 +25,12 @@ const AccordionHistory = ({ title, card = history, id }) => {
       <div id={id} className="accordion-collapse collapse">
         <div className="accordion-bod">
           <div className="tw-overflow-auto tw-h-[250px] tw-gap-[10px] tw-flex tw-flex-col">
-            {Array.isArray(card) && card.length > 0 ? (
-              card.map((item, idx) => (
+            {Array.isArray(lots) && lots.length > 0 ? (
+              lots.map((item, idx) => (
                 <HistoryCard
                   key={idx}
-                  img={item.img}
-                  finalbid={item.finalbid}
+                  img={item.picture}
+                  finalbid={item.final_bid}
                   mileage={item.mileage}
                   status={item.status}
                 />

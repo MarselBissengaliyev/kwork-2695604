@@ -8,6 +8,7 @@ import HowItWorks from "./widgets/HowItWorks";
 import { NearestLots } from "@/containers/home";
 import { getListingBySlug } from "@/actions/listings";
 import { getCurrentUser } from "@/actions/users";
+import { getMakeById, getMarketInfoById } from "@/actions/makes";
 
 const lots = [
   {
@@ -56,11 +57,9 @@ const page = async ({ params }) => {
   const slug = params?.listing_slug;
 
   const listing = await getListingBySlug(slug);
-  console.log(listing);
   const currentUser = await getCurrentUser();
-
-  const city = listing?.city;
-  const category = listing?.categories?.[0];
+  console.log("USER", currentUser)
+  // const 
 
   return (
     <>

@@ -158,6 +158,12 @@ export const getListingBySlug = async slug => {
         },
         reviews: { select: { rating: true } },
         media: { select: { url: true } }, // Добавляем media
+        make: {
+          include: {
+            marketInfo: true,
+            lots: true,
+          }
+        }
       },
     });
 
