@@ -22,6 +22,7 @@ module.exports = {
         laptop: "769px",
         mindesk: "1024px",
         desktop: "1366px",
+        xl: "1500px",
         xxl: "1920px",
       },
       aspectRatio: {
