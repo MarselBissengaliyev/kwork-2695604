@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef } from "react";
 
 import Copy from "@/app/[country]/listing/[listing_slug]/shared/img/Copy";
