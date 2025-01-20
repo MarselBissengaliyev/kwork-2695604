@@ -4485,7 +4485,7 @@ fieldset:disabled .btn {
 }
 
 .accordion-body:not(.collapsed) {
-  background-color: rgba(249, 249, 249, 1);
+  background-color: #fff;
 }
 .accordion-button:not(.collapsed)::after {
   background-color: rgba(62, 115, 207, 1);
