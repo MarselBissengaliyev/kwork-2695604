@@ -38,7 +38,8 @@
     "src/containers/banner/icons/RatingIcon.tsx",
     "src/actions/models.js",
     "src/components/*",
-    "src/app/[country]/search/entities/SearchCard/ui/SearchCard.tsx"
+    "src/app/[country]/search/entities/SearchCard/ui/SearchCard.tsx",
+    "src/app/[country]/search/entities/SearchCard/ui/SearchCardMobile.jsx"
   ],
   "exclude": ["node_modules"]
 }

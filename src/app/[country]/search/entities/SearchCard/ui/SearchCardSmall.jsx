@@ -2,6 +2,10 @@ import React from "react";
 
 import "../styles/search-card.scss";
 
+import Rating1 from "@/app/[country]/listing/[listing_slug]/shared/img/Rating";
+import Rating2 from "@/app/[country]/listing/[listing_slug]/shared/img/Rating2";
+import Rating3 from "@/app/[country]/listing/[listing_slug]/shared/img/Rating3";
+
 import ListItem from "@/components/ListItem";
 import CopyText from "@/components/ListItem/models/CopyText";
 
@@ -52,7 +56,11 @@ const SearchCardSmall = () => {
             <div className="">
               <span className="tw-text-[18px]">2013 Chevrolet Impala Ls 3.6L </span>
             </div>
-            <div className="tw-bg-black tw-h-[34px] tw-w-[100px]"></div>
+            <div className="tw-flex">
+              <Rating1 className={"tw-z-30 tw-mr-[-4px]"} />
+              <Rating2 className={"tw-z-20 tw-mr-[-4px]"} />
+              <Rating3 className={"tw-z-10 tw-rounded-full"} />
+            </div>
           </div>
           <div className="tw-flex tw-flex-col tw-gap-[20px]">
             {infocopy.map((item, idx) => {

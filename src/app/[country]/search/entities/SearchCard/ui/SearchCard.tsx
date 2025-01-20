@@ -4,6 +4,10 @@ import "../styles/search-card.scss";
 import CopyText from "@/components/ListItem/models/CopyText";
 import CarCardsSlider from "@/components/Sliders/CarCardsSlider/CarCardsSlider";
 
+import Rating1 from "@/app/[country]/listing/[listing_slug]/shared/img/Rating";
+import Rating2 from "@/app/[country]/listing/[listing_slug]/shared/img/Rating2";
+import Rating3 from "@/app/[country]/listing/[listing_slug]/shared/img/Rating3";
+
 import Mileage from "../../../shared/img/Mileage";
 import Damage from "../../../shared/img/Damage";
 import Location from "../../../shared/img/Location";
@@ -106,7 +110,11 @@ const SearchCard = () => {
                 <span className="tw-text-[#E3433A] tw-text-[20px] tw-font-[500px]">$200</span>
               </div>
             </div>
-            <div className="tw-bg-black tw-w-[34px] tw-h-[100px]"></div>
+            <div className="tw-flex tw-flex-col">
+              <Rating1 className={"tw-z-30 tw-mb-[-4px]"} />
+              <Rating2 className={"tw-z-20 tw-mb-[-4px]"} />
+              <Rating3 className={"tw-z-10 tw-rounded-full"} />
+            </div>
           </div>
           <button className="tw-w-full tw-py-[12px] tw-text-[#fff] tw-rounded-[32px] tw-bg-[#3E73CF] tw-mt-[23px]">
             Bid Now <Auc className={""} />
