@@ -36,7 +36,7 @@ const CarCardsSlider = ({width = "100%",height = "100%",imglinks}: ICarSlider) =
               <img
                 src={img.src}
                 alt={img.alt ?? "car"}
-                style={{ width: '100%', height: 'auto' }}
+                style={{ width: '100%', height: '100%',objectFit: 'cover' }}
               />
             </SwiperSlide>
             )}

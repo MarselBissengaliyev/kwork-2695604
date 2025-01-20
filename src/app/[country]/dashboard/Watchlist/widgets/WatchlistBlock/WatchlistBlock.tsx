@@ -123,7 +123,7 @@ const WatchlistBlock = () => {
 
   return (
     <Container className={""}>
-        <div className='tw-grid tw-grid-cols-4 tw-gap-[20px]'>
+        <div className='tw-grid tw-grid-cols-4 tw-gap-[20px] max-xl:tw-grid-cols-3 max-mindesk:tw-grid-cols-2 max-minilaptop:tw-grid-cols-1'>
             {Cards.map((card) => <WatchListCard card={card}/> )}
             
         </div>
