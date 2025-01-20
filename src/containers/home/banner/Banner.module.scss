@@ -1,0 +1,245 @@
+.section {
+  background-image: url(../../../../public/images/banner/bg.png);
+  background-size: cover;
+  padding-left: 15px;
+  padding-right: 15px;
+  @media screen and (min-width: 320px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 74px;
+    padding-bottom: 90px;
+  }
+
+  @media screen and (min-width: 992px) {
+  }
+  .card {
+    .title {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 46px;
+      line-height: 54px;
+      /* identical to box height */
+
+      color: #ffffff;
+      margin-bottom: 50px;
+      @media screen and (min-width: 320px) {
+        font-size: 26px;
+        line-height: 30px;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 46px;
+        line-height: 54px;
+      }
+
+      @media screen and (min-width: 992px) {
+      }
+    }
+    .row {
+      background: #ffffff;
+      border-radius: 34px;
+      width: 100%;
+      position: relative;
+      margin-top: 50px;
+      margin-bottom: 50px;
+
+      @media screen and (min-width: 320px) {
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media screen and (min-width: 768px) {
+        display: grid;
+        padding: 0 57px;
+        grid-template-columns: 1fr 1fr;
+        overflow: visible;
+      }
+
+      @media screen and (min-width: 992px) {
+        display: flex;
+      }
+      * {
+        margin-top: 0;
+      }
+      & > * {
+        padding-right: 0;
+        padding-left: 0;
+      }
+      .btn {
+        width: auto;
+        height: 100%;
+        margin: 0;
+        padding: 21px 50px;
+
+        background: #3e73cf;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        @media screen and (min-width: 320px) {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          border-bottom-left-radius: 34px;
+          border-bottom-right-radius: 34px;
+        }
+
+        @media screen and (min-width: 768px) {
+          position: static;
+          width: auto;
+        }
+
+        @media screen and (min-width: 992px) {
+          position: absolute;
+          right: 0;
+          top: 0;
+          border-radius: 32px;
+        }
+        span,
+        i {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 21px;
+          /* identical to box height */
+
+          color: #ffffff;
+        }
+      }
+      .item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        @media screen and (min-width: 320px) {
+          width: 100%;
+        }
+
+        @media screen and (min-width: 768px) {
+          width: 100%;
+          border: 1px solid #d6d6d6;
+        }
+
+        @media screen and (min-width: 992px) {
+          width: auto;
+          border: none;
+          border-right: 1px solid #d6d6d6;
+        }   
+        & > .select {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+          border: none;
+          @media screen and (min-width: 320px) {
+            padding: 21px 30px;
+          }
+
+          @media screen and (min-width: 768px) {
+            padding: 21px 30px;
+          }
+
+          @media screen and (min-width: 992px) {
+            width: auto;
+            border: none;
+            border-right: 1px solid #d6d6d6;
+          }
+        }
+        // justify-content: center;
+        .range {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          z-index: 50;
+        }
+        .rangePicker {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 0 30px;
+          @media screen and (min-width: 320px) {
+            padding: 21px 30px;
+          }
+
+          @media screen and (min-width: 768px) {
+            padding: 0 30px;
+          }
+
+          @media screen and (min-width: 992px) {
+            padding: 0 30px;
+          }
+        }
+        .toggleWrapper {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          padding: 0 30px;
+
+          i {
+            font-size: 2.75rem; // Размер иконки
+            margin-right: 0.5rem; // Отступ между иконкой и текстом
+            color: #dbdbdb; // Цвет иконки
+            transition: color 0.3s;
+          }
+
+          &:hover i {
+            color: #0056b3; // Цвет иконки при наведении
+          }
+        }
+
+        .toggleLabel {
+          font-size: 1rem;
+          color: #333;
+        }
+      }
+    }
+    .advantages {
+      display: flex;
+      @media screen and (min-width: 320px) {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding-bottom: 140px;
+        padding-top: 30px;
+      }
+
+      @media screen and (min-width: 768px) {
+        gap: 70px;
+        flex-direction: row;
+        padding-bottom: 0;
+        padding-top: 54px;
+      }
+
+      @media screen and (min-width: 992px) {
+        width: auto;
+        border: none;
+        border-right: 1px solid #d6d6d6;
+      }
+      .item {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        span {
+          /* Over 100,000+ used, */
+
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 19px;
+
+          color: #ffffff;
+
+          mix-blend-mode: normal;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

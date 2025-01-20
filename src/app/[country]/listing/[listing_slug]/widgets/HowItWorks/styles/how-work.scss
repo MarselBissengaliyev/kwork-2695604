@@ -1,0 +1,37 @@
+.how-it-works {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 91px;
+  margin-bottom: 45px;
+}
+
+.step-work {
+  width: 100%;
+  padding: 15px 0;
+  .swiper {
+    overflow: visible;
+  }
+}
+
+.works-card {
+  margin: 0 auto;
+  height: 100%;
+}
+
+.enjoy-step {
+  width: 240px;
+  height: 216px;
+  background-image: url("../../../shared/img/enjoy.png");
+  background-repeat: no-repeat;
+}
+
+.line-work {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 1319px;
+  height: 19px;
+  background-image: url("../../../shared/img/line.png");
+  background-repeat: no-repeat;
+  transition: all .3s linear;
+}

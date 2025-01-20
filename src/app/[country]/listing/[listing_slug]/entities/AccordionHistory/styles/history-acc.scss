@@ -1,0 +1,62 @@
+.accordion-history {
+  width: 100%;
+  background-color: #fff5f5;
+  border-radius: 10px;
+}
+
+.accordion-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  color: #e3433a;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  text-align: left;
+  background-color: #fff5f5;
+  border-radius: 10px;
+  overflow-anchor: none;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out,
+    border-radius 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .accordion-btn {
+    transition: none;
+  }
+}
+.accordion-btn:not(.collapsed) {
+  background-color: #fff5f5;
+}
+
+.accordion-bod {
+  padding: 1rem 1.25rem;
+}
+
+.accordion-btn:not(.collapsed)::after {
+  background-color: #e3433a;
+  border-radius: 25px;
+  width: 24px !important;
+  height: 24px !important;
+  background-image: url("../../../shared/img/arrow-up.svg");
+  transform: rotate(-180deg);
+}
+.accordion-btn::after {
+  width: 24px !important;
+  height: 24px !important;
+  background-color: #fff;
+  border-radius: 25px;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: auto;
+  background-image: url("../../../shared/img/arrow-down.svg");
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.2s ease-in-out;
+}

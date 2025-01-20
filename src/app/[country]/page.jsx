@@ -1,72 +1,67 @@
-import { ROUTER } from '@/app/router'
+import { ROUTER } from "@/app/router";
 
-import { getCurrentUser } from '@/actions/users'
-import { getBlogPosts } from '@/actions/blog-posts'
-import { getCategories } from '@/actions/categories'
+import "@/app/styles/bootstrap.css";
+import "@/app/styles/dark-mode.css";
+import "@/app/styles/flaticon.css";
+import "@/app/styles/remixicon.css";
+import "@/app/styles/responsive.css";
+import "@/app/styles/style.css";
 
-import Banner from '@/containers/Banner'
-import Blog from '@/containers/Blog'
-import Favour from '@/containers/Favour'
+import { getBlogPosts } from "@/actions/blog-posts";
+import { getCategories } from "@/actions/categories";
+import { getCurrentUser } from "@/actions/users";
 
-import Partner from '@/containers/Partner'
-import { Subscribe } from '@/containers/Subscribe'
-import Testimony from '@/containers/Testimony'
-import WorkArea from '@/containers/WorkArea'
+import Advantages from "@/containers/home/advantages/Advantages";
+import Banner from "@/containers/home/banner/Banner";
 
-import { FeaturedListings } from '@/containers/listing'
-import { getRegionConfiguration } from '@/actions/region-configurations'
-import { FeaturedCategories, FeaturedLocations } from '@/containers/home'
-import { getCities } from '@/actions/cities'
-
-export const dynamic = 'force-dynamic'
-const limitParams = { limit: 6 }
+import { getCities } from "@/actions/cities";
+import { getNearestLots } from "@/actions/listings";
+import { getMakesAndModels, getMakesWithLotCount } from "@/actions/makes";
+import { getRegionConfiguration } from "@/actions/region-configurations";
+import HowItWorks from "@/app/[country]/listing/[listing_slug]/widgets/HowItWorks";
+import AboutAndFaq from "@/containers/home/about-and-faq/AboutAndFaq";
+import Reviews from "@/containers/home/reviews/Reviews";
+import { MakesList, NearestLots } from "@/containers/home";
+import css from "./page.module.scss";
+export const dynamic = "force-dynamic";
+const limitParams = { limit: 6 };
 
 export default async function Home({ params }) {
   const slugs = {
     country: params?.country,
-  }
+  };
 
   const regionConfiguration = await getRegionConfiguration({
     country: slugs.country,
-  }).catch(() => null)
+  }).catch(() => null);
 
-  const currentUser = await getCurrentUser()
-  const categories = slugs.country
-    ? await getCategories({ country: slugs.country, sticky: true, take: 20 })
-    : []
-  const cities = slugs.country
-    ? await getCities({ country: slugs.country, sticky: true, take: 6 })
-    : []
-  const { posts } = await getBlogPosts(limitParams)
+  const currentUser = await getCurrentUser();
+  const categories = slugs.country ? await getCategories({ country: slugs.country, sticky: true, take: 20 }) : [];
+  const cities = slugs.country ? await getCities({ country: slugs.country, sticky: true, take: 6 }) : [];
+  const { posts } = await getBlogPosts(limitParams);
+  const makesAndModels = await getMakesAndModels(); // Получаем данные для марок и моделей
+  const nearestLots = await getNearestLots(5); // Получение ближайших лотов
+  const makesWithCount = await getMakesWithLotCount();
 
   return (
     <>
       <Banner
+        makes={makesAndModels.makes}
+        models={makesAndModels.models}
         country={slugs.country}
-        categories={categories?.data?.map((category) => ({
+        categories={categories?.data?.map(category => ({
           ...category,
-          href: [ROUTER.CATEGORIES, category?.slug].join('/'),
+          href: [ROUTER.CATEGORIES, category?.slug].join("/"),
         }))}
       />
-      <FeaturedCategories
-        categories={categories?.data?.map((category) => ({
-          ...category,
-          href: [ROUTER.CATEGORIES, category?.slug].join('/'),
-        }))}
-      />
-      <FeaturedListings currentUser={currentUser} />
-      <FeaturedLocations
-        locations={cities?.data?.map((city) => ({
-          ...city,
-          href: [ROUTER.CITY, city?.slug].join('/'),
-        }))}
-      />
-      <WorkArea />
-      <Testimony />
-      <Favour />
-      <Partner />
-      <Subscribe />
-      <Blog blogPosts={posts} />
+      <NearestLots lots={nearestLots} title={"Featured Vehicles"} />
+      <MakesList makes={makesWithCount.data} />
+      <div className={css.howItWorks}>
+        <HowItWorks />
+      </div>
+      <Advantages />
+      <AboutAndFaq />
+      <Reviews />
     </>
-  )
+  );
 }

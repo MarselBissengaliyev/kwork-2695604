@@ -1,20 +1,52 @@
-import prisma from '@/libs/prismadb'
-import { average } from '@/utils/common'
-import { getCurrentUser } from './users'
-import { getPagination } from '@/utils'
+import prisma from "@/libs/prismadb";
+import { average } from "@/utils/common";
+import { getCurrentUser } from "./users";
+import { getPagination } from "@/utils";
 
-export const getListings = async (query) => {
+export const getNearestLots = async (limit = 5) => {
   try {
-    const {
-      page = 1,
-      take = 10,
-      published,
-      category,
-      country,
-      city,
-    } = query || {}
+    const now = new Date();
 
-    let pagination = getPagination({ page, take })
+    const lots = await prisma.listing.findMany({
+      where: {
+        auction_at: {
+          gte: now,
+        },
+      },
+      orderBy: {
+        auction_at: "asc",
+      },
+      take: limit,
+      include: {
+        media: {
+          select: {
+            url: true, // Matches your schema for Media
+          },
+        },
+        bids: {
+          select: {
+            amount: true, // Corrected from `bid_amount` to `amount`
+          },
+        },
+      },
+    });
+
+    return lots.map(lot => ({
+      ...lot,
+      firstImage: lot.media?.[0]?.url || null,
+      avgPrice: lot.final_bid || 0, // Adjust if needed
+      currentBid: Math.max(...lot.bids.map(bid => bid.amount), 0),
+    }));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getListings = async query => {
+  try {
+    const { page = 1, take = 10, published, category, country, city } = query || {};
+
+    let pagination = getPagination({ page, take });
 
     const where = {
       published,
@@ -38,9 +70,9 @@ export const getListings = async (query) => {
             slug: city,
           }
         : undefined,
-    }
+    };
 
-    const results = await prisma.listing.count({ where })
+    const results = await prisma.listing.count({ where });
     const listings = await prisma.listing.findMany({
       where,
       select: {
@@ -80,31 +112,30 @@ export const getListings = async (query) => {
       take: pagination.take,
       skip: pagination.skip,
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
-    })
+    });
 
-    pagination = getPagination({ ...pagination, results })
+    pagination = getPagination({ ...pagination, results });
 
     return {
       listings:
-        listings?.map((listing) => ({
+        listings?.map(listing => ({
           ...listing,
-          categories:
-            listing?.categories?.map(({ category }) => category) || [],
+          categories: listing?.categories?.map(({ category }) => category) || [],
           rating: average(listing?.reviews?.map(({ rating }) => rating) || []),
           price: 0,
         })) || [],
       results,
       pages: pagination.pages,
       pagination,
-    }
+    };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
-export const getListingBySlug = async (slug) => {
+export const getListingBySlug = async slug => {
   try {
     const listing = await prisma.listing.findFirst({
       where: { slug },
@@ -126,33 +157,32 @@ export const getListingBySlug = async (slug) => {
           },
         },
         reviews: { select: { rating: true } },
+        media: { select: { url: true } }, // Добавляем media
       },
-    })
+    });
 
-    const categories =
-      listing?.categories?.map(({ category }) => ({ ...category })) || []
-    const rating =
-      average(listing?.reviews?.map(({ rating }) => rating) || []) || 0
+    const categories = listing?.categories?.map(({ category }) => ({ ...category })) || [];
+    const rating = average(listing?.reviews?.map(({ rating }) => rating) || []) || 0;
 
     return {
       ...listing,
       rating,
       categories,
       price: 0,
-    }
+    };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const getUserListings = async () => {
   try {
-    const { id: userId } = await getCurrentUser()
+    const { id: userId } = await getCurrentUser();
 
     const listings = await prisma.listing.findMany({
       where: { user_id: userId },
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
       include: {
         user: {
@@ -161,22 +191,22 @@ export const getUserListings = async () => {
           },
         },
       },
-    })
+    });
 
-    return listings
+    return listings;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const getUserFavouriteListings = async () => {
   try {
-    const { id: userId } = await getCurrentUser()
+    const { id: userId } = await getCurrentUser();
 
     const favourites = await prisma.favourite.findMany({
       where: { user_id: userId },
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
       include: {
         listing: {
@@ -189,10 +219,10 @@ export const getUserFavouriteListings = async () => {
           },
         },
       },
-    })
+    });
 
-    return favourites
+    return favourites;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};

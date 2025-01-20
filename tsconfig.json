@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".", // добавляем корневую директорию
+    "paths": {
+      "@/*": ["./*"], // алиас для корня проекта
+      "@/*": ["./src/*"] // или для папки src
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/app/api/email/route.js",
+    "src/libs/prismadb.js",
+    "src/actions/makes.js",
+    "src/components/navbar/Navbar.tsx",
+    "src/app/[country]/layout.tsx",
+    "src/components/navbar/index.ts",
+    "src/components/ListItem/ui/ListItem.jsx",
+    "src/containers/banner/icons/RatingIcon.tsx",
+    "src/actions/models.js",
+    "src/components/*"
+
+  ],
+  "exclude": ["node_modules"]
+}
