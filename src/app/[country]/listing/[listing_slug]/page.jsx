@@ -1,54 +1,82 @@
-import React from 'react'
+import React from "react";
 
-import { getListingBySlug } from '@/actions/listings'
-import { getReviewByListingId } from '@/actions/reviews'
-import { getCurrentUser } from '@/actions/users'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./car.scss";
 
-import { ListingDetail } from '@/components/listing'
-import { PageBanner } from '@/components/page'
-import { ROUTER } from '@/app/router'
+import HeroCar from "./widgets/HeroCar";
+import HowItWorks from "./widgets/HowItWorks";
+import { NearestLots } from "@/containers/home";
+import { getListingBySlug } from "@/actions/listings";
+import { getCurrentUser } from "@/actions/users";
+
+const lots = [
+  {
+    picture: "https://avatars.mds.yandex.net/i?id=8b347a0cf8e22b9a716c85399addeb63dcad1d2b-11490366-images-thumbs&n=13",
+    slug: "",
+    name: "Chevrolet",
+    title: "2013 Chevrolet Impala Ls 3.6L",
+    avgPrice: "2,850",
+    currentBid: "2,850",
+  },
+  {
+    picture: "https://avatars.mds.yandex.net/i?id=8b347a0cf8e22b9a716c85399addeb63dcad1d2b-11490366-images-thumbs&n=13",
+    slug: "",
+    name: "Chevrolet",
+    title: "2013 Chevrolet Impala Ls 3.6L",
+    avgPrice: "2,850",
+    avgPrice: "$2,850",
+  },
+  {
+    picture: "https://avatars.mds.yandex.net/i?id=8b347a0cf8e22b9a716c85399addeb63dcad1d2b-11490366-images-thumbs&n=13",
+    slug: "",
+    name: "Chevrolet",
+    title: "2013 Chevrolet Impala Ls 3.6L",
+    avgPrice: "2,850",
+    currentBid: "2,850",
+  },
+  {
+    picture: "https://avatars.mds.yandex.net/i?id=8b347a0cf8e22b9a716c85399addeb63dcad1d2b-11490366-images-thumbs&n=13",
+    slug: "",
+    name: "Chevrolet",
+    title: "2013 Chevrolet Impala Ls 3.6L",
+    avgPrice: "2,850",
+    currentBid: "2,850",
+  },
+  {
+    picture: "https://avatars.mds.yandex.net/i?id=8b347a0cf8e22b9a716c85399addeb63dcad1d2b-11490366-images-thumbs&n=13",
+    slug: "",
+    name: "Chevrolet",
+    title: "2013 Chevrolet Impala Ls 3.6L",
+    avgPrice: "2,850",
+    currentBid: "2,850",
+  },
+];
 
 const page = async ({ params }) => {
-  const slug = params?.listing_slug
+  const slug = params?.listing_slug;
 
-  const listing = await getListingBySlug(slug)
-  const currentUser = await getCurrentUser()
+  const listing = await getListingBySlug(slug);
+  console.log(listing.media);
+  const currentUser = await getCurrentUser();
 
-  const city = listing?.city
-  const category = listing?.categories?.[0]
-
-  const reviews = listing
-    ? await getReviewByListingId({ listingId: listing?.id })
-    : []
+  const city = listing?.city;
+  const category = listing?.categories?.[0];
 
   return (
     <>
-      <PageBanner
-        title={`${listing?.title}`}
-        breadcrumbs={[
-          { href: ROUTER.HOME, label: 'Home' },
-          {
-            href: city ? `${ROUTER.CITY}/${city?.slug}` : '#',
-            label: city ? city?.name : '',
-          },
-          {
-            href: category
-              ? [`${ROUTER.CITY}/${city?.slug}`, `${category?.slug}`].join('/')
-              : '#',
-            label: category ? category?.name : '',
-          },
-          {
-            label: listing?.title,
-          },
-        ]}
-      />
-      <ListingDetail
-        currentUser={currentUser}
-        listing={listing}
-        reviews={reviews}
-      />
+      <div className="tw-w-full tw-mb-[58px]">
+        <HeroCar />
+        <hr />
+      </div>
+      <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden desktop:tw-block">
+        <HowItWorks />
+      </div>
+      <div className="tw-py-[10px]">
+        <hr className="tw-my-[21px]" />
+        <NearestLots title={"Similar Vehicles"} lots={lots} />;
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

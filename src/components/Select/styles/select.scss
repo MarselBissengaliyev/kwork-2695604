@@ -27,7 +27,7 @@
   display: inline-block;
   border: 1px solid rgba(219, 219, 219, 1);
   border-radius: 25px;
-  background-image: url("../../../app/[country]/car/shared/img/arrow-down.svg");
+  background-image: url("../../../app/[country]/listing/[listing_slug]/shared/img/arrow-down.svg");
   background-repeat: no-repeat;
   background-position: center;
   // transform: rotate(45deg);
@@ -35,7 +35,7 @@
 }
 
 .custom-dropdown-header .arrow.open {
-  background-image: url("../../../app/[country]/car/shared/img/arrow-up.svg");
+  background-image: url("../../../app/[country]/listing/[listing_slug]/shared/img/arrow-up.svg");
   transform: rotate(-180deg);
   background-color: #3e73cf;
 }
