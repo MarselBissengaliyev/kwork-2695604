@@ -21,3 +21,26 @@
     }
   }
 }
+
+.card-info {
+  margin-top: 20px;
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    &_first {
+      padding-top: 20px;
+      border-top: 1px solid #ececec;
+    }
+    &_second {
+      padding-top: 20px;
+      border-top: 1px solid #ececec;
+      margin-top: 20px;
+    }
+  }
+
+  &_item2 {
+    border-left: 1px solid #ececec;
+  }
+}
