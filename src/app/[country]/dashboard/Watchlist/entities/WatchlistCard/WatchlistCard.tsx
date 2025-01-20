@@ -5,7 +5,7 @@ import ButtonMain from '@/components/button/ButtonMain';
 import ListItem from '@/components/ListItem'
 import CopyText from "@/components/ListItem/models/CopyText";
 import CarCardsSlider from '@/components/Sliders/CarCardsSlider/CarCardsSlider'
-import React from 'react'
+import React, { useState } from 'react'
 
 interface ICard {
     card: IWatchListCard;
@@ -32,6 +32,14 @@ interface IImg {
 }
 
 const WatchListCard = ({card}: ICard) => {
+    const [isClick, setClick] = useState(false);
+    const handleClick = (e) => {
+        // setClick((prev) => (prev === e ? null : e))
+        // console.log(isClick)
+        // Navigate to listing page
+        // window.location.href = `/[country]/listing/${card.listing_slug}`
+    }
+
   return (
     <div className='tw-max-w-[370px] tw-w-full' style={{border: "1px solid #ECECEC", borderRadius: "10px"}}>
         <CarCardsSlider height='260px' imglinks={card.imgs}/>
@@ -62,7 +70,7 @@ const WatchListCard = ({card}: ICard) => {
                     <p className='tw-text-[#E3433A] tw-font-medium tw-text-[20px]'>${card.BuyBid}</p>
                 </div>
             </div>
-            <ButtonMain text={"Bid Now"} icon={"/images/dashboard/icons/auction.png"} classNames={"tw-gap-2"}/>
+            <ButtonMain text={"Bid Now"} icon={"/images/dashboard/icons/auction.png"} classNames={"tw-gap-2"} onClick={() => setClick((e) => !e)} color={isClick ? "grey" : "blue"}/>
         </div>
     </div>
   )
