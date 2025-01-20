@@ -30,11 +30,16 @@
     flex-direction: column;
     margin-top: 20px;
     &_first {
+      display: flex;
+      // justify-content: space-between;
+      align-items: center;
       padding-top: 20px;
       border-top: 1px solid #ececec;
     }
     &_second {
+      display: flex;
       padding-top: 20px;
+      align-items: center;
       border-top: 1px solid #ececec;
       margin-top: 20px;
     }
@@ -42,5 +47,44 @@
 
   &_item2 {
     border-left: 1px solid #ececec;
+  }
+}
+
+.right-border {
+  border-right: 1px solid #ececec;
+}
+
+// laptop =============================================
+
+.case-border {
+  border-radius: 10px;
+  border: 1px solid #ececec;
+}
+
+.case-card {
+  max-width: 708px;
+  width: 100%;
+  padding: 30px;
+
+  &_item1 {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  &_item2 {
+    display: flex;
+
+    align-items: center;
+    gap: 14px;
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+
+  &_item3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 103px;
   }
 }

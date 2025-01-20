@@ -37,8 +37,8 @@
     "src/components/ListItem/ui/ListItem.jsx",
     "src/containers/banner/icons/RatingIcon.tsx",
     "src/actions/models.js",
-    "src/components/*"
-
+    "src/components/*",
+    "src/app/[country]/search/entities/SearchCard/ui/SearchCard.tsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,2 +1,3 @@
 import SearchCard from "./ui/SearchCard";
-export default SearchCard;
+import SearchCardSmall from "./ui/SearchCardSmall";
+export default { SearchCardSmall, SearchCard };
