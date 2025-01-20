@@ -43,24 +43,28 @@ const page = async () => {
   const offers = [
     {
       icon: <VerifiedUserIcon />,
-      text: "Access to All major US Auto Auctions at our website: Free Membership",
+      text: <>Access to All major US Auto <br/> Auctions at our website: Free <br/> Membership</>,
     },
     {
       icon: <CarIcon />,
-      text: "Used and damaged cars, heavy duty trucks, motorcycles, boats, ATVs, construction equipment from US auctions and dealerships",
+      text: <>Used and damaged cars, heavy duty trucks, <br/> motorcycles, boats, ATVs, construction equipment <br/> from US auctions and dealerships</>,
     },
     {
       icon: <ShieldIcon />,
       text: "For regular customers we offer to open direct account at auto auctions under our license",
     },
     {
-      icon: <ShippingIcon/>,
-      text: "Pick up your vehicle from US auto auctions or any places and export it to your country"
+      icon: <ShippingIcon />,
+      text: "Pick up your vehicle from US auto auctions or any places and export it to your country",
     },
     {
-      icon: <CalculatorIcon/>,
-      text: "Instant shipping calculator at our website"
-    }
+      icon: <CalculatorIcon />,
+      text: "Instant shipping calculator at our website",
+    },
+    {
+      icon: <ContainerIcon />,
+      text: "Container and RoRo Shipping",
+    },
   ];
   return (
     <>
@@ -98,10 +102,15 @@ const page = async () => {
           </div>
         ))}
       </div>
-      <div className={css.offer}>
-        <div className={css.item}>
-          <VerifiedUserIcon />
-        </div>
+      <div className={css.offer + " tw-container"}>
+        {offers && offers.map(offer => (
+          <div className={css.item}>
+            <div className={css.icon}>
+              {offer.icon}
+            </div>
+            <div className={css.text}>{offer.text}</div>
+          </div>
+        ))}
       </div>
       <Favour />
       <Partner />

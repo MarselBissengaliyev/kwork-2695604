@@ -1,6 +1,6 @@
 import React from "react";
 
-export const CarIcon = () => {
+const CarIcon = () => {
   return (
     <svg width="41" height="32" viewBox="0 0 41 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -17,3 +17,5 @@ export const CarIcon = () => {
     </svg>
   );
 };
+
+export default CarIcon;
