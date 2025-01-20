@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../styles/how-work.scss";
 import { Pagination, Navigation } from "swiper";
-import HowItWorksCard from "@/app/[country]/car/entities/HowItWorksCard";
+import HowItWorksCard from "@/app/[country]/listing/[listing_slug]/entities/HowItWorksCard";
 
 import User from "../../../shared/img/User";
 import Petition from "../../../shared/img/Petition";
@@ -40,9 +40,7 @@ const HowItWorks = () => {
       icon: <Shipping />,
       text: "Delivery to your home",
     },
-    {
-
-    }
+    {},
   ];
 
   return (
@@ -74,7 +72,11 @@ const HowItWorks = () => {
         >
           {data.map((item, idx) => (
             <SwiperSlide key={idx}>
-              {idx !== 5 ?<HowItWorksCard icon={item.icon} text={item.text} step={idx + 1} /> : <div className="enjoy-step"></div>}
+              {idx !== 5 ? (
+                <HowItWorksCard icon={item.icon} text={item.text} step={idx + 1} />
+              ) : (
+                <div className="enjoy-step"></div>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

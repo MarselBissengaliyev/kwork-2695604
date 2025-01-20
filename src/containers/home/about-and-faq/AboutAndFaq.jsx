@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import css from "./AboutAndFaq.module.scss";
-import AccordionFAQ from "@/app/[country]/car/entities/AccordionFAQ";
+import AccordionFAQ from "@/app/[country]/listing/[listing_slug]/entities/AccordionFAQ";
 
 const AboutAndFaq = () => {
   useEffect(() => {

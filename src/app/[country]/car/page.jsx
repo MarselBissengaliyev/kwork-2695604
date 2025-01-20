@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./car.scss";
 
-import HeroCar from "./widgets/HeroCar";
-import HowItWorks from "./widgets/HowItWorks";
+import HeroCar from "../listing/[listing_slug]/widgets/HeroCar";
+import HowItWorks from "../listing/[listing_slug]/widgets/HowItWorks";
 import { NearestLots } from "@/containers/home";
 
 const lots = [
