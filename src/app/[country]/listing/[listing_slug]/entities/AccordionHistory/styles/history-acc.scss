@@ -33,10 +33,10 @@
   background-color: #fff5f5;
 }
 
-.accordion-body:not(.collapsed) {
-  background-color: #fff5f5;
-  border-radius: 10px;
+.accordion-bod {
+  padding: 1rem 1.25rem;
 }
+
 .accordion-btn:not(.collapsed)::after {
   background-color: #e3433a;
   border-radius: 25px;
