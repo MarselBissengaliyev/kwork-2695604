@@ -199,9 +199,9 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
           <div className="tw-z-10 tw-max-w-[240px] tw-bg-white tw-absolute tw-top-[80px] tw-ml-[80px] tw-p-[30px] tw-rounded-[10px] max-desktop:-tw-ml-[150px]" style={{ boxShadow: '0 12px 24px 0 rgba(51, 51, 51, 0.2)' }}>
             <div>
               <div className="tw-flex tw-text-[18px] tw-h-[21px] tw-text-[#191919]">
-                <p className="">Hi,</p><p className="tw-font-bold">Huan Rodrigez</p>
+                <p className="">Hi,</p><p className="tw-font-bold">{currentUser.name}</p>
               </div>
-              <p className="tw-text-[16px]">Bidder #45457</p>
+              <p className="tw-text-[16px]">Bidder #{currentUser.id}</p>
             </div>
             <ul className="tw-mt-[40px] tw-list-none tw-p-0 tw-text-[#191919] tw-text-[18px]">
               <li>Dashboard</li>

@@ -181,6 +181,75 @@ export const getListingBySlug = async slug => {
   }
 };
 
+export const getOtherLotsAndSoldCars = async (slug) => {
+  try {
+    const listing = await prisma.listing.findFirst({
+      where: { slug },
+      include: {
+        make: {
+          include: {
+            models: true,
+          }
+        },
+        media: { select: { url: true } },
+        bids: true,
+      },
+    });
+
+    const { make, model_id, year, media, title } = listing;
+
+    // Fetch Active Listings (Other Lots)
+    const activeListings = await prisma.listing.findMany({
+      where: {
+        make_id: make.id,
+        model_id: model_id,
+        year: year,
+        status: 'Pending', // Assuming "Pending" means active
+        slug: { not: slug }, // Exclude current listing
+      },
+      include: {
+        media: { select: { url: true } },
+        bids: {
+          take: 1, // Take the highest bid
+          orderBy: { amount: 'desc' },
+          select: { amount: true },
+        },
+      },
+    });
+
+    // Fetch Sold Listings (Sold Cars)
+    const soldListings = await prisma.listing.findMany({
+      where: {
+        make_id: make.id,
+        model_id: model_id,
+        year: year,
+        status: 'Sold', // Assuming "Sold" means completed
+        slug: { not: slug }, // Exclude current listing
+      },
+      include: {
+        media: { select: { url: true } },
+        final_bid: true,
+      },
+    });
+
+    return {
+      activeListings: activeListings.map(listing => ({
+        photo: listing.media[0]?.url,
+        name: listing.title,
+        currentBid: listing.bids[0]?.amount || 0,
+      })),
+      soldListings: soldListings.map(listing => ({
+        photo: listing.media[0]?.url,
+        name: listing.title,
+        finalBid: listing.final_bid || 0,
+      })),
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
 export const getUserListings = async () => {
   try {
     const { id: userId } = await getCurrentUser();
