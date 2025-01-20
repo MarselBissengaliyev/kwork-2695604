@@ -8,7 +8,7 @@ import "../styles/slidercar.scss";
 import arrow from "../../../shared/img/arrow-slide.svg";
 
 const SliderCar = ({ media }) => {
-  console.log(media)
+  console.log(media);
   // Объект с картинками
 
   // Состояние активного изображения
@@ -48,14 +48,14 @@ const SliderCar = ({ media }) => {
     <div className="tw-mb-[40px] laptop:tw-mb-0">
       {/* Основной блок (вывод через map) */}
       <div className="main-image-container">
-        {media.map((image, index) => (
+        {images.map((image, index) => (
           <a
             key={index}
             data-fancybox="gallery"
-            href={image.url}
-            className={index === activeImageIndex ? "active" : ""}
+            href={image.src}
+            className={`${index === activeImageIndex ? "active" : ""} slider-href`}
           >
-            {index === activeImageIndex && <img src={image.url} alt={""} className="main-img" />}
+            {index === activeImageIndex && <img src={image.src} alt={image.alt} className="main-img " />}
           </a>
         ))}
       </div>
@@ -67,11 +67,11 @@ const SliderCar = ({ media }) => {
           ref={containerRef}
           style={{ transform: `translateX(-${scrollPosition}px)` }}
         >
-          {media.map((image, index) => (
+          {images.map((image, index) => (
             <a key={index} onClick={() => handleThumbnailClick(index)}>
               <img
-                src={image.url}
-                alt={""}
+                src={image.src}
+                alt={image.alt}
                 style={{
                   cursor: "pointer",
                   border: index === activeImageIndex ? "2px solid blue" : "none",

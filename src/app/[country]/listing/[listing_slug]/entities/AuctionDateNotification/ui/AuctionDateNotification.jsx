@@ -61,10 +61,9 @@ const AuctionDateNotification = () => {
               <Input type={"text"} name="LastName" placeholder={"Last Name"} />
               <InputPhone />
             </div>
-            <ButtonMain className={"tw-w-full tw-py-[20px] tw-rounded-[32px] tw-mt-[20px]"}>
-              {" "}
+            <button className="tw-w-full tw-py-[20px] tw-text-[#fff] tw-rounded-[32px] tw-bg-[#3E73CF] tw-mt-[20px]">
               Set Alert <Bell />
-            </ButtonMain>
+            </button>
           </form>
         </div>
       </div>

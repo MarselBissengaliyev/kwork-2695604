@@ -3,6 +3,7 @@ import ButtonMain from '@/components/button/ButtonMain';
 import PageDirect from '@/components/Common/PageDirect'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import WatchlistBlock from './widgets/WatchlistBlock/WatchlistBlock';
 
 const page = () => {
 
@@ -62,7 +63,11 @@ const page = () => {
                 </a>
             </div>
         </div>
+        <div>
+
+        </div>
         </PageDirect>
+        <WatchlistBlock/>
     </>
   )
 }
