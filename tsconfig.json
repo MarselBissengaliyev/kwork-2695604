@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,9 +23,12 @@
     ],
     "baseUrl": ".", // добавляем корневую директорию
     "paths": {
-      "@/*": ["./*"], // алиас для корня проекта
-      "@/*": ["./src/*"] // или для папки src
-    }
+      "@/*": [
+        "./src/*"
+      ] // или для папки src
+       // алиас для корня проекта
+    },
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
@@ -41,5 +48,7 @@
     "src/app/[country]/search/entities/SearchCard/ui/SearchCard.tsx",
     "src/app/[country]/search/entities/SearchCard/ui/SearchCardMobile.jsx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
