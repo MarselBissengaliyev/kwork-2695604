@@ -31,7 +31,7 @@ interface TableProps {
 
 const DashBoardTableMoblie: React.FC<TableProps> = ({ data, columns, rowKey }) => {
   return (
-    <Container>
+    <Container className={""}>
       <div style={{ width: '100%' }}>
         {data.bids.map((row) => (
           <div
