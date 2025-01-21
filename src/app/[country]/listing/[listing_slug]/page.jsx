@@ -56,7 +56,7 @@ const page = async ({ params }) => {
   const slug = params?.listing_slug;
 
   const listing = await getListingBySlug(slug);
-  console.log(listing.media);
+  console.log(listing);
   const currentUser = await getCurrentUser();
 
   const city = listing?.city;
@@ -65,7 +65,7 @@ const page = async ({ params }) => {
   return (
     <>
       <div className="tw-w-full tw-mb-[58px]">
-        <HeroCar />
+        {listing && <HeroCar listing={listing}/>}
         <hr />
       </div>
       <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden desktop:tw-block">

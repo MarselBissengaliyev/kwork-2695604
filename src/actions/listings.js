@@ -157,6 +157,7 @@ export const getListingBySlug = async slug => {
           },
         },
         reviews: { select: { rating: true } },
+        media: { select: { url: true } }, // Добавляем media
       },
     });
 

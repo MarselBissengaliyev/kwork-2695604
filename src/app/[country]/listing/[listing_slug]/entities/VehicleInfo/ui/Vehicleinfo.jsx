@@ -16,7 +16,7 @@ const vehicleinfo = [
   {
     label: "Mileage:",
     value: "138,412",
-  },
+  },  
   {
     label: "Keys:",
     value: "46 861 Actual",
@@ -91,7 +91,58 @@ const vehicleinfo = [
   },
 ];
 
-const Vehicleinfo = ({ children }) => {
+const Vehicleinfo = ({ children, listing }) => {
+  console.log("Listing=", listing?.slug);
+  const vehicleinfo = [
+    {
+      label: "LOT:",
+      value: <CopyText text={listing?.lot} />,
+    },
+    {
+      label: "VIN:",
+      value: <CopyText text={listing?.vin} />,
+    },
+    {
+      label: "Mileage:",
+      value: listing?.mileage,
+    },
+    {
+      label: "Keys:",
+      value: listing?.keys,
+    },
+    {
+      label: "Damage:",
+      value: listing?.damage,
+    },
+    {
+      label: "Engine:",
+      value: listing?.engine,
+    },
+    {
+      label: "Fuel:",
+      value: listing?.fuel,
+    },
+    {
+      label: "Transmission:",
+      value: listing?.transmission,
+    },
+    {
+      label: "Lot Quality:",
+      value: listing?.lot,
+    },
+    {
+      label: "Color:",
+      value: listing?.color,
+    },
+    {
+      label: "Drive:",
+      value: listing?.drive,
+    },
+    {
+      label: "Title:",
+      value: listing?.title,
+    },
+  ];
   return (
     <div className="case-border tw-px-[15px] tablet:tw-px-[30px] tw-pt-[30px] tw-pb-[13px] !tw-w-full desktop:tw-max-w-[708px] ">
       <div className="tablet:tw-block minilaptop:tw-flex  tw-gap-[28px] laptop:tw-block">

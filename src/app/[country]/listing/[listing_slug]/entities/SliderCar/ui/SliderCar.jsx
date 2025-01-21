@@ -7,46 +7,9 @@ import "../styles/slidercar.scss";
 
 import arrow from "../../../shared/img/arrow-slide.svg";
 
-const images = [
-  {
-    src: "https://avatars.mds.yandex.net/i?id=0217c83dab578b1c1a058caa4da089602954ffde-3054743-images-thumbs&n=13",
-    alt: "Car Image 1",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=0217c83dab578b1c1a058caa4da089602954ffde-3054743-images-thumbs&n=13",
-    alt: "Car Image 2",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=73b2f7074611ffbfaa81a8f6da333385515d6650-3767926-images-thumbs&n=13",
-    alt: "Car Image 3",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=0217c83dab578b1c1a058caa4da089602954ffde-3054743-images-thumbs&n=13",
-    alt: "Car Image 2",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=73b2f7074611ffbfaa81a8f6da333385515d6650-3767926-images-thumbs&n=13",
-    alt: "Car Image 3",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=0217c83dab578b1c1a058caa4da089602954ffde-3054743-images-thumbs&n=13",
-    alt: "Car Image 2",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=73b2f7074611ffbfaa81a8f6da333385515d6650-3767926-images-thumbs&n=13",
-    alt: "Car Image 3",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=73b2f7074611ffbfaa81a8f6da333385515d6650-3767926-images-thumbs&n=13",
-    alt: "Car Image 3",
-  },
-  {
-    src: "https://avatars.mds.yandex.net/i?id=0217c83dab578b1c1a058caa4da089602954ffde-3054743-images-thumbs&n=13",
-    alt: "Car Image 2",
-  },
-];
 
-const SliderCar = () => {
+const SliderCar = ({ media }) => {
+  console.log(media);
   // Объект с картинками
 
   // Состояние активного изображения
@@ -86,14 +49,14 @@ const SliderCar = () => {
     <div className="tw-mb-[40px] laptop:tw-mb-0">
       {/* Основной блок (вывод через map) */}
       <div className="main-image-container">
-        {images.map((image, index) => (
+        {media.map((image, index) => (
           <a
             key={index}
             data-fancybox="gallery"
-            href={image.src}
+            href={image.url}
             className={`${index === activeImageIndex ? "active" : ""} slider-href`}
           >
-            {index === activeImageIndex && <img src={image.src} alt={image.alt} className="main-img " />}
+            {index === activeImageIndex && <img src={image.url} alt={image.alt} className="main-img " />}
           </a>
         ))}
       </div>
@@ -105,10 +68,10 @@ const SliderCar = () => {
           ref={containerRef}
           style={{ transform: `translateX(-${scrollPosition}px)` }}
         >
-          {images.map((image, index) => (
+          {media.map((image, index) => (
             <a key={index} onClick={() => handleThumbnailClick(index)}>
               <img
-                src={image.src}
+                src={image.url}
                 alt={image.alt}
                 style={{
                   cursor: "pointer",
