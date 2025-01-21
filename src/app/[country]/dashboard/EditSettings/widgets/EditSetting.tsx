@@ -7,9 +7,14 @@ import Input from '@/components/Input'
 import InputPhone from '@/components/InputPhone'
 import React, { useState } from 'react'
 import "./styles.scss"
+import DashboardModal from '../../entities/Modal/DashboardModal'
 
 const EditSetting = () => {
     const [activeButton, setActiveButton] = useState('Edit Your Profile');
+    const [click, setClick] = useState(false)
+    const handleClick = () =>{
+        setClick((prev) => !prev)
+    }
   return (
     <div>
         <PageDirect pageTitle={"Edit Settings"} className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}>
@@ -20,6 +25,13 @@ const EditSetting = () => {
             </div>
         </PageDirect>
         <Container className={""}>
+            {click ? <DashboardModal closeModal={()=> handleClick()} >
+
+                        <div className='tw-flex tw-gap-[20px] tw-justify-center'>
+                            <img src='/images/dashboard/icons/tick.png' className='tw-h-[40px] tw-w-[40px]'/>
+                            <h2>Profile updated</h2>
+                        </div>
+                    </DashboardModal> : <div></div>}
             {activeButton === "Edit Your Profile" ? 
             <div className={"tw-grid tw-grid-cols-3 tw-mt-[40px] tw-mb-[70px] tw-border-solid tw-border-[1px] tw-border-[#ECECEC] tw-p-[40px] tw-gap-[30px] tw-rounded-[10px] max-mindesk:tw-grid-cols-1 "}>
             <div className='tw-flex tw-flex-col tw-gap-[20px]'>
@@ -104,7 +116,7 @@ const EditSetting = () => {
                     <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
                 </span>
                 <span className='tw-h-[97px] tw-flex-col tw-flex tw-justify-end'>
-                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png'/>
+                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png' onClick={() => handleClick()}/>
                 </span>
             </div>
         </div>
@@ -143,7 +155,7 @@ const EditSetting = () => {
                     <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
                 </span>
                 <span className='tw-h-[97px] tw-flex-col tw-flex tw-justify-end'>
-                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png'/>
+                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png' onClick={() => handleClick()}/>
                 </span>
             </div>
         </div>}
