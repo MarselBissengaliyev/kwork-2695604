@@ -20,93 +20,133 @@ const EditSetting = () => {
             </div>
         </PageDirect>
         <Container className={""}>
-            <div className={"tw-grid tw-grid-cols-3 tw-mt-[40px] tw-mb-[70px] tw-border-solid tw-border-[1px] tw-border-[#ECECEC] tw-p-[40px] tw-gap-[30px] tw-rounded-[10px] max-mindesk:tw-grid-cols-1    "}>
-                <div className='tw-flex tw-flex-col tw-gap-[20px]'>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Name</p>
-                            <p className='tw-text-red-500'>*</p>
-                        </div>
-                        <Input value={"Andrey Fadion"} className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
-                    </span>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Country</p>
-                            <p className='tw-text-red-500'>*</p>
-                        </div>
-                        <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]"/>
-                    </span>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Address</p>
-                            
-                        </div>
-                        <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" />
-                    </span>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Timezone</p>
-                            {/* <p className='tw-text-red-500'>*</p> */}
-                        </div>
-                        <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]"/>
-                    </span>
-                </div>
-                <div className='tw-flex tw-flex-col tw-gap-[20px]'>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Phone</p>
-                            <p className='tw-text-red-500'>*</p>
-                        </div>
-                        <InputPhone className={"phoneEdit"}/>
-                    </span>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>State</p>
-                            <p className='tw-text-red-500'>*</p>
-                        </div>
-                        <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
-                    </span>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Zip Code</p>
-                            {/* <p className='tw-text-red-500'>*</p> */}
-                        </div>
-                        <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
-                    </span>
-                    <span className='tw-flex tw-justify-end tw-items-center tw-text-center tw-h-[97px] max-mindesk:tw-hidden'>
-                       <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
-                    </span>
-                </div>
-                <div className='tw-flex tw-flex-col tw-gap-[20px]'>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Email</p>
-                            <p className='tw-text-red-500'>*</p>
-                        </div>
-                        <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
-                    </span>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>City</p>
-                            <p className='tw-text-red-500'>*</p>
-                        </div>
-                        <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
-                    </span>
-                    <span>
-                        <div className='tw-flex'>
-                            <p className='tw-text-[#191919]'>Company</p>
-                            {/* <p className='tw-text-red-500'>*</p> */}
-                        </div>
-                        <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
-                    </span>
-                    <span className='tw-hidden max-mindesk:tw-block tw-justify-end tw-items-center tw-text-center'>
-                        <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
-                    </span>
-                    <span className='tw-h-[97px] tw-flex-col tw-flex tw-justify-end'>
-                        <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png'/>
-                    </span>
-                </div>
+            {activeButton === "Edit Your Profile" ? 
+            <div className={"tw-grid tw-grid-cols-3 tw-mt-[40px] tw-mb-[70px] tw-border-solid tw-border-[1px] tw-border-[#ECECEC] tw-p-[40px] tw-gap-[30px] tw-rounded-[10px] max-mindesk:tw-grid-cols-1 "}>
+            <div className='tw-flex tw-flex-col tw-gap-[20px]'>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Name</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input value={"Andrey Fadion"} className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                </span>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Country</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]"/>
+                </span>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Address</p>
+                        
+                    </div>
+                    <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" />
+                </span>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Timezone</p>
+                        {/* <p className='tw-text-red-500'>*</p> */}
+                    </div>
+                    <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]"/>
+                </span>
             </div>
+            <div className='tw-flex tw-flex-col tw-gap-[20px]'>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Phone</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <InputPhone className={"phoneEdit"}/>
+                </span>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>State</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                </span>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Zip Code</p>
+                        {/* <p className='tw-text-red-500'>*</p> */}
+                    </div>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                </span>
+                <span className='tw-flex tw-justify-end tw-items-center tw-text-center tw-h-[97px] max-mindesk:tw-hidden'>
+                   <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
+                </span>
+            </div>
+            <div className='tw-flex tw-flex-col tw-gap-[20px]'>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Email</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                </span>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>City</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                </span>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Company</p>
+                        {/* <p className='tw-text-red-500'>*</p> */}
+                    </div>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                </span>
+                <span className='tw-hidden max-mindesk:tw-block tw-justify-end tw-items-center tw-text-center'>
+                    <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
+                </span>
+                <span className='tw-h-[97px] tw-flex-col tw-flex tw-justify-end'>
+                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png'/>
+                </span>
+            </div>
+        </div>
+        : 
+        <div className='tw-grid tw-grid-cols-3 tw-mt-[40px] tw-mb-[70px] tw-border-solid tw-border-[1px] tw-border-[#ECECEC] tw-p-[40px] tw-gap-[30px] tw-rounded-[10px] max-mindesk:tw-grid-cols-1'>
+            <div>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Current Password</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input className="tw-h-[64px] !tw-pl-[30px]"/>
+                </span>
+            </div>
+            <div>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>New Password</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input className="tw-h-[64px] !tw-pl-[30px]"/>
+                </span>
+                <span className='tw-flex tw-justify-end tw-items-center tw-text-center tw-h-[97px] max-mindesk:tw-hidden'>
+                   <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
+                </span>
+            </div>
+            <div>
+                <span>
+                    <div className='tw-flex'>
+                        <p className='tw-text-[#191919]'>Confirm New Password</p>
+                        <p className='tw-text-red-500'>*</p>
+                    </div>
+                    <Input  className="tw-h-[64px] !tw-pl-[30px]"/>
+                </span>
+                <span className='tw-hidden max-mindesk:tw-block tw-justify-end tw-items-center tw-text-center'>
+                    <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
+                </span>
+                <span className='tw-h-[97px] tw-flex-col tw-flex tw-justify-end'>
+                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png'/>
+                </span>
+            </div>
+        </div>}
         </Container>
     </div>
   )
