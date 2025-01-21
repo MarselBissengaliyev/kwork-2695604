@@ -4,7 +4,7 @@ import "react-phone-input-2/lib/style.css";
 
 import "../styles/input-phone.scss";
 
-const InputPhone = () => {
+const InputPhone = ({className}) => {
   const [phone, setPhone] = useState("");
 
   return (
@@ -14,6 +14,7 @@ const InputPhone = () => {
       onChange={phone => setPhone(phone)}
       inputClass="phone-input"
       placeholder="Enter your phone number"
+      className={className}
     />
   );
 };
