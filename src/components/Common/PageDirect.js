@@ -14,6 +14,7 @@ const routeOverrides = {
   myBids: 'My Bids',
   transactions: "Transactions",
   Watchlist: "Watchlist",
+  makeDeposite: "Make Deposite"
 };
 
 const PageDirect = ({ pageTitle, children, className }) => {
