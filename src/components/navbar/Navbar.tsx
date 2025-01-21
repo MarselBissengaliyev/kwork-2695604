@@ -62,7 +62,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, isOpen, toggle, children }) 
   </div>
 );
 export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) => {
-  // console.log(makes);
   const route = usePathname();
   const t = useTranslations();
   const [menuState, dispatch] = useReducer(reducer, initialState);

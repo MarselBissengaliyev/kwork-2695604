@@ -1,97 +1,76 @@
-import ButtonMain from "@/components/button/ButtonMain";
 import React, { useState } from "react";
+import ButtonMain from "@/components/button/ButtonMain";
 
-interface IPagination{
-  currentPage: number;
-  totalPages: number;
-  onPageChange?: (page: number) => void;
+interface Bid {
+  lot: number;
+  vin: string;
+  vehicle: string;
+  saleDate: string;
+  state: string;
+  bidStatus: string;
+  myMaxBid: number;
+  saleType: string | undefined;
 }
 
-const PaginationBlock = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-} : IPagination) => {
+interface CurrentBids {
+  bids: Bid[];
+  results: number;
+  pages: number;
+}
+
+interface PaginationProps {
+  currentBids: CurrentBids;
+}
+
+const PaginationBlock = ({ currentBids }: PaginationProps) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handlePageChange = (page: number) => {
+    if (page > 0 && page <= currentBids.pages) {
+      setCurrentPage(page);
+    }
+  };
+
+  // Функция для вычисления номеров страниц
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxVisiblePages = 5;
-
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-      }
-    } else {
-      if (currentPage <= Math.ceil(maxVisiblePages / 2)) {
-        for (let i = 1; i <= maxVisiblePages; i++) {
-          pageNumbers.push(i);
-        }
-      } else if (currentPage > totalPages - Math.floor(maxVisiblePages / 2)) {
-        for (let i = totalPages - maxVisiblePages + 1; i <= totalPages; i++) {
-          pageNumbers.push(i);
-        }
-      } else {
-        const startPage = currentPage - Math.floor(maxVisiblePages / 2);
-        for (let i = startPage; i < startPage + maxVisiblePages; i++) {
-          pageNumbers.push(i);
-        }
-      }
+    for (let i = 1; i <= currentBids.pages; i++) {
+      pageNumbers.push(i);
     }
-
     return pageNumbers;
   };
 
-  const [hoveredPage, setHoveredPage] = useState<number | null>(null);
-
-  const handleMouseOver = (page: number) => {
-    setHoveredPage(page);
-  };
-
-  const handleMouseOut = () => {
-    setHoveredPage(null);
-  };
+  // Получаем текущие лоты для отображения на текущей странице
+  const currentPageBids = currentBids.bids.slice((currentPage - 1) * 1, currentPage * 1); // по одному лоту на странице
 
   return (
-    <div className="pagination tw-gap-2">
-      <ButtonMain
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        text={"Previous"}
-        color="grey"
-        variant="outlined"
-        classNames={`${currentPage === 1 ? "tw-color-grey" : 'tw-color-black'}`}
-      />
-      {getPageNumbers().map((page) => (
+    <div>
+      {/* Пагинация */}
+      <div className="pagination tw-gap-2">
         <ButtonMain
-          key={page}
-          onClick={() => onPageChange(page)}
-          classNames={page === currentPage ? "tw-bg-[#1E3866]" : ""}
-          text={page}
-          variant={
-            page === currentPage || hoveredPage === page ? 'solid' : "outlined"
-          }
-          color={
-            page === currentPage ? "blue" : 
-            hoveredPage === page ? "blue" : "grey"
-          }
-          onMouseOver={() => handleMouseOver(page)}
-          onMouseOut={handleMouseOut}
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          text={"Previous"}
+          color="grey"
+          variant="outlined"
         />
-      ))}
-      {totalPages > 5 && currentPage < totalPages - 2 && (
-        <>
-          <ButtonMain color="grey" variant="outlined" text={"..."}></ButtonMain>
-          <ButtonMain onClick={() => onPageChange(totalPages)} text={totalPages} color="grey" variant="outlined">
-          </ButtonMain>
-        </>
-      )}
-      <ButtonMain
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        text="Next"
-        color="grey"
-        variant="outlined"
-        classNames={`${currentPage === totalPages ? "tw-color-grey" : 'tw-color-black'}`}
-      />
+        {getPageNumbers().map((page) => (
+          <ButtonMain
+            key={page}
+            onClick={() => handlePageChange(page)}
+            text={page.toString()}
+            variant={page === currentPage ? "solid" : "outlined"}
+            color={page === currentPage ? "blue" : "grey"}
+          />
+        ))}
+        <ButtonMain
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === currentBids.pages}
+          text="Next"
+          color="grey"
+          variant="outlined"
+        />
+      </div>
     </div>
   );
 };

@@ -2,6 +2,17 @@ import { Container } from '@/components/Container';
 import React from 'react';
 import PaginationBlock from '../paginationBlock/PaginationBlock';
 
+interface Bid {
+  lot: number;
+  vin: string;
+  vehicle: string;
+  saleDate: string;
+  state: string;
+  bidStatus: string;
+  myMaxBid: number;
+  saleType: string | undefined;
+}
+
 interface Column {
   header: string;
   accessor: string;
@@ -10,7 +21,11 @@ interface Column {
 }
 
 interface TableProps {
-  data: Array<Record<string, any>>;
+  data: {
+    bids: Bid[];
+    results: number;
+    pages: number;
+  };
   columns: Column[];
   rowKey: string; // уникальный ключ для каждой строки
 }
@@ -36,7 +51,7 @@ const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row) => (
+            {data.bids.map((row) => (
               <tr
                 key={row[rowKey]} 
                 className="tw-bg-[#ffffff] tw-rounded-[10px] tw-h-[80px]"
@@ -58,7 +73,7 @@ const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
         </table>
       </div>
       <div className="tw-mt-5">
-        <PaginationBlock currentPage={1} totalPages={10} />
+        <PaginationBlock currentBids={data} />
       </div>
     </Container>
   );

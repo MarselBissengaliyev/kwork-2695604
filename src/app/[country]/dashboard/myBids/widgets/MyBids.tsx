@@ -10,7 +10,7 @@ import DashBoardTable from '../../entities/myBidsTable/DashboardTable'
 import DashBoardTableMoblie from '../../entities/myBidsTable/DashboardTableMobile'
 import DashboardModal from '../../entities/Modal/DashboardModal'
 
-const MyBids = () => {
+const MyBids = ({ wonBids, currentBids, lostBids }) => {
   const [hoveredPage, setHoveredPage] = useState<string | null>("grey");
 
   const [shipping, setShipping] = useState({})
@@ -29,80 +29,6 @@ const MyBids = () => {
     setAddShipping((prevShipping) => (prevShipping === rowOrderId ? null : rowOrderId));
   }
 
-  const mockData =  [
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      state: '$16,000',
-      bidStatus: 'OutBid',
-      myMaxBid: '$15,000',
-      saleType: 'Pure Sale',
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      state: '$16,000',
-      bidStatus: 'OutBid',
-      myMaxBid: '$15,000',
-      saleType: 'Pure Sale',
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      state: '$16,000',
-      bidStatus: 'OutBid',
-      myMaxBid: '$15,000',
-      saleType: 'Pure Sale',
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      state: '$16,000',
-      bidStatus: 'OutBid',
-      myMaxBid: '$15,000',
-      saleType: 'Pure Sale',
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      state: '$16,000',
-      bidStatus: 'OutBid',
-      myMaxBid: '$15,000',
-      saleType: 'Pure Sale',
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      state: '$16,000',
-      bidStatus: 'OutBid',
-      myMaxBid: '$15,000',
-      saleType: 'Pure Sale',
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      state: '$16,000',
-      bidStatus: 'OutBid',
-      myMaxBid: '$15,000',
-      saleType: 'Pure Sale',
-    },
-    
-  ];
-
   const columns = [
     { header: 'Lot', accessor: 'lot' },
     { header: 'VIN', accessor: 'vin' },
@@ -119,72 +45,6 @@ const MyBids = () => {
     { header: 'Sale Type', accessor: 'saleType' },
   ];
 
-  const wonBids = [
-    {
-      "date": "11.05.2022",
-      "orderId": "1425646",
-      "vin": "5UXZV4C5XD0B14800",
-      "model": "2021 BMW X3",
-      "price": 16000,
-      "shippingStatus": "",
-      "saledate": "11.05.2022",
-      "paymentStatus": "Not paid",
-      "shippingAdded": "",
-      "deliveryStatus": "-"
-    },
-    {
-      "date": "11.05.2022",
-      "orderId": "1425645",
-      "vin": "5UXZV4C5XD0B14800",
-      "model": "2021 BMW X3",
-      "price": 16000,
-      "shippingStatus": "",
-      "saledate": "11.05.2022",
-      "paymentStatus": "Not paid",
-      "shippingAdded": "",
-      "deliveryStatus": "-"
-    },
-    {
-      "date": "11.05.2022",
-      "orderId": "1425644",
-      "vin": "5UXZV4C5XD0B14800",
-      "model": "2021 BMW X3",
-      "price": 16000,
-      "shippingStatus": "",
-      "saledate": "11.05.2022",
-      "paymentStatus": "Not paid",
-      "shippingAdded": "Cleveland - Odessa",
-      "shippingCost": 1000,
-      "deliveryStatus": "Confirmed"
-    },
-    {
-      "date": "11.05.2022",
-      "orderId": "1425643",
-      "vin": "5UXZV4C5XD0B14800",
-      "model": "2021 BMW X3",
-      "price": 16000,
-      "shippingStatus": "",
-      "saledate": "11.05.2022",
-      "paymentStatus": "Paid",
-      "shippingAdded": "Cleveland - Odessa",
-      "shippingCost": 1000,
-      "deliveryStatus": "Sent"
-    },
-    {
-      "saledate": "11.05.2022",
-      "orderId": "1425642",
-      "vin": "5UXZV4C5XD0B14800",
-      "model": "2021 BMW X3",
-      "price": 16000,
-      "shippingStatus": "Download",
-      "duedate": "11.05.2022",
-      "paymentStatus": "Paid",
-      "shippingAdded": "Cleveland - Odessa",
-      "shippingCost": 1000,
-      "deliveryStatus": "Delivered"
-    }
-  ]
-  
 
   const wonColums = [
     {header: "Sale Date", accessor: "date"},
@@ -222,80 +82,6 @@ const MyBids = () => {
     {header: "Shipping Price", accessor: "shippingCost"},
     {header: "Shipping Status", accessor: "deliveryStatus"},
   ]
-
-  const LostBids=  [
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      finalBid: '$15,000',
-      state: '$16,000',
-      myMaxBid: '$15,000',
-      comment: "High price"
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      finalBid: '$15,000',
-      state: '$16,000',
-      myMaxBid: '$15,000',
-      comment: "High price"
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      finalBid: '$15,000',
-      state: '$16,000',
-      myMaxBid: '$15,000',
-      comment: "High price"
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      finalBid: '$15,000',
-      state: '$16,000',
-      myMaxBid: '$15,000',
-      comment: "High price"
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      finalBid: '$15,000',
-      state: '$16,000',
-      myMaxBid: '$15,000',
-      comment: "High price"
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      finalBid: '$15,000',
-      state: '$16,000',
-      myMaxBid: '$15,000',
-      comment: "High price"
-    },
-    {
-      lot: '1425645',
-      vin: '5UXZV4C5XD0B14800',
-      vehicle: '2021 BMW X3',
-      saleDate: '24.03.2022',
-      finalBid: '$15,000',
-      state: '$16,000',
-      myMaxBid: '$15,000',
-      comment: "High price"
-    },
-    
-  ];
 
   const lostColumns = [
     { header: 'Sale Date', accessor: 'saleDate' },
@@ -354,10 +140,10 @@ const MyBids = () => {
         </div>
         </PageDirect>
         <div className='max-mindesk:tw-hidden'>
-          <DashBoardTable data={activeButton === "Current Bids" ? mockData : activeButton === "Won Bids" ? wonBids : activeButton === "Lost Bids" ? LostBids : [] } columns={ activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : [] } rowKey="vin" />;
+          <DashBoardTable data={activeButton === "Current Bids" ? currentBids : activeButton === "Won Bids" ? wonBids : activeButton === "Lost Bids" ? lostBids : [] } columns={ activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : [] } rowKey="vin" />;
         </div>
         <div className='mindesk:tw-hidden'>
-          <DashBoardTableMoblie data={activeButton === "Current Bids" ? mockData : activeButton === "Won Bids" ? wonBids : activeButton === "Lost Bids" ? LostBids : [] } columns={ activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : [] }  rowKey="vin" />
+          <DashBoardTableMoblie data={activeButton === "Current Bids" ? currentBids : activeButton === "Won Bids" ? wonBids : activeButton === "Lost Bids" ? lostBids : [] } columns={ activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : [] }  rowKey="vin" />
         </div>
     </Container>
   )

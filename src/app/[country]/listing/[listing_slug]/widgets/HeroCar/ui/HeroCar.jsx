@@ -33,7 +33,6 @@ import InfoIcon from "../../../shared/img/InfoIcon";
 import CopyText from "@/components/ListItem/models/CopyText";
 
 const HeroCar = ({ listing }) => {
-  console.log("MAKE=", listing);
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
   }, []);

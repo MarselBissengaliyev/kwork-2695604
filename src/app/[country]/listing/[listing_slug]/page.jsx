@@ -59,8 +59,6 @@ const page = async ({ params }) => {
   const listing = await getListingBySlug(slug);
   const currentUser = await getCurrentUser();
   const otherCars =  await getOtherLotsAndSoldCars(slug);
-  console.log("NIGGA=",otherCars)
-  console.log("USER", currentUser)
   // const 
 
   return (

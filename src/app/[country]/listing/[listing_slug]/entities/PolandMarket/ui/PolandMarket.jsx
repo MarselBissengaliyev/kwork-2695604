@@ -9,7 +9,6 @@ import ListItem from "@/components/ListItem/index";
 import InfoIcon from "../../../shared/img/InfoIcon";
 
 const PolandMarket = ({ marketInfo, listing }) => {
-  console.log("MARKETINFO=", marketInfo)
   const poland = [
     {
       label: "Средняя цена",

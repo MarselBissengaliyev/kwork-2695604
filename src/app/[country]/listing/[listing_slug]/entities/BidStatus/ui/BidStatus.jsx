@@ -8,7 +8,6 @@ import ListItem from "@/components/ListItem";
 import CounterCar from "../../CounterCar/ui/CounterCar";
 
 const BidStatus = ({ children, listing }) => {
-  console.log(listing.make_id)
   return (
     <div className="case-border tw-w-full tw-mb-[19px]">
       <div className="tw-flex tw-justify-between tw-px-[30px] tw-mb-[30px] tw-py-[28px] tw-bg-[#F9F9F9]">
