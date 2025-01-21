@@ -7,10 +7,28 @@ import "./style.scss"
 import ButtonMain from '@/components/button/ButtonMain'
 
 const MakeDeposite = () => {
-  const [value, setValue] = useState(65000); // Начальное значение
+  const [value, setValue] = useState(10000); // Начальное значение
+  const [deposit, setDeposit] = useState(4000); 
   const [position, setPosition] = useState(50); // Начальная позиция (в %)
+  const balance = 10000;
+
+  const handleSliderChange = (newValue) => {
+    setValue(newValue);
+
+    if (newValue <= 10000) {
+      setDeposit(4000);
+    } else if (newValue > 10000 && newValue <= 50000) {
+      setDeposit(2500);
+    } else if (newValue > 50000) {
+      setDeposit(5000);
+    }
+  };
+
+  // Расчет Total Due
+  const totalDue = Math.max(0, deposit - balance);
 
   const handleChange = (e) => {
+    handleSliderChange(e.target.value)
     const newValue = e.target.value;
     setValue(newValue);
 
@@ -36,7 +54,7 @@ const MakeDeposite = () => {
         <div className='tw-bg-[#F9F9F9] tw-p-[40px]'>
           <h3 className='tw-text-[#191919] tw-text-center'>Move slider to set your Buying Power</h3>
           <div className='range-container'>
-            <input type="range" id="volume" name="volume" min="0" max="130000" step="10000" className='tw-w-full tw-mt-[40px] rangeer' value={value} onChange={handleChange}/>
+            <input type="range" id="volume" name="volume" min="0" max="200000" step="10000" className='tw-w-full tw-mt-[40px] rangeer' value={value} onChange={handleChange}/>
             <span
                 className="range-value"
                 style={{
@@ -44,11 +62,11 @@ const MakeDeposite = () => {
                   transform: "translateX(-50%)",
                 }}
               >
-                {value == 0 || value == 130000 ? "" : formatCurrency(value)}
+                {value == 0 || value == 200000 ? "" : formatCurrency(value)}
               </span>
             <div className='tw-w-full tw-flex tw-justify-between'>
               <span id="rangeValue">$0</span> 
-              <span id='rangeValue'>$130,000</span>
+              <span id='rangeValue'>$200,000</span>
             </div>
 
           </div>
@@ -56,22 +74,52 @@ const MakeDeposite = () => {
         <div className='tw-p-[40px]'>
           <div className='tw-flex tw-justify-between max-minilaptop:tw-flex-col'>
             <p> Number of vehicles to bid</p>
-            <div className='tw-flex tw-gap-[10px]'>
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carb.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carb.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carb.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carb.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carb.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carg.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carg.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carg.png" alt="" />
-              <img className='tw-max-w-[30px] tw-w-full tw-h-[20px]' src="/images/makedeposite/icons/carg.png" alt="" />
+            <div className="tw-flex tw-gap-[10px] tw-max-w-[350px] tw-flex-wrap">
+              {/* Логика отображения синих иконок */}
+              {value <= 10000 &&
+                [...Array(5)].map((_, index) => (
+                  <img
+                    key={`blue-${index}`}
+                    className="tw-max-w-[30px] tw-w-full tw-h-[20px]"
+                    src="/images/makedeposite/icons/carb.png"
+                    alt="Blue"
+                  />
+                ))}
+              {value > 10000 && value <= 50000 &&
+                [...Array(10)].map((_, index) => (
+                  <img
+                    key={`blue-${index}`}
+                    className="tw-max-w-[30px] tw-w-full tw-h-[20px]"
+                    src="/images/makedeposite/icons/carb.png"
+                    alt="Blue"
+                  />
+                ))}
+              {value > 50000 &&
+                [...Array(20)].map((_, index) => (
+                  <img
+                    key={`blue-${index}`}
+                    className="tw-max-w-[30px] tw-w-full tw-h-[20px]"
+                    src="/images/makedeposite/icons/carb.png"
+                    alt="Blue"
+                  />
+                ))}
+
+              {/* Логика отображения серых иконок (если требуется) */}
+              {value <= 10000 &&
+                [...Array(4)].map((_, index) => (
+                  <img
+                    key={`gray-${index}`}
+                    className="tw-max-w-[30px] tw-w-full tw-h-[20px]"
+                    src="/images/makedeposite/icons/carg.png"
+                    alt="Gray"
+                  />
+                ))}
             </div>
           </div>
         </div>
         <div className='tw-p-[40px]'>
           <p>Secruty Deposit</p>
-          <Input placeholder={"$0"} className={"tw-text-center tw-h-[64px] tw-text-[26px]"} type={"number"}/>
+          <Input placeholder={"$0"} value={deposit} className={"tw-text-center tw-h-[64px] tw-text-[26px]"} type={"number"}/>
         </div>
         <div className='tw-p-[40px] tw-text-center tw-items-center tw-flex tw-flex-col tw-justify-center tw-gap-[35px]'>
           <h3>Payment Options</h3>
@@ -86,7 +134,7 @@ const MakeDeposite = () => {
         </div>
         <div className='tw-p-[40px] tw-flex tw-justify-between tw-mt-[65px]'>
           <p className='tw-m-0 tw-text-[18px] tw-text-[#191919]'>Total Due</p>
-          <p className='tw-m-0 tw-text-[#3E73CF] tw-text-[20px]'>$ 4,000</p>
+          <p className='tw-m-0 tw-text-[#3E73CF] tw-text-[20px]'>$ {totalDue.toLocaleString()}</p>
         </div>
         <div className='tw-p-[40px]'>
           <ButtonMain text='Send me Invoice to Email' fullWidth={true} classNames='tw-h-[64px]'/> 
