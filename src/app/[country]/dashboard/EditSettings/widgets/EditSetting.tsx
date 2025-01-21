@@ -35,21 +35,21 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Country</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]"/>
+                    <Input className=" tw-h-[64px] !tw-pl-[30px]"/>
                 </span>
                 <span>
                     <div className='tw-flex'>
                         <p className='tw-text-[#191919]'>Address</p>
                         
                     </div>
-                    <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" />
+                    <Input className=" tw-h-[64px] !tw-pl-[30px]" />
                 </span>
                 <span>
                     <div className='tw-flex'>
                         <p className='tw-text-[#191919]'>Timezone</p>
                         {/* <p className='tw-text-red-500'>*</p> */}
                     </div>
-                    <Input className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]"/>
+                    <Input className=" tw-h-[64px] !tw-pl-[30px]"/>
                 </span>
             </div>
             <div className='tw-flex tw-flex-col tw-gap-[20px]'>
