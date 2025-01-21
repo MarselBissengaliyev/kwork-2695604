@@ -7,7 +7,7 @@ import InfoIcon from "../../../shared/img/InfoIcon";
 import ListItem from "@/components/ListItem";
 import CounterCar from "../../CounterCar/ui/CounterCar";
 
-const BidStatus = ({ children }) => {
+const BidStatus = ({ children, listing }) => {
   return (
     <div className="case-border tw-w-full tw-mb-[19px]">
       <div className="tw-flex tw-justify-between tw-px-[30px] tw-mb-[30px] tw-py-[28px] tw-bg-[#F9F9F9]">
@@ -17,7 +17,7 @@ const BidStatus = ({ children }) => {
             <InfoIcon />
           </span>
         </span>
-        <span className="tw-text-[20px] tw-text-[#E3433A]">Outbid</span>
+        <span className="tw-text-[20px] tw-text-[#E3433A]">{listing.status}</span>
       </div>
       <div className="tw-px-[15px] tablet:tw-px-[30px] tw-pb-[28px]">
         <div className="tw-flex tw-flex-wrap  tablet:tw-gap-[95px] desktop:tw-gap-0 tw-mb-[22px]">
@@ -46,7 +46,7 @@ const BidStatus = ({ children }) => {
             <span className="tw-text-[#E3433A] tw-text-[26px] tw-font-[500px]">00:00:56</span>
           </div>
         </div>
-        <ListItem label="Location" value="TN - Knoxville" icon={""} />
+        <ListItem label="Location" value={listing.location} icon={""} />
         <div className="tw-flex tw-flex-col tw-mt-[20px] tw-mb-[20px]">
           <span className="tw-text-[13px] tablet:tw-text-[16px] tw-text-[#191919]">Place Your Maximum Bid</span>
           <span className="tw-text-[#8C8C8C] tw-text-[16px]">($25 Bid Increments)</span>
