@@ -9,6 +9,7 @@ import BackButton from '@/components/button/BackButton'
 import DashBoardTable from '../../entities/myBidsTable/DashboardTable'
 import DashBoardTableMoblie from '../../entities/myBidsTable/DashboardTableMobile'
 import DashboardModal from '../../entities/Modal/DashboardModal'
+import Input from '@/components/Input'
 
 const MyBids = () => {
   const [hoveredPage, setHoveredPage] = useState<string | null>("grey");
@@ -213,7 +214,61 @@ const MyBids = () => {
          <DashboardModal closeModal={()=> handleAddShippingClick(row.orderId)}>
           <h2>Add Shipping</h2>
           <p>Your Vehicle will be delivered</p>
-
+          <div className='tw-flex tw-flex-col tw-gap-[20px]'>
+            <span>
+                <div className='tw-flex'>
+                    <p className='tw-text-[#191919]'>From</p>
+                    <p className='tw-text-red-500'>*</p>
+                </div>
+                <Input value={"CLEVLAND WEST, OH"} className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+            </span>
+            <span>
+                <div className='tw-flex'>
+                    <p className='tw-text-[#191919]'>To</p>
+                    {/* <p className='tw-text-red-500'>*</p> */}
+                </div>
+                <div className="tw-relative tw-w-full">
+                    <select className="tw-w-full tw-h-[64px] tw-px-[30px] tw-border tw-border-gray-300 tw-rounded-full tw-text-base tw-bg-white tw-appearance-none tw-pr-10">
+                        <option value="Ukraine" selected>Ukraine</option>
+                        <option value="Russia">Amerika</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="USA">USA</option>
+                    </select>
+                    <div className="tw-absolute tw-inset-y-0 tw-right-3 tw-flex tw-items-center tw-pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="tw-h-4 tw-w-4 tw-text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                {/* <Input className=" tw-h-[64px] !tw-pl-[30px]"/> */}
+            </span>
+            <span>
+                <div className='tw-flex'>
+                    <p className='tw-text-[#191919]'>Port</p>
+                    {/* <p className='tw-text-red-500'>*</p> */}
+                </div>
+                <div className="tw-relative tw-w-full">
+                    <select className="tw-w-full tw-h-[64px] tw-px-[30px] tw-border tw-border-gray-300 tw-rounded-full tw-text-base tw-bg-white tw-appearance-none tw-pr-10">
+                        <option value="Ukraine" selected>0000</option>
+                        <option value="Russia">2025</option>
+                        <option value="Kazakhstan">6000</option>
+                        <option value="USA">2500</option>
+                    </select>
+                    <div className="tw-absolute tw-inset-y-0 tw-right-3 tw-flex tw-items-center tw-pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="tw-h-4 tw-w-4 tw-text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                {/* <Input className=" tw-h-[64px] !tw-pl-[30px]"/> */}
+            </span>
+            <span>
+              <p className='tw-text-[16px]'>Cleveland - Odessa</p>
+            </span>
+            <span>
+              <ButtonMain text='Send Request' icon='/images/dashboard/icons/send.png' fullWidth={true} classNames='tw-gap-[10px] tw-h-[64px]'/>
+            </span>
+          </div>
          </DashboardModal>
         )}
         </div> 
