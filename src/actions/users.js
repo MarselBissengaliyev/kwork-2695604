@@ -30,6 +30,7 @@ export async function getCurrentUser() {
         created_at: true,
         updated_at: true,
         profile: true,
+        bids: true,
       },
     })
 

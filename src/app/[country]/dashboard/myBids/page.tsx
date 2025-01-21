@@ -40,7 +40,7 @@ const page = () => {
       vehicle: '2021 BMW X3',
       saleDate: '24.03.2022',
       state: '$16,000',
-      bidStatus: 'OutBid',
+      bidStatus: '  ',
       myMaxBid: '$15,000',
       saleType: 'Pure Sale',
     },

@@ -14,94 +14,93 @@ import { Container } from '@/components/Container'
 
 const page = async () => {
   // const { users, listings, blogPosts, reviews } = await getDataBriefStats()
-  const mockUsers =
-    {
-      id: 1,
-      email: "user1@example.com",
-      password: "hashed_password_1",
-      name: "John Doe",
-      email_verified: false,
-      image: "https://example.com/images/user1.png",
-      role: "USER",
-      balance:10000,
-      profile: {
-        bio: "Loves auctions and bidding.",
-        phone: "+1234567890",
-      },
-      listings: [
-        { id: 101, title: "Antique Vase", price: 200 },
-        { id: 102, title: "Vintage Watch", price: 500 },
-      ],
-      wonLots: [
-        { id: 201, title: "Rare Book", price: 300 },
-      ],
-      bids: [
-        { 
-          "id": 301, 
-          "amount": 100, 
-          "lot_id": 101, 
-          "user_id": 1, 
-          "status": "CURRENT", 
-          "created_at": "2025-01-17T12:00:00Z"
-        },
-        { 
-          "id": 302, 
-          "amount": 150, 
-          "lot_id": 102, 
-          "user_id": 2, 
-          "status": "CURRENT", 
-          "created_at": "2025-01-16T15:30:00Z"
-        },
-        { 
-          "id": 303, 
-          "amount": 120, 
-          "lot_id": 103, 
-          "user_id": 3, 
-          "status": "WON", 
-          "created_at": "2025-01-15T09:00:00Z"
-        }
-      ],
-      favourites: [
-        { id: 401, listingId: 103, title: "Modern Painting" },
-      ],
-      reviews: [
-        { id: 501, rating: 5, comment: "Great experience!" },
-      ],
-      blogPosts: [
-        { id: 601, title: "My Bidding Journey", content: "Lorem ipsum dolor sit amet..." },
-      ],
-      transactions: [
-        { id: 701, amount: 100, status: "Completed" },
-        { id: 702, amount: 150, status: "Pending" },
-      ],
-      created_at: new Date("2023-01-01T12:00:00Z"),
-      updated_at: new Date(),
-    };
+  // const mockUsers =
+  //   {
+  //     id: 1,
+  //     email: "user1@example.com",
+  //     password: "hashed_password_1",
+  //     name: "John Doe",
+  //     email_verified: false,
+  //     image: "https://example.com/images/user1.png",
+  //     role: "USER",
+  //     balance:10000,
+  //     profile: {
+  //       bio: "Loves auctions and bidding.",
+  //       phone: "+1234567890",
+  //     },
+  //     listings: [
+  //       { id: 101, title: "Antique Vase", price: 200 },
+  //       { id: 102, title: "Vintage Watch", price: 500 },
+  //     ],
+  //     wonLots: [
+  //       { id: 201, title: "Rare Book", price: 300 },
+  //     ],
+  //     bids: [
+  //       { 
+  //         "id": 301, 
+  //         "amount": 100, 
+  //         "lot_id": 101, 
+  //         "user_id": 1, 
+  //         "status": "CURRENT", 
+  //         "created_at": "2025-01-17T12:00:00Z"
+  //       },
+  //       { 
+  //         "id": 302, 
+  //         "amount": 150, 
+  //         "lot_id": 102, 
+  //         "user_id": 2, 
+  //         "status": "CURRENT", 
+  //         "created_at": "2025-01-16T15:30:00Z"
+  //       },
+  //       { 
+  //         "id": 303, 
+  //         "amount": 120, 
+  //         "lot_id": 103, 
+  //         "user_id": 3, 
+  //         "status": "WON", 
+  //         "created_at": "2025-01-15T09:00:00Z"
+  //       }
+  //     ],
+  //     favourites: [
+  //       { id: 401, listingId: 103, title: "Modern Painting" },
+  //     ],
+  //     reviews: [
+  //       { id: 501, rating: 5, comment: "Great experience!" },
+  //     ],
+  //     blogPosts: [
+  //       { id: 601, title: "My Bidding Journey", content: "Lorem ipsum dolor sit amet..." },
+  //     ],
+  //     transactions: [
+  //       { id: 701, amount: 100, status: "Completed" },
+  //       { id: 702, amount: 150, status: "Pending" },
+  //     ],
+  //     created_at: new Date("2023-01-01T12:00:00Z"),
+  //     updated_at: new Date(),
+  //   };
+  const currentUser = await getCurrentUser({
+    bids: true,
+  });
+  // const bids = 
+  console.log('DASHBORD=', currentUser)
 
-    const biddingLimit = mockUsers.balance <= 1000 
+    const biddingLimit = (currentUser?.balance || 0) <= 1000 
   ? 10000 
-  : mockUsers.balance <= 2500 
+  : currentUser.balance <= 2500 
   ? 50000 
   : 200000;
   
-  const usedSum = mockUsers.bids
+  const usedSum = currentUser.bids
   .filter(bid => bid.status === 'CURRENT')  // фильтруем по статусу "CURRENT"
   .reduce((sum, bid) => sum + bid.amount, 0);
 
 
-  const wonBids = mockUsers.bids.filter(bid => bid.status === "WON");
+  const wonBids = currentUser.bids.filter(bid => bid.status === "WON");
   const wonBidsCount = wonBids.length;
 
-  const currentBids = mockUsers.bids.filter(bid => bid.status === "CURRENT");
+  const currentBids = currentUser.bids.filter(bid => bid.status === "CURRENT");
   const outbiddedBidsCount = currentBids.filter(bid => bid.Current_bid > bid.amount).length;
 
   const availableSum = biddingLimit - usedSum;
-
-  const currentUser = await getCurrentUser()
-  const isAdmin = currentUser?.role === 'ADMIN'
-  // if (!isAdmin) {
-  //   redirect('/')
-  // }
   return (
     <>
       <PageDirect
@@ -160,7 +159,7 @@ const page = async () => {
         </Container>
           <div className=' tw-bg-[#F9F9F9] tw-mt-[50px] tw-py-[70px]'>
             <Container className='tw-grid tw-grid-cols-4 tw-gap-[20px] max-laptop:tw-grid-cols-2 max-tablet:tw-grid-cols-1'>
-              <DashboardMoneyCard text={"Your Deposite"} price={`$${Number(mockUsers.balance).toLocaleString('en-US')}`} icon="/images/dashboard/icons/wallet.png" infotext={"Need More? Please, add your deposit"} secInfoText={"Also you can refund your deposit here."}/>
+              <DashboardMoneyCard text={"Your Deposite"} price={`$${Number(currentUser.balance).toLocaleString('en-US')}`} icon="/images/dashboard/icons/wallet.png" infotext={"Need More? Please, add your deposit"} secInfoText={"Also you can refund your deposit here."}/>
               <DashboardMoneyCard text="Bidding Limit" price={`$${biddingLimit.toLocaleString('en-US')}`} icon="/images/dashboard/icons/revenue.png" infotext={"Your bidding limit"}/>
               <DashboardMoneyCard text="Used" price={`$${usedSum.toLocaleString('en-Us')}`} icon="/images/dashboard/icons/dollar.png" infotext={"Your used bidding limit"}/>
               <DashboardMoneyCard text="Available" price={`$${availableSum.toLocaleString('en-US')}`}  icon="/images/dashboard/icons/give-money.png" infotext={"Your available bidding limit"}/>
