@@ -6,7 +6,7 @@ import "./car.scss";
 import HeroCar from "./widgets/HeroCar";
 import HowItWorks from "./widgets/HowItWorks";
 import { NearestLots } from "@/containers/home";
-import { getListingBySlug } from "@/actions/listings";
+import { getListingBySlug, getOtherLotsAndSoldCars } from "@/actions/listings";
 import { getCurrentUser } from "@/actions/users";
 import { getMakeById, getMarketInfoById } from "@/actions/makes";
 
@@ -58,6 +58,8 @@ const page = async ({ params }) => {
 
   const listing = await getListingBySlug(slug);
   const currentUser = await getCurrentUser();
+  const otherCars =  await getOtherLotsAndSoldCars(slug);
+  console.log("NIGGA=",otherCars)
   console.log("USER", currentUser)
   // const 
 
@@ -72,7 +74,7 @@ const page = async ({ params }) => {
       </div>
       <div className="tw-py-[10px]">
         <hr className="tw-my-[21px]" />
-        <NearestLots title={"Similar Vehicles"} lots={lots} />;
+        <NearestLots title={"Similar Vehicles"} lots={otherCars.activeListings} />;
       </div>
     </>
   );
