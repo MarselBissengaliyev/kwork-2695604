@@ -142,8 +142,8 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
           </div>
           {currentUser ?
           <div className="tw-flex tw-gap-3 ">
-            <ButtonMain icon="/images/navbar/icons/usicon.png" color="grey" variant="outlinend" classNames="border-1 p-3 text-center tw-w-[50px] max-desktop:tw-hidden" />
-            <ButtonMain onClick={() => setProfile((e) => !e)} icon="/images/navbar/icons/profileicon.png" color="grey" variant="outlinend" classNames={`border-1 p-3 text-center tw-w-[50px] tw-ml-4 ${css.profile}`} />
+            <ButtonMain icon="/images/navbar/icons/usicon.png" color="grey" variant="outline" classNames="border-1 p-3 text-center tw-w-[50px] max-desktop:tw-hidden" />
+            <ButtonMain onClick={() => setProfile((e) => !e)} icon="/images/navbar/icons/profileicon.png" color="grey" variant="outline" classNames={`border-1 p-3 text-center tw-w-[50px] tw-ml-4 ${css.profile}`} />
             {profile ? (
         isMobile ? (
           // Модальное окно для мобильной версии

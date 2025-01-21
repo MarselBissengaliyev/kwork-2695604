@@ -66,7 +66,7 @@ const MyBids = ({ wonBids, currentBids, lostBids }) => {
           <div className='tw-absolute tw-top-[150px] tw-z-10 tw-max-w-[270px] tw-w-full tw-bg-white tw-shadow-lg tw-p-[30px] tw-flex tw-flex-col tw-gap-[15px]'>
             <p className='tw-leading-4  '>Are you sure don't need shipping?</p>
             <ButtonMain text={"Yes, i don't need"} fullWidth={true}/>
-            <ButtonMain text={"Cancel"} fullWidth={true} color="grey" variant='outlined' onClick={()=> handleShippingClick(row.orderId)}/>
+            <ButtonMain text={"Cancel"} fullWidth={true} color="grey" variant='outline' onClick={()=> handleShippingClick(row.orderId)}/>
           </div>
         )}
         {row.orderId === addShipping && (
@@ -99,7 +99,7 @@ const MyBids = ({ wonBids, currentBids, lostBids }) => {
 
 
   return (
-    <Container>
+    <Container className={""}>
         <PageDirect
         pageTitle={"My Bids"}
         className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}
@@ -111,7 +111,7 @@ const MyBids = ({ wonBids, currentBids, lostBids }) => {
               <ButtonMain 
                 classNames={'tw-w-[170px] tw-flex-shrink-0'} 
                 color={activeButton === 'Current Bids' ? 'blue' : 'grey'} 
-                variant='outlined' 
+                variant='outline' 
                 text="Current Bids" 
                 onClick={() => handleButtonClick('Current Bids')}
               />
@@ -119,7 +119,7 @@ const MyBids = ({ wonBids, currentBids, lostBids }) => {
               <ButtonMain 
                 classNames={'tw-w-[170px] tw-flex-shrink-0'} 
                 color={activeButton === 'Won Bids' ? 'blue' : 'grey'} 
-                variant='outlined' 
+                variant='outline' 
                 text="Won Bids" 
                 onClick={() => handleButtonClick('Won Bids')}
               />
@@ -127,14 +127,14 @@ const MyBids = ({ wonBids, currentBids, lostBids }) => {
               <ButtonMain 
                 classNames={'tw-w-[170px] tw-flex-shrink-0'} 
                 color={activeButton === 'Lost Bids' ? 'blue' : 'grey'} 
-                variant='outlined' 
+                variant='outline' 
                 text="Lost Bids" 
                 onClick={() => handleButtonClick('Lost Bids')}
               />
             </div>
             <div className='tw-flex tw-gap-2'>
             <a href="../EditSettings">
-          <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
+          <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outline' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
         </a>    
             </div>
         </div>

@@ -32,7 +32,7 @@ interface TableProps {
 
 const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
   return (
-    <Container>
+    <Container className={""}>
       <div style={{ width: '100%' }}>
         <table 
           className="tw-w-full tw-border-separate tw-border-spacing-y-4 tw-relative"

@@ -52,14 +52,14 @@ const PaginationBlock = ({ currentBids }: PaginationProps) => {
           disabled={currentPage === 1}
           text={"Previous"}
           color="grey"
-          variant="outlined"
+          variant="outline"
         />
         {getPageNumbers().map((page) => (
           <ButtonMain
             key={page}
             onClick={() => handlePageChange(page)}
             text={page.toString()}
-            variant={page === currentPage ? "solid" : "outlined"}
+            variant={page === currentPage ? "solid" : "outline"}
             color={page === currentPage ? "blue" : "grey"}
           />
         ))}
@@ -68,7 +68,7 @@ const PaginationBlock = ({ currentBids }: PaginationProps) => {
           disabled={currentPage === currentBids.pages}
           text="Next"
           color="grey"
-          variant="outlined"
+          variant="outline"
         />
       </div>
     </div>
