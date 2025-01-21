@@ -26,7 +26,7 @@ const ButtonMain = ({
   variant = "solid",
   color = "blue",
   icon = "",
-  number ,
+  number=0 ,
   hoverEffect = true, 
   hoverColor = "#FFFFFF",
   disabled = false,
