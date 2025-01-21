@@ -186,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
               <li>Watchlist</li>
               <li>My Bids</li>
               <li>Notifications</li>
-              <p className="tw-text-[18px] tw-m-0">Edit profile <img alt="edit" src="/images/navbar/icons/edit.png" /></p>
+              <p className="tw-text-[18px] tw-m-0">Edit profile <img alt="edit" src="./images/navbar/icons/edit.png" /></p>
               <p className="tw-text-[18px]">Logout <img alt="exit" src="/images/navbar/icons/exit.png" /></p>
             </ul>
             
