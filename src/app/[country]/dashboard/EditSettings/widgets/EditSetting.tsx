@@ -7,9 +7,14 @@ import Input from '@/components/Input'
 import InputPhone from '@/components/InputPhone'
 import React, { useState } from 'react'
 import "./styles.scss"
+import DashboardModal from '../../entities/Modal/DashboardModal'
 
 const EditSetting = () => {
     const [activeButton, setActiveButton] = useState('Edit Your Profile');
+    const [click, setClick] = useState(false)
+    const handleClick = () =>{
+        setClick((prev) => !prev)
+    }
   return (
     <div>
         <PageDirect pageTitle={"Edit Settings"} className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}>
@@ -20,6 +25,13 @@ const EditSetting = () => {
             </div>
         </PageDirect>
         <Container className={""}>
+            {click ? <DashboardModal closeModal={()=> handleClick()} >
+
+                        <div className='tw-flex tw-gap-[20px] tw-justify-center'>
+                            <img src='/images/dashboard/icons/tick.png' className='tw-h-[40px] tw-w-[40px]'/>
+                            <h2>Profile updated</h2>
+                        </div>
+                    </DashboardModal> : <div></div>}
             {activeButton === "Edit Your Profile" ? 
             <div className={"tw-grid tw-grid-cols-3 tw-mt-[40px] tw-mb-[70px] tw-border-solid tw-border-[1px] tw-border-[#ECECEC] tw-p-[40px] tw-gap-[30px] tw-rounded-[10px] max-mindesk:tw-grid-cols-1 "}>
             <div className='tw-flex tw-flex-col tw-gap-[20px]'>
@@ -35,7 +47,20 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Country</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input className=" tw-h-[64px] !tw-pl-[30px]"/>
+                    <div className="tw-relative tw-w-full">
+                        <select className="tw-w-full tw-h-[64px] tw-px-[30px] tw-border tw-border-gray-300 tw-rounded-full tw-text-base tw-bg-white tw-appearance-none tw-pr-10">
+                            <option value="Ukraine" selected>Ukraine</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Kazakhstan">Kazakhstan</option>
+                            <option value="USA">USA</option>
+                        </select>
+                        <div className="tw-absolute tw-inset-y-0 tw-right-3 tw-flex tw-items-center tw-pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="tw-h-4 tw-w-4 tw-text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    {/* <Input className=" tw-h-[64px] !tw-pl-[30px]"/> */}
                 </span>
                 <span>
                     <div className='tw-flex'>
@@ -49,7 +74,20 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Timezone</p>
                         {/* <p className='tw-text-red-500'>*</p> */}
                     </div>
-                    <Input className=" tw-h-[64px] !tw-pl-[30px]"/>
+                    <div className="tw-relative tw-w-full">
+                        <select className="tw-w-full tw-h-[64px] tw-px-[30px] tw-border tw-border-gray-300 tw-rounded-full tw-text-base tw-bg-white tw-appearance-none tw-pr-10">
+                            <option value="Ukraine" selected>Eastern European Time</option>
+                            <option value="Russia">Eastern Asian Time</option>
+                            <option value="Kazakhstan">Kazakhstan</option>
+                            <option value="USA">USA</option>
+                        </select>
+                        <div className="tw-absolute tw-inset-y-0 tw-right-3 tw-flex tw-items-center tw-pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="tw-h-4 tw-w-4 tw-text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    {/* <Input className=" tw-h-[64px] !tw-pl-[30px]"/> */}
                 </span>
             </div>
             <div className='tw-flex tw-flex-col tw-gap-[20px]'>
@@ -104,7 +142,7 @@ const EditSetting = () => {
                     <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
                 </span>
                 <span className='tw-h-[97px] tw-flex-col tw-flex tw-justify-end'>
-                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png'/>
+                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png' onClick={() => handleClick()}/>
                 </span>
             </div>
         </div>
@@ -143,7 +181,7 @@ const EditSetting = () => {
                     <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
                 </span>
                 <span className='tw-h-[97px] tw-flex-col tw-flex tw-justify-end'>
-                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png'/>
+                    <ButtonMain text='Upload Profile' fullWidth={true} classNames='tw-h-[64px] tw-gap-[10px]' icon='/images/dashboard/icons/update.png' onClick={() => handleClick()}/>
                 </span>
             </div>
         </div>}
