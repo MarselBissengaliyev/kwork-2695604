@@ -41,8 +41,8 @@ const WatchListCard = ({card}: ICard) => {
     }
 
   return (
-    <div className='tw-max-w-[370px] tw-w-full' style={{border: "1px solid #ECECEC", borderRadius: "10px"}}>
-        <CarCardsSlider height='260px' imglinks={card.imgs}/>
+    <div className='tw-max-w-[370px] tw-w-full tw-static' style={{border: "1px solid #ECECEC", borderRadius: "10px"}}>
+        <CarCardsSlider height='260px' imglinks={card.imgs} deletes={true}/>
         <div className='tw-flex tw-flex-col tw-gap-[20px] tw-p-[30px]'>
             <div className='tw-flex tw-gap-[70px]'>
                 <p className='tw-text-[18px] tw-text-[#3E73CF] tw-leading-5 tw-font-medium'>{card.title}</p>
