@@ -54,7 +54,7 @@ const MakeDeposite = () => {
         <div className='tw-bg-[#F9F9F9] tw-p-[40px]'>
           <h3 className='tw-text-[#191919] tw-text-center'>Move slider to set your Buying Power</h3>
           <div className='range-container'>
-            <input type="range" id="volume" name="volume" min="0" max="200000" step="10000" className='tw-w-full tw-mt-[40px] rangeer' value={value} onChange={handleChange}/>
+            <input type="range" id="volume" name="volume" min="0" max="200000" step="10000" className='tw-w-full tw-mt-[40px] rangeer range-slider' value={value} onChange={handleChange}/>
             <span
                 className="range-value"
                 style={{
