@@ -49,10 +49,7 @@ const SearchCardMobile = () => {
   };
 
   return (
-    <div
-      className="tw-max-w-[370px] tw-w-full tw-mt-[30px]"
-      style={{ border: "1px solid #ECECEC", borderRadius: "10px" }}
-    >
+    <div className="tw-max-w-[370px] tw-w-full" style={{ border: "1px solid #ECECEC", borderRadius: "10px" }}>
       {/* <CarCardsSlider height="260px" imglinks={card.imgs} /> */}
       <div className="tw-flex tw-flex-col tw-gap-[20px] tw-p-[30px]">
         <div className="tw-flex tw-gap-[20px]">
@@ -79,8 +76,8 @@ const SearchCardMobile = () => {
         <div className="tw-flex tw-flex-col tw-gap-[13px]">
           <ListItem label={"Lot"} value={<CopyText text={"30874242"} />} icon="" />
           <ListItem label={"Vin"} value={<CopyText text={"1FALP6536WK134349"} />} icon="" />
-          {card.map(list => (
-            <ListItem label={list.label} value={list.value} icon="" />
+          {card.map((list, idx) => (
+            <ListItem key={idx} label={list.label} value={list.value} icon="" />
           ))}
         </div>
 

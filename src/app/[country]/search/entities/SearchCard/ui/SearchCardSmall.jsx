@@ -46,7 +46,7 @@ const info = [
 
 const SearchCardSmall = () => {
   return (
-    <div className="case-border case-card tw-mt-[60px]">
+    <div className="case-border case-card">
       <div className="case-card_item1">
         <div className="tw-max-w-[301px]">
           <img className="tw-rounded-[10px]" src="https://images.drive.ru/i/0/5f27e548ec05c40632000017.jpeg" alt="" />

@@ -123,11 +123,11 @@ const FilterCard = () => {
           </div>
           <button onClick={toggleOptions} className=" tw-bg-transparent tw-text-[16px] tw-mt-[20px]">
             {!openOptions ? (
-              <span className="tw-flex tw-gap-[10px]">
+              <span className="tw-flex tw-items-center tw-gap-[10px]">
                 <Options /> Advanced Options
               </span>
             ) : (
-              <span className="tw-flex tw-gap-[10px]">
+              <span className="tw-flex tw-items-center tw-gap-[10px]">
                 <OptionsOpen /> Hide Advanced Options
               </span>
             )}

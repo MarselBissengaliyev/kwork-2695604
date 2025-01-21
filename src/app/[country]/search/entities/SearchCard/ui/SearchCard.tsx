@@ -33,9 +33,9 @@ const SearchCard = () => {
   //   },
   // ];
   return (
-    <div className="search_car tw-mt-[50px]">
-      <div className="search_car_inner case-border">
-        <div className="search_car_inner_img">
+    <div className="search_car">
+      <div className="search_car_inner tw-w-full case-border">
+        <div className="search_car_inner_img tw-w-full">
           <img src="https://images.drive.ru/i/0/5f27e548ec05c40632000017.jpeg" alt="" />
           {/* <CarCardsSlider width="370px" height="260px" imglinks={imgs} /> */}
         </div>

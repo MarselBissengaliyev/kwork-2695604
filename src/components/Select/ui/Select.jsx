@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
 
 import "../styles/select.scss";
 
+// eslint-disable-next-line react/prop-types
 const Select = ({ options, name, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
@@ -41,11 +43,13 @@ const Select = ({ options, name, onChange }) => {
       </div>
       {isOpen && (
         <ul className="custom-dropdown-list">
-          {options.map(option => (
-            <li key={option} className="custom-dropdown-item" onClick={() => handleSelect(option)}>
-              {option}
-            </li>
-          ))}
+          {options.map((option, idx) => {
+            return (
+              <li key={idx} className="custom-dropdown-item" onClick={() => handleSelect(option)}>
+                {option}
+              </li>
+            );
+          })}
         </ul>
       )}
       <input type="hidden" name={name} value={selected} /> {/* Скрытое поле для передачи значения */}
