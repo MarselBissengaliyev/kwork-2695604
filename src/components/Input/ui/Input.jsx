@@ -2,7 +2,7 @@
 
 import "../styles/input.scss";
 
-export default function Input({ value, type, name, onChange, className, placeholder, pattern, maxLength }) {
+export default function Input({ value, type, name, onChange, className, placeholder, pattern, maxLength,disabled }) {
   return (
     <input
       id={name}
@@ -14,6 +14,7 @@ export default function Input({ value, type, name, onChange, className, placehol
       placeholder={placeholder}
       pattern={pattern}
       maxLength={maxLength}
+      disabled={disabled}
     />
   );
 }

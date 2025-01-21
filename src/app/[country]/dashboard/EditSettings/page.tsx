@@ -1,8 +1,11 @@
 import React from 'react'
+import EditSetting from './widgets/EditSetting'
 
 const page = () => {
   return (
-    <div>Edit Settings</div>
+    <div>
+      <EditSetting/>
+    </div>
   )
 }
 
