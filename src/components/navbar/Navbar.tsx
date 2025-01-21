@@ -176,8 +176,10 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
                   icon="/images/navbar/icons/staricon.png"
                 />
               </div>
-              <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} fullWidth={true} classNames={'tw-gap-2 tw-mt-[16px]'}/>
-            </div>
+              <a href="/makeDeposite">
+                <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} fullWidth={true} classNames={'tw-gap-2 tw-mt-[16px]'}/>
+              </a>
+               </div>
             <ul className="tw-mt-[40px] tw-list-none tw-p-0 tw-text-[#191919] tw-text-[18px] tw-gap-10 tw-flex tw-flex-col tw-p-[20px]">
             <a href="/dashboard" className="tw-text-[#191919]">Dashboard</a>
               <a href="/dashboard/transactions" className="tw-text-[#191919]">Transactions</a>
@@ -186,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
               <a href="/dashboard/Watchlist" className="tw-text-[#191919]">Watchlist</a>
               <a href="/dashboard/myBids" className="tw-text-[#191919]">My Bids</a>
               <li>Norifications</li>
-              <p className="tw-text-[18px] tw-m-0">Edit profile <img alt="edit" src="/images/navbar/icons/edit.png" /></p>
+              <a href="/dashboard/EditSettings" className="tw-text-[#191919] tw-text-[18px] tw-m-0">Edit profile <img alt="edit" src="/images/navbar/icons/edit.png" /></a>
               <p className="tw-text-[18px]">Logout <img alt="exit" src="/images/navbar/icons/exit.png" /></p>
             </ul>
             
@@ -212,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
               <a href="/dashboard/myBids" className="tw-text-[#191919]">My Bids</a>
               <li>Norifications</li>
             </ul>
-            <p>Edit profile <img alt="edit" src="/images/navbar/icons/edit.png" /></p>
+            <a href="/dashboard/EditSettings" className="tw-text-[#191919] tw-text-[18px] tw-m-0">Edit profile <img alt="edit" src="/images/navbar/icons/edit.png" /></a>
             <p>Logout <img alt="exit" src="/images/navbar/icons/exit.png" /></p>
           </div>
         )
@@ -229,7 +231,9 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
                 icon="/images/navbar/icons/staricon.png"
               />
             </div>
-            <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} classNames={'tw-gap-2 max-desktop:tw-hidden'}/>
+            <a href="/makeDeposite">
+              <ButtonMain icon="/images/navbar/icons/walletmoneyIcon.png" color="blue" text={"Make Deposite"} classNames={'tw-gap-2 max-desktop:tw-hidden'}/>
+            </a>
           </div>
           : <div className={css.auth}>
             <a href="/login" className={css.login}>

@@ -5,11 +5,13 @@ import React from 'react'
 const MakeDeposite = () => {
   return (
     <>
-    <PageDirect pageTitle={"Make Deposite"}>
-            
+    <PageDirect className={""} pageTitle={"Make Deposite"}>
+      <></>
     </PageDirect>
-    <Container>
-
+    <Container className={"tw-grid tw-grid-cols-3"}>
+      <></>
+      <div>Hello</div>
+      <div>Hello</div>
     </Container>
     </>
   )

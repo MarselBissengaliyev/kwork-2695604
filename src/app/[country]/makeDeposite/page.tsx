@@ -1,5 +1,5 @@
 import React from 'react'
-import MakeDeposite from './widgets/MakeDeposite'
+import { MakeDeposite } from './widgets/MakeDeposite'
 
 const page = () => {
   return (
