@@ -2,20 +2,36 @@
 
 import React from 'react';
 
+interface IBtnMain {
+  text: string;
+  classNames?: string;
+  onClick?: () => void;
+  fullWidth?: boolean;
+  variant?: 'solid' | 'outline';
+  color?: 'blue' | 'green' |'red' | 'grey';
+  icon?: string;
+  number?: number;
+  hoverEffect?: boolean;
+  hoverColor?: string;
+  disabled?: boolean;
+  onMouseOver?: () => void;
+  onMouseOut?: () => void;
+}
+
 const ButtonMain = ({
-  text,
-  classNames,
-  onClick,
+  text = "",
+  classNames = "btn",
+  onClick = () => {},
   fullWidth = false,
   variant = "solid",
   color = "blue",
-  icon,
-  number,
+  icon = "",
+  number ,
   hoverEffect = true, 
-  hoverColor,
-  disabled,
-  onMouseOver,
-  onMouseOut
+  hoverColor = "#FFFFFF",
+  disabled = false,
+  onMouseOver = () => {},
+  onMouseOut = () => {}
 }) => {
   // Цветовые значения
   const colorMap = {

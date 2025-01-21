@@ -33,11 +33,11 @@ const CarCardsSlider = ({width = "100%",height = "100%",imglinks}: ICarSlider) =
             >
             {imglinks.map((img) =>
               <SwiperSlide key={img.src}>
-              <img
-                src={img.src}
-                alt={img.alt ?? "car"}
-                style={{ width: '100%', height: '100%',objectFit: 'cover' }}
-              />
+                <img
+                  src={img.src}
+                  alt={img.alt ?? "car"}
+                  style={{ width: '100%', height: '100%',objectFit: 'cover' }}
+                />
             </SwiperSlide>
             )}
             
