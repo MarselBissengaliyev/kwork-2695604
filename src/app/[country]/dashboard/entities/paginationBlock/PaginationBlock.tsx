@@ -13,7 +13,7 @@ interface Bid {
 }
 
 interface CurrentBids {
-  bids: Bid[];
+  array: any[];
   results: number;
   pages: number;
 }
@@ -41,7 +41,7 @@ const PaginationBlock = ({ currentBids }: PaginationProps) => {
   };
 
   // Получаем текущие лоты для отображения на текущей странице
-  const currentPageBids = currentBids.bids.slice((currentPage - 1) * 1, currentPage * 1); // по одному лоту на странице
+  const currentPageBids = currentBids.array.slice((currentPage - 1) * 1, currentPage * 1); // по одному лоту на странице
 
   return (
     <div>

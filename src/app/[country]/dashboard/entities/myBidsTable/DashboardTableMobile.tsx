@@ -21,7 +21,7 @@ interface Bid {
 
 interface TableProps {
   data: {
-    bids: Bid[];
+    array: any[];
     results: number;
     pages: number;
   };
@@ -33,7 +33,7 @@ const DashBoardTableMoblie: React.FC<TableProps> = ({ data, columns, rowKey }) =
   return (
     <Container className={""}>
       <div style={{ width: '100%' }}>
-        {data.bids.map((row) => (
+        {data.array.map((row) => (
           <div
             key={row[rowKey]}
             className="tw-border-[1px] tw-border-black tw-bg-white tw-rounded-lg tw-p-4 tw-mb-4"

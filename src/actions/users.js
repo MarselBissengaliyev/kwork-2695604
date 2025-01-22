@@ -135,6 +135,71 @@ export const getUserBids = async (userId, query) => {
   }
 };
 
+export const getUserTransactions = async (userId, query) => {
+  try {
+    const { page = 1, take = 20, status } = query || {};
+
+    const pagination = {
+      page: page > 1 ? page : 1,
+      pages: 0,
+      take,
+      skip: page > 1 ? take * (page - 1) : 0,
+    };
+
+    const where = {
+      user_id: userId,
+      ...(status ? { status } : {}), // Фильтр по статусу, если указан
+    };
+
+    // Подсчитываем общее количество транзакций
+    const totalTransactions = await prisma.transaction.count({ where });
+
+    // Получаем список транзакций с количеством комментариев
+    const transactions = await prisma.transaction.findMany({
+      where,
+      take: pagination.take,
+      skip: pagination.skip,
+      orderBy: {
+        date: "desc",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            _count: {
+              select: {
+                reviews: true, // Количество комментариев пользователя
+              },
+            },
+          },
+        },
+      },
+    });
+
+    // Обновляем количество страниц
+    pagination.pages = Math.ceil(totalTransactions / pagination.take);
+
+    // Форматируем транзакции для фронтенда
+    const formattedTransactions = transactions.map(transaction => ({
+      id: transaction.id,
+      date: transaction.date.toISOString(),
+      balance: transaction.balance,
+      status: transaction.status,
+      comments: transaction.user?._count?.comments || 0, // Добавляем количество комментариев
+    }));
+
+    return {
+      transactions: formattedTransactions,
+      total: totalTransactions,
+      pages: pagination.pages,
+    };
+  } catch (error) {
+    throw new Error(error.message || "An error occurred while fetching transactions.");
+  }
+};
+
+
+
 export const getUsers = async query => {
   try {
     const { page = 1, take = 10 } = query || {};

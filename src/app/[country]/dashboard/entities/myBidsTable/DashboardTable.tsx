@@ -22,7 +22,7 @@ interface Column {
 
 interface TableProps {
   data: {
-    bids: Bid[];
+    array: any[];
     results: number;
     pages: number;
   };
@@ -31,6 +31,7 @@ interface TableProps {
 }
 
 const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
+  console.log("data=", data)
   return (
     <Container className={""}>
       <div style={{ width: '100%' }}>
@@ -51,7 +52,7 @@ const DashBoardTable: React.FC<TableProps> = ({ data, columns, rowKey }) => {
             </tr>
           </thead>
           <tbody>
-            {data.bids.map((row) => (
+            {data.array.map((row) => (
               <tr
                 key={row[rowKey]} 
                 className="tw-bg-[#ffffff] tw-rounded-[10px] tw-h-[80px]"
