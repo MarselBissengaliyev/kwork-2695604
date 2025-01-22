@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import DashBoardTable from '../../entities/myBidsTable/DashboardTable'
 import DashBoardTableMoblie from '../../entities/myBidsTable/DashboardTableMobile'
-const Transactions = () => {
+const Transactions = ({ paidTransactions, requestARefundTransactions, refundTransactions }) => {
   const router = useRouter();
 
   const goBack = () => {
@@ -19,170 +19,29 @@ const Transactions = () => {
     setActiveButton(buttonName);
   }
 
-  const mockData = [
-    {
-      type: 'Invoice',
-      date: '21.03.2022',
-      number: '#1248',
-      dueDate: '24.03.2022',
-      balance: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      type: 'Invoice',
-      date: '21.03.2022',
-      number: '#1248',
-      dueDate: '24.03.2022',
-      balance: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      type: 'Invoice',
-      date: '21.03.2022',
-      number: '#1248',
-      dueDate: '24.03.2022',
-      balance: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      type: 'Invoice',
-      date: '21.03.2022',
-      number: '#1248',
-      dueDate: '24.03.2022',
-      balance: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      type: 'Invoice',
-      date: '21.03.2022',
-      number: '#1248',
-      dueDate: '24.03.2022',
-      balance: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      type: 'Invoice',
-      date: '21.03.2022',
-      number: '#1248',
-      dueDate: '24.03.2022',
-      balance: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      type: 'Invoice',
-      date: '21.03.2022',
-      number: '#1248',
-      dueDate: '24.03.2022',
-      balance: '$150',
-      total: '$15,000',
-      status: 'Not paid',
-    },
-  ];
-
   const columns = [
-    { header: 'Type', accessor: 'type' },
+    { header: 'Type', accessor: 'status' },
     { header: 'Date', accessor: 'date' },
-    { header: '#', accessor: 'number' },
-    { header: 'Due Date', accessor: 'dueDate' },
+    { header: '#', accessor: 'id' },
+    { header: 'Due Date', accessor: 'date' },
     { header: 'Balance', accessor: 'balance' },
-    { header: 'Total', accessor: 'total' },
+    { header: 'Total', accessor: 'balance' },
     {
       header: 'Status',
       accessor: 'status',
       render: (value) => (
         <span style={{ color: value === 'Paid' ? 'green' : 'red' }}>{value}</span>
       ),
-    },
-  ];
-
-  const transactionData = [
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Not paid',
-    },
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Paid',
-    },
-    {
-      id: '175611',
-      date: '21.03.2022',
-      type: '#1248',
-      comments: 'Return my money!',
-      amount: '$150',
-      total: '$15,000',
-      status: 'Paid',
     },
   ];
 
   const tableColumns = [
     { header: 'ID', accessor: 'id' },
     { header: 'Transaction Date', accessor: 'date' },
-    { header: 'Transaction Type', accessor: 'type' },
+    { header: 'Transaction Type', accessor: 'status' },
     { header: 'Comments', accessor: 'comments' },
-    { header: 'Amount', accessor: 'amount' },
-    { header: 'Total', accessor: 'total' },
+    { header: 'Amount', accessor: 'balance' },
+    { header: 'Total', accessor: 'balance' },
     {
       header: 'Status',
       accessor: 'status',
@@ -192,60 +51,9 @@ const Transactions = () => {
     },
   ];
 
-  const refundData = [
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-    {
-      transactionDate: '21.03.2022',
-      refundAmount: '$150',
-      comments: 'Return my money!',
-      status: 'Paid',
-    },
-  ];
-
   const refundColumns = [
-    { header: 'Transaction Date', accessor: 'transactionDate' },
-    { header: 'Refund Amount', accessor: 'refundAmount' },
+    { header: 'Transaction Date', accessor: 'date' },
+    { header: 'Refund Amount', accessor: 'balance' },
     { header: 'Comments', accessor: 'comments' },
     {
       header: 'Status',
@@ -317,12 +125,12 @@ const Transactions = () => {
         <DashBoardTable
           data={
             activeButton === "Transaction List"
-              ? { bids: [], pages: 0, results: 0 }
+              ? { ...paidTransactions, array: paidTransactions.transactions }
               : activeButton === "Request a Refund"
-                ? { bids: [], pages: 1, results: [].length }
+                ? { ...requestARefundTransactions, array: requestARefundTransactions.transactions }
                 : activeButton === "Refund"
-                  ? { bids: [], pages: 1, results: [].length }
-                  : { bids: [], pages: 0, results: 0 }
+                  ? { ...refundTransactions, array: refundTransactions.transactions }
+                  : { array: [], pages: 0, results: 0 }
           }
           columns={
             activeButton === "Transaction List"

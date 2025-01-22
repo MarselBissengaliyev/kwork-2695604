@@ -98,11 +98,11 @@ const ButtonMain = ({
       {text}
 
       {/* Если есть number, отображаем его */}
-      {number !== undefined && (
+      {/* {number !== undefined && (
         <div style={numberStyles}>
           {number}
         </div>
-      )}
+      )} */}
 
       {/* Если есть icon, отображаем его */}
       {icon && (

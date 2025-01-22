@@ -129,7 +129,7 @@ const WatchlistBlock = () => {
 
         <div className='tw-flex tw-justify-center tw-items-center tw-my-[35px]'>
             <PaginationBlock currentBids={{
-                bids: [],
+                array: [],
                 pages: 1,
                 results: 1,
             }}/>
