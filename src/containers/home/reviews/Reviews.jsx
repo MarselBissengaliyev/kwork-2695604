@@ -5,7 +5,7 @@ import css from "./Reviews.module.scss";
 import ReactStars from "react-rating-stars-component";
 import QuoteIcon from "./icons/QuoteIcon";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
+// import "swiper/swiper-bundle.min.css";
 import { Navigation, Pagination } from "swiper";
 
 const Reviews = () => {
