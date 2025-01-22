@@ -8,7 +8,7 @@ import StarFav from "@/app/[country]/listing/[listing_slug]/shared/img/StarFav";
 import ButtonMain from "@/components/button/ButtonMain";
 import ListItem from "@/components/ListItem";
 import CopyText from "@/components/ListItem/models/CopyText";
-import CarCardsSlider from "@/components/Sliders/CarCardsSlider/CarCardsSlider";
+// import CarCardsSlider from "@/components/Sliders/CarCardsSlider/CarCardsSlider";
 import React, { useState } from "react";
 
 import Clock from "../../../shared/img/Clock";

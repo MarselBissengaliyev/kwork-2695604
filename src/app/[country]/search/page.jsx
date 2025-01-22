@@ -150,6 +150,7 @@ const page = () => {
       </h2>
       <div className="tw-flex tw-gap-[50px] tw-mx-[20px] tablet:tw-mx-[30px] desktop:tw-mx-auto desktop:tw-container tw-mt-[40px] ">
         <div className="tw-hidden desktop:tw-block">
+          {/* desktop */}
           <FilterCard />
         </div>
         <div className="tw-w-full ">
@@ -159,6 +160,7 @@ const page = () => {
           <div className="tw-flex tw-w-full tw-items-center  tw-my-[30px] tw-justify-between">
             <div className="tw-flex tw-gap-[20px] tw-items-center">
               <span className="tw-block desktop:tw-hidden">
+                {/* laptop sidebar */}
                 <SideFilter />
               </span>
               <span className="tw-hidden minilaptop:tw-block">Showing result: 1-24 of 48</span>
