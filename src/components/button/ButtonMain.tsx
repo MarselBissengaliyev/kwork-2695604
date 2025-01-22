@@ -3,7 +3,7 @@
 import React from 'react';
 
 interface IBtnMain {
-  text: string;
+  text: React.ReactNode | string;
   classNames?: string;
   onClick?: () => void;
   fullWidth?: boolean;
