@@ -1,2 +1,2 @@
-import FilterCard from "./ui/FilterCard";
-export default FilterCard;
+import FilterCardContent from "./ui/FilterCardContent";
+export default FilterCardContent;

@@ -4,10 +4,14 @@ import SearchCard from "./entities/SearchCard/ui/SearchCard";
 import SearchCardSmall from "./entities/SearchCard/ui/SearchCardSmall";
 import SearchCardMobile from "./entities/SearchCard/ui/SearchCardMobile";
 
+import PaginationBlock from "../dashboard/entities/paginationBlock/PaginationBlock";
+
 import Select from "@/components/Select";
 
 import FilterCard from "./entities/FilterCard/ui/FilterCard";
 import QuickFilters from "./entities/QuickFilters";
+
+import SideFilter from "./entities/SideFilter";
 
 const page = () => {
   return (
@@ -20,8 +24,14 @@ const page = () => {
           <QuickFilters />
         </div>
         <div className="tw-flex tw-w-full tw-items-center  tw-my-[30px] tw-justify-between">
-          <span>Showing result: 1-24 of 48</span>
-          <div className="tw-max-w-[255px] tw-w-full">
+          <div className="tw-flex tw-gap-[20px] tw-items-center">
+            <span className="tw-block desktop:tw-hidden">
+              <SideFilter />
+            </span>
+            <span className="tw-hidden minilaptop:tw-block">Showing result: 1-24 of 48</span>
+          </div>
+
+          <div className="tw-max-w-[195px] tablet:tw-max-w-[255px] tw-w-full">
             <Select options={["2021", "2022"]} name={"Sort by date"} />
           </div>
         </div>
@@ -29,19 +39,18 @@ const page = () => {
           <div className="tw-hidden tw-flex-col tw-gap-[20px]  desktop:tw-flex">
             {/* desktop */}
             <SearchCard />
-            <SearchCard />
-            <SearchCard />
           </div>
-          <div className="tw-hidden laptop:tw-flex desktop:tw-hidden tw-flex-col tw-gap-[20px]">
+          <div className="tw-hidden minilaptop:tw-flex desktop:tw-hidden tw-flex-col tw-gap-[20px]">
             {/* latop */}
             <SearchCardSmall />
-            <SearchCardSmall />
-            <SearchCardSmall />
           </div>
-          <div className="tw-block laptop:tw-hidden">
+          <div className="tw-flex tw-flex-col tw-gap-[20px] minilaptop:tw-hidden">
             {/* mobile */}
             <SearchCardMobile card={[]} />
           </div>
+        </div>
+        <div className="tw-mt-[50px]">
+          <PaginationBlock currentPage={1} totalPages={10} />
         </div>
       </div>
     </div>

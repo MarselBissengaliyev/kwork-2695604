@@ -1,17 +1,14 @@
+"use client";
 import ButtonMain from "@/components/button/ButtonMain";
 import React, { useState } from "react";
 
-interface IPagination{
+interface IPagination {
   currentPage: number;
   totalPages: number;
   onPageChange?: (page: number) => void;
 }
 
-const PaginationBlock = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-} : IPagination) => {
+const PaginationBlock = ({ currentPage, totalPages, onPageChange }: IPagination) => {
   const getPageNumbers = () => {
     const pageNumbers = [];
     const maxVisiblePages = 5;
@@ -58,21 +55,16 @@ const PaginationBlock = ({
         text={"Previous"}
         color="grey"
         variant="outlined"
-        classNames={`${currentPage === 1 ? "tw-color-grey" : 'tw-color-black'}`}
+        classNames={`${currentPage === 1 ? "tw-color-grey" : "tw-color-black"}`}
       />
-      {getPageNumbers().map((page) => (
+      {getPageNumbers().map(page => (
         <ButtonMain
           key={page}
           onClick={() => onPageChange(page)}
           classNames={page === currentPage ? "tw-bg-[#1E3866]" : ""}
           text={page}
-          variant={
-            page === currentPage || hoveredPage === page ? 'solid' : "outlined"
-          }
-          color={
-            page === currentPage ? "blue" : 
-            hoveredPage === page ? "blue" : "grey"
-          }
+          variant={page === currentPage || hoveredPage === page ? "solid" : "outlined"}
+          color={page === currentPage ? "blue" : hoveredPage === page ? "blue" : "grey"}
           onMouseOver={() => handleMouseOver(page)}
           onMouseOut={handleMouseOut}
         />
@@ -80,8 +72,12 @@ const PaginationBlock = ({
       {totalPages > 5 && currentPage < totalPages - 2 && (
         <>
           <ButtonMain color="grey" variant="outlined" text={"..."}></ButtonMain>
-          <ButtonMain onClick={() => onPageChange(totalPages)} text={totalPages} color="grey" variant="outlined">
-          </ButtonMain>
+          <ButtonMain
+            onClick={() => onPageChange(totalPages)}
+            text={totalPages}
+            color="grey"
+            variant="outlined"
+          ></ButtonMain>
         </>
       )}
       <ButtonMain
@@ -90,7 +86,7 @@ const PaginationBlock = ({
         text="Next"
         color="grey"
         variant="outlined"
-        classNames={`${currentPage === totalPages ? "tw-color-grey" : 'tw-color-black'}`}
+        classNames={`${currentPage === totalPages ? "tw-color-grey" : "tw-color-black"}`}
       />
     </div>
   );

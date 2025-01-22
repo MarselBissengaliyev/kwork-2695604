@@ -119,7 +119,7 @@ const FilterCard = () => {
             })}
             <YearSelect fromOptions={["12.02.2012"]} label={"Year from/to"} toOptions={["12.03.2012"]} />
 
-            <RangeSlider />
+            {/* <RangeSlider /> */}
           </div>
           <button onClick={toggleOptions} className=" tw-bg-transparent tw-text-[16px] tw-mt-[20px]">
             {!openOptions ? (
