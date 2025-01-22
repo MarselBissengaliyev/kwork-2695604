@@ -13,6 +13,33 @@ import QuickFilters from "./entities/QuickFilters";
 
 import SideFilter from "./entities/SideFilter";
 
+const data = [
+  {
+    title: "2013 Chevrolet Impala Ls 3.6L",
+    lot: "#30874242",
+    vin: "123ABC456DEF7890",
+    mileage: "123,456 km",
+    damage: "front end",
+    location: "Moscow, Russia",
+    docType: "Government Documents",
+    currentBid: "200",
+    buyitNow: "200",
+    clock: "12:00:00",
+  },
+  {
+    title: "2013 Chevrolet Impala Ls 3.6L",
+    lot: "#30874242",
+    vin: "123ABC456DEF7890",
+    mileage: "123,456 km",
+    damage: "front end",
+    location: "Moscow, Russia",
+    docType: "Government Documents",
+    currentBid: "200",
+    buyitNow: "200",
+    clock: "12:00:00",
+  },
+];
+
 const page = () => {
   return (
     <div className="tw-flex tw-gap-[50px] tw-mx-[20px] tablet:tw-mx-[30px] desktop:tw-mx-auto desktop:tw-container tw-my-[70px]">
@@ -38,7 +65,23 @@ const page = () => {
         <div className="tw-w-full">
           <div className="tw-hidden tw-flex-col tw-gap-[20px]  desktop:tw-flex">
             {/* desktop */}
-            <SearchCard />
+            {data.map((item, idx) => {
+              return (
+                <SearchCard
+                  key={idx}
+                  title={item.title}
+                  lot={item.lot}
+                  vin={item.vin}
+                  mileage={item.mileage}
+                  damage={item.damage}
+                  location={item.location}
+                  docType={item.docType}
+                  currentBid={item.currentBid}
+                  buyitNow={item.buyitNow}
+                  clock={item.clock}
+                />
+              );
+            })}
           </div>
           <div className="tw-hidden minilaptop:tw-flex desktop:tw-hidden tw-flex-col tw-gap-[20px]">
             {/* latop */}

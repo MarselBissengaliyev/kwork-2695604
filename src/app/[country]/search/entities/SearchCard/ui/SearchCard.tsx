@@ -17,7 +17,7 @@ import Clock from "../../../shared/img/Clock";
 import Auc from "../../../../listing/[listing_slug]/shared/img/Auc";
 import StarFav from "../../../../listing/[listing_slug]/shared/img/StarFav";
 
-const SearchCard = () => {
+const SearchCard = ({ title, lot, vin, mileage, damage, location, docType, currentBid, buyitNow, clock }) => {
   // const imgs = [
   //   {
   //     alt: "watch",
@@ -40,14 +40,14 @@ const SearchCard = () => {
           {/* <CarCardsSlider width="370px" height="260px" imglinks={imgs} /> */}
         </div>
         <div className="tw-pt-[30px]">
-          <h2 className="tw-text-[#3E73CF] tw-text-[18px] tw-mb-[20px]">2013 Chevrolet Impala Ls 3.6L</h2>
+          <h2 className="tw-text-[#3E73CF] tw-text-[18px] tw-mb-[20px]">{title}</h2>
           <div className="tw-mb-[20px]">
             <div className="tw-flex tw-gap-[74px]">
               <span className="tw-flex tw-gap-[9px]">
-                LOT <CopyText text={"#30874242"} />
+                LOT <CopyText text={lot} />
               </span>
               <span className="tw-flex tw-gap-[9px]">
-                VIN: <CopyText text={"1D7RB1GP6AS109178"} />
+                VIN: <CopyText text={vin} />
               </span>
             </div>
             <div className="card-info_item">
@@ -55,7 +55,7 @@ const SearchCard = () => {
                 <div className="tw-flex tw-justify-between tw-items-center tw-max-w-[216px] tw-w-[100%] right-border">
                   <div className="tw-flex tw-flex-col">
                     <div className="">Mileage</div>
-                    <div className="">198,239</div>
+                    <div className="">{mileage}</div>
                   </div>
                   <div className="tw-pr-[30px]">
                     <Mileage />
@@ -64,7 +64,7 @@ const SearchCard = () => {
                 <div className="tw-flex tw-justify-between tw-items-center tw-max-w-[216px] tw-w-[100%] ">
                   <div className="tw-flex tw-flex-col tw-pl-[30px]">
                     <div className="">Damage</div>
-                    <div className="">front end</div>
+                    <div className="">{damage}</div>
                   </div>
                   <div className="">
                     <Damage />
@@ -75,7 +75,7 @@ const SearchCard = () => {
                 <div className="tw-flex tw-justify-between tw-items-center tw-max-w-[216px] tw-w-[100%] right-border">
                   <div className="tw-flex tw-flex-col">
                     <div className="">Location</div>
-                    <div className="">SC - Columbia</div>
+                    <div className="">{location}</div>
                   </div>
                   <div className="tw-pr-[30px]">
                     <Location />
@@ -84,7 +84,7 @@ const SearchCard = () => {
                 <div className="tw-flex tw-justify-between tw-items-center tw-max-w-[216px] tw-w-[100%] ">
                   <div className="tw-flex tw-flex-col tw-pl-[30px]">
                     <div className="">Doc. Type</div>
-                    <div className="">Clean Title</div>
+                    <div className="">{docType}</div>
                   </div>
                   <div className="">
                     <Doc />
@@ -101,13 +101,13 @@ const SearchCard = () => {
                 <span className="tw-text-[13px] tablet:tw-text-[14px] tw-flex tw-gap-[8px] tw-items-center tw-text-[#8C8C8C]">
                   Current Bid
                 </span>
-                <span className="tw-text-[#3E73CF] tw-text-[20px] tw-font-[500px]">$200</span>
+                <span className="tw-text-[#3E73CF] tw-text-[20px] tw-font-[500px]">{`${currentBid}`}</span>
               </div>
               <div className="">
                 <span className="tw-text-[13px] tablet:tw-text-[14px] tw-flex tw-gap-[8px] tw-items-center tw-text-[#8C8C8C]">
                   Buy it Now
                 </span>
-                <span className="tw-text-[#E3433A] tw-text-[20px] tw-font-[500px]">$200</span>
+                <span className="tw-text-[#E3433A] tw-text-[20px] tw-font-[500px]">{`${buyitNow}`}</span>
               </div>
             </div>
             <div className="tw-flex tw-flex-col">
@@ -121,7 +121,7 @@ const SearchCard = () => {
           </button>
           <div className="tw-flex tw-justify-between tw-items-center tw-mt-[24px]">
             <div className="tw-w-flex tw-text-[14px]  tw-items-center">
-              <Clock /> <span>5 hr. 18 min.</span>
+              <Clock /> <span>{clock}</span>
             </div>
             <div className="">
               <StarFav width={"20"} />
