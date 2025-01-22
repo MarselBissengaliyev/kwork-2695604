@@ -37,7 +37,7 @@ const Select = ({ options, name, onChange }) => {
 
   return (
     <div className="custom-dropdown" ref={dropdownRef}>
-      <div className="custom-dropdown-header" tabIndex="0" onClick={toggleDropdown}>
+      <div className="custom-dropdown-header tw-text-[16px]" tabIndex="0" onClick={toggleDropdown}>
         {selected || name}
         <div className={`arrow ${isOpen ? "open" : ""}`}></div>
       </div>

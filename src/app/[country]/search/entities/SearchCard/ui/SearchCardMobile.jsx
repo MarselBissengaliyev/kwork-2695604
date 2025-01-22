@@ -49,9 +49,9 @@ const SearchCardMobile = () => {
   };
 
   return (
-    <div className="tw-max-w-[370px] tw-w-full" style={{ border: "1px solid #ECECEC", borderRadius: "10px" }}>
+    <div className=" tw-w-full" style={{ border: "1px solid #ECECEC", borderRadius: "10px" }}>
       {/* <CarCardsSlider height="260px" imglinks={card.imgs} /> */}
-      <div className="tw-flex tw-flex-col tw-gap-[20px] tw-p-[30px]">
+      <div className="tw-flex tw-flex-col tw-gap-[20px] tw-p-[15px]">
         <div className="tw-flex tw-gap-[20px]">
           <div className="">
             <div className="tw-max-w-[301px] tw-m-auto">

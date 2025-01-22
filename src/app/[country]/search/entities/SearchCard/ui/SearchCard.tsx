@@ -94,7 +94,7 @@ const SearchCard = () => {
             </div>
           </div>
         </div>
-        <div className="card-info_item2 tw-w-full tw-pl-[30px] tw-max-w-[230px] tw-mt-[30px] tw-h-[240px]">
+        <div className="card-info_item2 tw-w-full tw-px-[30px] tw-max-w-[230px] tw-mt-[30px] tw-h-[240px]">
           <div className="tw-flex tw-justify-between">
             <div className="tw-flex tw-flex-col tw-gap-[20px]">
               <div className="">
