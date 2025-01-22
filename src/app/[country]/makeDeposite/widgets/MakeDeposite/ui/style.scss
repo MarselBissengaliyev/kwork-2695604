@@ -19,20 +19,30 @@
     cursor: pointer;
     background: #ddd;
   }
-  
+
   .range-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
+    -webkit-appearance: none; /* Убираем стандартный вид */
     appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #4caf50;
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    max-width: 38px;
-    width: 100%;
+    width: 38px; /* Ширина бегунка */
+    height: 20px; /* Высота бегунка */
+    background: #3E73CF; /* Цвет бегунка */
+    border-radius: 10px; /* Делаем его круглым */
+    cursor: pointer; /* Добавляем курсор */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень */
+    transition: background 0.3s;
   }
+
+  // .range-slider::-moz-range-progress {
+  //   background:#191919;
+  // }
+
+
+  .range-slider::-webkit-slider-thumb {
+    content: "← →"; /* Символы внутри бегунка */
+    color: white; /* Цвет текста */
+    font-size: 14px; /* Размер текста */
+  }
+  
   
   .range-slider:active::-webkit-slider-thumb {
     transform: scale(1.2);

@@ -24,8 +24,8 @@ const Watchlist = () => {
         pageTitle={"Watchlist"}
         className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}
         >
-        <div className='tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full no-scrollbar max-mindesk:tw-gap-2'>
-            <div className='tw-flex tw-gap-2'>
+        <div className='tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full no-scrollbar max-mindesk:tw-gap-2 tw-static'>
+            <div className='tw-flex tw-gap-2 tw-static'>
               <ButtonMain 
                 key={"Back"}
                 classNames={'tw-w-[117px] tw-flex-shrink-0'} 
