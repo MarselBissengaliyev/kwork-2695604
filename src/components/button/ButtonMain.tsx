@@ -26,13 +26,13 @@ const ButtonMain = ({
   variant = "solid",
   color = "blue",
   icon = "",
-  number ,
+  number=0 ,
   hoverEffect = true, 
   hoverColor = "#FFFFFF",
   disabled = false,
   onMouseOver = () => {},
   onMouseOut = () => {}
-}) => {
+}: IBtnMain) => {
   // Цветовые значения
   const colorMap = {
     blue: '#3E73CF',
@@ -55,22 +55,21 @@ const ButtonMain = ({
       : { border: `2px solid ${currentColor}`, color: color === 'grey' ? '#191919' : currentColor, backgroundColor: 'transparent' };
 
   // Стили для числа
-  const numberStyles = {
+  const numberStyles: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center',
+    textAlign: 'center' as React.CSSProperties['textAlign'], // Явное указание типа
     padding: '4px 10px',
     borderRadius: '50%',
     backgroundColor: 'white',
-    border: `2px solid ${
-      variant === 'solid' ? 'white' : currentColor
-    }`,
+    border: `2px solid ${variant === 'solid' ? 'white' : currentColor}`,
     color: currentColor,
     fontSize: '12px',
     fontWeight: 'bold',
     marginLeft: '12px',
   };
+  
 
   // Стили для иконки
   const iconStyles = {

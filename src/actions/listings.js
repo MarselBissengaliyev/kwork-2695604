@@ -158,6 +158,12 @@ export const getListingBySlug = async slug => {
         },
         reviews: { select: { rating: true } },
         media: { select: { url: true } }, // Добавляем media
+        make: {
+          include: {
+            marketInfo: true,
+            lots: true,
+          },
+        },
       },
     });
 
@@ -169,6 +175,55 @@ export const getListingBySlug = async slug => {
       rating,
       categories,
       price: 0,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getOtherLotsAndSoldCars = async slug => {
+  try {
+    const listing = await prisma.listing.findFirst({
+      where: { slug },
+      take: 5, // Ограничиваем количество лотов до 5
+      include: {
+        make: {
+          include: {
+            models: true,
+          },
+        },
+        media: { select: { url: true } },
+        bids: true,
+      },
+    });
+
+    const { make, model_id, year, media, title } = listing;
+
+    // Fetch Active Listings (Other Lots)
+    const activeListings = await prisma.listing.findMany({
+      where: {
+        make_id: make.id,
+        model_id: model_id,
+        // year: year,
+        // status: "Pending", // Lote en estado "Pending" para estar en subasta
+        slug: { not: slug }, // Excluir el anuncio actual
+      },
+      include: {
+        media: { select: { url: true } },
+        bids: {
+          take: 1, // Tomar la oferta más alta
+          orderBy: { amount: "desc" },
+          select: { amount: true },
+        },
+      },
+    });
+
+    return {
+      activeListings: activeListings.map(l => ({
+        ...l,
+        avgPrice: l.final_bid || 0, // Adjust if needed
+        currentBid: Math.max(...l.bids.map(bid => bid.amount), 0),
+      })),
     };
   } catch (error) {
     throw new Error(error);

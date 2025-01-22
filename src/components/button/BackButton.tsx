@@ -12,7 +12,7 @@ const BackButton = () => {
     <ButtonMain 
                 key={"Back"}
                 classNames={'tw-w-[170px] tw-flex-shrink-0'} 
-                variant='outlined' 
+                variant='outline' 
                 color="grey" 
                 text={
                   <div className='tw-flex tw-gap-2 tw-text-center tw-items-center'>

@@ -4,145 +4,101 @@ import ListItem from "@/components/ListItem/index";
 
 import CopyText from "@/components/ListItem/models/CopyText";
 
-const vehicleinfo = [
-  {
-    label: "LOT:",
-    value: <CopyText text={"30874242"} />,
-  },
-  {
-    label: "VIN:",
-    value: <CopyText text={"1FALP6536WK134349"} />,
-  },
-  {
-    label: "Mileage:",
-    value: "138,412",
-  },  
-  {
-    label: "Keys:",
-    value: "46 861 Actual",
-  },
-  {
-    label: "Damage:",
-    value: "Run and Drive ",
-  },
-  {
-    label: "Engine:",
-    value: "NORMAL WEAR",
-  },
-  {
-    label: "Fuel:",
-    value: "NORMAL WEAR",
-  },
-  {
-    label: "Transmission:",
-    value: "$28,190 USD",
-  },
-  {
-    label: "Lot Quality:",
-    value: "SEDAN 4DR",
-  },
-  {
-    label: "Color:",
-    value: "CAR WHITE 2.5L 4",
-  },
-  {
-    label: "Run and Drive:",
-    value: "4",
-  },
-  {
-    label: "Title:",
-    value: "AUTOMATIC",
-  },
-  {
-    label: "Cycinder:",
-    value: "Front-wheel Drive",
-  },
-  {
-    label: "Loss:",
-    value: "YES",
-  },
-  {
-    label: "Key:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Start Date:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "ACV:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Sale Document:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Restraint System:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Air Bags:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Driver AirBag:",
-    value: "YES",
-  },
-];
+const truncateText = (text, maxLength = 21) => {
+  if (!text || typeof text !== "string") return text; // Возвращаем оригинал, если это не строка
+  return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+};
 
 const Vehicleinfo = ({ children, listing }) => {
-  console.log("Listing=", listing?.slug);
+  function extractCylinders(engineStr) {
+    if (!engineStr) return null; // Если строка отсутствует, вернуть null
+    const match = engineStr.match(/([VvIi])\d+/); // Ищем шаблон V6, I4 и т.п.
+    return match ? parseInt(match[0].slice(1), 10) : null; // Возвращаем число цилиндров или null
+  }
+
   const vehicleinfo = [
     {
       label: "LOT:",
-      value: <CopyText text={listing?.lot} />,
+      value: <CopyText text={truncateText(listing?.lot)} />,
     },
     {
       label: "VIN:",
-      value: <CopyText text={listing?.vin} />,
+      value: <CopyText text={truncateText(listing?.vin)} />,
     },
     {
       label: "Mileage:",
-      value: listing?.mileage,
+      value: truncateText(listing?.mileage),
     },
     {
       label: "Keys:",
-      value: listing?.keys,
+      value: truncateText(listing?.keys),
     },
     {
       label: "Damage:",
-      value: listing?.damage,
+      value: truncateText(listing?.damage),
     },
     {
       label: "Engine:",
-      value: listing?.engine,
+      value: truncateText(listing?.engine),
     },
     {
       label: "Fuel:",
-      value: listing?.fuel,
+      value: truncateText(listing?.fuel),
     },
     {
       label: "Transmission:",
-      value: listing?.transmission,
+      value: truncateText(listing?.transmission),
     },
     {
       label: "Lot Quality:",
-      value: listing?.lot,
+      value: truncateText(listing?.lot),
     },
     {
       label: "Color:",
-      value: listing?.color,
+      value: truncateText(listing?.color),
     },
     {
       label: "Drive:",
-      value: listing?.drive,
+      value: truncateText(listing?.drive),
     },
     {
       label: "Title:",
-      value: listing?.title,
+      value: truncateText(listing?.title),
+    },
+    {
+      label: "Cycinder:",
+      value: extractCylinders(listing?.engine),
+    },
+    {
+      label: "Loss:",
+      value: truncateText(listing?.loss),
+    },
+    {
+      label: "Key:",
+      value: truncateText(listing.key || "No Notes for this Lot"),
+    },
+    {
+      label: "Start Date:",
+      value: truncateText(listing.start_date || "No Notes for this Lot"),
+    },
+    {
+      label: "ACV:",
+      value: truncateText(listing.acv || "No Notes for this Lot"),
+    },
+    {
+      label: "Sale Document:",
+      value: truncateText(listing.document || "No Notes for this Lot"),
+    },
+    {
+      label: "Restraint System:",
+      value: truncateText(listing.restraint_system || "No Notes for this Lot"),
+    },
+    {
+      label: "Air Bags:",
+      value: truncateText(listing.air_bags || "No Notes for this Lot"),
     },
   ];
+
   return (
     <div className="case-border tw-px-[15px] tablet:tw-px-[30px] tw-pt-[30px] tw-pb-[13px] !tw-w-full desktop:tw-max-w-[708px] ">
       <div className="tablet:tw-block minilaptop:tw-flex  tw-gap-[28px] laptop:tw-block">
@@ -159,7 +115,7 @@ const Vehicleinfo = ({ children, listing }) => {
           <hr className="tw-mt-[40px] hidden laptop:block  tw-mb-[30px]" />
           <ul>
             <h2 className="text-title tw-mt-[40px] tw-mb-[30px] tw-font-semibold">Status Report</h2>
-            <ListItem label={"Condition Grade:"} value={"3 - Average"} icon={""} />
+            <ListItem label={"Condition Grade:"} value={listing.condition} icon={""} />
           </ul>
           <hr className="tw-my-[30px] " />
           <ul>

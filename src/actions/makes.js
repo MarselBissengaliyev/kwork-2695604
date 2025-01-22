@@ -1,33 +1,35 @@
-import prisma from '@/libs/prismadb'
-import { getPagination } from '@/utils'
+import prisma from "@/libs/prismadb";
+import { getPagination } from "@/utils";
 
 export const getMakesWithLotCount = async () => {
   try {
     // Получаем список марок
     const makesData = await prisma.make.findMany({
-      select: { 
-        id: true, 
-        name: true 
+      select: {
+        id: true,
+        name: true,
       },
-      orderBy: { name: 'asc' },
+      orderBy: { name: "asc" },
     });
 
     // Для каждой марки получаем количество активных лотов
-    const makesWithLotCount = await Promise.all(makesData.map(async (make) => {
-      const lotCount = await prisma.listing.count({
-        where: {
-          make_id: make.id,
-          published: true, // Учитываем только опубликованные лоты
-          deleted_at: null, // Исключаем удаленные лоты
-        },
-      });
+    const makesWithLotCount = await Promise.all(
+      makesData.map(async make => {
+        const lotCount = await prisma.listing.count({
+          where: {
+            make_id: make.id,
+            published: true, // Учитываем только опубликованные лоты
+            deleted_at: null, // Исключаем удаленные лоты
+          },
+        });
 
-      return {
-        id: make.id,
-        name: make.name,
-        lotCount,
-      };
-    }));
+        return {
+          id: make.id,
+          name: make.name,
+          lotCount,
+        };
+      }),
+    );
 
     return {
       data: makesWithLotCount,
@@ -37,17 +39,17 @@ export const getMakesWithLotCount = async () => {
   }
 };
 
-
-export const getMakes = async (isSticky) => {
+export const getMakes = async isSticky => {
   try {
     const filter = isSticky !== undefined ? { is_sticky: isSticky } : {};
 
-    const data = await prisma.make.findMany({
-      where: filter,
-      select: { id: true, name: true, is_sticky: true },
-      orderBy: { name: 'asc' },
-    })
-    .catch(() => []);
+    const data = await prisma.make
+      .findMany({
+        where: filter,
+        select: { id: true, name: true, is_sticky: true },
+        orderBy: { name: "asc" },
+      })
+      .catch(() => []);
 
     return {
       data,
@@ -57,12 +59,62 @@ export const getMakes = async (isSticky) => {
   }
 };
 
+export const getMakeById = async id => {
+  try {
+    if (!id) {
+      throw new Error("The 'id' parameter is required.");
+    }
+
+    const data = await prisma.make.findUnique({
+      where: { id },
+      include: {
+        lots: true,
+        marketInfo: true,
+      }
+    });
+
+    if (!data) {
+      throw new Error(`Make with id ${id} not found.`);
+    }
+
+    return {
+      data,
+    };
+  } catch (error) {
+    throw new Error(error.message || "An error occurred while retrieving the make.");
+  }
+};
+export const getMarketInfoById = async (id) => {
+  try {
+    if (!id) {
+      throw new Error("The 'id' parameter is required.");
+    }
+
+    // Получаем данные о конкретном рыночном объекте и информацию о модели
+    const data = await prisma.marketInfo.findUnique({
+      where: { id },
+      include: {
+        make: true, // Получаем также информацию о марке
+      },
+    });
+
+    if (!data) {
+      throw new Error(`MarketInfo with id ${id} not found.`);
+    }
+
+    return {
+      data,
+    };
+  } catch (error) {
+    throw new Error(error.message || "An error occurred while retrieving the marketInfo.");
+  }
+};
 
 export const getMakesAndModels = async () => {
   try {
     const makesData = await prisma.make.findMany({
       select: { id: true, name: true },
-      orderBy: { name: 'asc' },
+      orderBy: { name: "asc" },
     });
 
     const modelsData = {};
@@ -71,7 +123,7 @@ export const getMakesAndModels = async () => {
       const models = await prisma.model.findMany({
         where: { make_id: make.id },
         select: { name: true },
-        orderBy: { name: 'asc' },
+        orderBy: { name: "asc" },
       });
 
       modelsData[make.id] = models.map(model => model.name);
@@ -86,12 +138,11 @@ export const getMakesAndModels = async () => {
   }
 };
 
-
-export const getCityCategories = async (query) => {
+export const getCityCategories = async query => {
   try {
-    const { page = 1, take = 10, city, sticky } = query || {}
+    const { page = 1, take = 10, city, sticky } = query || {};
 
-    let pagination = getPagination({ page, take })
+    let pagination = getPagination({ page, take });
 
     const where = {
       cities: {
@@ -101,32 +152,32 @@ export const getCityCategories = async (query) => {
           },
         },
       },
-      is_sticky: typeof sticky === 'boolean' ? sticky : undefined,
-    }
+      is_sticky: typeof sticky === "boolean" ? sticky : undefined,
+    };
 
-    const results = await prisma.category.count({ where })
+    const results = await prisma.category.count({ where });
     const data = await prisma.category.findMany({
       where,
       take: pagination.take,
       skip: pagination.skip,
-      orderBy: { name: 'asc' },
-    })
+      orderBy: { name: "asc" },
+    });
 
-    pagination = getPagination({ ...pagination, results })
+    pagination = getPagination({ ...pagination, results });
 
     return {
       data,
       results,
       pagination,
-    }
+    };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const getCategoryBySlug = async (slug, query) => {
   try {
-    const { city } = query || {}
+    const { city } = query || {};
 
     const where = {
       slug,
@@ -137,7 +188,7 @@ export const getCategoryBySlug = async (slug, query) => {
           },
         },
       },
-    }
+    };
 
     const category = await prisma.category.findFirst({
       where,
@@ -151,32 +202,30 @@ export const getCategoryBySlug = async (slug, query) => {
             }
           : undefined,
       },
-    })
+    });
 
     return {
       ...category,
       seo_title: city ? category?.cities?.[0]?.seo_title : undefined,
-      seo_description: city
-        ? category?.cities?.[0]?.seo_description
-        : undefined,
+      seo_description: city ? category?.cities?.[0]?.seo_description : undefined,
       cities: undefined,
-    }
+    };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const getCategoryList = async () => {
   try {
     const data = await prisma.category
       .findMany({
         select: { id: true, name: true },
-        orderBy: { name: 'asc' },
+        orderBy: { name: "asc" },
       })
-      .catch(() => [])
+      .catch(() => []);
 
-    return { data }
+    return { data };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};

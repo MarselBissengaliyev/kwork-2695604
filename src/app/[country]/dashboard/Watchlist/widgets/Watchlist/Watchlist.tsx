@@ -29,7 +29,7 @@ const Watchlist = () => {
               <ButtonMain 
                 key={"Back"}
                 classNames={'tw-w-[117px] tw-flex-shrink-0'} 
-                variant='outlined' 
+                variant='outline' 
                 color="grey" 
                 text={
                   <div className='tw-flex tw-gap-2 tw-text-center tw-items-center'>
@@ -43,7 +43,7 @@ const Watchlist = () => {
               <ButtonMain 
                 classNames={'tw-w-[220px] tw-flex-shrink-0'} 
                 color={activeButton === 'Current Wathclist' ? 'blue' : 'grey'} 
-                variant='outlined' 
+                variant='outline' 
                 text="Current Wathclist" 
                 onClick={() => handleButtonClick('Current Wathclist')}
               />
@@ -51,14 +51,14 @@ const Watchlist = () => {
               <ButtonMain 
                 classNames={'tw-w-[220px] tw-flex-shrink-0'} 
                 color={activeButton === 'Completed Watchlist' ? 'blue' : 'grey'} 
-                variant='outlined' 
+                variant='outline' 
                 text="Completed Watchlist" 
                 onClick={() => handleButtonClick('Completed Watchlist')}
               />
             </div>
             <div className='tw-flex tw-gap-2'>
                 <a href="../EditSettings">
-                    <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outlined' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
+                    <ButtonMain classNames={'tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2'} color='grey' variant='outline' text="Edit Profile" icon="/images/dashboard/icons/editing.png" />
                 </a>
             </div>
         </div>

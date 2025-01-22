@@ -1,4 +1,6 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react'
+import ButtonMain from './ButtonMain';
 
 const HandlerBtn = ({classNames, variant, text, handleText}) => {
 
@@ -8,7 +10,7 @@ const HandlerBtn = ({classNames, variant, text, handleText}) => {
         setActiveButton(buttonName);
       }
   return (
-    <ButtonMain 
+    <ButtonMain
         classNames={classNames} 
         color={activeButton === handleText ? 'blue' : 'grey'} 
         variant={variant} 

@@ -6,8 +6,9 @@ import "./car.scss";
 import HeroCar from "./widgets/HeroCar";
 import HowItWorks from "./widgets/HowItWorks";
 import { NearestLots } from "@/containers/home";
-import { getListingBySlug } from "@/actions/listings";
+import { getListingBySlug, getOtherLotsAndSoldCars } from "@/actions/listings";
 import { getCurrentUser } from "@/actions/users";
+import { getMakeById, getMarketInfoById } from "@/actions/makes";
 
 const lots = [
   {
@@ -56,11 +57,9 @@ const page = async ({ params }) => {
   const slug = params?.listing_slug;
 
   const listing = await getListingBySlug(slug);
-  console.log(listing);
   const currentUser = await getCurrentUser();
-
-  const city = listing?.city;
-  const category = listing?.categories?.[0];
+  const otherCars =  await getOtherLotsAndSoldCars(slug);
+  // const 
 
   return (
     <>
@@ -73,7 +72,7 @@ const page = async ({ params }) => {
       </div>
       <div className="tw-py-[10px]">
         <hr className="tw-my-[21px]" />
-        <NearestLots title={"Similar Vehicles"} lots={lots} />;
+        <NearestLots title={"Similar Vehicles"} lots={otherCars.activeListings} />;
       </div>
     </>
   );

@@ -1,19 +1,19 @@
-import { getServerSession } from 'next-auth/next'
-import { authHandler } from '@/app/api/auth/[...nextauth]/route'
+import { getServerSession } from "next-auth/next";
+import { authHandler } from "@/app/api/auth/[...nextauth]/route";
 
-import prisma from '@/libs/prismadb'
-import { getPagination } from '@/utils'
+import prisma from "@/libs/prismadb";
+import { getPagination } from "@/utils";
 
 export async function getCurrentSession() {
-  return await getServerSession(authHandler)
+  return await getServerSession(authHandler);
 }
 
 export async function getCurrentUser() {
   try {
-    const session = await getCurrentSession()
+    const session = await getCurrentSession();
 
     if (!session?.user?.email) {
-      return null
+      return null;
     }
 
     const currentUser = await prisma.user.findUnique({
@@ -30,11 +30,16 @@ export async function getCurrentUser() {
         created_at: true,
         updated_at: true,
         profile: true,
+        bids: {
+          include: {
+            lot: true,
+          },
+        },
       },
-    })
+    });
 
     if (!currentUser) {
-      return null
+      return null;
     }
 
     return {
@@ -42,38 +47,120 @@ export async function getCurrentUser() {
       created_at: currentUser.created_at.toISOString(),
       updated_at: currentUser.created_at.toISOString(),
       email_verified: true,
-    }
+    };
   } catch (error) {
-    return null
+    return null;
   }
 }
 
-export const getUsers = async (query) => {
+export const getUserBids = async (userId, query) => {
   try {
-    const { page = 1, take = 10 } = query || {}
+    const { page = 1, take = 10, status } = query || {};
 
-    let pagination = getPagination({ page, take })
+    const pagination = {
+      page: page > 1 ? page : 1,
+      pages: 0,
+      take,
+      skip: page > 1 ? take * (page - 1) : 0,
+    };
 
-    const where = {}
-    const results = await prisma.user.count({ where })
+    const where = {
+      user_id: userId,
+      ...(status ? { status } : {}), // Фильтр по статусу, если указан
+    };
+
+    const results = await prisma.bid.count({ where });
+
+    const bids = await prisma.bid.findMany({
+      where,
+      include: {
+        lot: true, // Включаем связь с таблицей "lot"
+      },
+      take: pagination.take,
+      skip: pagination.skip,
+      orderBy: {
+        created_at: "desc",
+      },
+    });
+
+    pagination.pages = Math.ceil(results / pagination.take);
+
+    // Формируем результаты в зависимости от статуса
+    const formattedBids = bids.map(bid => {
+      if (bid.status === "CURRENT") {
+        return {
+          lot: bid.lot.id,
+          vin: bid.lot.vin,
+          vehicle: bid.lot.title,
+          saleDate: new Date(bid.created_at).toUTCString(),
+          state: bid.lot.state,
+          bidStatus: bid.status,
+          myMaxBid: bid.amount,
+          saleType: bid.lot.sale_type,
+        };
+      } else if (bid.status === "WON") {
+        return {
+          date: bid.lot.sale_date,
+          orderId: bid.lot.id,
+          vin: bid.lot.vin,
+          model: bid.lot.title,
+          price: bid.amount,
+          shippingStatus: "",
+          saledate: new Date(bid.created_at).toUTCString(),
+          paymentStatus: "Not paid",
+          shippingAdded: "",
+          deliveryStatus: "-",
+        };
+      } else if (bid.status === "LOST") {
+        return {
+          lot: bid.lot.id,
+          vin: bid.lot.vin,
+          vehicle: bid.lot.title,
+          saleDate: new Date(bid.created_at).toUTCString(),
+          finalBid: bid.amount,
+          state: bid.lot.state,
+          myMaxBid: bid.amount,
+          comment: "High price",
+        };
+      }
+    });
+
+    return {
+      bids: formattedBids,
+      results,
+      pages: pagination.pages,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getUsers = async query => {
+  try {
+    const { page = 1, take = 10 } = query || {};
+
+    let pagination = getPagination({ page, take });
+
+    const where = {};
+    const results = await prisma.user.count({ where });
     const data = await prisma.user.findMany({
       where,
       take: pagination.take,
       skip: pagination.skip,
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
-    })
+    });
 
-    pagination = getPagination({ ...pagination, results })
+    pagination = getPagination({ ...pagination, results });
 
-    return { data, results, pagination }
+    return { data, results, pagination };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
-export const getUserById = async (id) => {
+export const getUserById = async id => {
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -87,14 +174,14 @@ export const getUserById = async (id) => {
         // favourites: true,
       },
       // take: 6,
-    })
+    });
 
     if (!user) {
-      return null
+      return null;
     }
 
-    return user
+    return user;
   } catch (error) {
-    return null
+    return null;
   }
-}
+};
