@@ -195,10 +195,10 @@ const MyBids = ({ wonBids, currentBids, lostBids }) => {
         </div>
       </PageDirect>
       <div className='max-mindesk:tw-hidden'>
-        <DashBoardTable data={activeButton === "Current Bids" ? { ...currentBids, array: currentBids.bids } : activeButton === "Won Bids" ? { ...wonBids, array: wonBids.bids } : activeButton === "Lost Bids" ? { ...lostBids, array: lostBids.bids } : { array: [], pages: 0, results: 0 } } columns={activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : []} rowKey="vin" />;
+        <DashBoardTable data={activeButton === "Current Bids" ? { ...currentBids, array: currentBids.bids } : activeButton === "Won Bids" ? { ...wonBids, array: wonBids.bids } : activeButton === "Lost Bids" ? { ...lostBids, array: lostBids.bids } : { array: [], pages: 0, results: 0 }} columns={activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : []} rowKey="vin" />;
       </div>
       <div className='mindesk:tw-hidden'>
-        <DashBoardTableMoblie data={activeButton === "Current Bids" ? currentBids : activeButton === "Won Bids" ? wonBids : activeButton === "Lost Bids" ? lostBids : []} columns={activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : []} rowKey="vin" />
+        <DashBoardTableMoblie data={activeButton === "Current Bids" ? { ...currentBids, array: currentBids.bids } : activeButton === "Won Bids" ? { ...wonBids, array: wonBids.bids } : activeButton === "Lost Bids" ? { ...lostBids, array: lostBids.bids } : { array: [], pages: 0, results: 0 }} columns={activeButton === "Current Bids" ? columns : activeButton === "Won Bids" ? wonColums : activeButton === "Lost Bids" ? lostColumns : []} rowKey="vin" />
       </div>
     </Container>
   )

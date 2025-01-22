@@ -146,7 +146,23 @@ const Transactions = ({ paidTransactions, requestARefundTransactions, refundTran
       </div>
 
       <div className='mindesk:tw-hidden'>
-        <DashBoardTableMoblie data={activeButton === "Transaction List" ? { bids: [], pages: 0, results: 0 } : activeButton === "Request a Refund" ? { bids: [], pages: 0, results: 0 } : activeButton === "Refund" ? { bids: [], pages: 0, results: 0 } : { bids: [], pages: 0, results: 0 }} columns={activeButton === "Transaction List" ? columns : activeButton === "Request a Refund" ? tableColumns : activeButton === "Refund" ? refundColumns : []} rowKey="vin" />
+        <DashBoardTableMoblie columns={
+          activeButton === "Transaction List"
+            ? columns
+            : activeButton === "Request a Refund"
+              ? tableColumns
+              : activeButton === "Refund"
+                ? refundColumns
+                : []
+        } data={
+          activeButton === "Transaction List"
+            ? { ...paidTransactions, array: paidTransactions.transactions }
+            : activeButton === "Request a Refund"
+              ? { ...requestARefundTransactions, array: requestARefundTransactions.transactions }
+              : activeButton === "Refund"
+                ? { ...refundTransactions, array: refundTransactions.transactions }
+                : { array: [], pages: 0, results: 0 }
+        } rowKey="vin" />
       </div>
     </Container>
   )
