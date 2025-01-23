@@ -4,7 +4,6 @@
   border-radius: 22px;
   border: 1px solid #dbdbdb;
   position: relative;
-  max-width: 50%;
   width: 100%;
   overflow: hidden;
   height: 44px;
@@ -23,7 +22,7 @@
 
   @media screen and (min-width: 768px) {
     margin-left: auto;
-    max-width: 50%;
+    // max-width: 50%;
     &.large {
       display: flex;
     }
@@ -74,5 +73,26 @@
     i {
       transform: rotate(-180deg);
     }
+  }
+}
+
+.faq-border-about {
+  border-radius: 10px;
+  border: 1px solid #ececec;
+
+  ul,
+  ol {
+    padding: 0;
+  }
+}
+
+.faq-question {
+  background-image: url("../../../shared/img/faq-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+
+  @media screen and (min-width: 1336px) {
+    background-position: 30px;
   }
 }
