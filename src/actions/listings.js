@@ -135,6 +135,62 @@ export const getListings = async query => {
   }
 };
 
+export const getPreviousAuctions = async (listingSlug, query) => {
+  const { page = 1, take = 10 } = query || {};
+
+  let pagination = getPagination({ page, take });
+
+  try {
+    const listing = await prisma.listing.findFirst({
+      where: { slug: listingSlug },
+    });
+
+    if (!listing) {
+      throw new Error(`Listing with slug "${listingSlug}" not found.`);
+    }
+
+    // Функция для поиска предыдущих аукционов
+    const findPreviousAuctions = async (vin, listingId) => {
+      const where = {
+        // vin: vin,
+        auction_at: {
+          not: null,
+        },
+        id: {
+          not: listingId, // Исключаем текущий лот по его ID
+        },
+      };
+
+      const results = await prisma.listing.count({ where });
+      const auctions = await prisma.listing.findMany({
+        where,
+        orderBy: {
+          auction_at: "desc",
+        },
+        take: pagination.take,
+        skip: pagination.skip,
+      });
+
+      pagination = getPagination({ ...pagination, results });
+
+      return { auctions, results, pages: pagination.pages, pagination };
+    };
+
+    // Найдем предыдущие аукционы
+    const {
+      auctions,
+      results,
+      pages,
+      pagination: updatedPagination,
+    } = await findPreviousAuctions(listing.vin, listing.id);
+
+    return { auctions, results, pages, pagination: updatedPagination };
+  } catch (error) {
+    console.error("Error fetching auction history:", error);
+    return { error: error.message };
+  }
+};
+
 export const getListingBySlug = async slug => {
   try {
     const listing = await prisma.listing.findFirst({
@@ -160,11 +216,10 @@ export const getListingBySlug = async slug => {
         make: {
           include: {
             marketInfo: true,
-            lots: true,
           },
         },
         model: true,
-        bids: true
+        bids: true,
       },
     });
 
@@ -197,7 +252,7 @@ export const getOtherLotsAndSoldCars = async slug => {
     });
 
     if (!listing) {
-      throw new Error('NOT_FOUND'); // Специальная ошибка для редиректа
+      throw new Error("NOT_FOUND"); // Специальная ошибка для редиректа
     }
 
     const { make, model_id } = listing;
@@ -226,14 +281,12 @@ export const getOtherLotsAndSoldCars = async slug => {
       })),
     };
   } catch (error) {
-    if (error.message === 'NOT_FOUND') {
+    if (error.message === "NOT_FOUND") {
       throw error; // Пробрасываем ошибку для обработки в компоненте
     }
     throw new Error(`Failed to fetch listings: ${error.message}`);
   }
 };
-
-
 
 export const getUserListings = async () => {
   try {
@@ -284,5 +337,28 @@ export const getUserFavouriteListings = async () => {
     return favourites;
   } catch (error) {
     throw new Error(error);
+  }
+};
+
+export const createBid = async ({ amount, lot_id, buy_now, status }) => {
+  try {
+    const { id: user_id } = await getCurrentUser();
+    if (!user_id) {
+      throw new Error("User not authenticated");
+    }
+    const newBid = await prisma.bid.create({
+      data: {
+        user_id,
+        lot_id,
+        buy_now,
+        status,
+        amount,
+      },
+    });
+
+    return newBid;
+  } catch (error) {
+    console.error("Error creating bid:", error.message);
+    throw new Error("Failed to create bid");
   }
 };

@@ -11,17 +11,32 @@ import InfoIcon from "../../../shared/img/InfoIcon";
 const PolandMarket = ({ marketInfo, listing }) => {
   const poland = [
     {
-      label: "Средняя цена",
+      label: "Minimal Price",
+      value: marketInfo.min_price,
+      icon: <InfoIcon />,
+    },
+    {
+      label: "Maximum Price",
+      value: marketInfo.max_price,
+      icon: <InfoIcon />,
+    },
+    {
+      label: "Median Price",
       value: marketInfo.avg_price,
       icon: <InfoIcon />,
     },
     {
-      label: "Средний пробег",
+      label: "Maximum mileage",
+      value: marketInfo.min_mileage,
+      icon: <InfoIcon />,
+    },
+    {
+      label: "Median milage",
       value: marketInfo.avg_mileage,
       icon: <InfoIcon />,
     },
     {
-      label: "Продается в месяц",
+      label: "Advert count",
       value: marketInfo.listing_count,
       icon: <InfoIcon />,
     },
@@ -39,7 +54,7 @@ const PolandMarket = ({ marketInfo, listing }) => {
       <hr className="tw-my-[25px]" />
       <div className="tw-flex tw-justify-between">
         <span className="tw-text-[18px] tw-text-[#191919]">Зазор от рынка</span>
-        <span className="tw-text-[20px] tw-text-[#3E73CF]">{"$" + listing.final_bid}</span>
+        <span className="tw-text-[20px] tw-text-[#3E73CF]">{"$17,000"}</span>
       </div>
     </div>
   );

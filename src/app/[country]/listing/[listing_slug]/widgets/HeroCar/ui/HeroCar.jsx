@@ -1,46 +1,66 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-
-import PageDirect from "@/components/Common/PageDirect";
+import { useEffect, useState } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import SliderCar from "../../../entities/SliderCar";
-import VehicleInfo from "../../../entities/VehicleInfo";
-import BidStatus from "../../../entities/BidStatus";
-import FinalPriceCalc from "../../../entities/FinalPriceCalc";
-import PolandMarket from "../../../entities/PolandMarket";
-import FAQ from "../../../entities/FAQ";
-import WantItNow from "../../../entities/WantItNow";
 import AccordionHistory from "../../../entities/AccordionHistory";
 import AuctionDateNotification from "../../../entities/AuctionDateNotification";
+import BidStatus from "../../../entities/BidStatus";
+import FAQ from "../../../entities/FAQ";
+import FinalPriceCalc from "../../../entities/FinalPriceCalc";
+import PolandMarket from "../../../entities/PolandMarket";
+import SliderCar from "../../../entities/SliderCar";
+import VehicleInfo from "../../../entities/VehicleInfo";
+import WantItNow from "../../../entities/WantItNow";
 
-import HistoryCard from "../../../entities/AccordionHistory/models/HistoryCard";
-
-import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
-import ModalNotEnoughMoney from "../../../features/Modal/models/ModalNotEnoughMoney";
 import ModalAttention from "../../../features/Modal/models/ModalAttention";
+import ModalConfirmBild from "../../../features/Modal/models/ModalConfirmBild";
 import ModalGetReport from "../../../features/Modal/models/ModalGetReport";
+import ModalNotEnoughMoney from "../../../features/Modal/models/ModalNotEnoughMoney";
 
+import Auc from "../../../shared/img/Auc";
+import Car from "../../../shared/img/Car";
+import InfoIcon from "../../../shared/img/InfoIcon";
 import Rating1 from "../../../shared/img/Rating";
 import Rating2 from "../../../shared/img/Rating2";
 import Rating3 from "../../../shared/img/Rating3";
 import StarFav from "../../../shared/img/StarFav";
-import Auc from "../../../shared/img/Auc";
-import Car from "../../../shared/img/Car";
-import InfoIcon from "../../../shared/img/InfoIcon";
-import CopyText from "@/components/ListItem/models/CopyText";
 
-const HeroCar = ({ listing, currentUser }) => {
-  console.log(currentUser.balance);
+const HeroCar = ({ listing, currentUser, previousAuctions }) => {
   // Суммируем значения всех бидов с статусом CURRENT
   const sumAllBidAmount = listing.bids
     .filter(bid => bid.status === "CURRENT") // Отбираем только текущие биды
     .reduce((total, bid) => total + bid.amount, 0);
   // Проверяем, хватает ли баланса для текущих бидов
-  const hasEnoughBalance = currentUser.balance >= sumAllBidAmount;
-  console.log(sumAllBidAmount);
+  const hasEnoughBalance = currentUser && currentUser.balance >= sumAllBidAmount;
+
+  const handleCreateBid = async amount => {
+    try {
+      const response = await fetch("/api/bid", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount,
+          buy_now: true,
+          lot_id: listing.id,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create bid");
+      }
+
+      alert("Вы успешно создали бид");
+      const result = await response.json();
+      console.log("Bid created successfully:", result);
+    } catch (error) {
+      console.error("Error creating bid:", error.message);
+    }
+  };
+
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
   }, []);
@@ -91,11 +111,11 @@ const HeroCar = ({ listing, currentUser }) => {
           <SliderCar media={listing.media} />
           <div className="tw-block laptop:tw-hidden tw-mb-[31px] tw-mx-[15px] tablet:tw-mx-0 tablet:tw-mb-0">
             {/* laptop  */}
-            <AuctionDateNotification />
-            {listing.make.lots.length > 0 && (
-              <AccordionHistory lots={listing.make.lots} title={"Auction History Found"} id={1} />
+            {!listing.auction_at && <AuctionDateNotification />}
+            {previousAuctions.results > 0 && (
+              <AccordionHistory initialAuctions={previousAuctions} title={"Auction History Found"} id={1} />
             )}
-            <BidStatus setInputValue={setInputValue} listing={listing}>
+            {listing.auction_at && <BidStatus setInputValue={setInputValue} listing={listing}>
               {" "}
               <button
                 type="button"
@@ -106,7 +126,7 @@ const HeroCar = ({ listing, currentUser }) => {
               >
                 Place a Bid <Auc />
               </button>
-            </BidStatus>
+            </BidStatus>}
           </div>
           <div className="tw-max-w-[648px] tw-mt-[11px] tw-items-center tw-h-[40px] tw-mb-[19px] tw-flex  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
@@ -161,11 +181,11 @@ const HeroCar = ({ listing, currentUser }) => {
         <div className="tw-flex tw-flex-col desktop:tw-max-w-[370px] tw-gap-[10px]">
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
-            <AuctionDateNotification />
-            {listing.make.lots.length > 0 && (
-              <AccordionHistory lots={listing.make.lots} title={"Auction History Found"} id={1} />
+            {!listing.auction_at && <AuctionDateNotification />}
+            {previousAuctions.results > 0 && (
+              <AccordionHistory initialAuctions={previousAuctions} title={"Auction History Found"} id={1} />
             )}
-            <BidStatus setInputValue={setInputValue} listing={listing}>
+            {listing.auction_at && <BidStatus setInputValue={setInputValue} listing={listing}>
               <button
                 type="button"
                 className="tw-w-full tw-flex tw-gap-[10px] tw-justify-center tw-bg-[#3ECF5C] tw-text-[#fff] tw-py-[20.5px] tw-rounded-[32px] "
@@ -176,7 +196,7 @@ const HeroCar = ({ listing, currentUser }) => {
               >
                 Place a Bid <Auc />
               </button>
-            </BidStatus>
+            </BidStatus>}
           </div>
           <div className=" tw-w-[370px] tw-items-center tw-h-[40px]  tw-mb-[19px] tw-hidden  laptop:tw-flex">
             {/* desktop */}
@@ -187,7 +207,6 @@ const HeroCar = ({ listing, currentUser }) => {
             <div className="tw-flex tw-items-stretch">
               <span className="text-vehicle tw-max-w-[310px]">
                 THIS VEHICLE IS BEING SOLD IN IT`S CURRENT CONDITION ON AN 'AS IS' BASIS
-                <button  data-bs-target="#modalAttention">HI</button>
               </span>
               <span className="tw-mt-[-4px]">
                 <InfoIcon />
@@ -196,16 +215,16 @@ const HeroCar = ({ listing, currentUser }) => {
           </div>
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
-            {!listing.buy_now && <WantItNow listing={listing} />}
+            {listing.buy_now && <WantItNow listing={listing} />}
             <FinalPriceCalc listing={listing} />
           </div>
           <PolandMarket listing={listing} marketInfo={listing.make.marketInfo[0]} />
         </div>
       </div>
-      <ModalGetReport />
+      <ModalGetReport currentUser={currentUser}/>
       <ModalNotEnoughMoney />
       <ModalConfirmBild listing={listing} inputValue={inputValue} />
-      <ModalAttention />
+      <ModalAttention handleCreateBid={handleCreateBid} listing={listing} />
     </section>
   );
 };

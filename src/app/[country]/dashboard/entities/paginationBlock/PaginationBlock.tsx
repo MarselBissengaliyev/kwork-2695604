@@ -40,9 +40,6 @@ const PaginationBlock = ({ currentBids }: PaginationProps) => {
     return pageNumbers;
   };
 
-  // Получаем текущие лоты для отображения на текущей странице
-  const currentPageBids = currentBids.array.slice((currentPage - 1) * 1, currentPage * 1); // по одному лоту на странице
-
   return (
     <div>
       {/* Пагинация */}

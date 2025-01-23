@@ -1,32 +1,32 @@
 import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { notFound } from 'next/navigation'; // Next.js 13+ (app directory)
+import { notFound } from "next/navigation"; // Next.js 13+ (app directory)
 import "./car.scss";
 
 import HeroCar from "./widgets/HeroCar";
 import HowItWorks from "./widgets/HowItWorks";
 import { NearestLots } from "@/containers/home";
-import { getListingBySlug, getOtherLotsAndSoldCars } from "@/actions/listings";
+import { createBid, getListingBySlug, getOtherLotsAndSoldCars, getPreviousAuctions } from "@/actions/listings";
 import { getCurrentUser } from "@/actions/users";
 
 const page = async ({ params }) => {
   const slug = params?.listing_slug;
-
   try {
     const listing = await getListingBySlug(slug);
     const currentUser = await getCurrentUser();
     const otherCars = await getOtherLotsAndSoldCars(slug);
-
+    const previousAuctions = await getPreviousAuctions(slug, { page: 1, take: 2 });
     // Если `listing` или `otherCars` не найдены, перенаправляем на 404
     if (!listing || !otherCars) {
       throw new Error("NOT_FOUND");
     }
+    console.log("Previous=", previousAuctions)
 
     return (
       <>
         <div className="tw-w-full tw-mb-[58px]">
-          {listing && <HeroCar currentUser={currentUser} listing={listing} />}
+          {listing && <HeroCar previousAuctions={previousAuctions} currentUser={currentUser} listing={listing} />}
           <hr />
         </div>
         <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden desktop:tw-block">

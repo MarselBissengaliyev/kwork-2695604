@@ -9,26 +9,34 @@ import ListItem from "@/components/ListItem/index";
 import InfoIcon from "../../../shared/img/InfoIcon";
 
 const FinalPriceCalc = ({ listing }) => {
+  const inputValue =
+    listing.status === "Sold"
+      ? listing.final_bid
+      : listing.status === "NotSold" && listing.current_bid
+        ? listing.current_bid
+        : listing.avg_price
+          ? listing.avg_price
+          : 0;
+
+  const auctionFee = inputValue !== 0 ? (parseFloat(inputValue) * 0.02).toFixed(2) : 0;
+  const transactionFee = 450;
+  const documentationFee = 50;
+  const finalPrice =(parseFloat(inputValue) + parseFloat(auctionFee) + transactionFee + documentationFee).toFixed(2);
   const poland = [
     {
       label: "Auction Fees",
-      value: "$17,000",
+      value: `$${auctionFee}`,
       icon: <InfoIcon />,
     },
     {
       label: "Transaction Fee",
-      value: "$17,000",
+      value: `$${transactionFee}`,
       icon: <InfoIcon />,
     },
     {
       label: "Documentation Fee",
-      value: "$17,000",
+      value: `$${documentationFee}`,
       icon: <InfoIcon />,
-    },
-    {
-      label: "Add Shipping",
-      value: "$17,000",
-      icon: " ",
     },
   ];
   return (
@@ -48,7 +56,7 @@ const FinalPriceCalc = ({ listing }) => {
               <InfoIcon />
             </span>
           </span>
-          <span className="list-price-value">{"$" + listing.final_bid}</span>
+          <span className="list-price-value">{"$" + inputValue}</span>
         </li>
       </ul>
       <hr className="tw-my-[25px]" />
@@ -60,7 +68,7 @@ const FinalPriceCalc = ({ listing }) => {
       <hr className="tw-my-[25px]" />
       <div className="tw-flex tw-justify-between">
         <span className="tw-text-[18px] tw-text-[#191919]">Final Price</span>
-        <span className="tw-text-[20px] tw-text-[#3E73CF]">{"$" + listing.final_bid}</span>
+        <span className="tw-text-[20px] tw-text-[#3E73CF]">{"$" + finalPrice}</span>
       </div>
     </div>
   );
