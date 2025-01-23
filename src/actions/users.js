@@ -67,15 +67,27 @@ export const getUserBids = async (userId, query) => {
 
     const where = {
       user_id: userId,
-      ...(status ? { status } : {}), // Фильтр по статусу, если указан
+      ...(status ? { status } : {}),
     };
 
-    const results = await prisma.bid.count({ where });
+    // Aggregate to get the count and sum of CURRENT bids
+    const [countResult, sumResult] = await prisma.$transaction([
+      prisma.bid.count({ where }),
+      prisma.bid.aggregate({
+        _sum: {
+          amount: true,
+        },
+        where: {
+          user_id: userId,
+          status: "CURRENT", // Only count CURRENT bids
+        },
+      }),
+    ]);
 
     const bids = await prisma.bid.findMany({
       where,
       include: {
-        lot: true, // Включаем связь с таблицей "lot"
+        lot: true,
       },
       take: pagination.take,
       skip: pagination.skip,
@@ -84,53 +96,88 @@ export const getUserBids = async (userId, query) => {
       },
     });
 
-    pagination.pages = Math.ceil(results / pagination.take);
+    pagination.pages = Math.ceil(countResult / pagination.take);
 
-    // Формируем результаты в зависимости от статуса
     const formattedBids = bids.map(bid => {
-      if (bid.status === "CURRENT") {
-        return {
-          lot: bid.lot.id,
-          vin: bid.lot.vin,
-          vehicle: bid.lot.title,
-          saleDate: new Date(bid.created_at).toUTCString(),
-          state: bid.lot.state,
-          bidStatus: bid.status,
-          myMaxBid: bid.amount,
-          saleType: bid.lot.sale_type,
-        };
-      } else if (bid.status === "WON") {
-        return {
-          date: bid.lot.sale_date,
-          orderId: bid.lot.id,
-          vin: bid.lot.vin,
-          model: bid.lot.title,
-          price: bid.amount,
-          shippingStatus: "",
-          saledate: new Date(bid.created_at).toUTCString(),
-          paymentStatus: "Not paid",
-          shippingAdded: "",
-          deliveryStatus: "-",
-        };
-      } else if (bid.status === "LOST") {
-        return {
-          lot: bid.lot.id,
-          vin: bid.lot.vin,
-          vehicle: bid.lot.title,
-          saleDate: new Date(bid.created_at).toUTCString(),
-          finalBid: bid.amount,
-          state: bid.lot.state,
-          myMaxBid: bid.amount,
-          comment: "High price",
-        };
-      }
+      return {
+        lot: bid.lot.id,
+        vin: bid.lot.vin,
+        year: bid.lot.year,
+        auction_at: new Date(bid.lot.auction_at).toUTCString(),
+        current_bid: bid.lot.current_bid,
+        bidStatus: bid.status,
+        amount: bid.amount,
+        slug: bid.lot.slug,
+      };
     });
 
     return {
       bids: formattedBids,
-      results,
+      results: countResult,
+      pages: pagination.pages,
+      usedSum: sumResult._sum.amount || 0, // The sum of "CURRENT" bids
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getUserFavourites = async (userId, query) => {
+  try {
+    const { page = 1, take = 10, auction_at } = query || {};
+
+    const pagination = {
+      page: page > 1 ? page : 1,
+      pages: 0,
+      take,
+      skip: page > 1 ? take * (page - 1) : 0,
+    };
+
+    const where = {
+      user_id: userId,
+      listing: {
+        // Убедиться, что auction_at соответствует фильтру
+        auction_at:
+          auction_at === "current" ? { gte: new Date() } : auction_at === "completed" ? { lt: new Date() } : undefined,
+      },
+    };
+
+    const results = await prisma.favourite.count({ where });
+
+    const favourites = await prisma.favourite.findMany({
+      where: {
+        user_id: userId,
+        listing: {
+          auction_at:
+            auction_at === "current" ? { gte: new Date() } :
+            auction_at === "completed" ? { lt: new Date() } : undefined,
+        },
+      },
+      take: pagination.take,
+      skip: pagination.skip,
+      orderBy: {
+        created_at: "desc",
+      },
+      include: {
+        listing: {
+          include: {
+            media: true,
+          },
+        },
+      },
+    });
+    
+    // Фильтрация результатов на уровне кода, чтобы исключить записи без listing
+    const validFavourites = favourites.filter(fav => fav.listing !== null);
+    
+    pagination.pages = Math.ceil(validFavourites.length / pagination.take);
+    
+    return {
+      favourites: validFavourites,
+      results: validFavourites.length,
       pages: pagination.pages,
     };
+    
   } catch (error) {
     throw new Error(error);
   }
@@ -164,16 +211,7 @@ export const getUserTransactions = async (userId, query) => {
         date: "desc",
       },
       include: {
-        user: {
-          select: {
-            id: true,
-            _count: {
-              select: {
-                reviews: true, // Количество комментариев пользователя
-              },
-            },
-          },
-        },
+        user: true,
       },
     });
 
@@ -186,7 +224,6 @@ export const getUserTransactions = async (userId, query) => {
       date: transaction.date.toISOString(),
       balance: transaction.balance,
       status: transaction.status,
-      comments: transaction.user?._count?.comments || 0, // Добавляем количество комментариев
     }));
 
     return {
@@ -198,8 +235,6 @@ export const getUserTransactions = async (userId, query) => {
     throw new Error(error.message || "An error occurred while fetching transactions.");
   }
 };
-
-
 
 export const getUsers = async query => {
   try {

@@ -8,12 +8,13 @@ interface IBtnMain {
   onClick?: () => void;
   fullWidth?: boolean;
   variant?: 'solid' | 'outline';
-  color?: 'blue' | 'green' |'red' | 'grey';
+  color?: 'blue' | 'green' | 'red' | 'grey';
   icon?: string;
   number?: number;
   hoverEffect?: boolean;
   hoverColor?: string;
   disabled?: boolean;
+  href?: string;
   onMouseOver?: () => void;
   onMouseOut?: () => void;
 }
@@ -21,17 +22,18 @@ interface IBtnMain {
 const ButtonMain = ({
   text = "",
   classNames = "btn",
-  onClick = () => {},
+  onClick = () => { },
   fullWidth = false,
   variant = "solid",
   color = "blue",
   icon = "",
-  number=0 ,
-  hoverEffect = true, 
+  number = 0,
+  hoverEffect = true,
   hoverColor = "#FFFFFF",
   disabled = false,
-  onMouseOver = () => {},
-  onMouseOut = () => {}
+  onMouseOver = () => { },
+  onMouseOut = () => { },
+  href
 }: IBtnMain) => {
   // Цветовые значения
   const colorMap = {
@@ -69,12 +71,12 @@ const ButtonMain = ({
     fontWeight: 'bold',
     marginLeft: '12px',
   };
-  
+
 
   // Стили для иконки
   const iconStyles = {
     width: '18px',
-    height: '18px', 
+    height: '18px',
     // marginLeft: '8px',
     // marginBottom: '3px',
   };
@@ -87,32 +89,48 @@ const ButtonMain = ({
     : ''; // Если hoverEffect = false, убираем hover эффект
 
   return (
-    <button
-      className={`${baseClasses} ${widthClass} ${hoverClasses} ${classNames}`} // динамический hover и классы
-      style={variantStyles}
-      onClick={onClick}
-      disabled={disabled}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    >
-      {text}
+    <>
+      {!href ? <button
+        className={`${baseClasses} ${widthClass} ${hoverClasses} ${classNames}`} // динамический hover и классы
+        style={variantStyles}
+        onClick={onClick}
+        disabled={disabled}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {text}
 
-      {/* Если есть number, отображаем его */}
-      {/* {number !== undefined && (
+        {/* Если есть number, отображаем его */}
+        {/* {number !== undefined && (
         <div style={numberStyles}>
           {number}
         </div>
       )} */}
 
-      {/* Если есть icon, отображаем его */}
-      {icon && (
-        <img
-          src={icon}
-          alt="icon"
-          style={iconStyles}
-        />
-      )}
-    </button>
+        {/* Если есть icon, отображаем его */}
+        {icon && (
+          <img
+            src={icon}
+            alt="icon"
+            style={iconStyles}
+          />
+        )}
+      </button> :
+        <a href={href} className={`${baseClasses} ${widthClass} ${hoverClasses} ${classNames}`} // динамический hover и классы
+          style={variantStyles}
+          onClick={onClick}
+          onMouseOver={onMouseOver}
+          onMouseOut={onMouseOut}>
+          {text}
+          {icon && (
+            <img
+              src={icon}
+              alt="icon"
+              style={iconStyles}
+            />
+          )}
+        </a>}
+    </>
   );
 };
 

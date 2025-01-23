@@ -312,34 +312,6 @@ export const getUserListings = async () => {
   }
 };
 
-export const getUserFavouriteListings = async () => {
-  try {
-    const { id: userId } = await getCurrentUser();
-
-    const favourites = await prisma.favourite.findMany({
-      where: { user_id: userId },
-      orderBy: {
-        created_at: "desc",
-      },
-      include: {
-        listing: {
-          include: {
-            user: {
-              select: {
-                name: true,
-              },
-            },
-          },
-        },
-      },
-    });
-
-    return favourites;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
 export const createBid = async ({ amount, lot_id, buy_now, status }) => {
   try {
     const { id: user_id } = await getCurrentUser();

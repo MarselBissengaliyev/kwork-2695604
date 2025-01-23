@@ -26,16 +26,15 @@ interface TableProps {
     pages: number;
   };
   columns: Column[];
-  rowKey: string; // уникальный ключ для каждой строки
 }
 
-const DashBoardTableMoblie: React.FC<TableProps> = ({ data, columns, rowKey }) => {
+const DashBoardTableMoblie: React.FC<TableProps> = ({ data, columns }) => {
   return (
     <Container className={""}>
       <div style={{ width: '100%' }}>
-        {data.array.map((row) => (
+        {data.array.map((row, idx) => (
           <div
-            key={row[rowKey]}
+            key={idx}
             className="tw-border-[1px] tw-border-black tw-bg-white tw-rounded-lg tw-p-4 tw-mb-4"
             style={{ border: '1px solid #ECECEC' }}
           >

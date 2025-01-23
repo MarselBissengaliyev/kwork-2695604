@@ -20,12 +20,10 @@ const Transactions = ({ paidTransactions, requestARefundTransactions, refundTran
   }
 
   const columns = [
-    { header: 'Type', accessor: 'status' },
+    { header: 'Id', accessor: 'id' },
     { header: 'Date', accessor: 'date' },
     { header: '#', accessor: 'id' },
-    { header: 'Due Date', accessor: 'date' },
     { header: 'Balance', accessor: 'balance' },
-    { header: 'Total', accessor: 'balance' },
     {
       header: 'Status',
       accessor: 'status',
@@ -36,12 +34,10 @@ const Transactions = ({ paidTransactions, requestARefundTransactions, refundTran
   ];
 
   const tableColumns = [
-    { header: 'ID', accessor: 'id' },
-    { header: 'Transaction Date', accessor: 'date' },
-    { header: 'Transaction Type', accessor: 'status' },
-    { header: 'Comments', accessor: 'comments' },
-    { header: 'Amount', accessor: 'balance' },
-    { header: 'Total', accessor: 'balance' },
+    { header: 'Id', accessor: 'id' },
+    { header: 'Date', accessor: 'date' },
+    { header: '#', accessor: 'id' },
+    { header: 'Balance', accessor: 'balance' },
     {
       header: 'Status',
       accessor: 'status',
@@ -52,9 +48,10 @@ const Transactions = ({ paidTransactions, requestARefundTransactions, refundTran
   ];
 
   const refundColumns = [
-    { header: 'Transaction Date', accessor: 'date' },
-    { header: 'Refund Amount', accessor: 'balance' },
-    { header: 'Comments', accessor: 'comments' },
+    { header: 'Id', accessor: 'id' },
+    { header: 'Date', accessor: 'date' },
+    { header: '#', accessor: 'id' },
+    { header: 'Balance', accessor: 'balance' },
     {
       header: 'Status',
       accessor: 'status',
@@ -141,7 +138,6 @@ const Transactions = ({ paidTransactions, requestARefundTransactions, refundTran
                   ? refundColumns
                   : []
           }
-          rowKey="vin"
         />;
       </div>
 
@@ -162,7 +158,7 @@ const Transactions = ({ paidTransactions, requestARefundTransactions, refundTran
               : activeButton === "Refund"
                 ? { ...refundTransactions, array: refundTransactions.transactions }
                 : { array: [], pages: 0, results: 0 }
-        } rowKey="vin" />
+        } />
       </div>
     </Container>
   )

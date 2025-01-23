@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import WatchlistBlock from '../../widgets/WatchlistBlock/WatchlistBlock';
 
-const Watchlist = () => {
+const Watchlist = ({ currentWatchList, completdWatchList }) => {
   const router = useRouter();
 
   const goBack = () => {
@@ -66,7 +66,7 @@ const Watchlist = () => {
 
         </div>
       </PageDirect>
-      <WatchlistBlock />
+      <WatchlistBlock favourites={activeButton === 'Current Wathclist' ? currentWatchList : completdWatchList}/>
     </>
   )
 }

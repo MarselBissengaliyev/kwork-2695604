@@ -1,34 +1,31 @@
-import React from "react";
-import { redirect } from "next/navigation";
-import PageDirect from "@/components/Common/PageDirect";
-import { getCurrentUser } from "@/actions/users";
-import "./page.scss";
-import DashboardStats from "@/components/Dashboard/DashboardStats";
-import LeftSidebar from "@/components/Dashboard/LeftSidebar";
-
-import { getDataBriefStats } from "@/actions/stats";
+import { getCurrentUser, getUserBids, getUserFavourites } from "@/actions/users";
 import ButtonMain from "@/components/button/ButtonMain";
+import PageDirect from "@/components/Common/PageDirect";
+import { Container } from "@/components/Container";
+import { redirect } from "next/navigation";
 import { DashBoardCards } from "./entities/dashboardCards";
 import { DashboardMoneyCard } from "./entities/DashboardMoneyCard";
-import { Container } from "@/components/Container";
+import "./page.scss";
 
 const page = async () => {
   const currentUser = await getCurrentUser();
-  currentUser.balance = currentUser.balance ?? 0;
+  console.log(currentUser)
+  // Redirect to home page if the user is not authenticated
+  if (!currentUser) {
+    redirect("/");
+  }
 
   const biddingLimit = (currentUser?.balance || 0) <= 1000 ? 10000 : currentUser.balance <= 2500 ? 50000 : 200000;
-
-  const usedSum = currentUser.bids
-    .filter(bid => bid.status === "CURRENT") // фильтруем по статусу "CURRENT"
-    .reduce((sum, bid) => sum + bid.amount, 0);
-
-  const wonBids = currentUser.bids.filter(bid => bid.status === "WON");
-  const wonBidsCount = wonBids.length;
-
-  const currentBids = currentUser.bids.filter(bid => bid.status === "CURRENT");
-  const outbiddedBidsCount = currentBids.filter(bid => bid.st > bid.amount).length;
-
+  const wonBids = await getUserBids(currentUser.id, { status: "WON" });
+  const wonBidsCount = wonBids.results;
+  const currentBids = await getUserBids(currentUser.id, { status: "CURRENT" });
+  const usedSum = currentBids.usedSum;
+  const outbiddedBids = await getUserBids(currentUser.id, { status: "LOST" });
+  const outbiddedBidsCount = outbiddedBids.results;
+  const favourites = await getUserFavourites(currentUser.id, {});
+  const favouritesCount = favourites.results;
   const availableSum = biddingLimit - usedSum;
+
   return (
     <>
       <PageDirect
@@ -38,11 +35,9 @@ const page = async () => {
         <div className="tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full no-scrollbar max-mindesk:tw-gap-2">
           <div className="tw-flex tw-gap-2">
             <ButtonMain classNames={"tw-w-[170px] tw-flex-shrink-0"} variant="outline" text={"Dashboard"} />
-
             <a href="./myBids">
               <ButtonMain classNames={"tw-w-[170px] tw-flex-shrink-0"} color="grey" variant="outline" text="My Bids" />
             </a>
-
             <a href="./transactions">
               <ButtonMain
                 classNames={"tw-w-[170px] tw-flex-shrink-0"}
@@ -51,7 +46,6 @@ const page = async () => {
                 variant="outline"
               />
             </a>
-
             <a href="./Watchlist">
               <ButtonMain
                 classNames={"tw-w-[170px] tw-flex-shrink-0"}
@@ -83,20 +77,6 @@ const page = async () => {
 
       <div className="">
         <Container className={""}>
-          {/* <div className="row">
-            <div className="col-lg-4">
-              <LeftSidebar />
-            </div>
-
-            <div className="col-lg-8">
-              <DashboardStats
-                users={users}
-                listings={listings}
-                blogPosts={blogPosts}
-                reviews={reviews}
-              />
-            </div>
-          </div> */}
           <div className="tw-grid tw-grid-cols-5 tw-gap-[20px] max-laptop:tw-grid-cols-2 max-tablet:tw-grid-cols-1">
             <DashBoardCards
               number={outbiddedBidsCount}
@@ -110,10 +90,8 @@ const page = async () => {
               icon="/images/dashboard/icons/carok.png"
               linkText="Learn more"
             />
-            {/* <DashBoardCards number={"1"} text='Unpaid Invoice' icon="/images/dashboard/icons/reciept.png" linkText='Please, pay it' />
-            <DashBoardCards number={"0"} text='Seller Offer' icon="/images/dashboard/icons/carmouse.png" linkText='Learn more'/> */}
             <DashBoardCards
-              number={3}
+              number={favouritesCount}
               text="Vehicles from your Watchlist starts soon"
               icon="/images/dashboard/icons/cartime.png"
               linkText="Learn more"
@@ -133,17 +111,17 @@ const page = async () => {
               text="Bidding Limit"
               price={`$${biddingLimit.toLocaleString("en-US")}`}
               icon="/images/dashboard/icons/revenue.png"
-              infotext={"Your bidding limit"} secInfoText={undefined}            />
+              infotext={"Your bidding limit"} secInfoText={undefined} />
             <DashboardMoneyCard
               text="Used"
               price={`$${usedSum.toLocaleString("en-Us")}`}
               icon="/images/dashboard/icons/dollar.png"
-              infotext={"Your used bidding limit"} secInfoText={undefined}            />
+              infotext={"Your used bidding limit"} secInfoText={undefined} />
             <DashboardMoneyCard
               text="Available"
               price={`$${availableSum.toLocaleString("en-US")}`}
               icon="/images/dashboard/icons/give-money.png"
-              infotext={"Your available bidding limit"} secInfoText={undefined}            />
+              infotext={"Your available bidding limit"} secInfoText={undefined} />
           </Container>
         </div>
       </div>
