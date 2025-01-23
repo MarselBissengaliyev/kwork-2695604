@@ -89,6 +89,24 @@ const page = async () => {
       text: "We have resources to provide shipping from New York, Atlanta, Los Angeles, Seattle, Texas, Miami, Savannah and Canada"
     }
   ]
+
+  const contacts = [
+    {
+      headline:"Corporate Headquarter",
+      description: "Bid N Drive Inc",
+      Address: "2305 Fourth st Tucker, GA 30084",
+      Phones: "+1 (850) 319-34-67",
+      Email: "info@auto4export.com"
+    },
+    {
+      headline:"Representative in Ukraine",
+      description: "PRINCE AUTO",
+      Address: "52005, Nizhnednepro-vskaia 15 str. Dnipro",
+      Phones: "+38 (056) 378-80-07",
+      Email: "+38 (096) 977-77-67"
+    }
+  ]
+
   return (
     <>
       <div className={css.block}>
@@ -150,6 +168,60 @@ const page = async () => {
         <p className="tw-mt-[80px] tw-max-w-[978px] tw-w-full tw-text-center max-laptop:tw-px-[50px] max-tablet:tw-px-[20px]">
             It is hard to find reliable partners who take care of your needs as their own. Auto4Export has an experience in vehicle purchasing as well as domestic and international transportation which is supported by an extensive list of satisfied customers and large number of referrals.
           </p>
+      </div>
+      <div className="tw-mt-[53px] tw-mb-[87px] tw-container tw-grid tw-grid-cols-2 tw-place-items-center tw-gap-[20px] tw-m-auto max-largeDesk:tw-grid-cols-1 max-minilaptop:tw-px-[20px]">
+        <div className="tw-border-2 tw-border-solid tw-border-[#ECECEC] tw-max-w-[760px] tw-w-full tw-p-[40px] tw-rounded-[10px]">
+          <div className="tw-flex tw-justify-between">
+            <span className="tw-flex tw-flex-col tw-gap-[14px] ">
+              <h4 className="tw-text-[30px] tw-text-[#191919]">Corporate Headquarter</h4>
+              <p className="tw-text-[18px] tw-text-[#8C8C8C]">Bid N Drive Inc</p>
+            </span>
+            <img src="/images/about-us/office.png" alt="Office" className="tw-h-[50px] tw-max-w-[50px] tw-w-full"/>
+          </div>
+          <div className="tw-flex tw-justify-between tw-mt-[60px] max-minilaptop:tw-flex-col max-minilaptop:tw-gap-[20px]">
+            <span className="tw-max-w-[170px] tw-w-full">
+              <img src="/images/about-us/locator.png"/>
+              <p className="tw-text-[16px] tw-text-[#8C8C8C] tw-mt-[20px]">Address</p>
+              <p className="tw-max-w-[160px] tw-w-full tw-text-[18px] tw-text-[#191919]">2305 Fourth st Tucker, GA 30084</p>
+            </span>
+            <span className="tw-max-w-[174px] tw-w-full">
+              <img src="/images/about-us/phone.png"/>
+              <p className="tw-text-[16px] tw-text-[#8C8C8C] tw-mt-[20px]">Phones</p>
+              <p className="tw-max-w-[174px] tw-w-full tw-text-[#191919] tw-text-[20px] tw-text-bol">+1 (850) 319-34-67</p>
+            </span>
+            <span className="tw-max-w-[186px] tw-w-full">
+              <img src="/images/about-us/message.png"/>
+              <p className="tw-text-[16px] tw-text-[#8C8C8C] tw-mt-[20px]">E-mail</p>
+              <p className="tw-max-w-[186px] tw-w-full tw-text-[#3E73CF] tw-text-[18px]">info@auto4export.com</p>
+            </span>
+          </div>
+        </div>
+        <div className="tw-border-2 tw-border-solid tw-border-[#ECECEC] tw-max-w-[760px] tw-w-full tw-p-[40px] tw-rounded-[10px]">
+          <div className="tw-flex tw-justify-between">
+            <span className="tw-flex tw-flex-col tw-gap-[14px] ">
+              <h4 className="tw-text-[30px] tw-text-[#191919]">Representative in Ukraine</h4>
+              <p className="tw-text-[18px] tw-text-[#8C8C8C]">PRINCE AUTO</p>
+            </span>
+            <img src="/images/about-us/officeUK.png" alt="Office" className="tw-h-[50px] tw-max-w-[50px] tw-w-full"/>
+          </div>
+          <div className="tw-flex tw-justify-between tw-mt-[60px] max-minilaptop:tw-flex-col max-minilaptop:tw-gap-[20px]">
+            <span className="tw-max-w-[180px] tw-w-full">
+              <img src="/images/about-us/locator.png"/>
+              <p className="tw-text-[16px] tw-text-[#8C8C8C] tw-mt-[20px]">Address</p>
+              <p className="tw-max-w-[180px] tw-w-full tw-text-[18px] tw-text-[#191919]">52005, Nizhnednepro-vskaia 15 str. Dnipro</p>
+            </span>
+            <span className="tw-max-w-[184px] tw-w-full">
+              <img src="/images/about-us/phone.png"/>
+              <p className="tw-text-[16px] tw-text-[#8C8C8C] tw-mt-[20px]">Phones</p>
+              <p className="tw-max-w-[184px] tw-w-full tw-text-[#191919] tw-text-[20px] tw-text-bold">+38 (056) 378-80-07</p>
+            </span>
+            <span className="tw-max-w-[186px] tw-w-full">
+              <img src="/images/about-us/fax.png"/>
+              <p className="tw-text-[16px] tw-text-[#8C8C8C] tw-mt-[20px]">Telephone/fax</p>
+              <p className="tw-max-w-[184px] tw-w-full tw-text-[#191919] tw-text-[20px] tw-text-bold">+38 (096) 977-77-67</p>
+            </span>
+          </div>
+        </div>
       </div>
       {/* <Favour />
       <Partner />
