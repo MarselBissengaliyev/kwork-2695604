@@ -120,8 +120,10 @@ const page = async () => {
         {advantages.map((a, idx) => (
           <div className={css.item}>
             <img src={`/images/advantages/0${idx + 1}.png`} alt="" />
-            <h4>{a.title}</h4>
-            <p>{a.text}</p>
+            <div>
+              <h4>{a.title}</h4>
+              <p>{a.text}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -139,12 +141,15 @@ const page = async () => {
         <p className="tw-text-center tw-text-[30px] tw-text-[#191919] max-laptop:tw-hidden">Advantages of using our service</p>
         <div className="tw-mt-[40px] tw-container tw-grid tw-grid-cols-5 tw-gap-[20px] tw-items-center tw-m-auto tw-text-center tw-px-[40px] max-laptop:tw-grid-cols-2 max-tablet:tw-grid-cols-1">
           {using.map((use) =>
-            <div className="tw-max-w-[292px] tw-w-full tw-h-[257px] tw-bg-[#FFFFFF] tw-flex tw-items-center tw-justify-start tw-text-center tw-flex-col tw-py-[50px]">
+            <div className="tw-max-w-[292px] tw-w-full tw-h-[257px] tw-bg-[#FFFFFF] tw-flex tw-items-center tw-justify-start tw-text-center tw-flex-col tw-py-[50px] max-laptop:last:tw-col-span-2 max-laptop:last:tw-max-w-[708px] max-tablet:last:tw-col-span-1 max-tablet:tw-max-w-[708px]">
                 <img src={use.icon}/>
                 <p className=" tw-max-w-[228px] tw-mt-[10px]">{use.text}</p>
               </div>
           )}
         </div>
+        <p className="tw-mt-[80px] tw-max-w-[978px] tw-w-full tw-text-center max-laptop:tw-px-[50px] max-tablet:tw-px-[20px]">
+            It is hard to find reliable partners who take care of your needs as their own. Auto4Export has an experience in vehicle purchasing as well as domestic and international transportation which is supported by an extensive list of satisfied customers and large number of referrals.
+          </p>
       </div>
       {/* <Favour />
       <Partner />
