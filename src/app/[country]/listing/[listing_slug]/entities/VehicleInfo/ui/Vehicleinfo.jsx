@@ -18,84 +18,104 @@ const Vehicleinfo = ({ children, listing }) => {
 
   const vehicleinfo = [
     {
-      label: "LOT:",
-      value: <CopyText text={truncateText(listing?.lot)} />,
+      label: "Vin:",
+      value: <CopyText text={truncateText(listing?.vin)} />,
     },
     {
-      label: "VIN:",
-      value: <CopyText text={truncateText(listing?.vin)} />,
+      label: "Make:",
+      value: truncateText(listing.make?.name),
+    },
+    {
+      label: "Model:",
+      value: truncateText(listing.model?.name),
+    },
+    {
+      label: "Year:",
+      value: truncateText(listing?.year),
     },
     {
       label: "Mileage:",
       value: truncateText(listing?.mileage),
     },
     {
-      label: "Keys:",
-      value: truncateText(listing?.keys),
-    },
-    {
       label: "Damage:",
       value: truncateText(listing?.damage),
     },
     {
-      label: "Engine:",
-      value: truncateText(listing?.engine),
+      label: "damageSecondary:",
+      value: truncateText(listing?.damageSecondary),
     },
     {
-      label: "Fuel:",
-      value: truncateText(listing?.fuel),
-    },
-    {
-      label: "Transmission:",
-      value: truncateText(listing?.transmission),
-    },
-    {
-      label: "Lot Quality:",
-      value: truncateText(listing?.lot),
-    },
-    {
-      label: "Color:",
-      value: truncateText(listing?.color),
-    },
-    {
-      label: "Drive:",
-      value: truncateText(listing?.drive),
-    },
-    {
-      label: "Title:",
-      value: truncateText(listing?.title),
-    },
-    {
-      label: "Cycinder:",
-      value: extractCylinders(listing?.engine),
+      label: "Auction:",
+      value: truncateText(listing?.auction),
     },
     {
       label: "Loss:",
       value: truncateText(listing?.loss),
     },
     {
-      label: "Key:",
-      value: truncateText(listing.key || "No Notes for this Lot"),
+      label: "Run and drive:",
+      value:  listing.run_and_drive ? "YES" : "NO",
     },
     {
-      label: "Start Date:",
-      value: truncateText(listing.start_date || "No Notes for this Lot"),
+      label: "State:",
+      value: truncateText(listing?.state),
     },
     {
-      label: "ACV:",
-      value: truncateText(listing.acv || "No Notes for this Lot"),
+      label: "Location:",
+      value: truncateText(listing?.location),
     },
     {
-      label: "Sale Document:",
-      value: truncateText(listing.document || "No Notes for this Lot"),
+      label: "Document:",
+      value: truncateText(listing?.document),
     },
     {
-      label: "Restraint System:",
-      value: truncateText(listing.restraint_system || "No Notes for this Lot"),
+      label: "Clean_title:",
+      value: listing.clean_title ? "YES" : "NO",
     },
     {
-      label: "Air Bags:",
-      value: truncateText(listing.air_bags || "No Notes for this Lot"),
+      label: "Registred_pl:",
+      value: listing.registred_pl ? "YES" : "NO",
+    },
+    {
+      label: "Seller:",
+      value: truncateText(listing?.seller),
+    },
+    {
+      label: "Color:",
+    value: truncateText(listing.color),
+    },
+    {
+      label: "Engine:",
+      value: truncateText(listing.engine),
+    },
+    {
+      label: "Fuel :",
+      value: truncateText(listing.fuel),
+    },
+    {
+      label: "Condition :",
+      value: truncateText(listing.condition),
+    },
+    {
+      label: "Transmission:",
+      value: truncateText(listing.transmission),
+    },
+    {
+      label: "Drive:",
+      value: truncateText(listing.drive),
+    },
+    {
+      label: "Auction at:",
+      value: truncateText(new Date(listing.auction_at).toDateString()),
+    },
+    {
+      label: "Status:",
+      value: truncateText(listing.status),
+    },
+    {
+      label: "Lot:",
+      value: truncateText(listing.lot),
     },
   ];
 
@@ -112,17 +132,6 @@ const Vehicleinfo = ({ children, listing }) => {
         </div>
         <div className="tw-w-full ">
           {children}
-          <hr className="tw-mt-[40px] hidden laptop:block  tw-mb-[30px]" />
-          <ul>
-            <h2 className="text-title tw-mt-[40px] tw-mb-[30px] tw-font-semibold">Status Report</h2>
-            <ListItem label={"Condition Grade:"} value={listing.condition} icon={""} />
-          </ul>
-          <hr className="tw-my-[30px] " />
-          <ul>
-            <h2 className="text-title tw-mb-[30px] tw-font-semibold">Options</h2>
-            <ListItem label={"Dual, Side"} value={"Hard Roof Top"} icon={""} />
-            <ListItem label={"Cloth"} value={"FM Radio"} icon={""} />
-          </ul>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import PageDirect from "@/components/Common/PageDirect";
 
@@ -36,6 +36,7 @@ const HeroCar = ({ listing }) => {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
   }, []);
+  const [inputValue, setInputValue] = useState(25);
   return (
     <section className="tw-container tw-mx-0   desktop:tw-mx-auto  tw-mb-[66px]">
       {/* ======================================= */}
@@ -86,7 +87,7 @@ const HeroCar = ({ listing }) => {
             {listing.make.lots.length > 0 && (
               <AccordionHistory lots={listing.make.lots} title={"Auction History Found"} id={1} />
             )}
-            <BidStatus listing={listing}>
+            <BidStatus setInputValue={setInputValue} listing={listing}>
               {" "}
               <button
                 type="button"
@@ -157,14 +158,14 @@ const HeroCar = ({ listing }) => {
             {listing.make.lots.length > 0 && (
               <AccordionHistory lots={listing.make.lots} title={"Auction History Found"} id={1} />
             )}
-            <BidStatus listing={listing}>
+            <BidStatus setInputValue={setInputValue} listing={listing}>
               <button
                 type="button"
                 className="tw-w-full tw-flex tw-gap-[10px] tw-justify-center tw-bg-[#3ECF5C] tw-text-[#fff] tw-py-[20.5px] tw-rounded-[32px] "
                 data-bs-toggle="modal"
                 // data-bs-target="#modalNotMoney"
-                // data-bs-target="#modalConfirm"
-                data-bs-target="#modalAttention"
+                data-bs-target="#modalConfirm"
+                // data-bs-target="#modalAttention"
               >
                 Place a Bid <Auc />
               </button>
@@ -194,8 +195,8 @@ const HeroCar = ({ listing }) => {
         </div>
       </div>
       <ModalGetReport />
-      <ModalConfirmBild />
       <ModalNotEnoughMoney />
+      <ModalConfirmBild inputValue={inputValue}/>
       <ModalAttention />
     </section>
   );
