@@ -3,11 +3,11 @@
 import React from 'react';
 
 interface IBtnMain {
-  text: React.ReactNode | string;
+  text?: React.ReactNode | string;
   classNames?: string;
   onClick?: () => void;
   fullWidth?: boolean;
-  variant?: 'solid' | 'outline';
+  variant?: 'solid' | 'outlined';
   color?: 'blue' | 'green' |'red' | 'grey';
   icon?: string;
   number?: number;
