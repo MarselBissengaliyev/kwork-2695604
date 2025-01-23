@@ -9,7 +9,6 @@ import Plus from "../../../shared/img/Plus";
 import Minus from "../../../shared/img/Minus";
 
 const CounterCar = ({ children, setInputValue }) => {
-  console.log(setInputValue)
   const inputRef = useRef(null);
 
   useEffect(() => {

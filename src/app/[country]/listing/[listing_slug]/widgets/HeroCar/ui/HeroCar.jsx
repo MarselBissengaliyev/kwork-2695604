@@ -32,7 +32,15 @@ import Car from "../../../shared/img/Car";
 import InfoIcon from "../../../shared/img/InfoIcon";
 import CopyText from "@/components/ListItem/models/CopyText";
 
-const HeroCar = ({ listing }) => {
+const HeroCar = ({ listing, currentUser }) => {
+  console.log(currentUser.balance);
+  // Суммируем значения всех бидов с статусом CURRENT
+  const sumAllBidAmount = listing.bids
+    .filter(bid => bid.status === "CURRENT") // Отбираем только текущие биды
+    .reduce((total, bid) => total + bid.amount, 0);
+  // Проверяем, хватает ли баланса для текущих бидов
+  const hasEnoughBalance = currentUser.balance >= sumAllBidAmount;
+  console.log(sumAllBidAmount);
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
   }, []);
@@ -93,9 +101,8 @@ const HeroCar = ({ listing }) => {
                 type="button"
                 className="tw-w-full tablet:tw-w-[216px] laptop:tw-w-full tw-flex tw-gap-[10px] tw-justify-center tw-bg-[#3ECF5C] tw-text-[#fff] tw-py-[20.5px] tw-rounded-[32px] "
                 data-bs-toggle="modal"
-                // data-bs-target="#modalNotMoney"
                 // data-bs-target="#modalConfirm"
-                data-bs-target="#modalAttention"
+                data-bs-target={hasEnoughBalance ? "#modalConfirm" : "#modalNotMoney"}
               >
                 Place a Bid <Auc />
               </button>
@@ -133,7 +140,7 @@ const HeroCar = ({ listing }) => {
           </div>
           <div className="tw-block  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
-            <WantItNow listing={listing} />
+            {listing.buy_now && <WantItNow listing={listing} />}
             <FinalPriceCalc listing={listing} />
           </div>
           <FAQ />
@@ -164,7 +171,7 @@ const HeroCar = ({ listing }) => {
                 className="tw-w-full tw-flex tw-gap-[10px] tw-justify-center tw-bg-[#3ECF5C] tw-text-[#fff] tw-py-[20.5px] tw-rounded-[32px] "
                 data-bs-toggle="modal"
                 // data-bs-target="#modalNotMoney"
-                data-bs-target="#modalConfirm"
+                data-bs-target={hasEnoughBalance ? "#modalConfirm" : "#modalNotMoney"}
                 // data-bs-target="#modalAttention"
               >
                 Place a Bid <Auc />
@@ -180,6 +187,7 @@ const HeroCar = ({ listing }) => {
             <div className="tw-flex tw-items-stretch">
               <span className="text-vehicle tw-max-w-[310px]">
                 THIS VEHICLE IS BEING SOLD IN IT`S CURRENT CONDITION ON AN 'AS IS' BASIS
+                <button  data-bs-target="#modalAttention">HI</button>
               </span>
               <span className="tw-mt-[-4px]">
                 <InfoIcon />
@@ -188,7 +196,7 @@ const HeroCar = ({ listing }) => {
           </div>
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
-            <WantItNow listing={listing} />
+            {!listing.buy_now && <WantItNow listing={listing} />}
             <FinalPriceCalc listing={listing} />
           </div>
           <PolandMarket listing={listing} marketInfo={listing.make.marketInfo[0]} />
@@ -196,7 +204,7 @@ const HeroCar = ({ listing }) => {
       </div>
       <ModalGetReport />
       <ModalNotEnoughMoney />
-      <ModalConfirmBild listing={listing} inputValue={inputValue}/>
+      <ModalConfirmBild listing={listing} inputValue={inputValue} />
       <ModalAttention />
     </section>
   );

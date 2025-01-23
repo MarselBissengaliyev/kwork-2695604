@@ -1,8 +1,9 @@
 import ListItem from "@/components/ListItem";
-import React from "react";
+import React, { useEffect } from "react";
 
 import BuyItNow from "../../../shared/img/BuyItNow";
 import JobOffer from "../../../shared/img/JobOffer";
+import ModalAttention from "../../../features/Modal/models/ModalAttention";
 
 const WantItNow = ({ listing }) => {
   return (
@@ -10,11 +11,13 @@ const WantItNow = ({ listing }) => {
       <h2 className="tw-text-[20px] tablet:tw-text-[30px]">Want It Now?</h2>
       <hr className="tw-my-[24px]" />
       <div className="tw-mb-[30px]">
-        <ListItem label={"Buy now Price"} value={"$" + listing.final_bid} />
+        <ListItem label={"Buy now Price"} value={"$" + listing.buy_now} />
       </div>
       <div className="tw-flex tw-flex-col tw-gap-[20px]">
         <button
           type="button"
+          data-bs-target="#modalAttention"
+          data-bs-toggle="modal"
           className="tw-py-[20px] tw-justify-center tw-gap-[10px] tw-flex tw-items-center tw-bg-[#E3433A] tw-font-bold tw-text-[#fff] tw-px-[25px] tw-rounded-[32px] "
         >
           Buy it Now <BuyItNow />
@@ -27,6 +30,7 @@ const WantItNow = ({ listing }) => {
           Make An Offer <JobOffer />
         </button>
       </div>
+      <ModalAttention />
     </div>
   );
 };

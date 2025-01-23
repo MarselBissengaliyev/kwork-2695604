@@ -26,7 +26,7 @@ const page = async ({ params }) => {
     return (
       <>
         <div className="tw-w-full tw-mb-[58px]">
-          {listing && <HeroCar listing={listing} />}
+          {listing && <HeroCar currentUser={currentUser} listing={listing} />}
           <hr />
         </div>
         <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden desktop:tw-block">
