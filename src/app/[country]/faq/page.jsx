@@ -1,15 +1,13 @@
-import React from 'react'
-import PageBanner from '@/components/Common/PageBanner'
-import FaqContent from '@/components/Faq/FaqContent'
+import React from "react";
+
+import FaqPage from "./widgets/FaqPage";
 
 const Faq = () => {
   return (
     <>
-      <PageBanner pageTitle="Faq" />
-
-      <FaqContent />
+      <FaqPage />
     </>
-  )
-}
+  );
+};
 
-export default Faq
+export default Faq;
