@@ -196,7 +196,7 @@ const HeroCar = ({ listing }) => {
       </div>
       <ModalGetReport />
       <ModalNotEnoughMoney />
-      <ModalConfirmBild inputValue={inputValue}/>
+      <ModalConfirmBild listing={listing} inputValue={inputValue}/>
       <ModalAttention />
     </section>
   );

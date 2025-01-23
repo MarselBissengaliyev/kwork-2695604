@@ -80,7 +80,7 @@ const MyBids = ({ wonBids, currentBids, lostBids }) => {
                     <p className='tw-text-[#191919]'>From</p>
                     <p className='tw-text-red-500'>*</p>
                   </div>
-                  <Input value={"CLEVLAND WEST, OH"} className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" disabled={true} />
+                  <Input type={"text"} value={"CLEVLAND WEST, OH"} className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" disabled={true} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined} />
                 </span>
                 <span>
                   <div className='tw-flex'>

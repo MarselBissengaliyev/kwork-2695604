@@ -20,8 +20,8 @@ const EditSetting = () => {
         <PageDirect pageTitle={"Edit Settings"} className={'tw-justify-between tw-gap-5 max-mindesk:tw-flex-col max-mindesk:tw-justify-start'}>
             <div className='tw-flex tw-gap-[15px] tw-overflow-x-auto tw-w-full no-scrollbar max-mindesk:tw-gap-2'>
                 <BackButton/>
-                <ButtonMain classNames={'tw-w-[176px] tw-flex-shrink-0'}  onClick={() => setActiveButton("Edit Your Profile")} text='Edit Your Profile' color={activeButton === "Edit Your Profile" ? "blue" : "grey"} variant='outlined'/>
-                <ButtonMain classNames={'tw-w-[240px] tw-flex-shrink-0'}  onClick={() => setActiveButton("Change Your Password")} text='Change Your Password' color={activeButton === "Change Your Password" ? "blue" : "grey"} variant='outlined'/>
+                <ButtonMain classNames={'tw-w-[176px] tw-flex-shrink-0'}  onClick={() => setActiveButton("Edit Your Profile")} text='Edit Your Profile' color={activeButton === "Edit Your Profile" ? "blue" : "grey"} variant='outline'/>
+                <ButtonMain classNames={'tw-w-[240px] tw-flex-shrink-0'}  onClick={() => setActiveButton("Change Your Password")} text='Change Your Password' color={activeButton === "Change Your Password" ? "blue" : "grey"} variant='outline'/>
             </div>
         </PageDirect>
         <Container className={""}>
@@ -40,7 +40,7 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Name</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input value={"Andrey Fadion"} className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                    <Input value={"Andrey Fadion"} className="!tw-bg-[#F9F9F9] tw-h-[64px] !tw-pl-[30px]" disabled={true} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined}/>
                 </span>
                 <span>
                     <div className='tw-flex'>
@@ -67,7 +67,7 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Address</p>
                         
                     </div>
-                    <Input className=" tw-h-[64px] !tw-pl-[30px]" />
+                    <Input className=" tw-h-[64px] !tw-pl-[30px]" value={undefined} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined} disabled={undefined} />
                 </span>
                 <span>
                     <div className='tw-flex'>
@@ -103,14 +103,14 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>State</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined}/>
                 </span>
                 <span>
                     <div className='tw-flex'>
                         <p className='tw-text-[#191919]'>Zip Code</p>
                         {/* <p className='tw-text-red-500'>*</p> */}
                     </div>
-                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined}/>
                 </span>
                 <span className='tw-flex tw-justify-end tw-items-center tw-text-center tw-h-[97px] max-mindesk:tw-hidden'>
                    <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
@@ -122,21 +122,21 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Email</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined}/>
                 </span>
                 <span>
                     <div className='tw-flex'>
                         <p className='tw-text-[#191919]'>City</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined}/>
                 </span>
                 <span>
                     <div className='tw-flex'>
                         <p className='tw-text-[#191919]'>Company</p>
                         {/* <p className='tw-text-red-500'>*</p> */}
                     </div>
-                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true}/>
+                    <Input value={"Andrey Fadion"} className=" tw-h-[64px] !tw-pl-[30px]" disabled={true} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined}/>
                 </span>
                 <span className='tw-hidden max-mindesk:tw-block tw-justify-end tw-items-center tw-text-center'>
                     <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
@@ -154,7 +154,7 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Current Password</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input className="tw-h-[64px] !tw-pl-[30px]"/>
+                    <Input className="tw-h-[64px] !tw-pl-[30px]" value={undefined} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined} disabled={undefined}/>
                 </span>
             </div>
             <div>
@@ -163,7 +163,7 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>New Password</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input className="tw-h-[64px] !tw-pl-[30px]"/>
+                    <Input className="tw-h-[64px] !tw-pl-[30px]" value={undefined} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined} disabled={undefined}/>
                 </span>
                 <span className='tw-flex tw-justify-end tw-items-center tw-text-center tw-h-[97px] max-mindesk:tw-hidden'>
                    <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>
@@ -175,7 +175,7 @@ const EditSetting = () => {
                         <p className='tw-text-[#191919]'>Confirm New Password</p>
                         <p className='tw-text-red-500'>*</p>
                     </div>
-                    <Input  className="tw-h-[64px] !tw-pl-[30px]"/>
+                    <Input  className="tw-h-[64px] !tw-pl-[30px]" value={undefined} type={undefined} name={undefined} onChange={undefined} placeholder={undefined} pattern={undefined} maxLength={undefined} disabled={undefined}/>
                 </span>
                 <span className='tw-hidden max-mindesk:tw-block tw-justify-end tw-items-center tw-text-center'>
                     <div className='tw-flex tw-mt-[25px]'> <p className='tw-text-red-500'>*</p>  Required fields</div>

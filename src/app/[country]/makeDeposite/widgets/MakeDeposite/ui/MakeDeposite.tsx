@@ -119,13 +119,13 @@ const MakeDeposite = () => {
         </div>
         <div className='tw-p-[40px]'>
           <p>Secruty Deposit</p>
-          <Input placeholder={"$0"} value={deposit} className={"tw-text-center tw-h-[64px] tw-text-[26px]"} type={"number"}/>
+          <Input placeholder={"$0"} value={deposit} className={"tw-text-center tw-h-[64px] tw-text-[26px]"} type={"number"} name={undefined} onChange={undefined} pattern={undefined} maxLength={undefined} disabled={undefined}/>
         </div>
         <div className='tw-p-[40px] tw-text-center tw-items-center tw-flex tw-flex-col tw-justify-center tw-gap-[35px]'>
           <h3>Payment Options</h3>
-          <ButtonMain variant='outlined' text='Bank Wire Transfer' icon='/images/makedeposite/icons/bank.png' classNames='tw-gap-[10px]'/>
+          <ButtonMain variant='outline' text='Bank Wire Transfer' icon='/images/makedeposite/icons/bank.png' classNames='tw-gap-[10px]'/>
           <div className='tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center tw-gap-[20px]'>
-            <ButtonMain variant='outlined' color='grey' text={<img src='/images/makedeposite/icons/email.png' alt=""/>} classNames='tw-h-[54px] tw-w-[54px] !tw-p-0'/>
+            <ButtonMain variant='outline' color='grey' text={<img src='/images/makedeposite/icons/email.png' alt=""/>} classNames='tw-h-[54px] tw-w-[54px] !tw-p-0'/>
             <p className='tw-max-w-[534px] tw-w-full tw-text-[18px] tw-m-0'>
               You can also choose to pay the registration fee and security deposit by wire transfer. Just click the "Send me Invoice to Email" button below and we’ll send the invoice along with instructions for the bank wire transfer to you at <b>izakinwot@mail.ru.</b>
             </p>

@@ -13,9 +13,7 @@ import { DashboardMoneyCard } from "./entities/DashboardMoneyCard";
 import { Container } from "@/components/Container";
 
 const page = async () => {
-  const currentUser = await getCurrentUser({
-    bids: true,
-  });
+  const currentUser = await getCurrentUser();
   currentUser.balance = currentUser.balance ?? 0;
 
   const biddingLimit = (currentUser?.balance || 0) <= 1000 ? 10000 : currentUser.balance <= 2500 ? 50000 : 200000;
@@ -39,10 +37,10 @@ const page = async () => {
       >
         <div className="tw-flex tw-gap-10 tw-overflow-x-auto tw-w-full no-scrollbar max-mindesk:tw-gap-2">
           <div className="tw-flex tw-gap-2">
-            <ButtonMain classNames={"tw-w-[170px] tw-flex-shrink-0"} variant="outlined" text={"Dashboard"} />
+            <ButtonMain classNames={"tw-w-[170px] tw-flex-shrink-0"} variant="outline" text={"Dashboard"} />
 
             <a href="./myBids">
-              <ButtonMain classNames={"tw-w-[170px] tw-flex-shrink-0"} color="grey" variant="outlined" text="My Bids" />
+              <ButtonMain classNames={"tw-w-[170px] tw-flex-shrink-0"} color="grey" variant="outline" text="My Bids" />
             </a>
 
             <a href="./transactions">
@@ -50,7 +48,7 @@ const page = async () => {
                 classNames={"tw-w-[170px] tw-flex-shrink-0"}
                 text="Transactions"
                 color="grey"
-                variant="outlined"
+                variant="outline"
               />
             </a>
 
@@ -58,7 +56,7 @@ const page = async () => {
               <ButtonMain
                 classNames={"tw-w-[170px] tw-flex-shrink-0"}
                 color="grey"
-                variant="outlined"
+                variant="outline"
                 text="Watchlist"
               />
             </a>
@@ -67,14 +65,14 @@ const page = async () => {
             <ButtonMain
               classNames={"tw-w-[170px] tw-flex-shrink-0"}
               color="grey"
-              variant="outlined"
+              variant="outline"
               text="Request refund"
             />
             <a href="./EditSettings">
               <ButtonMain
                 classNames={"tw-w-[170px] tw-flex-shrink-0 tw-flex tw-gap-2"}
                 color="grey"
-                variant="outlined"
+                variant="outline"
                 text="Edit Profile"
                 icon="/images/dashboard/icons/editing.png"
               />
@@ -84,7 +82,7 @@ const page = async () => {
       </PageDirect>
 
       <div className="">
-        <Container>
+        <Container className={""}>
           {/* <div className="row">
             <div className="col-lg-4">
               <LeftSidebar />
@@ -115,7 +113,7 @@ const page = async () => {
             {/* <DashBoardCards number={"1"} text='Unpaid Invoice' icon="/images/dashboard/icons/reciept.png" linkText='Please, pay it' />
             <DashBoardCards number={"0"} text='Seller Offer' icon="/images/dashboard/icons/carmouse.png" linkText='Learn more'/> */}
             <DashBoardCards
-              number={"3"}
+              number={3}
               text="Vehicles from your Watchlist starts soon"
               icon="/images/dashboard/icons/cartime.png"
               linkText="Learn more"
@@ -135,20 +133,17 @@ const page = async () => {
               text="Bidding Limit"
               price={`$${biddingLimit.toLocaleString("en-US")}`}
               icon="/images/dashboard/icons/revenue.png"
-              infotext={"Your bidding limit"}
-            />
+              infotext={"Your bidding limit"} secInfoText={undefined}            />
             <DashboardMoneyCard
               text="Used"
               price={`$${usedSum.toLocaleString("en-Us")}`}
               icon="/images/dashboard/icons/dollar.png"
-              infotext={"Your used bidding limit"}
-            />
+              infotext={"Your used bidding limit"} secInfoText={undefined}            />
             <DashboardMoneyCard
               text="Available"
               price={`$${availableSum.toLocaleString("en-US")}`}
               icon="/images/dashboard/icons/give-money.png"
-              infotext={"Your available bidding limit"}
-            />
+              infotext={"Your available bidding limit"} secInfoText={undefined}            />
           </Container>
         </div>
       </div>

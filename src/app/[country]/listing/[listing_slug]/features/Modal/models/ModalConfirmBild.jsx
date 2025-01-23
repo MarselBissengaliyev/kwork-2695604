@@ -10,26 +10,17 @@ import car from "../../../shared/img/carlider.png";
 
 import ListItem from "@/components/ListItem";
 
-const list = [
-  {
-    label: "VIN",
-    value: "4YDT2662493150186",
-  },
-  {
-    label: "Transaction Fee",
-    value: "2022",
-  },
-  {
-    label: "Documentation Fee",
-    value: "Year",
-  },
-  {
-    label: "Modal",
-    value: "Xs",
-  },
-];
-
-const ModalConfirmBild = ({ inputValue }) => {
+const ModalConfirmBild = ({ inputValue, listing }) => {
+  const list = [
+    {
+      label: "VIN",
+      value: listing.vin,
+    },
+    {
+      label: "Modal",
+      value: "Xs",
+    },
+  ];
   return (
     <>
       <div className="modal fade" tabindex="-1" aria-labelledby="modalConfirm" aria-hidden="true" id="modalConfirm">
@@ -38,10 +29,10 @@ const ModalConfirmBild = ({ inputValue }) => {
             <div className="tw-text-center tw-mb-[30px]">
               <span className="tw-text-[26px] tablet:tw-text-[40px] tw-text-[#3E73CF] tw-font-bold">${inputValue}</span>
               <div className="tw-flex tw-my-[30px] tw-items-center tw-gap-[20px] case-border tw-h-[80px] tw-min-w-[240px] tw-max-w-[410px]">
-                <Image src={car} className="tw-rounded-l-[10px]" width={110} height={80} alt="car" />
+                <Image src={listing.media[0].url} className="tw-rounded-l-[10px]" width={110} height={80} alt="car" />
                 <div className="tw-max-w-[136px]">
                   <p className="tw-text-[14px] tablet:tw-text-[18px] tw-leading-[20px] tw-font-bold   tw-text-[#3E73CF] ">
-                    2013 Chevrolet Impala Ls 3.6L
+                    {listing.title}
                   </p>
                 </div>
               </div>
