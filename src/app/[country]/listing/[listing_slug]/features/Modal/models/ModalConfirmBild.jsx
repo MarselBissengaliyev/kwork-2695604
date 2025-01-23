@@ -29,14 +29,14 @@ const list = [
   },
 ];
 
-const ModalConfirmBild = () => {
+const ModalConfirmBild = ({ inputValue }) => {
   return (
     <>
       <div className="modal fade" tabindex="-1" aria-labelledby="modalConfirm" aria-hidden="true" id="modalConfirm">
         <Modal title={"Confirm You Bid"}>
           <div className="tw-px-[20px] tablet:tw-px-[50px] tw-pb-[50px]">
             <div className="tw-text-center tw-mb-[30px]">
-              <span className="tw-text-[26px] tablet:tw-text-[40px] tw-text-[#3E73CF] tw-font-bold">$131</span>
+              <span className="tw-text-[26px] tablet:tw-text-[40px] tw-text-[#3E73CF] tw-font-bold">${inputValue}</span>
               <div className="tw-flex tw-my-[30px] tw-items-center tw-gap-[20px] case-border tw-h-[80px] tw-min-w-[240px] tw-max-w-[410px]">
                 <Image src={car} className="tw-rounded-l-[10px]" width={110} height={80} alt="car" />
                 <div className="tw-max-w-[136px]">

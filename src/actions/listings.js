@@ -156,7 +156,6 @@ export const getListingBySlug = async slug => {
             name: true,
           },
         },
-        reviews: { select: { rating: true } },
         media: { select: { url: true } }, // Добавляем media
         make: {
           include: {
@@ -164,15 +163,15 @@ export const getListingBySlug = async slug => {
             lots: true,
           },
         },
+        model: true,
+        bids: true
       },
     });
 
     const categories = listing?.categories?.map(({ category }) => ({ ...category })) || [];
-    const rating = average(listing?.reviews?.map(({ rating }) => rating) || []) || 0;
 
     return {
       ...listing,
-      rating,
       categories,
       price: 0,
     };
@@ -185,7 +184,7 @@ export const getOtherLotsAndSoldCars = async slug => {
   try {
     const listing = await prisma.listing.findFirst({
       where: { slug },
-      take: 5, // Ограничиваем количество лотов до 5
+      take: 5,
       include: {
         make: {
           include: {
@@ -197,21 +196,22 @@ export const getOtherLotsAndSoldCars = async slug => {
       },
     });
 
-    const { make, model_id, year, media, title } = listing;
+    if (!listing) {
+      throw new Error('NOT_FOUND'); // Специальная ошибка для редиректа
+    }
 
-    // Fetch Active Listings (Other Lots)
+    const { make, model_id } = listing;
+
     const activeListings = await prisma.listing.findMany({
       where: {
         make_id: make.id,
         model_id: model_id,
-        // year: year,
-        // status: "Pending", // Lote en estado "Pending" para estar en subasta
-        slug: { not: slug }, // Excluir el anuncio actual
+        slug: { not: slug },
       },
       include: {
         media: { select: { url: true } },
         bids: {
-          take: 1, // Tomar la oferta más alta
+          take: 1,
           orderBy: { amount: "desc" },
           select: { amount: true },
         },
@@ -221,14 +221,19 @@ export const getOtherLotsAndSoldCars = async slug => {
     return {
       activeListings: activeListings.map(l => ({
         ...l,
-        avgPrice: l.final_bid || 0, // Adjust if needed
+        avgPrice: l.final_bid || 0,
         currentBid: Math.max(...l.bids.map(bid => bid.amount), 0),
       })),
     };
   } catch (error) {
-    throw new Error(error);
+    if (error.message === 'NOT_FOUND') {
+      throw error; // Пробрасываем ошибку для обработки в компоненте
+    }
+    throw new Error(`Failed to fetch listings: ${error.message}`);
   }
 };
+
+
 
 export const getUserListings = async () => {
   try {

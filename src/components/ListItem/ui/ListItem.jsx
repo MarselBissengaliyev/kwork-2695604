@@ -14,7 +14,7 @@ const ListItem = ({ label, icon, value }) => {
       </span>
       <span className="list-item-border"></span>
       <span
-        className={` ${value === "YES" ? "tw-text-[#3E73CF]" : " "} ${value === "OutBid" ? "tw-text-[#E3433A]" : " "} list-item-value`}
+        className={` ${value === "YES" || value === "NO" ? "tw-text-[#3E73CF]" : " "} ${value === "OutBid" ? "tw-text-[#E3433A]" : " "} list-item-value`}
       >
         {value}
       </span>
