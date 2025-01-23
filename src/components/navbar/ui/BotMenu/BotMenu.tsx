@@ -204,7 +204,7 @@ const BotMenu = ({ parsedMakes }) => {
               <span>FAQ</span>
             </div>
           </Link>
-          <Link href="/about" className={css.item}>
+          <Link href="/about-us" className={css.item}>
             <div className={css.item__head}>
               <span>About Us</span>
             </div>
