@@ -66,6 +66,29 @@ const page = async () => {
       text: "Container and RoRo Shipping",
     },
   ];
+
+  const using = [
+    {
+      icon: "/images/about-us/protection.png",
+      text: "We help all our clients in making a suitable choice of the car they would like"
+    },
+    {
+      icon: "/images/about-us/file.png",
+      text: "We take care of all the paperwork related to the legal implementation and documentation of the proceedings"
+    },
+    {
+      icon: "/images/about-us/bid.png",
+      text: "We provide access to a wide array of US auto auctions which will give you an extensive variety to choose from"
+    },
+    {
+      icon: "/images/about-us/percent.png",
+      text: "We provide discounts and other special offers to all our regular customers",
+    },
+    {
+      icon: "/images/about-us/container.png",
+      text: "We have resources to provide shipping from New York, Atlanta, Los Angeles, Seattle, Texas, Miami, Savannah and Canada"
+    }
+  ]
   return (
     <>
       <div className={css.block}>
@@ -112,10 +135,21 @@ const page = async () => {
           </div>
         ))}
       </div>
-      <Favour />
+      <div className="tw-mt-[70px] tw-bg-[#F9F9F9] tw-py-[70px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center tw-m-auto">
+        <p className="tw-text-center tw-text-[30px] tw-text-[#191919] max-laptop:tw-hidden">Advantages of using our service</p>
+        <div className="tw-mt-[40px] tw-container tw-grid tw-grid-cols-5 tw-gap-[20px] tw-items-center tw-m-auto tw-text-center tw-px-[40px] max-laptop:tw-grid-cols-2 max-tablet:tw-grid-cols-1">
+          {using.map((use) =>
+            <div className="tw-max-w-[292px] tw-w-full tw-h-[257px] tw-bg-[#FFFFFF] tw-flex tw-items-center tw-justify-start tw-text-center tw-flex-col tw-py-[50px]">
+                <img src={use.icon}/>
+                <p className=" tw-max-w-[228px] tw-mt-[10px]">{use.text}</p>
+              </div>
+          )}
+        </div>
+      </div>
+      {/* <Favour />
       <Partner />
       <Subscribe />
-      <Blog blogPosts={posts} />
+      <Blog blogPosts={posts} /> */}
     </>
   );
 };
