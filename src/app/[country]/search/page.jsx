@@ -171,7 +171,7 @@ const page = () => {
             </div>
           </div>
           <div className="tw-w-full">
-            <div className="tw-hidden tw-flex-col tw-gap-[20px]  desktop:tw-flex">
+            <div className="tw-hidden desktop:tw-flex tw-flex-col tw-gap-[20px]">
               {/* desktop */}
               {data.map((item, idx) => {
                 return (

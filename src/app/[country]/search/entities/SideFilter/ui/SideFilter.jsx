@@ -68,9 +68,9 @@ const SideFilter = () => {
 
       {isMenuOpen && (
         <div className="tw-fixed tw-inset-0 tw-bg-black/50 tw-z-50 tw-flex">
-          <div className="tw-bg-white tw-w-[250px] tbalet:tw-w-[300px] tw-h-full tw-p-[30px] tw-overflow-y-auto">
+          <div className="tw-bg-white tw-w-[250px] tablet:tw-w-[340px] tw-h-full tw-p-[30px] tw-overflow-y-auto">
             <button
-              className="tw-absolute tw-px-[8px] tw-top-4 tw-left-[270px] tablet:tw-left-[330px] tw-rounded-[25px] tw-text-[#fff]"
+              className="tw-absolute tw-px-[8px] tw-top-4 tw-left-[270px] tablet:tw-left-[370px] tw-rounded-[25px] tw-text-[#fff]"
               onClick={toggleMenu}
             >
               <SideArrow />
@@ -96,11 +96,11 @@ const SideFilter = () => {
                 </div>
                 <button onClick={toggleOptions} className="tw-bg-transparent tw-text-[16px] tw-mt-[20px]">
                   {!openOptions ? (
-                    <span className="tw-flex tw-items-center tw-gap-[10px]">
+                    <span className="tw-flex tw-text-[14px] tablet:tw-text-[16px] tw-items-center tw-gap-[10px]">
                       <Options /> Advanced Options
                     </span>
                   ) : (
-                    <span className="tw-flex tw-items-center tw-gap-[10px]">
+                    <span className="tw-flex tw-text-[14px] tablet:tw-text-[16px] tw-items-center tw-gap-[10px]">
                       <OptionsOpen /> Hide Advanced Options
                     </span>
                   )}

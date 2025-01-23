@@ -1,11 +1,12 @@
 import React from "react";
 
+// eslint-disable-next-line react/prop-types
 const User = ({ width }) => {
   return (
     <svg width={width} height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M12.75 14.2856C16.662 14.2856 19.8334 11.0878 19.8334 7.14294C19.8334 3.19807 16.662 0 12.75 0C8.838 0 5.66658 3.19807 5.66658 7.14294C5.66658 11.0878 8.838 14.2856 12.75 14.2856ZM0 23.9285C0 20.1871 3.01889 17.1429 6.72908 17.1429H18.7709C22.4811 17.1429 25.5 20.1871 25.5 23.9285V28.9286C25.5 29.52 25.024 30 24.4375 30H1.0625C0.475998 30 0 29.52 0 28.9286V23.9285Z"
         fill="#3E73CF"
       />
