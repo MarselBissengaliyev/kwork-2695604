@@ -32,6 +32,7 @@ import Car from "../../../shared/img/Car";
 import InfoIcon from "../../../shared/img/InfoIcon";
 import CopyText from "@/components/ListItem/models/CopyText";
 
+// eslint-disable-next-line react/prop-types
 const HeroCar = ({ listing }) => {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
@@ -196,7 +197,7 @@ const HeroCar = ({ listing }) => {
       </div>
       <ModalGetReport />
       <ModalNotEnoughMoney />
-      <ModalConfirmBild inputValue={inputValue}/>
+      <ModalConfirmBild inputValue={inputValue} />
       <ModalAttention />
     </section>
   );

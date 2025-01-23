@@ -2,6 +2,7 @@ import React from "react";
 
 import "@/app/styles/bootstrap.css";
 
+// eslint-disable-next-line react/prop-types
 const AccordionFAQ = ({ question, answer, id }) => {
   return (
     <div className="accordion-item ">
