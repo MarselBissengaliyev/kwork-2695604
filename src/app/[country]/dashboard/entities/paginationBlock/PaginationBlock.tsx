@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import ButtonMain from "@/components/button/ButtonMain";
 
@@ -54,7 +56,7 @@ const PaginationBlock = ({ currentBids }: PaginationProps) => {
           color="grey"
           variant="outline"
         />
-        {getPageNumbers().map((page) => (
+        {getPageNumbers().map(page => (
           <ButtonMain
             key={page}
             onClick={() => handlePageChange(page)}
