@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
 import ListItem from "@/components/ListItem/index";
@@ -55,7 +56,7 @@ const Vehicleinfo = ({ children, listing }) => {
     },
     {
       label: "Run and drive:",
-      value:  listing.run_and_drive ? "YES" : "NO",
+      value: listing.run_and_drive ? "YES" : "NO",
     },
     {
       label: "State:",
@@ -83,7 +84,7 @@ const Vehicleinfo = ({ children, listing }) => {
     },
     {
       label: "Color:",
-    value: truncateText(listing.color),
+      value: truncateText(listing.color),
     },
     {
       label: "Engine:",
@@ -130,9 +131,7 @@ const Vehicleinfo = ({ children, listing }) => {
             })}
           </ul>
         </div>
-        <div className="tw-w-full ">
-          {children}
-        </div>
+        <div className="tw-w-full ">{children}</div>
       </div>
     </div>
   );
