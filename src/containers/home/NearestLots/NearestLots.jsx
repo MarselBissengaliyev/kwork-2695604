@@ -27,7 +27,7 @@ export const NearestLots = ({ lots, title }) => {
               768: { slidesPerView: 2.5 },
             }}
           >
-            {lots.map((lot) => (
+            {lots.map(lot => (
               <SwiperSlide key={lot.id}>
                 <Link href={`/listings/${lot.slug}`} className={css.item}>
                   <img src={lot.picture} alt={lot.name} className={css.img} />
@@ -51,7 +51,7 @@ export const NearestLots = ({ lots, title }) => {
         {/* Static grid for larger screens */}
         <div className="tw-hidden lg:tw-block">
           <div className={css.row}>
-            {lots.map((lot) => (
+            {lots.map(lot => (
               <Link key={lot.id} href={`/listings/${lot.slug}`} className={css.item}>
                 <img src={lot.picture} alt={lot.name} className={css.img} />
                 <div className={css.content}>

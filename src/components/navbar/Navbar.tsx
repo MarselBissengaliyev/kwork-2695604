@@ -67,7 +67,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, isOpen, toggle, children, hr
   </div>
 );
 export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) => {
-  // console.log(makes);
   const route = usePathname();
   const t = useTranslations();
   const [menuState, dispatch] = useReducer(reducer, initialState);
@@ -75,13 +74,18 @@ export const Navbar: React.FC<NavbarProps> = ({ domain, currentUser, makes }) =>
   const [profile, setProfile] = useState(false)
   const elementRef = useRef<HTMLDivElement | null>(null);
   const parsedMakes: Make[] = makes as Make[];
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+  );
+  
   // Обновляем состояние при изменении размера окна
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+  
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+  
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);

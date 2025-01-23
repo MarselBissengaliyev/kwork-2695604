@@ -2082,8 +2082,8 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 34px;
   transition:
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
@@ -2096,7 +2096,7 @@ textarea.form-control-lg {
     transition: none;
   }
 }
-.form-select:focus {
+.form-select::after {
   border-color: #86b7fe;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
@@ -4485,14 +4485,14 @@ fieldset:disabled .btn {
 }
 
 .accordion-body:not(.collapsed) {
-  background-color: rgba(249, 249, 249, 1);
+  background-color: #fff;
 }
 .accordion-button:not(.collapsed)::after {
   background-color: rgba(62, 115, 207, 1);
   border-radius: 25px;
   width: 24px !important;
   height: 24px !important;
-  background-image: url("../../app/[country]/car/shared/img/arrow-up.svg");
+  background-image: url("../../app/[country]/listing/[listing_slug]/shared//img/arrow-up.svg");
   transform: rotate(-180deg);
 }
 .accordion-button::after {
@@ -4504,7 +4504,7 @@ fieldset:disabled .btn {
   width: 1.25rem;
   height: 1.25rem;
   margin-left: auto;
-  background-image: url("../../app/[country]/car/shared/img/arrow-down.svg");
+  background-image: url("../../app/[country]/listing/[listing_slug]/shared//img/arrow-down.svg");
   content: "";
   background-repeat: no-repeat;
   background-position: center;
@@ -5255,7 +5255,7 @@ fieldset:disabled .btn {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1055;
+  z-index: 2055;
   display: none;
   width: 100%;
   height: 100%;
@@ -5308,7 +5308,7 @@ fieldset:disabled .btn {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
+  border-radius: 10px;
   outline: 0;
 }
 .modal-backdrop {
@@ -5356,7 +5356,6 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid #dee2e6;
   border-bottom-right-radius: calc(0.3rem - 1px);
   border-bottom-left-radius: calc(0.3rem - 1px);
 }

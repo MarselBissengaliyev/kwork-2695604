@@ -8,17 +8,32 @@ interface Column {
   style?: React.CSSProperties;
 }
 
+interface Bid {
+  lot: number;
+  vin: string;
+  vehicle: string;
+  saleDate: string;
+  state: string;
+  bidStatus: string;
+  myMaxBid: number;
+  saleType: string | undefined;
+}
+
 interface TableProps {
-  data: Array<Record<string, any>>;
+  data: {
+    array: any[];
+    results: number;
+    pages: number;
+  };
   columns: Column[];
   rowKey: string; // уникальный ключ для каждой строки
 }
 
 const DashBoardTableMoblie: React.FC<TableProps> = ({ data, columns, rowKey }) => {
   return (
-    <Container>
+    <Container className={""}>
       <div style={{ width: '100%' }}>
-        {data.map((row) => (
+        {data.array.map((row) => (
           <div
             key={row[rowKey]}
             className="tw-border-[1px] tw-border-black tw-bg-white tw-rounded-lg tw-p-4 tw-mb-4"

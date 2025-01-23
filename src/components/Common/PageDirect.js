@@ -12,7 +12,10 @@ const routeOverrides = {
   home: 'House',
   dashboard: 'My Account',
   myBids: 'My Bids',
-  Transactions: "Transactions"
+  transactions: "Transactions",
+  Watchlist: "Watchlist",
+  makeDeposite: "Make Deposite",
+  EditSettings: "Edit Settings"
 };
 
 const PageDirect = ({ pageTitle, children, className }) => {

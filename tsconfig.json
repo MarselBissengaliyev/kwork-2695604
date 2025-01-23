@@ -38,6 +38,7 @@
     "src/containers/banner/icons/RatingIcon.tsx",
     "src/actions/models.js",
     "src/components/*"
+
   ],
   "exclude": ["node_modules"]
 }

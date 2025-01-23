@@ -21,11 +21,11 @@ model User {
     image          String?
     role           Role        @default(USER)
     profile        Profile?
+    balance        Int         @default(0)
     listings       Listing[]   @relation("UserRelation")
     wonLots        Listing[]   @relation("WinnerRelation")
     bids           Bid[]
     favourites     Favourite[]
-    reviews        Review[]
     blogPosts      BlogPost[]
     transactions   Transaction[]
     created_at     DateTime?   @default(now())
@@ -62,7 +62,6 @@ model Listing {
     published       Boolean?          @default(false)
     address         String
     features        String?           @db.Text
-    status          Status?           @default(Pending)
     latitude        Float?
     longitude       Float?
     opening_hours   Json?             @db.Json
@@ -79,7 +78,6 @@ model Listing {
     published_at    DateTime?
     deleted_at      DateTime?
     categories      ListingCategory[]
-    reviews         Review[]
     favourites      Favourite[]
 
     vin             String?
@@ -88,15 +86,19 @@ model Listing {
     model_id        Int
     model           Model             @relation(fields: [model_id], references: [id], onDelete: Cascade)
     name            String?
+    rating          Float?
     year            Int
     mileage         Int
     damage          String?
-    auction         String?
+    auction         Auction?
     loss            String?
     damageSecondary String?
+    run_and_drive   Boolean?          @default(false)
     state           String?
     location        String?
     document        String?
+    clean_title     Boolean?          @default(false)
+    registred_pl    Boolean?          @default(false)
     seller          String?
     color           String?
     engine          String?
@@ -105,7 +107,12 @@ model Listing {
     transmission    String?
     drive           String?
     auction_at      DateTime?
+    status          Status?
+    buy_now         Int?
+    estimated_cost  Int?
     final_bid       Int?
+    current_bid     Int?
+    avg_price       Int?
     lot             Int?
     media           Media[]
     keys            Boolean?          @default(false)
@@ -182,10 +189,12 @@ model Bid {
     id         Int       @id @default(autoincrement())
     amount     Int
     lot_id     Int
+    buy_now    Boolean?  @default(false)
     lot        Listing       @relation(fields: [lot_id], references: [id], onDelete: Cascade)
     user_id    Int
     user       User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
     created_at DateTime? @default(now())
+    updated_at DateTime? @default(now())
     status     StatusBid    @default(CURRENT)
 
     @@index([lot_id])
@@ -211,7 +220,7 @@ model MarketInfo {
     model_id         Int
     model            Model     @relation(fields: [model_id], references: [id], onDelete: Cascade)
     year             Int
-    region           String
+    region           String?
     min_price        Int
     max_price        Int
     avg_price        Int
@@ -250,25 +259,6 @@ model Favourite {
     @@index([user_id, listing_id])
     @@index([listing_id])
     @@map("listing_favourites")
-}
-
-model Review {
-    id           Int       @id @default(autoincrement())
-    rating       Int
-    comment      String?   @db.Text
-    published    Boolean?  @default(false)
-    user_id      Int
-    user         User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-    listing_id   Int
-    listing      Listing   @relation(fields: [listing_id], references: [id], onDelete: Cascade)
-    created_at   DateTime? @default(now())
-    updated_at   DateTime? @updatedAt
-    published_at DateTime?
-    deleted_at   DateTime?
-
-    @@index([listing_id])
-    @@index([user_id])
-    @@map("reviews")
 }
 
 model BlogPost {
@@ -385,8 +375,8 @@ enum Role {
 }
 
 enum Status {
-    Pending
-    Approved
+    Sold
+    NotSold
 }
 
 enum IS_SUBSCRIBE {
@@ -404,4 +394,10 @@ enum TransactionStatus {
     PAID
     REQUEST_A_REFUND
     REFUND
+}
+
+enum Auction {
+    IAAI
+    COPART
+    OPENLANE
 }

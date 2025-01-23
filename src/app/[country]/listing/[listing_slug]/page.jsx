@@ -1,54 +1,51 @@
-import React from 'react'
+import React from "react";
 
-import { getListingBySlug } from '@/actions/listings'
-import { getReviewByListingId } from '@/actions/reviews'
-import { getCurrentUser } from '@/actions/users'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { notFound } from 'next/navigation'; // Next.js 13+ (app directory)
+import "./car.scss";
 
-import { ListingDetail } from '@/components/listing'
-import { PageBanner } from '@/components/page'
-import { ROUTER } from '@/app/router'
+import HeroCar from "./widgets/HeroCar";
+import HowItWorks from "./widgets/HowItWorks";
+import { NearestLots } from "@/containers/home";
+import { getListingBySlug, getOtherLotsAndSoldCars } from "@/actions/listings";
+import { getCurrentUser } from "@/actions/users";
 
 const page = async ({ params }) => {
-  const slug = params?.listing_slug
+  const slug = params?.listing_slug;
 
-  const listing = await getListingBySlug(slug)
-  const currentUser = await getCurrentUser()
+  try {
+    const listing = await getListingBySlug(slug);
+    const currentUser = await getCurrentUser();
+    const otherCars = await getOtherLotsAndSoldCars(slug);
 
-  const city = listing?.city
-  const category = listing?.categories?.[0]
+    // Если `listing` или `otherCars` не найдены, перенаправляем на 404
+    if (!listing || !otherCars) {
+      throw new Error("NOT_FOUND");
+    }
 
-  const reviews = listing
-    ? await getReviewByListingId({ listingId: listing?.id })
-    : []
+    return (
+      <>
+        <div className="tw-w-full tw-mb-[58px]">
+          {listing && <HeroCar listing={listing} />}
+          <hr />
+        </div>
+        <div className="tw-w-full tw-bg-[#F9F9F9] tw-h-[458px] tw-hidden desktop:tw-block">
+          <HowItWorks />
+        </div>
+        <div className="tw-py-[10px]">
+          <hr className="tw-my-[21px]" />
+          <NearestLots title={"Similar Vehicles"} lots={otherCars.activeListings} />
+        </div>
+      </>
+    );
+  } catch (error) {
+    if (error.message === "NOT_FOUND") {
+      notFound(); // Перенаправляем на страницу 404
+    }
 
-  return (
-    <>
-      <PageBanner
-        title={`${listing?.title}`}
-        breadcrumbs={[
-          { href: ROUTER.HOME, label: 'Home' },
-          {
-            href: city ? `${ROUTER.CITY}/${city?.slug}` : '#',
-            label: city ? city?.name : '',
-          },
-          {
-            href: category
-              ? [`${ROUTER.CITY}/${city?.slug}`, `${category?.slug}`].join('/')
-              : '#',
-            label: category ? category?.name : '',
-          },
-          {
-            label: listing?.title,
-          },
-        ]}
-      />
-      <ListingDetail
-        currentUser={currentUser}
-        listing={listing}
-        reviews={reviews}
-      />
-    </>
-  )
-}
+    console.error("Произошла ошибка:", error);
+    return null; // Вы можете показать fallback-страницу, если ошибка другая
+  }
+};
 
-export default page
+export default page;

@@ -48,13 +48,12 @@ const RootLayout = async ({ params, children }) => {
   const messages = await getMessages();
 
   const makes = await getMakes(true);
-  console.log("makes=", makes)
 
   const regionConfiguration = await getRegionConfiguration({
     country,
   }).catch(() => null);
   // const currentUser = await getCurrentUser();
-  const currentUser =false;
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>

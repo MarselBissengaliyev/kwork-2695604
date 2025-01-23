@@ -35,7 +35,6 @@ export const getBlogPosts = async (query) => {
         created_at: 'desc',
       },
     })
-    console.log("blog posts=",posts)
 
     pagination.pages = Math.ceil(results / pagination.take)
 
