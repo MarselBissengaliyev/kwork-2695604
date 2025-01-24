@@ -11,6 +11,7 @@ import CalculatorIcon from "./icons/CalculatorIcon";
 import ContainerIcon from "./icons/ContainerIcon";
 
 import { getBlogPosts } from "@/actions/blog-posts";
+import Slider from "./components/Slider/Slider";
 
 const page = async () => {
   const { posts } = await getBlogPosts();
@@ -122,7 +123,7 @@ const page = async () => {
           </div>
         </div>
       </div>
-      <div className={css.about + " tw-container"}>
+      <div className={css.about + " tw-container max-laptop:tw-flex max-laptop:tw-gap-[60px]"}>
         <div className={css.content}>
           <h3 className={css.title}>Who we are?</h3>
           <div className={css.text}>
@@ -130,6 +131,12 @@ const page = async () => {
             Auction: new, used, salvage cars, motorcycles, trucks, boats, jet skis, ATV's, and construction & industrial
             equipments. <br /> <br /> We have been a licensed used car dealer since 2009, thousands of vehicles sold and
             a lot of satisfied customers from all over the world: Africa, Middle-East, Europe.. etc
+          </div>
+        </div>
+        <div className="tw-hidden max-laptop:tw-flex max-laptop:tw-flex-col">
+          <h3 className={css.title}>Our licenses</h3>
+          <div className="tw-mt-[40px]">
+            {/* <Slider/> */}
           </div>
         </div>
       </div>

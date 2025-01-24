@@ -57,6 +57,10 @@
     flex-direction: column;
     gap: 30px;
     max-width: 840px;
+    @media screen and (max-width: 768px) {
+      max-width: 437px;
+      width: 100%;
+    }
     h3 {
       font-family: "Roboto";
       font-style: normal;
