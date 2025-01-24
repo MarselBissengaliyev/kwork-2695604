@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const { faker } = require('@faker-js/faker')
 const { PrismaClient } = require('@prisma/client')
 const { default: slugify } = require('slugify')
@@ -27,17 +27,19 @@ async function main() {
 
   const users = await prisma.user.createMany({
     data: [
-      { email, role: 'ADMIN' },
+      { email, role: 'ADMIN', balance: 10000 },
       ...Array.from({ length: count.user - 1 }).map(() => ({
         email: faker.internet.email().toLowerCase(),
         role: 'USER',
+        balance: 5000,
       })),
-    ].map(({ email, role }) => ({
+    ].map(({ email, role, balance }) => ({
       email,
       password,
       role,
       name: faker.person.fullName(),
       email_verified: true,
+      balance,
     })),
     skipDuplicates: true,
   })
@@ -47,6 +49,33 @@ async function main() {
   const admin = await prisma.user.findFirst({ where: { email } })
 
   // creating region configurations
+
+  // Создаем транзакции для первого пользователя
+  console.log('transactions: creating')
+
+  const transactions = [
+    {
+      balance: 10000,
+      status: 'PAID',
+      user_id: admin.id,
+    },
+    {
+      balance: 3000,
+      status: 'PAID',
+      user_id: admin.id,
+    },
+    {
+      balance: -5000,
+      status: 'REQUEST_A_REFUND',
+      user_id: admin.id,
+    },
+  ]
+
+  await prisma.transaction.createMany({
+    data: transactions,
+  })
+
+  console.log('transactions: done')
 
   console.log('region_configurations: creating')
 
@@ -67,23 +96,7 @@ async function main() {
         country_name: 'Russia',
         country_code: 'ru',
         domain: 'rudomain.com',
-      },
-      {
-        slug: 'germany',
-        name: 'Germany',
-        locale: 'de',
-        country_name: 'Germany',
-        country_code: 'de',
-        domain: 'dedomain.com',
-      },
-      {
-        slug: 'france',
-        name: 'France',
-        locale: 'fr',
-        country_name: 'France',
-        country_code: 'fr',
-        domain: 'frdomain.com',
-      },
+      }
     ].map(({ slug, name, locale, country_code, country_name, domain }) => ({
       slug,
       name,
@@ -266,6 +279,12 @@ async function main() {
   // creating listings
   console.log('listings: creating')
 
+  const auctionValues = Object.values({
+    IAAI: 'IAAI',
+    COPART: 'COPART',
+    OPENLANE: 'OPENLANE',
+  });
+
   await prisma.listing.createMany({
     data: Array.from({ length: count.listing }).map(() => {
       const user_id = admin.id
@@ -280,7 +299,7 @@ async function main() {
       const damage = faker.lorem.sentence({ min: 3, max: 5 })
       const final_bid = faker.number.int({ min: 5000, max: 80000 })
       const makes = ["Copart", "IAAI"];
-      const auction = makes[Math.floor(Math.random() * makes.length)];
+      const auction = auctionValues[Math.floor(Math.random() * auctionValues.length)];
       const loss = faker.lorem.sentence({ min: 3, max: 5 })
       const damageSecondary = faker.lorem.sentence({ min: 3, max: 5 })  
       const state = faker.location.state()
@@ -357,35 +376,35 @@ async function main() {
 
   const listings = await prisma.listing.findMany()
 
-  for await (const { id: listing_id } of listings) {
-    const category_id = random(1, count.category)
+  // Создаем биды для первого пользователя
+  console.log('bids: creating')
 
-    await prisma.listingCategory.create({
-      data: { listing_id, category_id },
-    })
+  if (listings.length < 10) {
+    throw new Error('Not enough listings for creating bids. Seed at least 10 listings.')
   }
 
-  console.log('listings: done')
+  const bids = listings.slice(0, 10).map((listing) => ({
+    amount: random(100, 500),
+    lot_id: listing.id,
+    user_id: admin.id,
+    status: 'CURRENT',
+  }))
 
-  // creating reviews
-  console.log('reviews: creating')
-
-  await prisma.review.createMany({
-    data: listings.map(({ id: listing_id }) => {
-      const user_id = random(1, count.user)
-      const rating = random(1, 5)
-      const comment = faker.lorem.paragraph({ min: 1, max: 2 })
-      return {
-        listing_id,
-        user_id,
-        rating,
-        comment,
-        published: true,
-      }
-    }),
+  await prisma.bid.createMany({
+    data: bids,
   })
 
-  console.log('reviews: done')
+  console.log('bids: done')
+
+  // for await (const { id: listing_id } of listings) {
+  //   const category_id = random(1, count.category)
+
+  //   await prisma.listingCategory.create({
+  //     data: { listing_id, category_id },
+  //   })
+  // }
+
+  console.log('listings: done')
 
   // creating blog posts
   console.log('blog_posts: creating')

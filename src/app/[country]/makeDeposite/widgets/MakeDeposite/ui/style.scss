@@ -1,0 +1,64 @@
+.range-container {
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+  }
+  
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background: #ddd;
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Убираем стандартный вид */
+    appearance: none;
+    width: 38px; /* Ширина бегунка */
+    height: 20px; /* Высота бегунка */
+    background: #3E73CF; /* Цвет бегунка */
+    border-radius: 10px; /* Делаем его круглым */
+    cursor: pointer; /* Добавляем курсор */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень */
+    transition: background 0.3s;
+  }
+
+  // .range-slider::-moz-range-progress {
+  //   background:#191919;
+  // }
+
+
+  .range-slider::-webkit-slider-thumb {
+    content: "← →"; /* Символы внутри бегунка */
+    color: white; /* Цвет текста */
+    font-size: 14px; /* Размер текста */
+  }
+  
+  
+  .range-slider:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+
+  }
+  
+  /* Значение */
+  .range-value {
+    position: absolute;
+    top: 65px; /* Расположение над ползунком */
+    color: #191919;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 26px;
+    font-weight: bold;
+    white-space: nowrap;
+    pointer-events: none; /* Чтобы не мешать кликам на ползунке */
+  }
+  

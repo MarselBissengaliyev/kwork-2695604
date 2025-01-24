@@ -58,8 +58,6 @@ export const BlogPostCreateForm = ({ metadata }) => {
 
   const handlers = {
     onSubmit: handleSubmit((data) => {
-      console.log({ data })
-
       try {
         setLoading(true)
 

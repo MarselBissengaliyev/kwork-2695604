@@ -21,6 +21,7 @@ module.exports = {
         minilaptop: "666px",
         laptop: "769px",
         mindesk: "1024px",
+        largeDesk: "1200px",
         desktop: "1366px",
         xl: "1500px",
         xxl: "1920px",

@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import work1 from './../../public/images/work/work-1.png'
-import work2 from './../../public/images/work/work-2.png'
-import work3 from './../../public/images/work/work-3.png'
-import shape1 from './../../public/images/shape-3.png'
-import shape2 from './../../public/images/shape-4.png'
+import work1 from './../../../public/images/work/work-1.png'
+import work2 from './../../../public/images/work/work-2.png'
+import work3 from './../../../public/images/work/work-3.png'
+import shape1 from './../../../public/images/shape-3.png'
+import shape2 from './../../../public/images/shape-4.png'
 
 const WorkArea = () => {
   return (

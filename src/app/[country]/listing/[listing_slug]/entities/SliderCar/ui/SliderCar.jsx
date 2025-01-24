@@ -9,7 +9,6 @@ import arrow from "../../../shared/img/arrow-slide.svg";
 
 
 const SliderCar = ({ media }) => {
-  console.log(media);
   // Объект с картинками
 
   // Состояние активного изображения

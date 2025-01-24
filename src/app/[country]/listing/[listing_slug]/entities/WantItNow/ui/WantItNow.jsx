@@ -4,13 +4,13 @@ import React from "react";
 import BuyItNow from "../../../shared/img/BuyItNow";
 import JobOffer from "../../../shared/img/JobOffer";
 
-const WantItNow = () => {
+const WantItNow = ({ listing }) => {
   return (
     <div className="case-border tw-mb-[20px] tw-px-[15px] tablet:tw-px-[30px] tw-py-[28px]">
       <h2 className="tw-text-[20px] tablet:tw-text-[30px]">Want It Now?</h2>
       <hr className="tw-my-[24px]" />
       <div className="tw-mb-[30px]">
-        <ListItem label={"Buy now Price"} value={"$17,000"} />
+        <ListItem label={"Buy now Price"} value={"$" + listing.final_bid} />
       </div>
       <div className="tw-flex tw-flex-col tw-gap-[20px]">
         <button

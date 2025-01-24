@@ -1,148 +1,125 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
 import ListItem from "@/components/ListItem/index";
 
 import CopyText from "@/components/ListItem/models/CopyText";
 
-const vehicleinfo = [
-  {
-    label: "LOT:",
-    value: <CopyText text={"30874242"} />,
-  },
-  {
-    label: "VIN:",
-    value: <CopyText text={"1FALP6536WK134349"} />,
-  },
-  {
-    label: "Mileage:",
-    value: "138,412",
-  },  
-  {
-    label: "Keys:",
-    value: "46 861 Actual",
-  },
-  {
-    label: "Damage:",
-    value: "Run and Drive ",
-  },
-  {
-    label: "Engine:",
-    value: "NORMAL WEAR",
-  },
-  {
-    label: "Fuel:",
-    value: "NORMAL WEAR",
-  },
-  {
-    label: "Transmission:",
-    value: "$28,190 USD",
-  },
-  {
-    label: "Lot Quality:",
-    value: "SEDAN 4DR",
-  },
-  {
-    label: "Color:",
-    value: "CAR WHITE 2.5L 4",
-  },
-  {
-    label: "Run and Drive:",
-    value: "4",
-  },
-  {
-    label: "Title:",
-    value: "AUTOMATIC",
-  },
-  {
-    label: "Cycinder:",
-    value: "Front-wheel Drive",
-  },
-  {
-    label: "Loss:",
-    value: "YES",
-  },
-  {
-    label: "Key:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Start Date:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "ACV:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Sale Document:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Restraint System:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Air Bags:",
-    value: "No Notes for this Lot",
-  },
-  {
-    label: "Driver AirBag:",
-    value: "YES",
-  },
-];
+const truncateText = (text, maxLength = 21) => {
+  if (!text || typeof text !== "string") return text; // Возвращаем оригинал, если это не строка
+  return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+};
 
 const Vehicleinfo = ({ children, listing }) => {
-  console.log("Listing=", listing?.slug);
+  function extractCylinders(engineStr) {
+    if (!engineStr) return null; // Если строка отсутствует, вернуть null
+    const match = engineStr.match(/([VvIi])\d+/); // Ищем шаблон V6, I4 и т.п.
+    return match ? parseInt(match[0].slice(1), 10) : null; // Возвращаем число цилиндров или null
+  }
+
   const vehicleinfo = [
     {
-      label: "LOT:",
-      value: <CopyText text={listing?.lot} />,
+      label: "Vin:",
+      value: <CopyText text={truncateText(listing?.vin)} />,
     },
     {
-      label: "VIN:",
-      value: <CopyText text={listing?.vin} />,
+      label: "Make:",
+      value: truncateText(listing.make?.name),
+    },
+    {
+      label: "Model:",
+      value: truncateText(listing.model?.name),
+    },
+    {
+      label: "Year:",
+      value: truncateText(listing?.year),
     },
     {
       label: "Mileage:",
-      value: listing?.mileage,
-    },
-    {
-      label: "Keys:",
-      value: listing?.keys,
+      value: truncateText(listing?.mileage),
     },
     {
       label: "Damage:",
-      value: listing?.damage,
+      value: truncateText(listing?.damage),
     },
     {
-      label: "Engine:",
-      value: listing?.engine,
+      label: "damageSecondary:",
+      value: truncateText(listing?.damageSecondary),
     },
     {
-      label: "Fuel:",
-      value: listing?.fuel,
+      label: "Auction:",
+      value: truncateText(listing?.auction),
     },
     {
-      label: "Transmission:",
-      value: listing?.transmission,
+      label: "Loss:",
+      value: truncateText(listing?.loss),
     },
     {
-      label: "Lot Quality:",
-      value: listing?.lot,
+      label: "Run and drive:",
+      value: listing.run_and_drive ? "YES" : "NO",
+    },
+    {
+      label: "State:",
+      value: truncateText(listing?.state),
+    },
+    {
+      label: "Location:",
+      value: truncateText(listing?.location),
+    },
+    {
+      label: "Document:",
+      value: truncateText(listing?.document),
+    },
+    {
+      label: "Clean_title:",
+      value: listing.clean_title ? "YES" : "NO",
+    },
+    {
+      label: "Registred_pl:",
+      value: listing.registred_pl ? "YES" : "NO",
+    },
+    {
+      label: "Seller:",
+      value: truncateText(listing?.seller),
     },
     {
       label: "Color:",
-      value: listing?.color,
+      value: truncateText(listing.color),
+    },
+    {
+      label: "Engine:",
+      value: truncateText(listing.engine),
+    },
+    {
+      label: "Fuel :",
+      value: truncateText(listing.fuel),
+    },
+    {
+      label: "Condition :",
+      value: truncateText(listing.condition),
+    },
+    {
+      label: "Transmission:",
+      value: truncateText(listing.transmission),
     },
     {
       label: "Drive:",
-      value: listing?.drive,
+      value: truncateText(listing.drive),
     },
     {
-      label: "Title:",
-      value: listing?.title,
+      label: "Auction at:",
+      value: truncateText(new Date(listing.auction_at).toDateString()),
+    },
+    {
+      label: "Status:",
+      value: truncateText(listing.status),
+    },
+    {
+      label: "Lot:",
+      value: truncateText(listing.lot),
     },
   ];
+
   return (
     <div className="case-border tw-px-[15px] tablet:tw-px-[30px] tw-pt-[30px] tw-pb-[13px] !tw-w-full desktop:tw-max-w-[708px] ">
       <div className="tablet:tw-block minilaptop:tw-flex  tw-gap-[28px] laptop:tw-block">
@@ -154,20 +131,7 @@ const Vehicleinfo = ({ children, listing }) => {
             })}
           </ul>
         </div>
-        <div className="tw-w-full ">
-          {children}
-          <hr className="tw-mt-[40px] hidden laptop:block  tw-mb-[30px]" />
-          <ul>
-            <h2 className="text-title tw-mt-[40px] tw-mb-[30px] tw-font-semibold">Status Report</h2>
-            <ListItem label={"Condition Grade:"} value={"3 - Average"} icon={""} />
-          </ul>
-          <hr className="tw-my-[30px] " />
-          <ul>
-            <h2 className="text-title tw-mb-[30px] tw-font-semibold">Options</h2>
-            <ListItem label={"Dual, Side"} value={"Hard Roof Top"} icon={""} />
-            <ListItem label={"Cloth"} value={"FM Radio"} icon={""} />
-          </ul>
-        </div>
+        <div className="tw-w-full ">{children}</div>
       </div>
     </div>
   );

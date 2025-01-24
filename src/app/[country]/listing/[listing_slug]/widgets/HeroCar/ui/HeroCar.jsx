@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import PageDirect from "@/components/Common/PageDirect";
 
@@ -32,10 +32,12 @@ import Car from "../../../shared/img/Car";
 import InfoIcon from "../../../shared/img/InfoIcon";
 import CopyText from "@/components/ListItem/models/CopyText";
 
+// eslint-disable-next-line react/prop-types
 const HeroCar = ({ listing }) => {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min"); // Подключаем JS Bootstrap
   }, []);
+  const [inputValue, setInputValue] = useState(25);
   return (
     <section className="tw-container tw-mx-0   desktop:tw-mx-auto  tw-mb-[66px]">
       {/* ======================================= */}
@@ -83,8 +85,10 @@ const HeroCar = ({ listing }) => {
           <div className="tw-block laptop:tw-hidden tw-mb-[31px] tw-mx-[15px] tablet:tw-mx-0 tablet:tw-mb-0">
             {/* laptop  */}
             <AuctionDateNotification />
-            <AccordionHistory title={"Auction History Found"} id={1} />
-            <BidStatus>
+            {listing.make.lots.length > 0 && (
+              <AccordionHistory lots={listing.make.lots} title={"Auction History Found"} id={1} />
+            )}
+            <BidStatus setInputValue={setInputValue} listing={listing}>
               {" "}
               <button
                 type="button"
@@ -130,8 +134,8 @@ const HeroCar = ({ listing }) => {
           </div>
           <div className="tw-block  laptop:tw-hidden tw-mx-[15px] tablet:tw-mx-0">
             {/* laptop */}
-            <WantItNow />
-            <FinalPriceCalc />
+            <WantItNow listing={listing} />
+            <FinalPriceCalc listing={listing} />
           </div>
           <FAQ />
         </div>
@@ -152,15 +156,17 @@ const HeroCar = ({ listing }) => {
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
             <AuctionDateNotification />
-            <AccordionHistory title={"Auction History Found"} id={1} />
-            <BidStatus>
+            {listing.make.lots.length > 0 && (
+              <AccordionHistory lots={listing.make.lots} title={"Auction History Found"} id={1} />
+            )}
+            <BidStatus setInputValue={setInputValue} listing={listing}>
               <button
                 type="button"
                 className="tw-w-full tw-flex tw-gap-[10px] tw-justify-center tw-bg-[#3ECF5C] tw-text-[#fff] tw-py-[20.5px] tw-rounded-[32px] "
                 data-bs-toggle="modal"
                 // data-bs-target="#modalNotMoney"
-                // data-bs-target="#modalConfirm"
-                data-bs-target="#modalAttention"
+                data-bs-target="#modalConfirm"
+                // data-bs-target="#modalAttention"
               >
                 Place a Bid <Auc />
               </button>
@@ -183,15 +189,15 @@ const HeroCar = ({ listing }) => {
           </div>
           <div className="tw-hidden  laptop:tw-block">
             {/* desktop */}
-            <WantItNow />
-            <FinalPriceCalc />
+            <WantItNow listing={listing} />
+            <FinalPriceCalc listing={listing} />
           </div>
-          <PolandMarket />
+          <PolandMarket listing={listing} marketInfo={listing.make.marketInfo[0]} />
         </div>
       </div>
       <ModalGetReport />
-      <ModalConfirmBild />
       <ModalNotEnoughMoney />
+      <ModalConfirmBild inputValue={inputValue} />
       <ModalAttention />
     </section>
   );
