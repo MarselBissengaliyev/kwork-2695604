@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 import "../styles/input-phone.scss";
 
-const InputPhone = ({className}) => {
+const InputPhone = ({ className }) => {
   const [phone, setPhone] = useState("");
 
   return (
