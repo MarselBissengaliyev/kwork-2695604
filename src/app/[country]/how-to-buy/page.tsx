@@ -11,7 +11,7 @@ const page = () => {
         </PageDirect>
         <Container className={""}>
             <h3>4 Easy Steps to Purchase Your Car</h3>
-            <div className='tw-flex tw-gap-[100px] tw-mt-[30px]'>
+            <div className='tw-flex tw-gap-[100px] tw-mt-[30px] max-laptop:tw-flex-col max-laptop:tw-gap-[40px]'>
                 <p>
                     If you’re buying a car for the first time, it can be intimidating, to be sure. 
                     You want to make the best decision possible because you’re going to be spending ample time in this vehicle, 
