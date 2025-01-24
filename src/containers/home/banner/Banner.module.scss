@@ -129,12 +129,16 @@
           width: auto;
           border: none;
           border-right: 1px solid #d6d6d6;
-        }   
+          width: 284px;
+        }
         & > .select {
           padding: 0;
           margin: 0;
           height: 100%;
-          border: none;
+          border: none !important;
+          outline: none;
+          border-radius: 0px !important;
+          width: 100%;
           @media screen and (min-width: 320px) {
             padding: 21px 30px;
           }
@@ -242,4 +246,11 @@
       }
     }
   }
+}
+
+.dropdown {
+  background: #ffffff;
+  box-shadow: 0px 12px 24px rgba(51, 51, 51, 0.2);
+  padding: 20px 10px;
+  width: 284px;
 }

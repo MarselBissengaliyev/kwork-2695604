@@ -50,7 +50,21 @@ const Banner = ({ categories, makes, models }) => {
         <h4 className={"mb-4 " + css.title}>Buy Vehicles from USA Auto Auctions</h4>
         <div className={css.row + " row gy-3"}>
           <div className={css.item + " col-md-2"}>
-            <select
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Makes
+              </button>
+              <ul className={css.dropdown + " dropdown-menu"} aria-labelledby="dropdownMenuButton1">
+                hu
+              </ul>
+            </div>
+            {/* <select
               id="make"
               className={css.select + " form-select"}
               value={selectedMake}
@@ -62,7 +76,7 @@ const Banner = ({ categories, makes, models }) => {
                   {make.name}
                 </option>
               ))}
-            </select>
+            </select> */}
           </div>
 
           <div className={css.item + " col-md-2"}>
